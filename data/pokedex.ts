@@ -4869,7 +4869,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	sceptile: {
 		num: 254,
 		name: "Sceptile",
-		types: ["Grass"],
+		types: ["Grass","Dragon"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 70, atk: 85, def: 65, spa: 105, spd: 85, spe: 120},
 		abilities: {0: "Overgrow", H: "Sharpness"},
