@@ -626,6 +626,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			shortDesc: "30% chance each adjacent ally has its status cured at the end of each turn.",
 		},
 	},
+	heathaze:{
+	name: "Heat Haze",
+	desc: "If harsh sunlight is active, the accuracy of moves used against this Pokemon is multiplied by 0.8.",
+	shortDesc: "If harsh sunlight is active, this Pokemon's evasiveness is 1.25x.",
+	},
 	heatproof: {
 		name: "Heatproof",
 		desc: "The power of Fire-type attacks against this Pokemon is halved. This Pokemon takes half of the usual burn damage, rounded down.",
