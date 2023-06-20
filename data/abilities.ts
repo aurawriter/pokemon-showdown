@@ -1647,6 +1647,20 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 0,
 		num: 131,
 	},
+	heathaze: {
+		onModifyAccuracyPriority: -1,
+		onModifyAccuracy(accuracy) {
+			if (typeof accuracy !== 'number') return;
+			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+				this.debug('Heat Haze - decreasing accuracy');
+				return this.chainModify([3277, 4096]);
+			}
+		},
+		isBreakable: true,
+		name: "Heat Haze",
+		rating: 1.5,
+		num: 1000,
+	},
 	heatproof: {
 		onSourceBasePowerPriority: 18,
 		onSourceBasePower(basePower, attacker, defender, move) {
