@@ -1011,11 +1011,11 @@ export const ItemsText: {[k: string]: ItemText} = {
 	},
 	lustrousglobe: {
 		name: "Lustrous Globe",
-		desc: "If held by a Palkia, its Water- and Dragon-type attacks have 1.2x power.",
+		desc: "If held by a Palkia, its Cosmic- and Dragon-type attacks have 1.2x power.",
 	},
 	lustrousorb: {
 		name: "Lustrous Orb",
-		desc: "If held by a Palkia, its Water- and Dragon-type attacks have 1.2x power.",
+		desc: "If held by a Palkia, its Cosmic- and Dragon-type attacks have 1.2x power.",
 	},
 	luxuryball: {
 		name: "Luxury Ball",
