@@ -1106,7 +1106,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	cosmicmemory: {
 		name: "Cosmic Memory",
 		spritenum: 673,
-		onMemory: 'Bug',
+		onMemory: 'Cosmic',
 		onTakeItem(item, pokemon, source) {
 			if ((source && source.baseSpecies.num === 773) || pokemon.baseSpecies.num === 773) {
 				return false;
@@ -3171,10 +3171,10 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 5,
 		isNonstandard: "Past",
 	},
-	cosmicmemory: {
+	lightmemory: {
 		name: "Light Memory",
 		spritenum: 673,
-		onMemory: 'Bug',
+		onMemory: 'Light',
 		onTakeItem(item, pokemon, source) {
 			if ((source && source.baseSpecies.num === 773) || pokemon.baseSpecies.num === 773) {
 				return false;
