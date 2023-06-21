@@ -3216,7 +3216,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		spritenum: 265, // TODO
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (user.baseSpecies.num === 484 && (move.type === 'Water' || move.type === 'Dragon')) {
+			if (user.baseSpecies.num === 484 && (move.type === 'Cosmic' || move.type === 'Dragon')) {
 				return this.chainModify([4915, 4096]);
 			}
 		},
@@ -3239,7 +3239,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		onBasePowerPriority: 15,
 		onBasePower(basePower, user, target, move) {
-			if (user.baseSpecies.num === 484 && (move.type === 'Water' || move.type === 'Dragon')) {
+			if (user.baseSpecies.num === 484 && (move.type === 'Cosmic' || move.type === 'Dragon')) {
 				return this.chainModify([4915, 4096]);
 			}
 		},
