@@ -1089,6 +1089,60 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 3,
 		isNonstandard: "Past",
 	},
+	cosmicgem: {
+		name: "Cosmic Gem",
+		spritenum: 53,
+		isGem: true,
+		onSourceTryPrimaryHit(target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Cosmic' && source.useItem()) {
+				source.addVolatile('gem');
+			}
+		},
+		num: 558,
+		gen: 5,
+		isNonstandard: "Past",
+	},
+	cosmicmemory: {
+		name: "Cosmic Memory",
+		spritenum: 673,
+		onMemory: 'Bug',
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 773) || pokemon.baseSpecies.num === 773) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Silvally-Cosmic",
+		itemUser: ["Silvally-Cosmic"],
+		num: 909,
+		gen: 7,
+		isNonstandard: "Past",
+	},
+	cosmicberry: {
+		name: "Cosmic Berry",
+		spritenum: 603,
+		isBerry: true,
+		naturalGift: {
+			basePower: 80,
+			type: "Cosmic",
+		},
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.type === 'Cosmic' && target.getMoveHitData(move).typeMod > 0) {
+				const hitSub = target.volatiles['substitute'] && !move.flags['bypasssub'] && !(move.infiltrates && this.gen >= 6);
+				if (hitSub) return;
+
+				if (target.eatItem()) {
+					this.debug('-50% reduction');
+					this.add('-enditem', target, this.effect, '[weaken]');
+					return this.chainModify(0.5);
+				}
+			}
+		},
+		onEat() { },
+		num: 686,
+		gen: 6,
+	},
 	coverfossil: {
 		name: "Cover Fossil",
 		spritenum: 85,
@@ -3069,6 +3123,30 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 236,
 		gen: 2,
 	},
+	lightberry: {
+		name: "Light Berry",
+		spritenum: 603,
+		isBerry: true,
+		naturalGift: {
+			basePower: 80,
+			type: "Light",
+		},
+		onSourceModifyDamage(damage, source, target, move) {
+			if (move.type === 'Light' && target.getMoveHitData(move).typeMod > 0) {
+				const hitSub = target.volatiles['substitute'] && !move.flags['bypasssub'] && !(move.infiltrates && this.gen >= 6);
+				if (hitSub) return;
+
+				if (target.eatItem()) {
+					this.debug('-50% reduction');
+					this.add('-enditem', target, this.effect, '[weaken]');
+					return this.chainModify(0.5);
+				}
+			}
+		},
+		onEat() { },
+		num: 686,
+		gen: 6,
+	},
 	lightclay: {
 		name: "Light Clay",
 		spritenum: 252,
@@ -3078,6 +3156,36 @@ export const Items: {[itemid: string]: ItemData} = {
 		// implemented in the corresponding thing
 		num: 269,
 		gen: 4,
+	},
+	lightgem: {
+		name: "Light Gem",
+		spritenum: 53,
+		isGem: true,
+		onSourceTryPrimaryHit(target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Light' && source.useItem()) {
+				source.addVolatile('gem');
+			}
+		},
+		num: 558,
+		gen: 5,
+		isNonstandard: "Past",
+	},
+	cosmicmemory: {
+		name: "Light Memory",
+		spritenum: 673,
+		onMemory: 'Bug',
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 773) || pokemon.baseSpecies.num === 773) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Silvally-Light",
+		itemUser: ["Silvally-Light"],
+		num: 909,
+		gen: 7,
+		isNonstandard: "Past",
 	},
 	loadeddice: {
 		name: "Loaded Dice",
@@ -3876,6 +3984,26 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 7,
 		isNonstandard: "Past",
 	},
+	nebulaplate: {
+		name: "Nebula Plate",
+		spritenum: 282,
+		onPlate: 'Cosmic',
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move.type === 'Cosmic') {
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 493) || pokemon.baseSpecies.num === 493) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Arceus-Cosmic",
+		num: 301,
+		gen: 4,
+	},
 	occaberry: {
 		name: "Occa Berry",
 		spritenum: 311,
@@ -4544,6 +4672,26 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 177,
 		gen: 3,
 		isNonstandard: "Past",
+	},
+	radiantplate: {
+		name: "Radiant Plate",
+		spritenum: 282,
+		onPlate: 'Light',
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move.type === 'Light') {
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 493) || pokemon.baseSpecies.num === 493) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Arceus-Light",
+		num: 301,
+		gen: 4,
 	},
 	rarebone: {
 		name: "Rare Bone",
