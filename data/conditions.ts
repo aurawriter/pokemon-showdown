@@ -7,7 +7,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'brn', '[from] item: Flame Orb');
 			} else if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'brn', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
-			} else {
+			} else { 
 				this.add('-status', target, 'brn');
 			}
 		},
@@ -540,7 +540,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
-			if (move.id === 'hydrosteam' && !attacker.hasItem('utilityumbrella')) {
+			if ((move.id === 'hydrosteam' || move.id === 'solarstrike') && !attacker.hasItem('utilityumbrella')) {
 				this.debug('Sunny Day Hydro Steam boost');
 				return this.chainModify(1.5);
 			}
