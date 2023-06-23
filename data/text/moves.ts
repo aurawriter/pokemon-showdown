@@ -1856,6 +1856,14 @@ export const MovesText: {[k: string]: MoveText} = {
 			shortDesc: "Usually goes first.",
 		},
 	},
+		lightspeed: {
+		name: "Lightspeed",
+		desc: "No additional effect.",
+		shortDesc: "Nearly always goes first.",
+		gen4: {
+			shortDesc: "Usually goes first.",
+		},
+	},
 	facade: {
 		name: "Facade",
 		desc: "Power doubles if the user is burned, paralyzed, or poisoned. The physical damage halving effect from the user's burn is ignored.",
@@ -2017,6 +2025,34 @@ export const MovesText: {[k: string]: MoveText} = {
 		start: "  [POKEMON] became trapped in the fiery vortex!",
 		move: "#wrap", // gen 1 only
 	},
+		planarbinding: {
+		name: "Planar Binding",
+		desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Flip Turn, Parting Shot, Shed Tail, Teleport, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Mortal Spin, Rapid Spin, or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+		gen8: {
+			desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Flip Turn, Parting Shot, Teleport, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		},
+		gen7: {
+			desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		},
+		gen5: {
+			desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/16 of its maximum HP (1/8 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		},
+		gen4: {
+			desc: "Prevents the target from switching for two to five turns (always five turns if the user is holding Grip Claw). Causes damage to the target equal to 1/16 of its maximum HP, rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass or U-turn. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+			shortDesc: "Traps and damages the target for 2-5 turns.",
+		},
+		gen3: {
+			desc: "Prevents the target from switching for two to five turns. Causes damage to the target equal to 1/16 of its maximum HP, rounded down, at the end of each turn during effect. The target can still switch out if it uses Baton Pass. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		},
+		gen1: {
+			desc: "The user spends two to five turns using this move. Has a 3/8 chance to last two or three turns, and a 1/8 chance to last four or five turns. The damage calculated for the first turn is used for every other turn. The user cannot select a move and the target cannot execute a move during the effect, but both may switch out. If the user switches out, the target remains unable to execute a move during that turn. If the target switches out, the user uses this move again automatically, and if it had 0 PP at the time, it becomes 63. If the user or the target switch out, or the user is prevented from moving, the effect ends. This move can prevent the target from moving even if it has type immunity, but will not deal damage.",
+			shortDesc: "Prevents the target from moving for 2-5 turns.",
+		},
+
+		start: "  [POKEMON] became trapped in an alternate dimension!",
+		move: "#wrap", // gen 1 only
+	},
 	firstimpression: {
 		name: "First Impression",
 		desc: "Fails unless it is the user's first turn on the field.",
@@ -2085,6 +2121,15 @@ export const MovesText: {[k: string]: MoveText} = {
 		gen4: {
 			desc: "Has a 10% chance to burn the target. If the target lost HP, the user takes recoil damage equal to 1/3 the HP lost by the target, rounded down, but not less than 1 HP.",
 			shortDesc: "Has 1/3 recoil. 10% chance to burn. Thaws user.",
+		},
+	},
+	cosmicimpact: {
+		name: "Cosmic Impact",
+		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil",
+		gen4: {
+			desc: "If the target lost HP, the user takes recoil damage equal to 1/3 the HP lost by the target, rounded down, but not less than 1 HP.",
+			shortDesc: "Has 1/3 recoil.",
 		},
 	},
 	flash: {
@@ -2381,6 +2426,13 @@ export const MovesText: {[k: string]: MoveText} = {
 		name: "Geomancy",
 		desc: "Raises the user's Special Attack, Special Defense, and Speed by 2 stages. This attack charges on the first turn and executes on the second. If the user is holding a Power Herb, the move completes in one turn.",
 		shortDesc: "Charges, then raises SpA, SpD, Spe by 2 turn 2.",
+
+		prepare: "[POKEMON] is absorbing power!",
+	},
+		celestialalignment: {
+		name: "Celestial Alignment",
+		desc: "Raises the user's Attack, Defense, and Speed by 2 stages. This attack charges on the first turn and executes on the second. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Charges, then raises Atk, Def, Spe by 2 turn 2.",
 
 		prepare: "[POKEMON] is absorbing power!",
 	},
@@ -3977,6 +4029,13 @@ export const MovesText: {[k: string]: MoveText} = {
 
 		prepare: "[POKEMON] is overflowing with space power!",
 	},
+	primordialbolt: {
+		name: "Primordial Bolt",
+		desc: "This attack charges on the first turn and executes on the second. Raises the user's Special Attack by 1 stage on the first turn. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Raises user's Sp. Atk by 1 on turn 1. Hits turn 2.",
+
+		prepare: "[POKEMON] is overflowing with primordial power!",
+	},
 	meteormash: {
 		name: "Meteor Mash",
 		desc: "Has a 20% chance to raise the user's Attack by 1 stage.",
@@ -4184,6 +4243,11 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	moonblast: {
 		name: "Moonblast",
+		desc: "Has a 30% chance to lower the target's Special Attack by 1 stage.",
+		shortDesc: "30% chance to lower the target's Sp. Atk by 1.",
+	},
+		starburst: {
+		name: "Starburst",
 		desc: "Has a 30% chance to lower the target's Special Attack by 1 stage.",
 		shortDesc: "30% chance to lower the target's Sp. Atk by 1.",
 	},
@@ -5559,6 +5623,20 @@ export const MovesText: {[k: string]: MoveText} = {
 		activate: "  It broke through [TARGET]'s protection!",
 		prepare: "[POKEMON] vanished instantly!",
 	},
+	astralrift: {
+		name: "Astral Rift",
+		desc: "If this move is successful, it breaks through the target's Baneful Bunker, Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Disappears turn 1. Hits turn 2. Breaks protection.",
+		gen6: {
+			desc: "If this move is successful, it breaks through the target's Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn. Damage doubles and no accuracy check is done if the target has used Minimize while active.",
+		},
+		gen5: {
+			desc: "If this move is successful, it breaks through the target's Detect or Protect for this turn, allowing other Pokemon to attack the target normally. If the target is an opponent and its side is protected by Quick Guard or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the opponent's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn.",
+		},
+
+		activate: "  It broke through [TARGET]'s protection!",
+		prepare: "[POKEMON] vanished instantly!",
+	},
 	shadowpunch: {
 		name: "Shadow Punch",
 		shortDesc: "This move does not check accuracy.",
@@ -5768,6 +5846,19 @@ export const MovesText: {[k: string]: MoveText} = {
 		failSelect: "Sky Drop won't let [POKEMON] go!",
 		failTooHeavy: "  [POKEMON] is too heavy to be lifted!",
 	},
+	asteroidslam: {
+		name: "Asteroid Slam",
+		desc: "This attack takes the target into the air with the user on the first turn and executes on the second. Pokemon weighing 200 kg or more cannot be lifted. On the first turn, the user and the target avoid all attacks other than Gust, Hurricane, Sky Uppercut, Smack Down, Thousand Arrows, Thunder, and Twister. The user and the target cannot make a move between turns, but the target can select a move to use. This move cannot damage Flying-type Pokemon. Fails on the first turn if the target is an ally, if the target has a substitute, or if the target is using Bounce, Dig, Dive, Fly, Phantom Force, Shadow Force, or Sky Drop.",
+		shortDesc: "User and foe fly up turn 1. Damages on turn 2.",
+		gen5: {
+			desc: "This attack takes the target into the air with the user on the first turn and executes on the second. On the first turn, the user and the target avoid all attacks other than Gust, Hurricane, Sky Uppercut, Smack Down, Thunder, and Twister. The user and the target cannot make a move between turns, but the target can select a move to use. This move cannot damage Flying-type Pokemon. Fails on the first turn if the target is an ally, if the target has a substitute, or if the target is using Bounce, Dig, Dive, Fly, Shadow Force, or Sky Drop. If the effect of Gravity ends this effect before the second turn, both the user and the target return to the ground, but the target will otherwise remain under this effect until the user leaves the field or successfully executes the second turn of any two-turn move.",
+		},
+
+		prepare: "[POKEMON] took [TARGET] into space!",
+		end: "  [POKEMON] was freed from the Asteroid Slam!",
+		failSelect: "Asteroid Slam won't let [POKEMON] go!",
+		failTooHeavy: "  [POKEMON] is too heavy to be lifted!",
+	},
 	skyuppercut: {
 		name: "Sky Uppercut",
 		desc: "This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop.",
@@ -5845,6 +5936,13 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	smackdown: {
 		name: "Smack Down",
+		desc: "This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If this move hits a target under the effect of Bounce, Fly, Magnet Rise, or Telekinesis, the effect ends. If the target is a Flying type that has not used Roost this turn or a Pokemon with the Levitate Ability, it loses its immunity to Ground-type attacks and the Arena Trap Ability as long as it remains active. During the effect, Magnet Rise fails for the target and Telekinesis fails against the target.",
+		shortDesc: "Removes the target's Ground immunity.",
+
+		start: "  [POKEMON] fell straight down!",
+	},
+	gravitroncore: {
+		name: "Gravitron Core",
 		desc: "This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If this move hits a target under the effect of Bounce, Fly, Magnet Rise, or Telekinesis, the effect ends. If the target is a Flying type that has not used Roost this turn or a Pokemon with the Levitate Ability, it loses its immunity to Ground-type attacks and the Arena Trap Ability as long as it remains active. During the effect, Magnet Rise fails for the target and Telekinesis fails against the target.",
 		shortDesc: "Removes the target's Ground immunity.",
 
@@ -6442,6 +6540,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Lowers the user's Attack and Defense by 1 stage.",
 		shortDesc: "Lowers the user's Attack and Defense by 1.",
 	},
+	starpower: {
+		name: "Star Power",
+		desc: "Lowers the user's Attack and Defense by 1 stage.",
+		shortDesc: "Lowers the user's Attack and Defense by 1.",
+	},
 	supersonic: {
 		name: "Supersonic",
 		shortDesc: "Causes the target to become confused.",
@@ -6934,6 +7037,18 @@ export const MovesText: {[k: string]: MoveText} = {
 			shortDesc: "No additional effect.",
 		},
 	},
+		cometrush: {
+		name: "Comet Rush",
+		desc: "Has a 20% chance to either burn, freeze, or paralyze the target.",
+		shortDesc: "20% chance to paralyze or burn or freeze target.",
+		gen2: {
+			desc: "This move selects burn, freeze, or paralysis at random, and has a 20% chance to inflict the target with that status. If the target is frozen and burn was selected, it thaws out.",
+		},
+		gen1: {
+			desc: "No additional effect.",
+			shortDesc: "No additional effect.",
+		},
+	},
 	trick: {
 		name: "Trick",
 		desc: "The user swaps its held item with the target's held item. Fails if either the user or the target is holding a Mail or Z-Crystal, if neither is holding an item, if the user is trying to give or take a Mega Stone to or from the species that can Mega Evolve with it, or if the user is trying to give or take a Blue Orb, a Red Orb, a Griseous Orb, a Plate, a Drive, or a Memory to or from a Kyogre, a Groudon, a Giratina, an Arceus, a Genesect, or a Silvally, respectively. The target is immune to this move if it has the Sticky Hold Ability.",
@@ -7047,6 +7162,19 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	uturn: {
 		name: "U-turn",
+		desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button or through the effect of the Emergency Exit or Wimp Out Abilities.",
+		shortDesc: "User switches out after damaging the target.",
+		gen6: {
+			desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button.",
+		},
+		gen4: {
+			desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members.",
+		},
+
+		switchOut: "[POKEMON] went back to [TRAINER]!",
+	},
+	wormholewarp: {
+		name: "Wormhole Warp",
 		desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button or through the effect of the Emergency Exit or Wimp Out Abilities.",
 		shortDesc: "User switches out after damaging the target.",
 		gen6: {
