@@ -6203,15 +6203,18 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	muertaguar:{
-		natDexTier: "OU"
+		natDexTier: "OU",
 	},
 	arjibee:{
-		natDexTier: "OU"
+		natDexTier: "OU",
 	},
 	macquero:{
-		natDexTier: "OU"
+		natDexTier: "OU",
 	},
 	maginata:{
-		natDexTier: "OU"
+		natDexTier: "OU",
 	},
+	arachnorok:{
+		natDexTier:"OU",
+	}
 };
