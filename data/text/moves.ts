@@ -1233,8 +1233,8 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Has a 20% chance to make the target flinch.",
 		shortDesc: "20% chance to make the target flinch.",
 	},
-	lightpulse: {
-		name: "Light Pulse",
+	flashbang: {
+		name: "Flash Bang",
 		desc: "Has a 20% chance to make the target flinch.",
 		shortDesc: "20% chance to make the target flinch.",
 	},
