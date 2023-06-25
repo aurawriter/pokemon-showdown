@@ -6216,5 +6216,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	arachnorok:{
 		natDexTier:"OU",
-	}
+	},
+	ickvader:
+	{
+		natDexTier:"OU",
+	},
+	kobolder:
+	{
+		natDexTier:"OU",
+	},
 };
