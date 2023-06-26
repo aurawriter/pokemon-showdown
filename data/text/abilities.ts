@@ -695,7 +695,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	illuminate: {
 		name: "Illuminate",
-		shortDesc: "No competitive use.",
+		desc: "This Pokemon's Normal-type moves become Light-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify",
+		shortDesc: "This Pokemon's Normal-type moves become Light type and have 1.2x power.",
 	},
 	illusion: {
 		name: "Illusion",
@@ -943,8 +944,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	megalauncher: {
 		name: "Mega Launcher",
-		desc: "This Pokemon's pulse moves have their power multiplied by 1.5. Heal Pulse restores 3/4 of a target's maximum HP, rounded half down.",
-		shortDesc: "This Pokemon's pulse moves have 1.5x power. Heal Pulse heals 3/4 target's max HP.",
+		desc: "This Pokemon's pulse, ball, and bomb moves have their power multiplied by 1.5. Heal Pulse restores 3/4 of a target's maximum HP, rounded half down.",
+		shortDesc: "This Pokemon's pulse, ball and bomb moves have 1.5x power. Heal Pulse heals 3/4 target's max HP.",
 	},
 	merciless: {
 		name: "Merciless",
@@ -1476,6 +1477,13 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "When this Pokemon is hit by an attack, the effect of Sandstorm begins. This effect comes after the effects of Max and G-Max Moves.",
 		},
 	},
+	solarsacrifice: {
+		name: "Solar Sacrifice",
+		shortDesc: "When this Pokemon is hit by an attack, the effect of Sunny Day begins.",
+		gen8: {
+			desc: "When this Pokemon is hit by an attack, the effect of Sunny Day begins. This effect comes after the effects of Max and G-Max Moves.",
+		},
+	},
 	sandstream: {
 		name: "Sand Stream",
 		shortDesc: "On switch-in, this Pokemon summons Sandstorm.",
@@ -1685,6 +1693,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		desc: "This Pokemon's Speed is raised by 1 stage at the end of each full turn it has been on the field.",
 		shortDesc: "This Pokemon's Speed is raised 1 stage at the end of each full turn on the field.",
 	},
+	marauder: {
+		name: "Marauder",
+		desc: "This Pokemon's Attack is raised by 1 stage at the end of each full turn it has been on the field.",
+		shortDesc: "This Pokemon's Attack is raised 1 stage at the end of each full turn on the field.",
+	},
 	stakeout: {
 		name: "Stakeout",
 		shortDesc: "This Pokemon's offensive stat is doubled against a target that switched in this turn.",
@@ -1807,6 +1820,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	surgesurfer: {
 		name: "Surge Surfer",
 		shortDesc: "If Electric Terrain is active, this Pokemon's Speed is doubled.",
+	},
+	terrafirma: {
+		name: "Terra Firma",
+		shortDesc: "If Grassy Terrain is active, this Pokemon gains Def. and Sp. Def each turn.",
 	},
 	swarm: {
 		name: "Swarm",
