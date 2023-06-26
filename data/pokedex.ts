@@ -11174,7 +11174,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Hydreigon",
 		types: ["Dark", "Dragon"],
 		baseStats: {hp: 92, atk: 105, def: 90, spa: 125, spd: 90, spe: 98},
-		abilities: {0: "Levitate"},
+		abilities: {0: "Levitate",1: "Dragonheart"},
 		heightm: 1.8,
 		weightkg: 160,
 		color: "Blue",
