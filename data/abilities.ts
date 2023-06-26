@@ -47,12 +47,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 91,
 	},
-	heavycannons:
+heavycannons:
 	{
-		onModifyCritRatio(critRatio,move) {
+		onModifyCritRatio(critRatio,user,target,move) {
 			if(move.type === 'Water')
 			{
-			return critRatio + 2;
+			return critRatio + 1;
+			this.debug("water type move crit rate up" + critRatio);
 			}
 		},
 		onModifyDamage(damage, source, target, move) {
