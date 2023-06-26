@@ -49,7 +49,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	heavycannons:
 	{
-		onModifyCritRatio(critRatio) {
+		onModifyCritRatio(critRatio,move) {
 			if(move.type === 'Water')
 			{
 			return critRatio + 2;
