@@ -4161,6 +4161,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 3,
 	},
+	speedboost: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (pokemon.activeTurns) {
+				this.boost({spe: 1});
+			}
+		},
+		name: "Speed Boost",
+		rating: 4.5,
+		num: 3,
+	},
 	
 	stakeout: {
 		onModifyAtkPriority: 5,
