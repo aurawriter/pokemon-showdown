@@ -66,7 +66,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamagingHit(damage,target,source,move){
 		if(move.type === 'Dragon')
 			if($this.randomChance(10,10)){
-				target.trySetStatus('brn',target);
+				target.trySetStatus('brn',source);
 			}
 		},
 		name: "Dragonheart",
