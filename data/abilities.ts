@@ -48,7 +48,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 91,
 	},
 	dragonheart: {
-		onModifyTypePriority: -1,
+	onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
 				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
@@ -64,16 +64,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.typeChangerBoosted === this.effect) return this.chainModify([4915, 4096]);
 		},
 		onModifyMove(move){
-		if(move.type === 'Dragon'){
+		if(!(move.type === 'Dragon')) return;
+		if(!move.secondaries)
+		{
+			move.secondaries = [];
+		}
 		move.secondaries.push({
 				chance: 100,
 				status: 'brn',
-				ability: this.dex.abilities.get('poisontouch'),
+				ability: this.dex.abilities.get('dragonheart'),
 			});
 		}
 		},
-	
-		
 		name: "Dragonheart",
 		rating: 4,
 		num: 182,
