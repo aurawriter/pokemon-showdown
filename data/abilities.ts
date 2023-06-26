@@ -47,6 +47,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 91,
 	},
+	heavycannons:
+	{
+		onModifyCritRatio(critRatio) {
+			if(move.type === 'Water')
+			{
+			return critRatio + 2;
+			}
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).crit) {
+				this.debug('Sniper boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Heavy Cannons"
+	},
 	dragonheart: {
 onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
