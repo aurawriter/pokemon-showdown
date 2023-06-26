@@ -63,6 +63,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.typeChangerBoosted === this.effect) return this.chainModify([4915, 4096]);
 		},
+		onModifyMove(move){
 		if(move.type === 'Dragon'){
 		move.secondaries.push({
 				chance: 100,
@@ -70,6 +71,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				ability: this.dex.abilities.get('poisontouch'),
 			});
 		}
+		},
 	
 		
 		name: "Dragonheart",
