@@ -68,7 +68,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if($this.randomChance(10,10)){
 				target.trySetStatus('brn',target);
 			}
-		}
+		},
 		name: "Dragonheart",
 		rating: 4,
 		num: 182,
