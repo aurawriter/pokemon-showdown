@@ -3837,36 +3837,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 239,
 		gen: 2,
 	},
-	flashlight: {
-		name: "flashlight",
-		fling: {
-			basePower: 30,
-		},
-		spritenum: 292,
-		onBasePowerPriority: 15,
-		onBasePower(basePower, user, target, move) {
-			if (move.type === 'Light') {
-				return this.chainModify([4915, 4096]);
-			}
-		},
-		num: 239,
-		gen: 2,
-	},
-	Telescope: {
-		name: "telescope",
-		fling: {
-			basePower: 30,
-		},
-		spritenum: 292,
-		onBasePowerPriority: 15,
-		onBasePower(basePower, user, target, move) {
-			if (move.type === 'Cosmic') {
-				return this.chainModify([4915, 4096]);
-			}
-		},
-		num: 239,
-		gen: 2,
-	},
 	mirrorherb: {
 		name: "Mirror Herb",
 		fling: {

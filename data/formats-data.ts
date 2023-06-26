@@ -6225,4 +6225,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	{
 		natDexTier:"OU",
 	},
+	waplati:
+	{
+		natDexTier:"OU",
+	},
+	galeusair:
+	{
+		natDexTier:"OU",
+	},
+	xinfernotl:
+	{
+		natDexTier:"OU",
+	},
 };

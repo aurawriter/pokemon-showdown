@@ -47,12 +47,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 91,
 	},
-heavycannons:
+	heavycannons:
 	{
 		onModifyCritRatio(critRatio,user,target,move) {
 			if(move.type === 'Water')
 			{
-			this.debug("water type move crit rate up" + critRatio+1);
+			this.debug("water type move crit rate up");
 			return critRatio + 1;
 			
 			}
@@ -63,10 +63,10 @@ heavycannons:
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Heavy Cannons"
+		name: "Heavy Cannons",
 	},
 	dragonheart: {
-onModifyTypePriority: -1,
+		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
 				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
@@ -3709,6 +3709,14 @@ onModifyTypePriority: -1,
 		rating: 1,
 		num: 245,
 	},
+	solarsacrifice: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setWeather('sunnyday');
+		},
+		name: "Solar Sacrifice",
+		rating: 1,
+		num: 245,
+	},
 	sandstream: {
 		onStart(source) {
 			this.field.setWeather('sandstorm');
@@ -4141,18 +4149,19 @@ onModifyTypePriority: -1,
 		rating: 2,
 		num: 43,
 	},
-	speedboost: {
+	marauder: {
 		onResidualOrder: 28,
 		onResidualSubOrder: 2,
 		onResidual(pokemon) {
 			if (pokemon.activeTurns) {
-				this.boost({spe: 1});
+				this.boost({atk: 1});
 			}
 		},
-		name: "Speed Boost",
+		name: "Marauder",
 		rating: 4.5,
 		num: 3,
 	},
+	
 	stakeout: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender) {
@@ -5290,5 +5299,17 @@ onModifyTypePriority: -1,
 		// implemented in the corresponding move
 		rating: 3,
 		num: -4,
+	},
+	terrafirma: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (pokemon.activeTurns && this.field.isTerrain('grassyterrain')) {
+				this.boost({ def: 1, spd: 1 });
+			}
+		},
+		name: "Terra Firma",
+		rating: 4.5,
+		num: 3,
 	},
 };

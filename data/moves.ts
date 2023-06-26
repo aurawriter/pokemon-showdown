@@ -9428,7 +9428,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		breaksProtect: true,
 		secondary: null,
 		target: "normal",
-		type: "Cosmic",
+		type: "Psychic",
 		contestType: "Clever",
 	},
 	hypervoice: {
@@ -22228,5 +22228,66 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Electric",
 		contestType: "Cool",
+	},
+	prismaticpyre: {
+		num: 560,
+		accuracy: 95,
+		basePower: 100,
+		category: "Special",
+		name: "Prismatic Pyre",
+		pp: 10,
+		flags: { contact: 1, protect: 1, mirror: 1, gravity: 1, distance: 1, nonsky: 1 },
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.dex.getEffectiveness('Light', type);
+		},
+		critRatio: 2,
+		priority: 0,
+		secondary: null,
+		target: "any",
+		type: "Fire",
+		zMove: { basePower: 170 },
+		contestType: "Tough",
+	},
+	majesticcharge: {
+		num: 280,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Majestic Charge",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit(pokemon) {
+			// will shatter screens through sub, before you hit
+			pokemon.side.removeSideCondition('reflect');
+			pokemon.side.removeSideCondition('lightscreen');
+			pokemon.side.removeSideCondition('auroraveil');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	feedingfrenzy: {
+		num: 37,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Ravagestorm",
+		pp: 10,
+		priority: 0,
+		flags: {bite: 1, contact: 1, protect: 1, mirror: 1, failinstruct: 1},
+		self: {
+			volatileStatus: 'lockedmove',
+		},
+		onAfterMove(pokemon) {
+			if (pokemon.volatiles['lockedmove'] && pokemon.volatiles['lockedmove'].duration === 1) {
+				pokemon.removeVolatile('lockedmove');
+			}
+		},
+		secondary: null,
+		target: "randomNormal",
+		type: "Water",
+		contestType: "Tough",
 	},
 };
