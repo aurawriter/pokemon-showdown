@@ -52,8 +52,9 @@ heavycannons:
 		onModifyCritRatio(critRatio,user,target,move) {
 			if(move.type === 'Water')
 			{
+			this.debug("water type move crit rate up" + critRatio+1);
 			return critRatio + 1;
-			this.debug("water type move crit rate up" + critRatio);
+			
 			}
 		},
 		onModifyDamage(damage, source, target, move) {
