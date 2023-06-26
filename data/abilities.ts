@@ -70,7 +70,7 @@ onModifyTypePriority: -1,
 			move.secondaries = [];
 		}
 		move.secondaries.push({
-				chance: 100,
+				chance: 30,
 				status: 'brn',
 				ability: this.dex.abilities.get('dragonheart'),
 			});
