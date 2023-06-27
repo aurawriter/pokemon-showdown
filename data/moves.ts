@@ -22273,7 +22273,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 120,
 		category: "Physical",
-		name: "Ravagestorm",
+		name: "Feeding Frenzy",
 		pp: 10,
 		priority: 0,
 		flags: {bite: 1, contact: 1, protect: 1, mirror: 1, failinstruct: 1},
