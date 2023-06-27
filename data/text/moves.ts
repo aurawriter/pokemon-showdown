@@ -2191,7 +2191,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	prismaticpyre: {
 		name: "Prismatic Pyre",
 		desc: "This move combines Light in its type effectiveness against the target. Has a higher chance for a critical hit",
-		shortDesc: "Combines Flying in its type effectiveness. High critical hit ratio.",
+		shortDesc: "Combines Light in its type effectiveness. High critical hit ratio.",
 	},
 	focusblast: {
 		name: "Focus Blast",
