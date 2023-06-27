@@ -60,7 +60,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyDamage(damage, source, target, move) {
 			if (target.getMoveHitData(move).crit) {
 				this.debug('Sniper boost');
-				return this.chainModify(1.5);
+				return this.chainModify(1.25);
 			}
 		},
 		name: "Heavy Cannons",
@@ -1468,6 +1468,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 177,
 	},
+	ferocity:{
+	galewings: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move.flags['bite']) return priority + 1;
+		},
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['bite']) {
+				return this.chainModify(1.25);
+			}
+		},
+		name: "Ferocity",
+		rating: 2.5,
+		num: 177,
+	},
+	}
 	galvanize: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
@@ -2053,6 +2068,25 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Intimidate",
+		rating: 3.5,
+		num: 22,
+	},
+	calmingpresence: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.adjacentFoes()) {
+				if (!activated) {
+					this.add('-ability', pokemon, 'Calmed', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({evasion: -1}, target, pokemon, null, true);
+				}
+			}
+		},
+		name: "Calming Presence",
 		rating: 3.5,
 		num: 22,
 	},
@@ -4432,6 +4466,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 207,
 	},
+	arborflow: {
+		onModifySpe(spe) {
+			if (this.field.isTerrain('grassyterrain')) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Arbor Flow",
+		rating: 3,
+		num: 207,
+	},
 	swarm: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
@@ -5324,12 +5368,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 3,
 	},
-	seeddispersal:{
+	seeddispersal:
+	{
 	onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target)) {
+					if(!source.volatiles['leechseed')
+					{
 					source.addVolatile('leechseed')
+					}
 				}
-		},
+			},
 		name: "Seed Dispersal",
 		rating: 2,
 		num: 49,
