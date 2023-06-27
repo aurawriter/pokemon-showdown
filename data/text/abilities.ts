@@ -462,6 +462,17 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			shortDesc: "1/3 chance a Pokemon making contact with this Pokemon will be burned.",
 		},
 	},
+	seeddispersal: {
+		name: "Flame Body",
+		shortDesc: "A Pokemon making contact with this Pokemon will be seeded.",
+		gen4: {
+			desc: "A Pokemon making contact with this Pokemon will be seeded. This effect does not happen if this Pokemon did not lose HP from the attack.",
+		},
+		gen3: {
+			desc: "A Pokemon making contact with this Pokemon will be seeded. This effect does not happen if this Pokemon did not lose HP from the attack.",
+			shortDesc: "A Pokemon making contact with this Pokemon will be seeded.",
+		},
+	},
 	flareboost: {
 		name: "Flare Boost",
 		desc: "While this Pokemon is burned, the power of its special attacks is multiplied by 1.5.",
@@ -1193,11 +1204,20 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	pixilate: {
 		name: "Pixilate",
-		desc: "This Pokemon's Normal-type moves become Fairy-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.2. Additionally, all Dragon type moves have a 30% chance to burn. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.2x power. Dragon type moves have a chance to burn.",
+		gen6: {
+			desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.3. Additionally, all Dragon type moves have a 30% chance to burn. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+			shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.3x power. Dragon type moves have a chance to burn.",
+		},
+	},
+	dragonheart: {
+		name: "Dragonheart",
+		desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
 		gen6: {
-			desc: "This Pokemon's Normal-type moves become Fairy-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-			shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.3x power.",
+			desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+			shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.3x power.",
 		},
 	},
 	plus: {
@@ -1789,6 +1809,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		desc: "This Pokemon's bite-based attacks have their power multiplied by 1.5.",
 		shortDesc: "This Pokemon's bite-based attacks have 1.5x power. Bug Bite is not boosted.",
 	},
+	ferocity: {
+		name: "Ferocity",
+		desc: "This Pokemon's bite-based attacks have their power multiplied by 1.25 and their priority increased.",
+		shortDesc: "This Pokemon's bite-based attacks have 1.25x power and their priority increased. Bug Bite is not boosted.",
+	},
 	sturdy: {
 		name: "Sturdy",
 		desc: "If this Pokemon is at full HP, it survives one hit with at least 1 HP. OHKO moves fail when used against this Pokemon.",
@@ -1810,6 +1835,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Super Luck",
 		shortDesc: "This Pokemon's critical hit ratio is raised by 1 stage.",
 	},
+	heavycannons: {
+		name: "Heavy Cannons",
+		shortDesc: "This Pokemon's critical hit ratio is raised by 1 stage when using Water-type moves. If this Pokemon strikes with a critical hit, the damage is multiplied by 1.25.",
+	},
 	supremeoverlord: {
 		name: "Supreme Overlord",
 		desc: "This Pokemon's moves have their power multiplied by 1+(X*0.1), where X is the total number of times any Pokemon has fainted on the user's side when this Ability became active, and X cannot be greater than 5.",
@@ -1820,6 +1849,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	surgesurfer: {
 		name: "Surge Surfer",
 		shortDesc: "If Electric Terrain is active, this Pokemon's Speed is doubled.",
+	},
+	arborflow: {
+		name: "Arbor Flow",
+		shortDesc: "If Grassy Terrain is active, this Pokemon's Speed is doubled.",
 	},
 	terrafirma: {
 		name: "Terra Firma",
