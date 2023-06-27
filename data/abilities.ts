@@ -1468,8 +1468,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 177,
 	},
-	ferocity:{
-	galewings: {
+	ferocity: {
 		onModifyPriority(priority, pokemon, target, move) {
 			if (move.flags['bite']) return priority + 1;
 		},
@@ -1482,7 +1481,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 177,
 	},
-	}
 	galvanize: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
@@ -5368,11 +5366,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 3,
 	},
-	seeddispersal:
-	{
+	seeddispersal: {
 	onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target)) {
-					if(!source.volatiles['leechseed')
+					if(!source.volatiles['leechseed'])
 					{
 					source.addVolatile('leechseed')
 					}
