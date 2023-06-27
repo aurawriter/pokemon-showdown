@@ -5324,4 +5324,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 3,
 	},
+	seeddispersal:{
+	onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target)) {
+				if (this.randomChance(10, 10)) {
+					source.trySetStatus('leechseed', target);
+				}
+			}
+		},
+		name: "Seed Dispersal",
+		rating: 2,
+		num: 49,
+	},
 };

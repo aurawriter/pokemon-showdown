@@ -95264,7 +95264,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 		discharge: ["9L1"],
 		electroball: ["9L1"],
 		magnetrise: ["9L1"],
-		risingvoltage: ["9L1"],
 		thunder: ["9L1"],
 		thunderfang: ["9L1"],
 		thunderpunch: ["9L1"],
