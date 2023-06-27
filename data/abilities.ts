@@ -5327,7 +5327,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	seeddispersal:{
 	onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target)) {
-					target.addVolatile('leechseed')
+					source.addVolatile('leechseed')
 				}
 		},
 		name: "Seed Dispersal",
