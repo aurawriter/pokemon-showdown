@@ -7481,5 +7481,4 @@ export const MovesText: {[k: string]: MoveText} = {
 			desc: "Whether or not this move is successful, the user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect, even if it is already confused. If the user is prevented from moving, the effect ends without causing confusion. If this move is called by Sleep Talk, the move is used for one turn and does not confuse the user.",
 		},
 	},
-	},
 };
