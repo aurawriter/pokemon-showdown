@@ -5329,7 +5329,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (this.checkMoveMakesContact(move, source, target)) {
 					target.addVolatile('leechseed')
 				}
-			}
 		},
 		name: "Seed Dispersal",
 		rating: 2,
