@@ -3045,6 +3045,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 1,
 		num: 124,
 	},
+	fieryfists:{
+		onEffectiveness(typeMod, target, type, move) {
+			if (move.flags['punch']){
+			return typeMod + move.dex.getEffectiveness('Fire', type);
+			}
+		}
+	},
 	pickup: {
 		onResidualOrder: 28,
 		onResidualSubOrder: 2,
@@ -5371,7 +5378,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (this.checkMoveMakesContact(move, source, target)) {
 					if(!source.volatiles['leechseed'])
 					{
-					source.addVolatile('leechseed')
+					source.addVolatile('leechseed',this.effectState.source)
 					}
 				}
 			},
