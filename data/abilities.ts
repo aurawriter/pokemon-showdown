@@ -3049,7 +3049,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyMove(move) {
 			console.log('using a move as a pokemon with fiery fists')
 		},
-		onEffectiveness(typeMod, target, type, move) {
+		onSourceEffectiveness(typeMod, target, type, move) {
 			console.log('got into the oneffectiveness part')
 			if (move.flags['punch']){
 			console.log('adding fire type');
