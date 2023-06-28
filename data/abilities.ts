@@ -3048,6 +3048,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	fieryfists:{
 		onEffectiveness(typeMod, target, type, move) {
 			if (move.flags['punch']){
+			this.debug('adding fire type');
 			return typeMod + this.dex.getEffectiveness('Fire', type);
 			}
 		},
