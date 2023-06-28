@@ -797,7 +797,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
 	},
 	fieryfists: {
-		name: "Iron Fist",
+		name: "Fiery Fists",
 		desc: "This Pokemon's punch-based attacks also count as Fire-type",
 		shortDesc: "This Pokemon's punch-based attacks count as Fire-type",
 	},
