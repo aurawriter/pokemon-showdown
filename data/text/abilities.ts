@@ -796,6 +796,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		desc: "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
 		shortDesc: "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
 	},
+	fieryfists: {
+		name: "Iron Fist",
+		desc: "This Pokemon's punch-based attacks also count as Fire-type",
+		shortDesc: "This Pokemon's punch-based attacks count as Fire-type",
+	},
 	justified: {
 		name: "Justified",
 		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
@@ -1214,7 +1219,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	dragonheart: {
 		name: "Dragonheart",
 		desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
+		shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.2x power.",
 		gen6: {
 			desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 			shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.3x power.",
