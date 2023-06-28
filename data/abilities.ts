@@ -3051,6 +3051,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			return typeMod + move.dex.getEffectiveness('Fire', type);
 			}
 		},
+		name:"Fiery Fists",
+		rating: 1,
+		num: 124,
 	},
 	pickup: {
 		onResidualOrder: 28,
