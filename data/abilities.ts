@@ -2070,17 +2070,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 22,
 	},
 	bouldertrap:{
-		onStart(pokemon){
+		onDamagingHit(damage, target, source, move) {
 			const side = source.isAlly(target) ? source.side.foe : source.side;
-			const stealthrock = side.sideConditions['stealthrock'];
-			if (move.category === 'Physical' && (!stealthrock)) {
+			const stealthRock = side.sideConditions['stealthrock'];
+			if (move.category === 'Physical' && (!stealthRock) {
 				this.add('-activate', target, 'ability: Boulder Trap');
 				side.addSideCondition('stealthrock', target);
 			}
 		},
 		name: "Boulder Trap",
 		rating: 3.5,
-		num: 22,
+		num: 295,
 	},
 	calmingpresence: {
 		onStart(pokemon) {
