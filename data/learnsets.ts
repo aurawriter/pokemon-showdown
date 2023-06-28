@@ -95447,6 +95447,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 		radiantpunishment:["9L1"],
 		strobelight:["9L1"],
 		starburst:["9L1"],
+		testingfieryfists:["9L1"],
 		}
 	},
 };

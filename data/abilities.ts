@@ -3059,12 +3059,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 124,
 	},	
 	fieryfists:{
-		onDamagingHit(damage, target, source, move) {
-			if (move.flags['punch']) {
-				if (this.randomChance(5, 10)) {
-					source.trySetStatus('brn', target);
-				}
+		onModifyDamage(damage, source, target, move) {
+		//Supereffective Modifier
+		if (move.flags['punch'] && (target.hasType('Bug')|| target.hasType('Grass')|| target.hasType('Ice')||target.hasType('Steel'))) {
+				return this.chainModify(2);
 			}
+		//Noneffective Modifier
+		if (move.flags['punch'] && (target.hasType('Dragon')|| target.hasType('Fire')|| target.hasType('Rock')||target.hasType('Water')||target.hasAbility('heatproof'))) {
+				return this.chainModify(.5);
+			}
+		//Dry Skin modifier
+		if(move.flags['punch'] && target.hasAbility('dryskin'))
+		{
+			return this.chainModify(1.25)
+		}
+		if(move.flags['punch'] && target.hasAbility('flashfire')){
+			return this.chainModify(0)
+		}
 		},
 		name:"Fiery Fists",
 		rating: 1,
