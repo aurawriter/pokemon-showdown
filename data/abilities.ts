@@ -3048,8 +3048,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	fieryfists:{
 		onSourceEffectiveness(typeMod, target, type, move) {
 			console.log('got into the oneffectiveness part')
-			console.log('adding fire type');
-			return typeMod + this.dex.getEffectiveness('Fire', type);
 		},
 		name:"Fiery Fists",
 		rating: 1,
