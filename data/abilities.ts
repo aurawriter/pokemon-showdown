@@ -3050,7 +3050,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.flags['punch']){
 			return typeMod + move.dex.getEffectiveness('Fire', type);
 			}
-		}
+		},
 	},
 	pickup: {
 		onResidualOrder: 28,
