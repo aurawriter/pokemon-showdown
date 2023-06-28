@@ -777,6 +777,25 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "On switch-in, this Pokemon lowers the Attack of opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
 		},
 	},
+	bouldertrap: {
+		name: "Boulder Trap",
+		desc: "On switch-in, this Pokemon sets ups stealth rocks.",
+		shortDesc: "On switch-in, this Pokemon sets ups stealth rocks.",
+		gen7: {
+			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
+		},
+		gen6: {
+			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
+			shortDesc: "On switch-in, this Pokemon sets ups stealth rocks.",
+		},
+		gen4: {
+			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
+			shortDesc: "On switch-in, this Pokemon sets ups stealth rocks.",
+		},
+		gen3: {
+			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
+		},
+	},
 	intrepidsword: {
 		name: "Intrepid Sword",
 		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
@@ -798,8 +817,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	fieryfists: {
 		name: "Fiery Fists",
-		desc: "This Pokemon's punch-based attacks also count as Fire-type",
-		shortDesc: "This Pokemon's punch-based attacks count as Fire-type",
+		desc: "This Pokemon's punch-based attacks have a 50% chance to burn.",
+		shortDesc: "This Pokemon's punch-based attacks have a chance to burn.",
 	},
 	justified: {
 		name: "Justified",
