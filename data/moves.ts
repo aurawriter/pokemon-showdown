@@ -22294,7 +22294,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 95,
 		basePower: 100,
 		category: "Special",
-		name: "Testing Fists",
+		name: "Testing Fiery Fists",
 		pp: 10,
 		flags: { contact: 1, protect: 1, mirror: 1, gravity: 1, distance: 1, nonsky: 1 },
 		onEffectiveness(typeMod, target, type, move) {
