@@ -4962,7 +4962,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		types: ["Water"],
 		genderRatio: {M: 0.875, F: 0.125},
 		baseStats: {hp: 50, atk: 70, def: 50, spa: 50, spd: 50, spe: 40},
-		abilities: {0: "Torrent", H: "Damp"},
+		abilities: {0: "Torrent",1:"Boulder Trap", H: "Damp"},
 		heightm: 0.4,
 		weightkg: 7.6,
 		color: "Blue",

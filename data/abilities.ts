@@ -2069,6 +2069,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 22,
 	},
+	bouldertrap:{
+		onStart(pokemon){
+			const side = source.isAlly(target) ? source.side.foe : source.side;
+			const stealthrock = side.sideConditions['stealthrock'];
+			if (move.category === 'Physical' && (!stealthrock) {
+				this.add('-activate', target, 'ability: Boulder Trap');
+				side.addSideCondition('stealthrock', target);
+			}
+		},
+		name: "Boulder Trap",
+		rating: 3.5,
+		num: 22,
+	},
 	calmingpresence: {
 		onStart(pokemon) {
 			let activated = false;
@@ -3046,8 +3059,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 124,
 	},	
 	fieryfists:{
-		onSourceEffectiveness(typeMod, target, type, move) {
-			console.log('got into the oneffectiveness part')
+		onDamagingHit(damage, target, source, move) {
+			if (move.flags['punch']) {
+				if (this.randomChance(5, 10)) {
+					source.trySetStatus('brn', target);
+				}
+			}
 		},
 		name:"Fiery Fists",
 		rating: 1,
