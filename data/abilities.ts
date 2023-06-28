@@ -3046,9 +3046,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 124,
 	},	
 	fieryfists:{
+		onModifyMove(move) {
+			console.log('using a move as a pokemon with fiery fists')
+		},
 		onEffectiveness(typeMod, target, type, move) {
+			console.log('got into the oneffectiveness part')
 			if (move.flags['punch']){
-			this.debug('adding fire type');
+			console.log('adding fire type');
 			return typeMod + this.dex.getEffectiveness('Fire', type);
 			}
 		},
