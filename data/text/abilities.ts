@@ -777,25 +777,6 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "On switch-in, this Pokemon lowers the Attack of opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
 		},
 	},
-	bouldertrap: {
-		name: "Boulder Trap",
-		desc: "On switch-in, this Pokemon sets ups stealth rocks.",
-		shortDesc: "On switch-in, this Pokemon sets ups stealth rocks.",
-		gen7: {
-			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
-		},
-		gen6: {
-			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
-			shortDesc: "On switch-in, this Pokemon sets ups stealth rocks.",
-		},
-		gen4: {
-			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
-			shortDesc: "On switch-in, this Pokemon sets ups stealth rocks.",
-		},
-		gen3: {
-			desc: "On switch-in, this Pokemon sets ups stealth rocks.",
-		},
-	},
 	intrepidsword: {
 		name: "Intrepid Sword",
 		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
@@ -2021,6 +2002,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	toxicdebris: {
 		name: "Toxic Debris",
 		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+	},
+	bouldertrap: {
+		name: "Boulder Trap",
+		shortDesc: "If this Pokemon is hit by a physical attack, Stealth Rocks are set on the opposing side.",
 	},
 	trace: {
 		name: "Trace",
