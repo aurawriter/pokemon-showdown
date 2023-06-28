@@ -3044,11 +3044,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Pickpocket",
 		rating: 1,
 		num: 124,
-	},
+	},	
 	fieryfists:{
 		onEffectiveness(typeMod, target, type, move) {
 			if (move.flags['punch']){
-			return typeMod + move.dex.getEffectiveness('Fire', type);
+			return typeMod + this.dex.getEffectiveness('Fire', type);
 			}
 		},
 		name:"Fiery Fists",
@@ -5377,14 +5377,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 3,
 	},
 	seeddispersal: {
-	onDamagingHit(damage, target, source, move) {
-			if (this.checkMoveMakesContact(move, source, target)) {
-					if(!source.volatiles['leechseed'])
-					{
-					source.addVolatile('leechseed',this.effectState.source)
-					}
-				}
-			},
+	
+        onDamagingHit(damage, target, source, move) {
+            if (source.volatiles['leechseed']) return;
+            if (!move.isFutureMove) {
+                source.addVolatile('leechseed', this.effectState.target);
+            }
+        },
 		name: "Seed Dispersal",
 		rating: 2,
 		num: 49,
