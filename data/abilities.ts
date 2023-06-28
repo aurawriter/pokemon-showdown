@@ -2073,7 +2073,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamagingHit(damage, target, source, move) {
 			const side = source.isAlly(target) ? source.side.foe : source.side;
 			const stealthRock = side.sideConditions['stealthrock'];
-			if (move.category === 'Physical' && (!stealthRock) {
+			if (move.category === 'Physical' && (!stealthRock)) {
 				this.add('-activate', target, 'ability: Boulder Trap');
 				side.addSideCondition('stealthrock', target);
 			}
