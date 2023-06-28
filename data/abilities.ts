@@ -3046,7 +3046,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 124,
 	},	
 	fieryfists:{
-		onEffectiveness(typeMod, target, type, move) {
+		onSourceEffectiveness(typeMod, target, type, move) {
 			console.log('got into the oneffectiveness part')
 			console.log('adding fire type');
 			return typeMod + this.dex.getEffectiveness('Fire', type);
