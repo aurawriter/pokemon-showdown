@@ -4227,7 +4227,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.damage(target.baseMaxhp / 8, target, target);
 			}
 		},
-		name: "Solar Power",
+		name: "Weird Power",
 		rating: 2,
 		num: 94,
 	},
