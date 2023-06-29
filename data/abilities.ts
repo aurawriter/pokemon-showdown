@@ -3109,7 +3109,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 
 		if (move.flags['punch']) {
 			const typeMod = this.clampIntRange(target.runEffectiveness('Fire'), -6, 6);
-			const multi = Math.pow(2, typemod);
+			const multi = Math.pow(2, typeMod);
 			return this.chainModify(multi);
 			}
 		},
