@@ -916,6 +916,29 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 128,
 	},
+	prideful: {
+		onAfterEachBoost(boost, target, source, move) {
+			if (!source || target.isAlly(source)) {
+				if (effect.id === 'stickyweb') {
+					this.hint("Court Change Sticky Web counts as lowering your own Speed, and Defiant only affects stats lowered by foes.", true, source.side);
+				}
+				return;
+			}
+			let statsLowered = false;
+			let i: BoostID;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+		},
+		name: "Prideful",
+		rating: 2.5,
+		num: 160,
+	},
 	deltastream: {
 		onStart(source) {
 			this.field.setWeather('deltastream');
@@ -1207,6 +1230,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Flame Body",
 		rating: 2,
 		num: 49,
+	},
+	fightingspirit: {
+		onDamagingHit(damage,target,source,move){
+		if(target.hp<=target.maxhp/3&&!this.effectState.spiritBoost){
+			this.boost({atk: 1})
+			this.heal(target.baseMaxhp / 8 )
+			this.effectState.spiritBoost = true;
+		}
+		},
+	name: "Fighting Spirit",
+	rating: 1,
+	num: 40
 	},
 	flareboost: {
 		onBasePowerPriority: 19,
@@ -2588,6 +2623,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 153,
 	},
+	supremacy: {
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({def: length}, source);
+				this.boost({spd: length}, source);
+			}
+		},
+		name: "Supremacy",
+		rating: 3,
+		num: 153,
+	},
 	multiscale: {
 		onSourceModifyDamage(damage, source, target, move) {
 			if (target.hp >= target.maxhp) {
@@ -3060,22 +3106,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},	
 	fieryfists:{
 		onModifyDamage(damage, source, target, move) {
-		//Supereffective Modifier
-		if (move.flags['punch'] && (target.hasType('Bug')|| target.hasType('Grass')|| target.hasType('Ice')||target.hasType('Steel'))) {
-				return this.chainModify(2);
+
+		if (move.flags['punch']) {
+			const typeMod = this.clampIntRange(pokemon.runEffectiveness('Fire'), -6, 6);
+			const multi = Math.pow(2, typemod);
+			return this.chainModify(multi);
 			}
-		//Noneffective Modifier
-		if (move.flags['punch'] && (target.hasType('Dragon')|| target.hasType('Fire')|| target.hasType('Rock')||target.hasType('Water')||target.hasAbility('heatproof'))) {
-				return this.chainModify(.5);
-			}
-		//Dry Skin modifier
-		if(move.flags['punch'] && target.hasAbility('dryskin'))
-		{
-			return this.chainModify(1.25)
-		}
-		if(move.flags['punch'] && target.hasAbility('flashfire')){
-			return this.chainModify(0)
-		}
 		},
 		name:"Fiery Fists",
 		rating: 1,
@@ -4176,6 +4212,42 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Solar Power",
+		rating: 2,
+		num: 94,
+	},
+	weirdpower: {
+		onModifySpAPriority: 5,
+		onModifySpA(spa, pokemon) {
+			if (this.field.isTerrain('psychicterrain')) {
+				return this.chainModify(1.5);
+			}
+		},
+		onTerrain(target, source, effect) {
+			if (effect.id === 'psychicterrain') {
+				this.damage(target.baseMaxhp / 8, target, target);
+			}
+		},
+		name: "Solar Power",
+		rating: 2,
+		num: 94,
+	},
+	alpinetraining: {
+		onModifySpAPriority: 5,
+		onModifySpA(spa, pokemon) {
+			if (['snow', 'hail'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(spa, pokemon) {
+			if (['snow', 'hail'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(1.5);
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'snow' || type ==='hail') return false;
+		},
+		name: "Alpine Training",
 		rating: 2,
 		num: 94,
 	},
@@ -5413,5 +5485,25 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Seed Dispersal",
 		rating: 2,
 		num: 49,
+	},
+	toughbark: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (pokemon.activeTurns && (this.field.getWeather('raindance')||this.field.getWeather('primordialsea'))) {
+				this.boost({ def: 1, spd: 1 });
+			}
+		},
+		name: "Tough Bark",
+		rating: 4.5,
+		num: 3,
+	},
+	iaijutsu: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move.flags['slicing'] && pokemon.hp === pokemon.maxhp) return priority + 1;
+		},
+		name: "Iaijutsu",
+		rating: 2.5,
+		num: 177,
 	},
 };
