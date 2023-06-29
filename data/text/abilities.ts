@@ -186,6 +186,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			shortDesc: "At 1/3 or less of its max HP, this Pokemon's Fire-type attacks have 1.5x power.",
 		},
 	},
+	fightingspirit: {
+		name: "Fighting Spirit",
+		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its Attack goes up 2 stages, and it heals half of its health. Once per battle.",
+		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Attack is raised and it heals. Once per battle.",
+	},
 	bulletproof: {
 		name: "Bulletproof",
 		shortDesc: "This Pokemon is immune to bullet moves.",
@@ -352,6 +357,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	defiant: {
 		name: "Defiant",
+		desc: "This Pokemon retaliates and deals damage for each of its stat stages that is lowered by an opposing Pokemon.",
+		shortDesc: "This Pokemon retaliates and deals damage for each of its stats that is lowered by a foe.",
+	},
+	prideful: {
+		name: "Prideful",
 		desc: "This Pokemon's Attack is raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon.",
 		shortDesc: "This Pokemon's Attack is raised by 2 for each of its stats that is lowered by a foe.",
 	},
@@ -562,6 +572,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		gen6: {
 			shortDesc: "This Pokemon's Flying-type moves have their priority increased by 1.",
 		},
+	},
+	iaijutsu: {
+		name: "Iaijutsu",
+		shortDesc: "If this Pokemon is at full HP, its slicing moves have their priority increased by 1.",
 	},
 	galvanize: {
 		name: "Galvanize",
@@ -798,8 +812,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	fieryfists: {
 		name: "Fiery Fists",
-		desc: "This Pokemon's punch-based attacks have a 50% chance to burn.",
-		shortDesc: "This Pokemon's punch-based attacks have a chance to burn.",
+		desc: "This Pokemon's punch-based attacks also count as Fire-type moves for effectiveness.",
+		shortDesc: "This Pokemon's punch-based also count as Fire-type moves for effectiveness.",
 	},
 	justified: {
 		name: "Justified",
@@ -1033,6 +1047,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Moxie",
 		desc: "This Pokemon's Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
 		shortDesc: "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+	},
+	supremacy: {
+		name: "Supremacy",
+		desc: "This Pokemon's Defense and Special Defense are raised by 1 stage if it attacks and knocks out another Pokemon.",
+		shortDesc: "This Pokemon's Defense and Special Defense are raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	multiscale: {
 		name: "Multiscale",
@@ -1692,6 +1711,16 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "If Sunny Day is active, this Pokemon's Special Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn.",
 		},
 	},
+	alpinetraining: {
+		name: "Alpine Training",
+		desc: "If Snow is active, this Pokemon's Special Attack and Attack are multiplied by 1.5.",
+		shortDesc: "If Snow is active, this Pokemon's Atk and Sp. Atk are 1.5x;",
+	},
+	weirdpower: {
+		name: "Weird Power",
+		desc: "If Psychic Terrain is active, this Pokemon's Special Attack is multiplied by 1.5.",
+		shortDesc: "If Psychic Terrain is active, this Pokemon's Sp. Atk is 1.5x;",
+	},
 	solidrock: {
 		name: "Solid Rock",
 		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks.",
@@ -1862,6 +1891,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	terrafirma: {
 		name: "Terra Firma",
 		shortDesc: "If Grassy Terrain is active, this Pokemon gains Def. and Sp. Def each turn.",
+	},
+	toughbark: {
+		name: "Tough Bark",
+		shortDesc: "If Rainy Day is active, this Pokemon gains Def. and Sp. Def each turn.",
 	},
 	swarm: {
 		name: "Swarm",
