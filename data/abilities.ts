@@ -1235,7 +1235,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamagingHit(damage,target,source,move){
 		if(target.hp<=target.maxhp/3&&!this.effectState.spiritBoost){
 			this.boost({atk: 1})
-			this.heal(target.baseMaxhp / 8 )
+			this.heal(target.baseMaxhp / 2 )
 			this.effectState.spiritBoost = true;
 		}
 		},
@@ -3108,7 +3108,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyDamage(damage, source, target, move) {
 
 		if (move.flags['punch']) {
-			const typeMod = this.clampIntRange(pokemon.runEffectiveness('Fire'), -6, 6);
+			const typeMod = this.clampIntRange(target.runEffectiveness('Fire'), -6, 6);
 			const multi = Math.pow(2, typemod);
 			return this.chainModify(multi);
 			}
@@ -4200,7 +4200,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	solarpower: {
 		onModifySpAPriority: 5,
-		onModifySpA(spa, pokemon) {
+		onModifySpA(spa, pokemon) {	
 			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
 				return this.chainModify(1.5);
 			}
