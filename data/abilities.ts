@@ -5570,7 +5570,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	misdirection: {
 		onStart(pokemon) {
 			if (this.effectState.misdirection) return;
-			if (source.volatiles['disable']) return;
+			if (pokemon.volatiles['disable']) return;
 			this.effectState.misdirection = true;
 			pokemon.addVolatile('substitute');
 		},
