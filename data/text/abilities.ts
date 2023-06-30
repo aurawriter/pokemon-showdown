@@ -575,7 +575,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	iaijutsu: {
 		name: "Iaijutsu",
-		shortDesc: "If this Pokemon is at full HP, its slicing moves have their priority increased by 1.",
+		shortDesc: "This Pokemon's slicing moves have their priority increased by 1.",
 	},
 	galvanize: {
 		name: "Galvanize",
@@ -887,12 +887,12 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	libero: {
 		name: "Libero",
-		desc: "If this Pokemon switches in on hazard's, it is not affected by the hazards, and its attack increases.",
+		shortdesc: "This Pokemon is not affected by the hazards,instead increasing its attack.",
 			
 	},
 	covertops: {
 		name: "Covert Ops",
-		desc: "This Pokemon's attacks have a chance to cause sleep, poison, and paralysis. It cannot be forced to switch out.",
+		shortdesc: "Attacks have a 30% chance to sleep, poison, or paralysis. Can't be forced to switch out.",
 			
 	},
 	misdirection:{
@@ -1080,7 +1080,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	supremacy: {
 		name: "Supremacy",
 		desc: "This Pokemon's Defense and Special Defense are raised by 1 stage if it attacks and knocks out another Pokemon.",
-		shortDesc: "This Pokemon's Defense and Special Defense are raised by 1 stage if it attacks and KOes another Pokemon.",
+		shortDesc: "This Pokemon's Def. and Sp Def. are raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	multiscale: {
 		name: "Multiscale",
@@ -1230,7 +1230,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	duet:{
 		name: "Duet",
-		desc: "This Pokemon's sound moves become multi-hit moves that hit twice. The second hit has its damage quartered."
+		desc: "This Pokemon's sound moves become multi-hit moves that hit twice. The second hit has its damage quartered.",
+		shortDesc: "This Pokemon's sound moves hit twice. The second hit has its damage quartered.",
 	},
 	pastelveil: {
 		name: "Pastel Veil",
@@ -1270,11 +1271,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	dragonheart: {
 		name: "Dragonheart",
-		desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.2x power.",
+		desc: "This Pokemon's Normal-type moves become Dragon-type moves and burn This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Dragon type and burn.",
 		gen6: {
-			desc: "This Pokemon's Normal-type moves become Dragon-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-			shortDesc: "This Pokemon's Normal-type moves become Dragon type and have 1.3x power.",
+			desc: "This Pokemon's Normal-type moves become Dragon-type moves and burn. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+			shortDesc: "This Pokemon's Normal-type moves become Dragon type and burn.",
 		},
 	},
 	plus: {
@@ -1372,18 +1373,18 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Prism Armor",
 		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks.",
 	},
+	badguy:{
+		name: "Bad Guy",
+		shortDesc: "This Pokemon's Dark-type moves have increased power based on stat boosts. Does not affect Power Trip.",
+	}
 	propellertail: {
 		name: "Propeller Tail",
 		shortDesc: "This Pokemon's moves cannot be redirected to a different target by any effect.",
 	},
 	protean: {
 		name: "Protean",
-		desc: "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type. This effect can only happen once per switch-in, and only if this Pokemon is not Terastallized.",
-		shortDesc: "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
-		gen8: {
 			desc: "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type.",
 			shortDesc: "This Pokemon's type changes to match the type of the move it is about to use.",
-		},
 	},
 	protosynthesis: {
 		name: "Protosynthesis",
@@ -1879,7 +1880,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	ferocity: {
 		name: "Ferocity",
 		desc: "This Pokemon's bite-based attacks have their power multiplied by 1.25 and their priority increased.",
-		shortDesc: "This Pokemon's bite-based attacks have 1.25x power and their priority increased. Bug Bite is not boosted.",
+		shortDesc: "This Pokemon's bite-based attacks have 1.25x power and their priority increased.",
 	},
 	sturdy: {
 		name: "Sturdy",
@@ -1904,7 +1905,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	heavycannons: {
 		name: "Heavy Cannons",
-		shortDesc: "This Pokemon's critical hit ratio is raised by 1 stage when using Water-type moves. If this Pokemon strikes with a critical hit, the damage is multiplied by 1.25.",
+		shortDesc: "Water-type moves crit ratio up. Critical hit damage increased",
 	},
 	supremeoverlord: {
 		name: "Supreme Overlord",
