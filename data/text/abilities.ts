@@ -355,13 +355,13 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		desc: "While this Pokemon has 1/2 or less of its maximum HP, its Attack and Special Attack are halved.",
 		shortDesc: "While this Pokemon has 1/2 or less of its max HP, its Attack and Sp. Atk are halved.",
 	},
-	defiant: {
-		name: "Defiant",
+	prideful: {
+		name: "Prideful",
 		desc: "This Pokemon retaliates and deals damage for each of its stat stages that is lowered by an opposing Pokemon.",
 		shortDesc: "This Pokemon retaliates and deals damage for each of its stats that is lowered by a foe.",
 	},
-	prideful: {
-		name: "Prideful",
+	defiant: {
+		name: "Defiant",
 		desc: "This Pokemon's Attack is raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon.",
 		shortDesc: "This Pokemon's Attack is raised by 2 for each of its stats that is lowered by a foe.",
 	},
@@ -473,7 +473,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		},
 	},
 	seeddispersal: {
-		name: "Flame Body",
+		name: "Seed Dispersal",
 		shortDesc: "A Pokemon making contact with this Pokemon will be seeded.",
 		gen4: {
 			desc: "A Pokemon making contact with this Pokemon will be seeded. This effect does not happen if this Pokemon did not lose HP from the attack.",
@@ -791,6 +791,25 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "On switch-in, this Pokemon lowers the Attack of opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
 		},
 	},
+	calmingpresence: {
+		name: "Calming Presence",
+		desc: "On switch-in, this Pokemon lowers the evasion of opposing Pokemon by 1 stage. Pokemon with the Inner Focus, Oblivious, Own Tempo, or Scrappy Abilities and Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the evasion of opponents by 1 stage.",
+		gen7: {
+			desc: "On switch-in, this Pokemon lowers the evasion of opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		},
+		gen6: {
+			desc: "On switch-in, this Pokemon lowers the evasion of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+			shortDesc: "On switch-in, this Pokemon lowers the evasion of adjacent opponents by 1 stage.",
+		},
+		gen4: {
+			desc: "On switch-in, this Pokemon lowers the evasion of opposing Pokemon by 1 stage. Pokemon behind a substitute are immune. If U-turn breaks an opposing substitute and this Pokemon switches in as the replacement, the Pokemon that had the substitute is still immune to this Ability.",
+			shortDesc: "On switch-in, this Pokemon lowers the evasion of opponents by 1 stage.",
+		},
+		gen3: {
+			desc: "On switch-in, this Pokemon lowers the evasion of opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		},
+	},
 	intrepidsword: {
 		name: "Intrepid Sword",
 		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage. Once per battle.",
@@ -809,6 +828,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Iron Fist",
 		desc: "This Pokemon's punch-based attacks have their power multiplied by 1.2.",
 		shortDesc: "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
+	},
+	deadlykicks: {
+		name: "Deadly Kicks",
+		desc: "This Pokemon's kick-based attacks have their power multiplied by 1.2.",
+		shortDesc: "This Pokemon's kick-based attacks have 1.2x power.",
 	},
 	fieryfists: {
 		name: "Fiery Fists",
@@ -863,12 +887,17 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	libero: {
 		name: "Libero",
-		desc: "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type. This effect can only happen once per switch-in, and only if this Pokemon is not Terastallized.",
-		shortDesc: "This Pokemon's type changes to the type of the move it is using. Once per switch-in.",
-		gen8: {
-			desc: "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type.",
-			shortDesc: "This Pokemon's type changes to match the type of the move it is about to use.",
-		},
+		desc: "If this Pokemon switches in on hazard's, it is not affected by the hazards, and its attack increases.",
+			
+	},
+	covertops: {
+		name: "Covert Ops",
+		desc: "This Pokemon's attacks have a chance to cause sleep, poison, and paralysis. It cannot be forced to switch out.",
+			
+	},
+	misdirection:{
+		name: "Misdirection",
+		desc: "The first time it enters battle, this Pokemon sets up a Substitute to take attacks for it.",
 	},
 	lightmetal: {
 		name: "Light Metal",
@@ -1198,6 +1227,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "This Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage halved. Does not affect Doom Desire, Endeavor, Explosion, Final Gambit, Fling, Future Sight, Ice Ball, Rollout, Self-Destruct, any multi-hit move, any move that has multiple targets, or any two-turn move.",
 			shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage halved.",
 		},
+	},
+	duet:{
+		name: "Duet",
+		desc: "This Pokemon's sound moves become multi-hit moves that hit twice. The second hit has its damage quartered."
 	},
 	pastelveil: {
 		name: "Pastel Veil",
@@ -1894,7 +1927,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	toughbark: {
 		name: "Tough Bark",
-		shortDesc: "If Rainy Day is active, this Pokemon gains Def. and Sp. Def each turn.",
+		shortDesc: "If Rain Dance is active, this Pokemon gains Def. and Sp. Def each turn.",
 	},
 	swarm: {
 		name: "Swarm",
