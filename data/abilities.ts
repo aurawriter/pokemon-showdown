@@ -917,7 +917,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 128,
 	},
 	prideful: {
-		onAfterEachBoost(boost, target, source, move) {
+		onAfterEachBoost(boost, target, source, effect) {
 			if (!source || target.isAlly(source)) {
 				if (effect.id === 'stickyweb') {
 					this.hint("Court Change Sticky Web counts as lowering your own Speed, and Defiant only affects stats lowered by foes.", true, source.side);
@@ -1234,7 +1234,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	fightingspirit: {
 		onDamagingHit(damage,target,source,move){
 		if(target.hp<=target.maxhp/3&&!this.effectState.spiritBoost){
-			this.boost({atk: 1})
+			this.boost({atk: 2})
 			this.heal(target.baseMaxhp / 2 )
 			this.effectState.spiritBoost = true;
 		}
@@ -1497,7 +1497,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	galewings: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+			if (move?.type === 'Flying') return priority + 1;
 		},
 		name: "Gale Wings",
 		rating: 2.5,
@@ -2169,6 +2169,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 89,
 	},
+	deadlykicks: {
+		onBasePowerPriority: 23,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['kick']) {
+				this.debug('Deadly Kicks boost');
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		name: "Deadly Kicks",
+		rating: 3,
+		num: 89,
+	},
 	justified: {
 		onDamagingHit(damage, target, source, move) {
 			if (move.type === 'Dark') {
@@ -2234,18 +2246,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 26,
 	},
 	libero: {
-		onPrepareHit(source, target, move) {
-			if (this.effectState.libero) return;
-			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch') return;
-			const type = move.type;
-			if (type && type !== '???' && source.getTypes().join() !== type) {
-				if (!source.setType(type)) return;
-				this.effectState.libero = true;
-				this.add('-start', source, 'typechange', type, '[from] ability: Libero');
+		onDamage(damage, target, source, effect) {
+			if (effect && (effect.id === 'stealthrock' ||  effect.id === 'spikes')) {
+				this.boost({ atk: 1 })
+				return false;
 			}
 		},
-		onSwitchIn() {
-			delete this.effectState.libero;
+		onTryBoost(boost, target, source, effect) {
+			if (effect && (effect.id === 'stickyweb')) {
+				this.boost({ atk: 1 })
+				return false;
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if (effect && (effect.id === 'toxicspikes')) {
+				this.boost({ atk: 1 })
+				return false;
+			}
 		},
 		name: "Libero",
 		rating: 4,
@@ -3325,20 +3342,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 0,
 		num: 239,
 	},
+
 	protean: {
 		onPrepareHit(source, target, move) {
-			if (this.effectState.protean) return;
 			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch') return;
 			const type = move.type;
 			if (type && type !== '???' && source.getTypes().join() !== type) {
 				if (!source.setType(type)) return;
-				this.effectState.protean = true;
 				this.add('-start', source, 'typechange', type, '[from] ability: Protean');
 			}
 		},
-		onSwitchIn(pokemon) {
-			delete this.effectState.protean;
-		},
+		onSwitchIn() { },
 		name: "Protean",
 		rating: 4,
 		num: 168,
@@ -5477,10 +5491,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	seeddispersal: {
 	
         onDamagingHit(damage, target, source, move) {
-            if (source.volatiles['leechseed']) return;
-            if (!move.isFutureMove) {
-                source.addVolatile('leechseed', this.effectState.target);
-            }
+            if (this.checkMoveMakesContact(move, source, target))
+			{
+				if (!move.isFutureMove) {
+					source.addVolatile('leechseed', this.effectState.target);
+				}
+			}
         },
 		name: "Seed Dispersal",
 		rating: 2,
@@ -5500,10 +5516,83 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	iaijutsu: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move.flags['slicing'] && pokemon.hp === pokemon.maxhp) return priority + 1;
+			if (move.flags['slicing']) return priority + 1;
 		},
 		name: "Iaijutsu",
 		rating: 2.5,
 		num: 177,
+	},
+	badguy: {
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.type === 'Dark') {
+				const bp = move.basePower + 20 * pokemon.positiveBoosts();
+				this.debug('BP: ' + bp);
+				return bp;
+			}
+		},
+		name: "Bad Guy",
+		rating: 2,
+		num: 178,
+	},
+	covertops: {
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move?.flags['contact'] || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 10,
+				status: 'psn',
+				ability: this.dex.abilities.get('covertops'),
+			});
+			move.secondaries.push({
+				chance: 10,
+				status: 'slp',
+				ability: this.dex.abilities.get('covertops'),
+			});
+			move.secondaries.push({
+				chance: 10,
+				status: 'par',
+				ability: this.dex.abilities.get('covertops'),
+			});
+		},
+		onDragOutPriority: 1,
+		onDragOut(pokemon) {
+			this.add('-activate', pokemon, 'ability: Suction Cups');
+			return null;
+		},
+		isBreakable: true,
+		name: "Covert Ops",
+		rating: 2,
+		num: 143,
+	},
+	misdirection: {
+		onStart(pokemon) {
+			if (this.effectState.misdirection) return;
+			this.effectState.misdirection = true;
+			pokemon.volatiles['substitute'];
+		},
+		name: "Misdirection",
+		rating: 4,
+		num: 234,
+	},
+	duet: {
+		onPrepareHit(source, target, move) {
+			if (move.category === 'Status' || move.multihit || move.flags['noparentalbond'] || move.flags['charge'] ||
+				move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax || !move.flags['sound']) return;
+			move.multihit = 2;
+			move.multihitType = 'parentalbond';
+		},
+		// Damage modifier implemented in BattleActions#modifyDamage()
+		onSourceModifySecondaries(secondaries, target, source, move) {
+			if (move.multihitType === 'parentalbond' && move.id === 'secretpower' && move.hit < 2) {
+				// hack to prevent accidentally suppressing King's Rock/Razor Fang
+				return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+			}
+		},
+		name: "Duet",
+		rating: 4.5,
+		num: 185,
 	},
 };
