@@ -5559,7 +5559,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onDragOutPriority: 1,
 		onDragOut(pokemon) {
-			this.add('-activate', pokemon, 'ability: Suction Cups');
+			this.add('-activate', pokemon, 'ability: Covert Ops');
 			return null;
 		},
 		isBreakable: true,
@@ -5570,8 +5570,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	misdirection: {
 		onStart(pokemon) {
 			if (this.effectState.misdirection) return;
+			if (source.volatiles['disable']) return;
 			this.effectState.misdirection = true;
-			pokemon.volatiles['substitute'];
+			pokemon.addVolatile('substitute');
 		},
 		name: "Misdirection",
 		rating: 4,
