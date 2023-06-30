@@ -83,7 +83,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onModifyMove(move)
 		{
-		if(!(move.type === 'Dragon')) return;
+		if(!(move.type === 'Dragon')||move.category === 'Status') return;
 		if(!move.secondaries){
 			move.secondaries = [];
 		}
