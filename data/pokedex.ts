@@ -19454,7 +19454,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups:["Water 2"],
 	},
 	squittack: {
-		name: -1126
+		num: -1126,
 		name: "Squittack",
 		types: ["Water","Fighting"],
 		baseStats:{hp:90,atk:115,def:85,spa:80,spd:90,spe:70},
