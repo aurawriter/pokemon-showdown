@@ -19453,4 +19453,26 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		eggGroups:["Water 2"],
 	},
+	squittack: {
+		name: -1126
+		name: "Squittack",
+		types: ["Water","Fighting"],
+		baseStats:{hp:90,atk:115,def:85,spa:80,spd:90,spe:70},
+		abilities:{0:"Own Tempo",1:"Tangled Feet",H: "Scrappy"},
+		heightm:1.6,
+		heightkg:55,		
+		color: "Blue",
+		eggGroups:["Water 3"],
+	},
+	floraune: {
+        num: -1127,
+        name: "Floraune",
+        types: ["Grass", "Poison"],
+        baseStats: {hp: 85, atk: 109, def: 96, spa: 110, spd: 55, spe: 60},
+        abilities: {0: "Intimidate", 1: "Leaf Guard", H: "Water Absorb"},
+        heightm: 3.4,
+        weightkg: 130.3,
+        color: "Pink",
+        eggGroups: ["Monster", "Grass"],
+    },
 };
