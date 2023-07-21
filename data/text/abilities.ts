@@ -2313,5 +2313,9 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	radiantorder:{
 		name: "Radiant Order",
 		shortDesc: "This Pokemon's Light-type moves are powered up. This Pokemon's moves will always hit the intended target.",
+	},
+	overwhelmingpresence:{
+		name: "Overwhelming Presence",
+		shortDesc:"On the turn this Pokemon switches in, it takes half damage",
 	}
 };
