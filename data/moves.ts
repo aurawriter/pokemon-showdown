@@ -9334,21 +9334,30 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Cool",
 	},
 	radiantpunishment: {
-		num: 63,
-		accuracy: 90,
-		basePower: 150,
+			num: 682,
+		accuracy: 100,
+		basePower: 130,
 		category: "Special",
 		name: "Radiant Punishment",
 		pp: 5,
 		priority: 0,
-		flags: {recharge: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, defrost: 1},
+		onTryMove(pokemon, target, move) {
+			if (pokemon.hasType('Light')) return;
+			this.add('-fail', pokemon, 'move: Radiant Punishment');
+			this.attrLastMove('[still]');
+			return null;
+		},
 		self: {
-			volatileStatus: 'mustrecharge',
+			onHit(pokemon) {
+				pokemon.setType(pokemon.getTypes(true).map(type => type === "Light" ? "???" : type));
+				this.add('-start', pokemon, 'typechange', pokemon.getTypes().join('/'), '[from] move: Burn Up');
+			},
 		},
 		secondary: null,
 		target: "normal",
 		type: "Light",
-		contestType: "Cool",
+		contestType: "Clever",
 	},
 	hyperdrill: {
 		num: 887,
@@ -22288,5 +22297,72 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "randomNormal",
 		type: "Water",
 		contestType: "Tough",
+	},
+	fountainoflife: {
+		num: 676,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Baptism",
+		pp: 15,
+		priority: 0,
+		target: "allAdjacent",
+		flags: {bullet: 1, protect: 1, mirror: 1, allyanim: 1},
+		onTryHit(target, source, move) {
+			if (source.isAlly(target)) {
+				move.basePower = 0;
+				move.infiltrates = true;
+			}
+		},
+		onHit(target, source) {
+			if (source.isAlly(target)) {
+				if (!this.heal(Math.floor(target.baseMaxhp * 0.5))) {
+					this.add('-immune', target);
+					return this.NOT_FAIL;
+				}
+			}
+		},
+		secondary: null,
+		type: "Water",
+		contestType: "Cute",
+	},
+	reboundshot: {
+		num: 575,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Rebound Shot",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, sound: 1, bypasssub: 1},
+		onTry(source, target) {
+			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+				duration: 3,
+				move: 'rebound',
+				source: source,
+				moveData: {
+					id: 'reboundshot',
+					name: "Rebound Shot",
+					accuracy: 100,
+					basePower: 80,
+					category: "Special",
+					priority: 0,
+					flags: {allyanim: 1, futuremove: 1},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					type: 'Ghost',
+				},
+			});
+			this.add('-start', source, 'move: Future Sight');
+			return this.NOT_FAIL;
+		},
+
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+		zMove: {effect: 'healreplacement'},
+		contestType: "Cool",
 	},
 };

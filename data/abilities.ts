@@ -1800,6 +1800,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 37,
 	},
+	enlightenment: {
+		onModifySpaPriority: 5,
+		onModifySpa(spa) {
+			return this.chainModify(2);
+		},
+		name: "Enlightenment",
+		rating: 5,
+		num: 37,
+	},
 	hungerswitch: {
 		onResidualOrder: 29,
 		onResidual(pokemon) {
@@ -5578,6 +5587,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 234,
 	},
+	guardianangel:{
+		onStart(pokemon){
+			pokemon.addVolatile('followme');
+		},
+		name:"Guardian Angel",
+		rating: 4,
+		num: 234,
+	},
 	duet: {
 		onPrepareHit(source, target, move) {
 			if (move.category === 'Status' || move.multihit || move.flags['noparentalbond'] || move.flags['charge'] ||
@@ -5596,4 +5613,73 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 185,
 	},
+	beacon: {
+		onDamagingHit(damage,target,source,move){
+		if(target.hp<=target.maxhp/3&&!this.effectState.spiritBoost){
+			this.boost({spd: 2})
+			this.heal(target.baseMaxhp / 2 )
+			this.effectState.spiritBoost = true;
+		}
+		},
+	name: "Beacon",
+	rating: 1,
+	num: 40
+	},
+	radiantorder: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Light') {
+				this.debug('Radiant Order boost');
+				return this.chainModify(1.25);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Light') {
+				this.debug('Radiant Order boost');
+				return this.chainModify(1.25);
+			}
+		},
+		onModifyMovePriority: 1,
+		onModifyMove(move) {
+			// most of the implementation is in Battle#getTarget
+			move.tracksTarget = move.target !== 'scripted';
+		},
+		onAnyInvulnerabilityPriority: 1,
+		onAnyInvulnerability(target, source, move) {
+			if (move && (source === this.effectState.target || target === this.effectState.target)) return 0;
+		},
+		onAnyAccuracy(accuracy, target, source, move) {
+			if (move && (source === this.effectState.target || target === this.effectState.target)) {
+				return true;
+			}
+			return accuracy;
+		},
+		name: "Radiant Order",
+		rating: 3.5,
+		num: 200,
+	},
+	
+	overwhelmingpresence:{
+		onStart(pokemon){
+			if(pokemon.species.baseSpecies!=='Calikami' || pokemon.transformed) return;
+			pokemon.formeChange("Calikami-Radiant")
+		},
+		onResidualOrder:29,
+		onResidual(pokemon){
+			if(pokemon.species.baseSpecies!=='Calikami') return;
+			pokemon.formeChange("Calikami");
+		},
+		onDamage(damage,target,source,effect){
+			if(!(target.activeTurns>1))
+			{
+				return damage / 2;
+			}
+		},
+		
+		name: "Overwhelming Presence",
+		rating: 4,
+		num: 201,
+	},
+		
 };
