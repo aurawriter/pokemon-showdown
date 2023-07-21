@@ -22489,7 +22489,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Special",
-		name: "Baptism",
+		name: "Fountain of Life",
 		pp: 15,
 		priority: 0,
 		target: "allAdjacent",
