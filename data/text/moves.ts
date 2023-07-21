@@ -801,6 +801,16 @@ export const MovesText: {[k: string]: MoveText} = {
 
 		typeChange: "  [POKEMON] burned itself out!",
 	},
+	radiantpunishment: {
+		name: "Radiant Punishment",
+		desc: "Fails unless the user is a Light type. If this move is successful and the user is not Terastallized, the user's Light type becomes typeless as long as it remains active.",
+		shortDesc: "User's Light type becomes typeless; must be Light.",
+		gen8: {
+			desc: "Fails unless the user is a Light type. If this move is successful, the user's Light type becomes typeless as long as it remains active.",
+		},
+
+		typeChange: "  [POKEMON] used all of its light!",
+	},
 	buzzybuzz: {
 		name: "Buzzy Buzz",
 		desc: "Has a 100% chance to paralyze the foe.",
@@ -2425,6 +2435,10 @@ export const MovesText: {[k: string]: MoveText} = {
 		start: "  [POKEMON] foresaw an attack!",
 		activate: "  [TARGET] took the Future Sight attack!",
 	},
+	reboundshot:{
+		name: "Rebound Shot",
+		shortDesc: "Switches out, then hits two turns after being used.",
+	},
 	gastroacid: {
 		name: "Gastro Acid",
 		desc: "Causes the target's Ability to be rendered ineffective as long as it remains active. If the target uses Baton Pass, the replacement will remain under this effect. If the target's Ability is As One, Battle Bond, Comatose, Commander, Disguise, Gulp Missile, Hadron Engine, Ice Face, Multitype, Orichalcum Pulse, Power Construct, Protosynthesis, Quark Drive, RKS System, Schooling, Shields Down, Stance Change, Zen Mode, or Zero to Hero, this move fails, and receiving the effect through Baton Pass ends the effect immediately.",
@@ -2987,6 +3001,14 @@ export const MovesText: {[k: string]: MoveText} = {
 			desc: "The target restores 1/2 of its maximum HP, rounded half up.",
 		},
 	},
+	flashheal: {
+		name: "Flash Heal",
+		desc: "The target restores 1/2 of its maximum HP, rounded half up. If the user has the Mega Launcher Ability, the target instead restores 3/4 of its maximum HP, rounded half down.",
+		shortDesc: "Heals the target by 50% of its max HP.",
+		gen5: {
+			desc: "The target restores 1/2 of its maximum HP, rounded half up.",
+		},
+	},
 	heartstamp: {
 		name: "Heart Stamp",
 		desc: "Has a 30% chance to make the target flinch.",
@@ -3129,6 +3151,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Raises the user's Attack and accuracy by 1 stage.",
 		shortDesc: "Raises the user's Attack and accuracy by 1.",
 	},
+	lightshow: {
+		name: "Light Show",
+		desc: "Raises the user's Speed and accuracy by 1 stage.",
+		shortDesc: "Raises the user's Speed and accuracy by 1.",
+	},
 	hornattack: {
 		name: "Horn Attack",
 		shortDesc: "No additional effect.",
@@ -3186,8 +3213,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	solarstrike: {
 		name: "Solar Strike",
-		desc: "If the current weather is Sunny Day and the user is not holding Utility Umbrella, this move's damage is multiplied by 1.5 instead of halved for being Water type.",
-		shortDesc: "During Sunny Day: 1.5x damage instead of half.",
+		desc: "If the current weather is Sunny Day and the user is not holding Utility Umbrella, this move's damage is multiplied by 1.5",
+		shortDesc: "During Sunny Day: 1.5x damage",
 	},
 	hydrovortex: {
 		name: "Hydro Vortex",
@@ -3202,15 +3229,7 @@ export const MovesText: {[k: string]: MoveText} = {
 			shortDesc: "Can't move next turn if target or sub is not KOed.",
 		},
 	},
-	radiantpunishment: {
-		name: "Radiant Punishment",
-		desc: "If this move is successful, the user must recharge on the following turn and cannot select a move.",
-		shortDesc: "User cannot move next turn.",
-		gen1: {
-			desc: "If this move is successful, the user must recharge on the following turn and cannot select a move, unless the target or its substitute was knocked out by this move.",
-			shortDesc: "Can't move next turn if target or sub is not KOed.",
-		},
-	},
+	
 	hyperdrill: {
 		name: "Hyper Drill",
 		shortDesc: "Bypasses protection without breaking it.",
@@ -4722,6 +4741,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "This move becomes a physical attack if the user's Attack is greater than its Special Attack, including stat stage changes. This move and its effects ignore the Abilities of other Pokemon.",
 		shortDesc: "Physical if user's Atk > Sp. Atk. Ignores Abilities.",
 	},
+	lightgeyser: {
+		name: "Light Geyser",
+		desc: "This move becomes a physical attack if the user's Attack is greater than its Special Attack, including stat stage changes. This move and its effects ignore the Abilities of other Pokemon.",
+		shortDesc: "Physical if user's Atk > Sp. Atk. Ignores Abilities.",
+	},
 	pikapapow: {
 		name: "Pika Papow",
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
@@ -4811,6 +4835,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		name: "Pollen Puff",
 		desc: "If the target is an ally, this move restores 1/2 of its maximum HP, rounded down, instead of dealing damage.",
 		shortDesc: "If the target is an ally, heals 50% of its max HP.",
+	},
+	fountainoflife: {
+		name: "Fountain of Life",
+		desc: "Hits all adjacent. If the target is an ally, this move restores 1/2 of its maximum HP, rounded down, instead of dealing damage.",
+		shortDesc: "Hits all adjacent. If the target is an ally, heals 50% of its max HP.",
 	},
 	poltergeist: {
 		name: "Poltergeist",
@@ -5603,6 +5632,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Has a 30% chance to burn the target. The target thaws out if it is frozen.",
 		shortDesc: "30% chance to burn the target. Thaws target.",
 	},
+	holyfire: {
+		name: "Holy Fire",
+		desc: "Has a 30% chance to burn the target. The target thaws out if it is frozen.",
+		shortDesc: "30% chance to burn the target. Thaws target.",
+	},
 	scratch: {
 		name: "Scratch",
 		shortDesc: "No additional effect.",
@@ -5712,6 +5746,10 @@ export const MovesText: {[k: string]: MoveText} = {
 		name: "Shadow Punch",
 		shortDesc: "This move does not check accuracy.",
 	},
+	radiantsmite: {
+		name: "Radiant Smite",
+		shortDesc: "This move does not check accuracy.",
+	},
 	shadowsneak: {
 		name: "Shadow Sneak",
 		desc: "No additional effect.",
@@ -5789,6 +5827,11 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	signalbeam: {
 		name: "Signal Beam",
+		desc: "Has a 10% chance to confuse the target.",
+		shortDesc: "10% chance to confuse the target.",
+	},
+	vividburst: {
+		name: "Vivid Burst",
 		desc: "Has a 10% chance to confuse the target.",
 		shortDesc: "10% chance to confuse the target.",
 	},
@@ -6110,6 +6153,64 @@ export const MovesText: {[k: string]: MoveText} = {
 		gen1: {
 			desc: "The user restores 1/2 of its maximum HP, rounded down. Fails if (user's maximum HP - user's current HP + 1) is divisible by 256.",
 		},
+	},
+	sunburst: {
+		name: "Sunburst",
+		desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Primordial Sea, Rain Dance, Sandstorm, or Snow and the user is not holding Utility Umbrella. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn. If the user is holding Utility Umbrella and the weather is Desolate Land or Sunny Day, the move still requires a turn to charge.",
+		shortDesc: "Charges turn 1. Hits turn 2. No charge in sunlight.",
+		gen8: {
+			desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm and the user is not holding Utility Umbrella. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn. If the user is holding Utility Umbrella and the weather is Desolate Land or Sunny Day, the move still requires a turn to charge.",
+		},
+		gen7: {
+			desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn.",
+		},
+		gen5: {
+			desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Hail, Rain Dance, or Sandstorm. If the user is holding a Power Herb or the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen4: {
+			desc: "This attack charges on the first turn and executes on the second. Damage is halved if the weather is Hail, Rain Dance, or Sandstorm. If the user is holding a Power Herb or the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen3: {
+			desc: "This attack charges on the first turn and executes on the second. Damage is halved if the weather is Hail, Rain Dance, or Sandstorm. If the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen2: {
+			desc: "This attack charges on the first turn and executes on the second. Damage is halved if the weather is Rain Dance. If the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen1: {
+			desc: "This attack charges on the first turn and executes on the second.",
+			shortDesc: "Charges turn 1. Hits turn 2.",
+		},
+
+		prepare: "  [POKEMON] absorbed light!",
+	},
+	solarflare: {
+		name: "Solar Flare",
+		desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Primordial Sea, Rain Dance, Sandstorm, or Snow and the user is not holding Utility Umbrella. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn. If the user is holding Utility Umbrella and the weather is Desolate Land or Sunny Day, the move still requires a turn to charge.",
+		shortDesc: "Charges turn 1. Hits turn 2. No charge in sunlight.",
+		gen8: {
+			desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm and the user is not holding Utility Umbrella. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn. If the user is holding Utility Umbrella and the weather is Desolate Land or Sunny Day, the move still requires a turn to charge.",
+		},
+		gen7: {
+			desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn.",
+		},
+		gen5: {
+			desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Hail, Rain Dance, or Sandstorm. If the user is holding a Power Herb or the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen4: {
+			desc: "This attack charges on the first turn and executes on the second. Damage is halved if the weather is Hail, Rain Dance, or Sandstorm. If the user is holding a Power Herb or the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen3: {
+			desc: "This attack charges on the first turn and executes on the second. Damage is halved if the weather is Hail, Rain Dance, or Sandstorm. If the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen2: {
+			desc: "This attack charges on the first turn and executes on the second. Damage is halved if the weather is Rain Dance. If the weather is Sunny Day, the move completes in one turn.",
+		},
+		gen1: {
+			desc: "This attack charges on the first turn and executes on the second.",
+			shortDesc: "Charges turn 1. Hits turn 2.",
+		},
+
+		prepare: "  [POKEMON] absorbed light!",
 	},
 	solarbeam: {
 		name: "Solar Beam",
@@ -6756,6 +6857,10 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	tackle: {
 		name: "Tackle",
+		shortDesc: "No additional effect.",
+	},
+	brightfang: {
+		name: "Bright Fang",
 		shortDesc: "No additional effect.",
 	},
 	tailglow: {

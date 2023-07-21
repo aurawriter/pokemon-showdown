@@ -191,6 +191,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its Attack goes up 2 stages, and it heals half of its health. Once per battle.",
 		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Attack is raised and it heals. Once per battle.",
 	},
+	beacon: {
+		name: "Fighting Spirit",
+		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its Special Def. goes up 2 stages, and it heals half of its health. Once per battle.",
+		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Special Def. is raised and it heals. Once per battle.",
+	},
 	bulletproof: {
 		name: "Bulletproof",
 		shortDesc: "This Pokemon is immune to bullet moves.",
@@ -673,6 +678,14 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	hugepower: {
 		name: "Huge Power",
 		shortDesc: "This Pokemon's Attack is doubled.",
+	},
+	guardianangel:{
+		name:"Guardian Angel",
+		shortDesc: "Foes' moves target this Pokemon on the turn it switches in."
+	},
+	enlightenment: {
+		name: "Enlightenment",
+		shortDesc: "This Pokemon's Special Attack is doubled.",
 	},
 	hungerswitch: {
 		name: "Hunger Switch",
@@ -2297,4 +2310,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
+	radiantorder:{
+		name: "Radiant Order",
+		shortDesc: "This Pokemon's Light-type moves are powered up. This Pokemon's moves will always hit the intended target.",
+	}
 };
