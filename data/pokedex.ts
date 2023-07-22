@@ -19650,7 +19650,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
         weightkg: 60.7,
         color: "Yellow",
         eggGroups: ["Undiscovered"],
-		requiredAbility:"Overwhelming Presence",
+		requiredAbility:"Dusk Till Dawn",
 		battleOnly: "Calikami",
     },
 };
