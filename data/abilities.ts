@@ -5626,38 +5626,51 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	num: 40
 	},
 	radiantorder: {
-		onModifyAtkPriority: 5,
-		onModifyAtk(atk, attacker, defender, move) {
-			if (move.type === 'Light') {
-				this.debug('Radiant Order boost');
-				return this.chainModify(1.25);
+	onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Light') {
+				move.accuracy = true;
+				if (!target.addVolatile('radiantorder')) {
+					this.add('-immune', target, '[from] ability: Radiant Order');
+				}
+				return null;
 			}
 		},
-		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			if (move.type === 'Light') {
-				this.debug('Radiant Order boost');
-				return this.chainModify(1.25);
-			}
+		onEnd(pokemon) {
+			pokemon.removeVolatile('radiantorder');
 		},
-		onModifyMovePriority: 1,
-		onModifyMove(move) {
-			// most of the implementation is in Battle#getTarget
-			move.tracksTarget = move.target !== 'scripted';
-		},
-		onAnyInvulnerabilityPriority: 1,
-		onAnyInvulnerability(target, source, move) {
-			if (move && (source === this.effectState.target || target === this.effectState.target)) return 0;
-		},
-		onAnyAccuracy(accuracy, target, source, move) {
-			if (move && (source === this.effectState.target || target === this.effectState.target)) {
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(target) {
+				this.add('-start', target, 'ability: Radiant Order');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, attacker, defender, move) {
+				if (move.type === 'Light' && attacker.hasAbility('radiantorder')) {
+					this.debug('Radiant Order boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(atk, attacker, defender, move) {
+				if (move.type === 'Light' && attacker.hasAbility('radiantorder')) {
+					this.debug('Radiant Order boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onAnyAccuracy(accuracy, target, source, move) {
+			if ((move && (source === this.effectState.target || target === this.effectState.target)) && move.type ==='Light') {
 				return true;
 			}
 			return accuracy;
 		},
+			onEnd(target) {
+				this.add('-end', target, 'ability: Radiant Order', '[silent]');
+			},
+		},
+		isBreakable: true,
 		name: "Radiant Order",
 		rating: 3.5,
-		num: 200,
+		num: 18,
 	},
 	
 	dusktilldawn:{
