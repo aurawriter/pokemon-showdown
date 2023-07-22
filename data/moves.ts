@@ -22513,42 +22513,42 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Cute",
 	},
 	reboundshot: {
-		num: 575,
-		accuracy: 100,
-		basePower: 0,
-		category: "Status",
-		name: "Rebound Shot",
-		pp: 20,
-		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1, sound: 1, bypasssub: 1},
-		onTry(source, target) {
-			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
-			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
-				duration: 3,
-				move: 'rebound',
-				source: source,
-				moveData: {
-					id: 'reboundshot',
-					name: "Rebound Shot",
-					accuracy: 100,
-					basePower: 80,
-					category: "Special",
-					priority: 0,
-					flags: {allyanim: 1, futuremove: 1},
-					ignoreImmunity: false,
-					effectType: 'Move',
-					type: 'Ghost',
-				},
-			});
-			this.add('-start', source, 'move: Future Sight');
-			return this.NOT_FAIL;
-		},
-
-		selfSwitch: true,
-		secondary: null,
-		target: "normal",
-		type: "Ghost",
-		zMove: {effect: 'healreplacement'},
-		contestType: "Cool",
-	},
+        num: 565,
+        accuracy: 100,
+        basePower: 0,
+        category: "Status",
+        name: "Rebound Shot",
+        pp: 20,
+        priority: 0,
+        flags: {allyanim: 1, futuremove: 1},
+        ignoreImmunity: true,
+        onTry(source, target) {
+            if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+            Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+                duration: 3,
+                move: 'reboundshot',
+                source: source,
+                moveData: {
+                    id: 'reboundshot',
+                    name: "Rebound Shot",
+                    accuracy: 100,
+                    basePower: 80,
+                    category: "Special",
+                    priority: 0,
+                    flags: {allyanim: 1, futuremove: 1},
+                    ignoreImmunity: false,
+                    effectType: 'Move',
+                    type: 'Ghost',
+                },
+            });
+            this.add('-start', source, 'move: Rebound Shot');
+            return this.NOT_FAIL;
+        },
+        selfSwitch: true,
+        secondary: null,
+        target: "normal",
+        type: "Ghost",
+        zMove: {effect: 'healreplacement'},
+        contestType: "Cool",
+    }, 
 };

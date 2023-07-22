@@ -5663,14 +5663,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	dusktilldawn:{
 		onStart(pokemon){
 			if(pokemon.species.baseSpecies!=='Calikami' || pokemon.transformed) return;
-			pokemon.formeChange("Calikami-Radiant")
+			pokemon.formeChange("Calikami-Radiant");
 		},
 		onResidualOrder:29,
 		onResidual(pokemon){
+			console.log(pokemon.species.name)
 			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
 			if(pokemon.species.name==="Calikami-Radiant")
 			{
-				pokemon.formeChange("Calikami")
+				pokemon.formeChange("Calikami");
 			}
 		},
 		onDamage(damage,target,source,effect){
