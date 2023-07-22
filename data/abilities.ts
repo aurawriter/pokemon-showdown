@@ -5660,15 +5660,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 200,
 	},
 	
-	overwhelmingpresence:{
+	dusktilldawn:{
 		onStart(pokemon){
 			if(pokemon.species.baseSpecies!=='Calikami' || pokemon.transformed) return;
 			pokemon.formeChange("Calikami-Radiant")
 		},
 		onResidualOrder:29,
 		onResidual(pokemon){
-			if(pokemon.species.baseSpecies!=='Calikami') return;
-			pokemon.formeChange("Calikami");
+			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
+			if(pokemon.species.name==="Calikami-Radiant")
+			{
+				pokemon.formeChange("Calikami")
+			}
 		},
 		onDamage(damage,target,source,effect){
 			if(!(target.activeTurns>1))
@@ -5677,7 +5680,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		
-		name: "Overwhelming Presence",
+		name: "Dusk Till Dawn",
 		rating: 4,
 		num: 201,
 	},
