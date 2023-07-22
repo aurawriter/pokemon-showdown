@@ -193,8 +193,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	beacon: {
 		name: "Fighting Spirit",
-		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its Special Def. goes up 2 stages, and it heals half of its health. Once per battle.",
-		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Special Def. is raised and it heals. Once per battle.",
+		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its Sp Def. goes up 2 stages, and it heals half of its health. Once per battle.",
+		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Sp Def. is raised and it heals. Once per battle.",
 	},
 	bulletproof: {
 		name: "Bulletproof",
@@ -2310,9 +2310,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
-	radiantorder:{
+	radiantorder: {
 		name: "Radiant Order",
-		shortDesc: "This Pokemon's Light-type moves are powered up. This Pokemon's moves will always hit the intended target.",
+		desc: "This Pokemon is immune to Light-type moves. The first time it is hit by a Light-type move, its offensive stat is multiplied by 1.5 while using a Light-type attack as long as it remains active and has this Ability.",
+		shortDesc: "This Pokemon's Light attacks do 1.5x damage and cannot miss if hit by one Light move; Light immunity.",
+		start: "  The power of [POKEMON]'s Light-type moves rose!",
 	},
 	dusktilldawn:{
 		name: "Dusk Till Dawn",
