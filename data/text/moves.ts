@@ -2438,6 +2438,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	reboundshot:{
 		name: "Rebound Shot",
 		shortDesc: "Switches out, then hits two turns after being used.",
+		start: " [POKEMON] threw a rebound shot!",	
+		activate: "[TARGET] was hit by the rebound shot!",
 	},
 	gastroacid: {
 		name: "Gastro Acid",
