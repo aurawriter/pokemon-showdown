@@ -96458,7 +96458,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			radiantshield:["9L1"],
 			luminacrash:["9L1"],
 			calmmind:["9L1"],
-			expandingforce:["9L1"],
 			extrasensory:["9l1"],
 			futuresight:["9L1"],
 			psychic:["9L1"],

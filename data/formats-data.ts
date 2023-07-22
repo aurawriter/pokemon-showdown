@@ -1960,6 +1960,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 		natDexTier: "UU",
 	},
+	gardevoiraurora: {
+		tier: "RU",
+		doublesTier: "DUU",
+		natDexTier: "RU",
+	},
 	gallade: {
 		tier: "UU",
 		doublesTier: "DUU",
@@ -1969,6 +1974,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Past",
 		tier: "Illegal",
 		natDexTier: "RUBL",
+	},
+	galladeaurora: {
+		tier: "UU",
+		doublesTier: "DUU",
+		natDexTier: "RU",
 	},
 	surskit: {
 		tier: "LC",
@@ -6236,5 +6246,45 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	xinfernotl:
 	{
 		natDexTier:"OU",
+	},
+	dwelmet:{
+		natDexTier:"OU",
+	}
+	harmonkey:{
+		natDexTier:"OU",
+	}
+	illumeon:{
+		natDexTier:"OU",
+	},
+	pristeraph:{
+		natDexTier:"Uber"
+	},
+	gavelient:{
+		natDexTier:"OU",
+	},
+	glowker:{
+		natDexTier:"OU"
+	},
+	soloth:{
+		natDexTier:"OU",
+	},
+	cherubid:{
+		natDexTier:"OU",
+	},
+	anglare:{
+		natDexTier:"OU",
+	},
+	shino:{
+		natDexTier:"OU",
+	},
+	dribblowisp:{
+		natDexTier:"OU",
+	},
+	calikami: {
+		isNonstandard: "Past",
+		natDexTier: "OU",
+	},
+	calikamiradiant: {
+		isNonstandard: "Past",
 	},
 };
