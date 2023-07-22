@@ -1801,8 +1801,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 37,
 	},
 	enlightenment: {
-		onModifySpaPriority: 5,
-		onModifySpa(spa) {
+		onModifySpAPriority: 5,
+		onModifySpA(spa) {
 			return this.chainModify(2);
 		},
 		name: "Enlightenment",
