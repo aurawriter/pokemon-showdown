@@ -5664,13 +5664,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onStart(pokemon){
 			if(pokemon.species.baseSpecies!=='Calikami' || pokemon.transformed) return;
 			pokemon.formeChange("Calikami-Radiant");
+			console.log(pokemon.getAbility().id);
 		},
 		onResidualOrder:29,
 		onResidual(pokemon){
-			console.log(pokemon.species.name)
+			console.log(pokemon.species.name);
+			console.log(pokemon.getAbility().id);
 			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
 			if(pokemon.species.name==="Calikami-Radiant")
 			{
+				console.log("Changing form");
 				pokemon.formeChange("Calikami");
 			}
 		},

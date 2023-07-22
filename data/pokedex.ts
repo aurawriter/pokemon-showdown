@@ -19643,7 +19643,8 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	calikamiradiant: {
         num: -1139,
         name: "Calikami-Radiant",
-        types: ["Dark", "Light"],
+        baseSpecies: "Calikami",
+		types: ["Dark", "Light"],
         baseStats: {hp: 100, atk: 80, def: 75, spa: 115, spd: 90, spe: 120},
         abilities: {0: "Dusk Till Dawn"},
         heightm: 18.8,
