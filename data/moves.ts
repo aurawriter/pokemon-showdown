@@ -22542,6 +22542,7 @@ export const Moves: {[moveid: string]: MoveData} = {
                 },
             });
             this.add('-start', source, 'move: Rebound Shot');
+			source.switchFlag='reboundshot';
             return this.NOT_FAIL;
         },
         selfSwitch: true,
