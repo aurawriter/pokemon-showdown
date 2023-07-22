@@ -2313,7 +2313,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	radiantorder: {
 		name: "Radiant Order",
 		desc: "This Pokemon is immune to Light-type moves. The first time it is hit by a Light-type move, its offensive stat is multiplied by 1.5 while using a Light-type attack as long as it remains active and has this Ability.",
-		shortDesc: "Pokemon's Light moves do 1.5x damage and don't miss if hit by a Light move; Light immunity.",
+		shortDesc: "Light moves do 1.5x damage and don't miss if hit by a Light move; Light immunity.",
 		start: "  The power of [POKEMON]'s Light-type moves rose!",
 	},
 	dusktilldawn:{
