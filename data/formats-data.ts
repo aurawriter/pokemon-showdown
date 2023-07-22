@@ -6249,10 +6249,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	dwelmet:{
 		natDexTier:"OU",
-	}
+	},
 	harmonkey:{
 		natDexTier:"OU",
-	}
+	},
 	illumeon:{
 		natDexTier:"OU",
 	},
