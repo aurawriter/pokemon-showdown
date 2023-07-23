@@ -96159,7 +96159,6 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			rollout: ["9L1"],
 			stoneedge: ["9L1"],
 			earthquake: ["9L1"],
-			righteousrend:["9L1"],
 		}
 	},
 	dribblowisp:{
