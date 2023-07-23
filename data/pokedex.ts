@@ -8409,7 +8409,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
    	 name: "Gallade-Aurora",
    	 types: ["Light", "Fighting"],
    	 gender: "M",
-   	 baseStats: {hp: 68, atk: 125, def: 65, spa: 65, spd: 115, spe: 80},
+   	 baseStats: {hp: 68, atk:65 , def: 125, spa: 55, spd: 125, spe: 80},
    	 abilities: {0: "Steadfast", 1: "Magic Guard", H: "Stalwart"},
    	 heightm: 1.6,
    	 weightkg: 52,

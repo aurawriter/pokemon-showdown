@@ -8607,7 +8607,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return success;
 		},
 		secondary: null,
-		target: "any",
+		target: "adjacentAllyOrSelf",
 		type: "Light",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
