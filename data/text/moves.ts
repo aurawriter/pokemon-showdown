@@ -4841,7 +4841,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	fountainoflife: {
 		name: "Fountain of Life",
 		desc: "Hits all adjacent. If the target is an ally, this move restores 1/2 of its maximum HP, rounded down, instead of dealing damage.",
-		shortDesc: "Hits all adjacent. If the target is an ally, heals 50% of its max HP.",
+		shortDesc: "Hits all adjacent. Heals allies 50%",
 	},
 	poltergeist: {
 		name: "Poltergeist",
@@ -6574,6 +6574,11 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	stoneedge: {
 		name: "Stone Edge",
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
+	},
+	righteousrend: {
+		name: "Righteous Rend",
 		desc: "Has a higher chance for a critical hit.",
 		shortDesc: "High critical hit ratio.",
 	},
