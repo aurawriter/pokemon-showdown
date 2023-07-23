@@ -2416,7 +2416,7 @@ export const Chat = new class {
 		buf += '<span class="col typecol">';
 		if (species.types) {
 			for (const type of species.types) {
-				buf += `<img src="https://github.com/aurawriter/AuroraClientAssets/tree/main/play.pokemonshowdown.com/sprites/types/${type}.png" alt="${type}" height="14" width="32">`;
+				buf += `<img src="https://raw.githubusercontent.com/aurawriter/AuroraClientAssets/main/play.pokemonshowdown.com/sprites/types/${type}.png" alt="${type}" height="14" width="32">`;
 			}
 		}
 		buf += '</span> ';
