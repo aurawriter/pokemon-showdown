@@ -19508,7 +19508,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Dwelmet",
 		types: ["Ground","Light"],
 		baseStats: {hp: 130, atk:90, def: 78, spa:75, spd:65,spe:70},
-		abilities:{0:"Rocky Payload",H:"Sand Force"},
+		abilities:{0:"Rocky Payload",0: "Sturdy", H:"Sand Force"},
 		heightm: 1.6,
 		weightkg: 112.8,
 		color: "Red",
