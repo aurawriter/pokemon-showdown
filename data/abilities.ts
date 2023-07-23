@@ -5701,5 +5701,22 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 201,
 	},
-		
+	centerstage:
+	{
+		onStart(pokemon) {
+			if (this.field.getPseudoWeather('trickroom')) {
+				this.boost({spe: -1});
+			}
+		},
+		onAnyPseudoWeatherChange() {
+			const pokemon = this.effectState.target;
+			if (this.field.getPseudoWeather('trickroom')) {
+				this.boost({spe: -1});
+			}
+		},
+		name: "Center Stage",
+		num: 1122,
+		gen: 8,
+	}
+	
 };
