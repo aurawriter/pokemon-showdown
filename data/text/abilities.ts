@@ -221,6 +221,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "If Sunny Day is active, this Pokemon's Speed is doubled.",
 		},
 	},
+	centerstage: {
+		name: "Center Stage",
+		shortDesc: "If Trick Room is active, this Pokemon's Speed is lowered by one stage.",
+		
+	},
 	clearbody: {
 		name: "Clear Body",
 		shortDesc: "Prevents other Pokemon from lowering this Pokemon's stat stages.",
@@ -2313,7 +2318,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	radiantorder: {
 		name: "Radiant Order",
 		desc: "This Pokemon is immune to Light-type moves. The first time it is hit by a Light-type move, its offensive stat is multiplied by 1.5 while using a Light-type attack as long as it remains active and has this Ability.",
-	   shortDesc: "Light power 1.5x and don't miss if hit by Light; Light immunity.",
+		shortDesc: "Light power 1.5x and don't miss if hit by Light; Light immunity.",
 		start: "  The power of [POKEMON]'s Light-type moves rose!",
 	},
 	dusktilldawn:{
