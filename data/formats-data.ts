@@ -6256,10 +6256,13 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	illumeon:{
 		natDexTier:"OU",
 	},
+	squittack:{
+		natDexTier:"OU",
+	},
 	pristeraph:{
 		natDexTier:"Uber"
 	},
-	gavelient:{
+	gaveliant:{
 		natDexTier:"OU",
 	},
 	glowker:{
