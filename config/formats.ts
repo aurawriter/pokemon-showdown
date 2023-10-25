@@ -4365,11 +4365,13 @@ export const Formats: FormatList = [
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
-		name: "Lobomon Corporation",
+		section: "Modded Formats",
+	},
+	{
+		name: "[Aurora] Lobomon Corporation",
 		
 		mod: 'lobomoncorporation',
 		searchShow: true,
 		debug: true,
-		banlist: ['Uber','AG','OU','UU','RU','NU','PU'],
 	},
 ];
