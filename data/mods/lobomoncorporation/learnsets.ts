@@ -29,7 +29,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
         spite: ["9L1"],
     },
   },
-  onesinandhundredsofgooddeeds:{
+  onesin:{
     learnset:{
         seismictoss:["9L1"],
         cosmicpower:["9L1"],
