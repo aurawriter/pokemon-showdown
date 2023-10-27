@@ -11,7 +11,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "One Sin and Hundreds of Good Deeds",
 		types: ["Normal","Ghost"],
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
-		abilties: {0: "Penitence"},
+		abilities: {0: "Penitence"},
 		
 	},
 };
