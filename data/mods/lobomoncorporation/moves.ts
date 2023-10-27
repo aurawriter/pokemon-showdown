@@ -1,4 +1,4 @@
-export const Moves: {[k: string]: ModdedMove Data} = {
+export const Moves: {[k: string]: ModdedMoveData} = {
   freezingkiss:{
     num: 0,
     accuracy: 50,
