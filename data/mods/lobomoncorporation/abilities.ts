@@ -7,5 +7,6 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		desc: "If this Pokemon is knocked out, that move's user loses 1/4 of its maximum HP, rounded down. If any active Pokemon has the Ability Damp, this effect is prevented.",
 		shortDesc: "If this Pokemon is KOed, that move's user loses 1/4 its max HP.",
+		name: "Fourth Match Flame",
 },
 };
