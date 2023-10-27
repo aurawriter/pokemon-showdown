@@ -6,7 +6,7 @@ fourthmatchflame:{
 			}
 		},
 		desc: "If this Pokemon is knocked out, that move's user loses 1/4 of its maximum HP, rounded down. If any active Pokemon has the Ability Damp, this effect is prevented.",
-		shortDesc: "Scorched Girl explodes when it is fainted.",
+		shortDesc: "Scorched Girl explodes when she faints",
 		name: "Fourth Match Flame",
 	},
 penitence:{
@@ -21,5 +21,23 @@ penitence:{
 		name: "Penitence",
 		rating: 0,
 		num: 299,
+	},
+	frostsplinter:{
+		onModifyMove(move)
+		{
+		if(!(move.type === 'Ice')||move.category === 'Status') return;
+		if(!move.secondaries){
+			move.secondaries = [];
+		}
+		move.secondaries.push({
+				boosts: {
+					spe: -1,
+				},
+				ability: this.dex.abilities.get('frostsplinter'),
+			});
+		},
+		desc: "This Pokemon's Ice type move's slow down its target.",
+		shortDesc: "Snow Queen's Ice-type moves slow down her victims.",
+		name: "Frost Splinter",
 	},
 };
