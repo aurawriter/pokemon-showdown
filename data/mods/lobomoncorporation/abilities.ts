@@ -12,7 +12,7 @@ fourthmatchflame:{
 penitence:{
 		onStart(pokemon) {
 			for (const ally of pokemon.adjacentAllies()) {
-				this.damage(target.baseMaxhp / 3, target, target);
+				this.damage(pokemon.baseMaxhp / 3, pokemon, pokemon);
 				this.heal(ally.baseMaxhp / 3, ally, pokemon);
 			}
 		},
