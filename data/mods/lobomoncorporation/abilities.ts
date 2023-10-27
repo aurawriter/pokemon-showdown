@@ -16,8 +16,8 @@ penitence:{
 				this.heal(ally.baseMaxhp / 3, ally, pokemon);
 			}
 		},
-		desc: "On switch-in, for each ally, this Pokemon loses 1/3 of its HP to heal them 1/3 of their HP.
-		shortDesc: "One Sin loses HP to heal allies."
+		desc: "On switch-in, for each ally, this Pokemon loses 1/3 of its HP to heal them 1/3 of their HP.",
+		shortDesc: "One Sin loses HP to heal allies.",
 		name: "Penitence",
 		rating: 0,
 		num: 299,
