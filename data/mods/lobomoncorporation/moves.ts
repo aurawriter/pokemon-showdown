@@ -4,6 +4,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     accuracy: 50,
     basePower: 0,
     category: "Status",
+	 desc: "Freezes the target",
+    shortdesc: "Freezes the target",
     name: "Freezing Kiss",
     pp: 10,
     priority: 0,
