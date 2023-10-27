@@ -9,4 +9,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		shortDesc: "If this Pokemon is KOed, that move's user loses 1/4 its max HP.",
 		name: "Fourth Match Flame",
 },
+	penitence:{
+		onStart(pokemon) {
+			for (const ally of pokemon.adjacentAllies()) {
+				this.damage(target.baseMaxhp / 3, target, target);
+				this.heal(ally.baseMaxhp / 3, ally, pokemon);
+			}
+		},
+		name: "Penitence",
+		rating: 0,
+		num: 299,
+	},
 };
