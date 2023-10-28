@@ -66,6 +66,20 @@ Signature Move: Arcana Beats | Arcana Slave
 
     Normally Fairy-type move that deals Special damage. When Queen of Hatred transforms, Arcana Beats becomes Arcana Slave, a Fairy-type Special move that requires a Charge Period.
 
+Happy Teddy Bear (T-04-06)
+-----------
+_"Its memories began with a warm hug."_
+
+Type: Normal/Fighting
+
+Signature Ability: Bear Paws
+
+    Insert Bear Paws effect here
+        
+Signature Move: Missing Hugs
+
+    Trapping Fighting-type damage move.
+
 The Snow Queen (F-01-37)
 ------------
 _"The snow is steadily melting... Perhaps because spring is coming, or it might be the palace collapsing."_
