@@ -98,6 +98,19 @@ Signature Move: Solitude
 
     Psychic type move that inflicts the "Despair" condition on a Pokemon.
 
+1.76 MHz (O-01-12)
+-----------
+_"This is a recording of the day we must never forget."_
+
+Type: Electric/Normal
+
+Signature Ability: Noise
+
+    Similar effect to Mummy. Maybe make it deal damage over turn to the pokemon?
+        
+Signature Move: Solitude
+
+    Psychic type move that inflicts the "Despair" condition on a Pokemon.
 
 The Snow Queen (F-01-37)
 ------------
