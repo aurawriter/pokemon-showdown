@@ -45,4 +45,21 @@ penitence:{
 		shortDesc: "No effect.",
 		name: "Standard Training",
 	},
+	pilingstory: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (!pokemon.hp) return;
+			for (const target of pokemon.foes()) {
+				if (target.status === 'dsp') {
+					this.damage(target.baseMaxhp / 8, target, pokemon);
+				}
+			}
+		},
+		name: "Piling Story",
+		desc: "This Pokemon deals damage every turn to Pokemon suffering from Despair",
+		shortDesc: "Despairing Pokemon take damage every turn",
+		rating: 1.5,
+		num: 123,
+	},
 };
