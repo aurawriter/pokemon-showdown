@@ -40,4 +40,9 @@ penitence:{
 		shortDesc: "Snow Queen's Ice-type moves slow down her victims.",
 		name: "Frost Splinter",
 	},
+	standardtraining:{
+		desc: "This Pokemon is very good for training.",
+		shortDesc: "No effect.",
+		name: "Standard Training",
+	},
 };
