@@ -21,6 +21,10 @@ Signature Ability: Fourth Match Flame
 
     Fourth Match Flame, at the time of writing this, is just an Aftermath clone. 
 
+Signature Move: Time Bomb
+
+    Fire-type Future Sight.
+
 One Sin and Hundreds of Good Deeds (O-03-03)
 ------------
 _"It feeds on the “evil” that seeps out during conversations between people."_
