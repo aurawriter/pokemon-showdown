@@ -31,6 +31,9 @@ Signature Ability: Penitence
 
     Penitence _should_ reduce the Pokemon's health by 33% when it switches in to heal its allies by 33%
 
+Signature Move: Cleanse
+
+    A Normal-type move that hits Ghost-types supereffectively rather than immune. Clears stat buffs.
 
 The Snow Queen (F-01-37)
 ------------
