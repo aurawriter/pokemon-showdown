@@ -112,4 +112,41 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		zMove: {boost: {atk: 3}},
 		contestType: "Cute",
 	},
+	timebomb: {
+		num: 248,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Time Bomb",
+		pp: 10,
+		priority: 0,
+		flags: {allyanim: 1, futuremove: 1},
+		ignoreImmunity: true,
+		onTry(source, target) {
+			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+				duration: 3,
+				move: 'timebomb',
+				source: source,
+				moveData: {
+					id: 'timebomb',
+					name: "Time Bomb",
+					accuracy: 100,
+					basePower: 120,
+					category: "Physical",
+					priority: 0,
+					flags: {allyanim: 1, futuremove: 1},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					type: 'Fire',
+				},
+			});
+			this.add('-start', source, 'move: Future Sight');
+			return this.NOT_FAIL;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Clever",
+	},
 };
