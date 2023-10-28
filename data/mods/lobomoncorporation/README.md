@@ -8,6 +8,10 @@ Frostbite
 ------------
 Frostbite was implemented almost entirely because originally The Snow Queen's signature move, "Freezing Kiss" was going to be a 50 Accuracy move that Froze the target. In other words, potentially at least _annoying_ to deal with in terms of a metagame. So instead, I implemented Frosbite to make Freezing Kiss just a Frosbite Will-O-Wisp clone.
 
+Despair
+------------
+Despair is similar to Drowzy from Legends Arceus: Pokemon sometimes can't attack, and take increased damage from moves.
+
 Abnormality Pokemon: 
 ====================
 Standard Training-Dummy Rabbit (0-00-00)
@@ -79,6 +83,21 @@ Signature Ability: Bear Paws
 Signature Move: Missing Hugs
 
     Trapping Fighting-type damage move.
+
+Old Lady (O-01-12)
+-----------
+_"She was so talkative before, yet in the end, loneliness was the only listener."_
+
+Type: Ghost/Psychic
+
+Signature Ability: Piling Story
+
+    Similar effect to Bad Dreams, but the Pokemon takes damage when inflicted with "Despair" rather than Sleep.
+        
+Signature Move: Solitude
+
+    Psychic type move that inflicts the "Despair" condition on a Pokemon.
+
 
 The Snow Queen (F-01-37)
 ------------
