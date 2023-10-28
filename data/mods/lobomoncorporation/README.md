@@ -52,6 +52,20 @@ Signature Move: Cleanse
 
     A Normal-type move that hits Ghost-types supereffectively rather than immune. Clears stat buffs.
 
+Queen of Hatred (O-01-04)
+------------
+_"In the name of Love and Justice~ Here comes Magical Girl!"_
+
+Type: Fairy | Fairy/Dragon
+
+Signature Ability: Love and Hate
+
+    Queen of Hatred's ability, Love and Hate will cause it to transform into its "Breaching" Form, where it becomes a Fairy/Dragon type, when an Allied Pokemon faints
+
+Signature Move: Arcana Beats | Arcana Slave
+
+    Normally Fairy-type move that deals Special damage. When Queen of Hatred transforms, Arcana Beats becomes Arcana Slave, a Fairy-type Special move that requires a Charge Period.
+
 The Snow Queen (F-01-37)
 ------------
 _"The snow is steadily melting... Perhaps because spring is coming, or it might be the palace collapsing."_
