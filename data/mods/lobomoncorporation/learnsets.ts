@@ -27,6 +27,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
         endure: ["9L1"],
         poltergeist: ["9L1"],
         spite: ["9L1"],
+		  timebomb: ["9L1"],
     },
   },
   onesin:{
