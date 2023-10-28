@@ -118,6 +118,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 120,
 		category: "Physical",
 		name: "Time Bomb",
+		desc: "In 3 turns, the opposing side takes Fire-damage",
+		desc: "In 3 turns deal Fire-type damage",
 		pp: 10,
 		priority: 0,
 		flags: {allyanim: 1, futuremove: 1},
@@ -148,5 +150,46 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fire",
 		contestType: "Clever",
+	},
+	cleansing: {
+		num: 499,
+		accuracy: true,
+		basePower: 50,
+		category: "Special",
+		desc: "Cleanses the target, dealing supereffective damage to Ghosts and removing stat boosts",
+   	shortdesc: "Removes stat boosts and deals super-effective damage to Ghosts",
+		name: "Cleansing",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type) {
+            if (type === 'Ghost') return 1;
+        },
+		onHit(target) {
+			target.clearBoosts();
+			this.add('-clearboost', target);
+		},
+		ignoreImmunity: {'Ghost', true},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Beautiful",
+	},
+	solitude: {
+		num: 609,
+		accuracy: 100,
+		basePower: 20,
+		category: "Special",
+		name: "Solitude",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			status: 'dsp',
+		},
+		target: "normal",
+		type: "Psychic",
+		contestType: "Beautiful",
 	},
 };
