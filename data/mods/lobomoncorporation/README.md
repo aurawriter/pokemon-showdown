@@ -10,6 +10,19 @@ Frostbite was implemented almost entirely because originally The Snow Queen's si
 
 Abnormality Pokemon: 
 ====================
+Standard Training-Dummy Rabbit (0-00-00)
+-----------
+_"An Abnormality in the shape of a training dummy used to train up-and-coming managers."_
+
+Type: Electric
+
+Signature Ability: Standard Training
+
+    This Ability has no effect.
+
+Signature Move: Wobble
+
+    This Move has no effect.
 
 Scorched Girl (F-01-02)
 ------------
