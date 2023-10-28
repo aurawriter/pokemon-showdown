@@ -6,4 +6,4 @@ Lobotomy Corporation is an indie horror rogue-lite strategy management simulatio
 
 Frostbite
 ------------
-Frostbite was implemented almost entirely because originally The Snow Queen's signature move, "Freezing Kiss" was going to be a 50 Accuracy move that Froze the target. In other words, potentially at least _annoying_ to deal with in terms of a metagame. So instead, I implemented Frosbite.
+Frostbite was implemented almost entirely because originally The Snow Queen's signature move, "Freezing Kiss" was going to be a 50 Accuracy move that Froze the target. In other words, potentially at least _annoying_ to deal with in terms of a metagame. So instead, I implemented Frosbite to make Freezing Kiss just a Frosbite Will-O-Wisp clone.
