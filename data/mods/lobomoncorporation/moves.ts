@@ -119,7 +119,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Physical",
 		name: "Time Bomb",
 		desc: "In 3 turns, the opposing side takes Fire-damage",
-		desc: "In 3 turns deal Fire-type damage",
+		shortdesc: "In 3 turns deal Fire-type damage",
 		pp: 10,
 		priority: 0,
 		flags: {allyanim: 1, futuremove: 1},
