@@ -1,7 +1,8 @@
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 	inherit: 'gen9',
-	actions:{
+	actions: {
+		modifyDamage(baseDamage, pokemon, target, move, suppressMessages = false){
 		const tr = this.battle.trunc;
 		if (!move.type) move.type = '???';
 		const type = move.type;
