@@ -17,6 +17,13 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 		onResidual(pokemon) {
 			this.damage(pokemon.baseMaxhp / 16);
 		},
+		start: "  [POKEMON] was frostbitten!",
+		startFromItem: "  [POKEMON] was frostbitten by the [ITEM]!",
+		alreadyStarted: "  [POKEMON] is already frosbitten!",
+		end: "  [POKEMON]'s frostbite was healed!",
+		endFromItem: "  [POKEMON]'s [ITEM] healed its frostbite!",
+		damage: "  [POKEMON] was hurt by its frostbite!",
+
 	},
 //Despair
 	dsp: {
@@ -48,5 +55,11 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 				return false;
 			}
 		},
+		start: "  [POKEMON] is filled with despair! It may be unable to move!",
+		alreadyStarted: "  [POKEMON] is already filled with despair!",
+		end: "  [POKEMON] found hope once more!",
+		endFromItem: "  [POKEMON]'s [ITEM] filled it with hope!",
+		cant: "[POKEMON] is despaired! It can't move!",
+
 }
 };
