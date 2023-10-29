@@ -48,4 +48,5 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 				return false;
 			}
 		},
+}
 };
