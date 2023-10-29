@@ -1,4 +1,4 @@
-export const Items: {[k: string]: ModdedTypeData} = {
+export const TypeChart: {[k: string]: ModdedTypeData} = {
 bug: {
 		damageTaken: {
 			Bug: 0,
