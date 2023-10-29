@@ -169,7 +169,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			target.clearBoosts();
 			this.add('-clearboost', target);
 		},
-		ignoreImmunity: {'Ghost', true},
+		ignoreImmunity: {'Ghost': true},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
