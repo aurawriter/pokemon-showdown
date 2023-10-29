@@ -21,7 +21,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Frost Splinter"},
 	},
 	standardtrainingdummyrabbit: {
-		num: 000001,
+		num: -1000,
 		name: "Standard Training-Dummy Rabbit",
 		types: ["Electric","Normal"],
 		baseStats: {hp: 110,atk:55,def:90,spa:80,spd:90,spe:60},
