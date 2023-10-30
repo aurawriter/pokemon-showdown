@@ -84,8 +84,8 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 		onBeforeMove(pokemon) {
 			if (this.randomChance(1, 4)) {
 				this.add('cant', pokemon, 'par');
-				return false; */
-			}
+				return false; 
+			} */
 		},
 	},
 };
