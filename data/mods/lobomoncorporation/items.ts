@@ -12,6 +12,6 @@ export const Items: {[k: string]: ModdedItemData} = {
 			pokemon.trySetStatus('fbt', pokemon);
 		},
 		num: 273,
-	   desc: "At the end of every turn, this item attempts to burn the holder.",
+	   desc: "At the end of every turn, this item attempts to frostbite the holder.",
 	},
 };
