@@ -1,5 +1,5 @@
 export const Moves: {[k: string]: ModdedMoveData} = {
-  freezingkiss:{
+  freezingkiss: {
     num: 0,
     accuracy: 85,
     basePower: 0,
@@ -17,21 +17,21 @@ export const Moves: {[k: string]: ModdedMoveData} = {
     zMove: {boost: {spa: 1}},
     contestType: "Beautiful",
   },
-	blizzard:{
+	blizzard: {
 		inherit: true,
 		secondary: {
 			chance: 30,
 			status: 'fbt',
 		},
 	},
-	freezedry:{
+	freezedry: {
 		inherit: true,
 		secondary:{
 			chance: 30,
 			status: 'fbt',
 		}
 	},
-	freezingglare:{
+	freezingglare: {
 		inherit: true,
 		secondary: {
 			chance: 30,
@@ -45,7 +45,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			status: 'fbt',
 		},
 	},
-	icefang:{
+	icefang: {
 		inherit: true,
 		secondaries: [
 			{
@@ -64,14 +64,14 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			status: 'fbt',
 		},
 	},
-	powdersnow:{
+	powdersnow: {
 		inherit: true,
 		secondary: {
 			chance: 30,
 			status: 'fbt',
 		},
 	},
-	triattack:{
+	triattack: {
 		inherit: true,
 		secondary: {
 			chance: 20,
