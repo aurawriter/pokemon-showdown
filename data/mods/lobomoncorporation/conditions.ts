@@ -85,7 +85,7 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 			if (this.randomChance(1, 4)) {
 				this.add('cant', pokemon, 'par');
 				return false; 
-			} */
-		},
+			} 
+		}, */
 	},
 };
