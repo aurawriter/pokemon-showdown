@@ -12,6 +12,5 @@ export const Items: {[k: string]: ModdedItemData} = {
 			pokemon.trySetStatus('fbt', pokemon);
 		},
 		num: 273,
-		gen: 4,
 	},
 };
