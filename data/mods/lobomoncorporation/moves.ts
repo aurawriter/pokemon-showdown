@@ -167,15 +167,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
            if (move.type !== 'Normal') return;
 			  if (!target) return;
 			  if(!target.runImmunity('Normal')){
-			  		if(target.hasType('Ghost')) return 0;
+			  		if(target.hasType('Ghost')) return 1;
 			  }
-			  if(type==='Ghost') return 1;
+			  //if(type==='Ghost') return 1;
         },
 		onHit(target) {
 			target.clearBoosts();
 			this.add('-clearboost', target);
 		},
-		ignoreImmunity: {'Ghost': true},
+		ignoreImmunity: {'Normal': true},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
