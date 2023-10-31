@@ -167,8 +167,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
            if (move.type !== 'Normal') return;
 			  if (!target) return;
 			  if(!target.runImmunity('Normal')){
-			  		if(target.hasType('Ghost')) return 1;
+			  		if(target.hasType('Ghost')) return 0;
 			  }
+			  if(type==='Ghost') return 1;
         },
 		onHit(target) {
 			target.clearBoosts();
