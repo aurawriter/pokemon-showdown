@@ -163,8 +163,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onEffectiveness(typeMod, target, type) {
-            if (type === 'Ghost') return 1;
+		onEffectiveness(typeMod, target, type, move) {
+           if (move.type !== 'Normal') return;
+			  if (!target) return;
+			  if(!target.runImmunity('Normal')){
+			  		if(target.hasType('Ghost')) return 1;
+			  }
         },
 		onHit(target) {
 			target.clearBoosts();
