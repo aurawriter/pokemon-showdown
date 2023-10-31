@@ -43,6 +43,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
         recover:["9L1"],
         hyperbeam:["9L1"],
         perishsong:["9L1"],
+		  cleansing: ["9L1"],
     },
   },
   thesnowqueen:{
