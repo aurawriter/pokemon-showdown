@@ -8,6 +8,8 @@ Frostbite
 ------------
 Frostbite was implemented almost entirely because originally The Snow Queen's signature move, "Freezing Kiss" was going to be a 50 Accuracy move that Froze the target. In other words, potentially at least _annoying_ to deal with in terms of a metagame. So instead, I implemented Frosbite to make Freezing Kiss just a Frosbite Will-O-Wisp clone.
 
+Any move that Freezes now Frostbites instead with a higher chance (Except for Tri-Attack. Tri-Attack still has a 20% chance to have a 33% chance to inflict Frostbite)
+
 Despair
 ------------
 Despair is similar to Drowzy from Legends Arceus: Pokemon sometimes can't attack, and take increased damage from moves.
