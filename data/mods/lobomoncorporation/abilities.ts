@@ -62,4 +62,20 @@ penitence:{
 		rating: 1.5,
 		num: 123,
 	},
+	loveandhate: {
+		onStart(pokemon) {
+			if (pokemon.side.totalFainted) {
+				this.add('-activate', pokemon, 'ability: Love and Hate');
+				const fallen = Math.min(pokemon.side.totalFainted, 5);
+				this.add('-start', pokemon, `fallen${fallen}`, '[silent']);
+				this.effectState.fallen = fallen;
+			}
+
+			if(pokemon.species.baseSpecies!=='Queen of Hatred' || pokemon.transformed) return;
+			if(fallen > 2)
+			{
+			pokemon.formeChange("Queen of Hatred-Breach");
+			}
+		},
+	},
 };
