@@ -78,4 +78,21 @@ penitence:{
 			}
 		},
 	},
+	bearpaws: {
+		// upokecenter says this is implemented as an added secondary effect
+		onModifyMove(move) {
+			if (!move?.flags['contact'] || move.target === 'self') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'dsp',
+				ability: this.dex.abilities.get('bearpaws'),
+			});
+		},
+		name: "Bear Paws",
+		rating: 2,
+		num: 143,
+	},
 };
