@@ -80,7 +80,7 @@ Type: Normal/Fighting
 
 Signature Ability: Bear Paws
 
-    Insert Bear Paws effect here
+    Happy Teddy Bar's contact moves have a chance to inflict Despair.
         
 Signature Move: Missing Hugs
 
