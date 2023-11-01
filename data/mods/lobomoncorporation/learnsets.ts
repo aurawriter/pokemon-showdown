@@ -91,6 +91,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			cometpunch: ["9L1"],
 			submission: ["9L1"],
 			dragonrage: ["9L1"],
+			dragonpulse: ["9L1"],
 			barrier: ["9L1"],
 			reflect: ["9L1"],
 			lightscreen: ["9L1"],
