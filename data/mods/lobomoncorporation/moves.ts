@@ -214,4 +214,23 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fighting",
 		contestType: "Beautiful",
 	},
+	arcanabeats: {
+		num: 295,
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		name: "Arcana Beats",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 50,
+			boosts: {
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Clever",
+	},
 };
