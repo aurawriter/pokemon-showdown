@@ -92,7 +92,28 @@ penitence:{
 			});
 		},
 		name: "Bear Paws",
+		shortDesc: "Teddy Bear's loneliness has a chance of spreading",
 		rating: 2,
 		num: 143,
+	},
+	noise: {
+		name: "Noise",
+		onDamagingHit(damage, target, source, move) {
+			const sourceAbility = source.getAbility();
+			if (sourceAbility.isPermanent || sourceAbility.id === 'mummy') {
+				return;
+			}
+			if (this.checkMoveMakesContact(move, source, target, !source.isAlly(target))) {
+				const oldAbility = source.setAbility('mummy', target);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Mummy', this.dex.abilities.get(oldAbility).name, '[of] ' + source);
+				}
+			}
+		},
+		onResidual(pokemon) {
+			this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
+		}
+		rating: 2,
+		num: 152,
 	},
 };
