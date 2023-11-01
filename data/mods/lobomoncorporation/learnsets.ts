@@ -78,6 +78,22 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
         shadowball:["9L1"],
         blizzard:["9L1"],
     },
-	
   },
+	queenofhatred: {
+		learnset: {
+			arcanabeats: ["9L1"],
+			brutalswing: ["9L1"],
+			playrough: ["9L1"],
+			disarmingvoice: ["9L1"],
+			dazzlinggleam: ["9L1"],
+			charm: ["9L1"],
+			comeuppance: ["9L1"],
+			cometpunch: ["9L1"],
+			submission: ["9L1"],
+			dragonrage: ["9L1"],
+			barrier: ["9L1"],
+			reflect: ["9L1"],
+			lightscreen: ["9L1"],
+		},
+	},
 };
