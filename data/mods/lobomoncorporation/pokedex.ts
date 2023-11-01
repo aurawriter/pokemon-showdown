@@ -27,4 +27,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 110,atk:55,def:90,spa:80,spd:90,spe:60},
 		abilities: {0: "Standard Training"},
 	},
+	thequeenofhatred: {
+		num: -150104,
+		name: "Queen of Hatred",
+		types: ["Fairy"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "Love and Hate"},
+	},
 };
