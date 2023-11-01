@@ -1,4 +1,16 @@
 export const Learnsets: {[k: string]: ModdedLearnsetData} = {
+	standardtrainingdummyrabbit: {
+		learnset:{
+		wobble:["9L1"],
+		counter: ["9L1"],
+		mirrorcoat: ["9L1"],
+		safeguard: ["9L1"],
+		destinybond: ["9L1"],
+		charm: ["9L1"],
+		encore: ["9L1"],
+		amnesia: ["9L1"],
+		},
+	},
   scorchedgirl:{
     learnset:{
         afteryou: ["9L1"],
@@ -66,15 +78,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
         shadowball:["9L1"],
         blizzard:["9L1"],
     },
-	standardtrainingdummyrabbit: {
-		wobble:["9L1"],
-		counter: ["9L1"],
-		mirrorcoat: ["9L1"],
-		safeguard: ["9L1"],
-		destinybond: ["9L1"],
-		charm: ["9L1"],
-		encore: ["9L1"],
-		amnesia: ["9L1"],
-	},
+	
   },
 };
