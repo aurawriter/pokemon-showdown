@@ -70,11 +70,26 @@ penitence:{
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent']);
 				this.effectState.fallen = fallen;
 			}
-
 			if(pokemon.species.baseSpecies!=='Queen of Hatred' || pokemon.transformed) return;
 			if(fallen > 2)
 			{
 			pokemon.formeChange("Queen of Hatred-Breach");
+			for(const moveSlot of pokemon.moveSlots){
+				if(moveSlot.name === 'Arcana Beats')
+					{
+						pokemon.moveSlots[moveSlot]={
+							move: 'Arcana Slave',
+							id: 'arcanaslave',
+							pp: 10,
+							maxpp: 10,
+							flags: {charge: 1},
+							target: "normal",
+							disabled: false,
+							used: false,
+							virtual: true,
+						}
+					}
+				}
 			}
 		},
 	},
