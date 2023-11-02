@@ -64,14 +64,8 @@ penitence:{
 	},
 	loveandhate: {
 		onStart(pokemon) {
-			if (pokemon.side.totalFainted) {
-				this.add('-activate', pokemon, 'ability: Love and Hate');
-				const fallenally = Math.min(pokemon.side.totalFainted, 5);
-				this.add('-start', pokemon, `fallen${fallenally}`, '[silent]');
-				this.effectState.fallen = fallenally;
-			}
 			if(pokemon.species.baseSpecies!=='Queen of Hatred' || pokemon.transformed) return;
-			if(fallenally > 2)
+			if (pokemon.side.totalFainted > 2)
 			{
 			pokemon.formeChange("Queen of Hatred-Breach");
 			for(const moveSlot of pokemon.moveSlots){
