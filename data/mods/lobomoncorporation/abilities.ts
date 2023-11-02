@@ -67,7 +67,7 @@ penitence:{
 			if (pokemon.side.totalFainted) {
 				this.add('-activate', pokemon, 'ability: Love and Hate');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
-				this.add('-start', pokemon, `fallen${fallen}`, '[silent']);
+				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
 			}
 			if(pokemon.species.baseSpecies!=='Queen of Hatred' || pokemon.transformed) return;
