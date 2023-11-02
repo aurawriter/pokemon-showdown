@@ -127,7 +127,7 @@ penitence:{
 		},
 		onResidual(pokemon) {
 			this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
-		}
+		},
 		rating: 2,
 		num: 152,
 	},
