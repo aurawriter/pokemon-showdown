@@ -71,7 +71,7 @@ penitence:{
 			for(const moveSlot of pokemon.moveSlots){
 				if(moveSlot.name === 'Arcana Beats')
 					{
-						console.log("Found Arcana Beats!"),
+						this.debug("Found Arcana Beats!"),
 						pokemon.moveSlots[moveSlot]={
 							move: 'Arcana Slave',
 							id: 'arcanaslave',
@@ -87,6 +87,8 @@ penitence:{
 				}
 			}
 		},
+		name: "Love and Hate",
+		desc: "Queen of Hatred transforms when at least 2 allied Pokemon are fainted",
 	},
 	bearpaws: {
 		// upokecenter says this is implemented as an added secondary effect
