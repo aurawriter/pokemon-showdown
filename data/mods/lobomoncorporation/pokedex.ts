@@ -97,4 +97,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
 		abilities: {0: "Full Bloom"},
 	},
+ 	rudolta: {
+		num: -60249,
+		name: "Rudolta",
+		types: ["Ice"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "Nightmare of Christmas"},
+	},
 };
