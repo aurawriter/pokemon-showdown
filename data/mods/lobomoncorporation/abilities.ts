@@ -148,4 +148,51 @@ penitence:{
 		rating: 4,
 		num: 229,
 	},
+	windup: {
+		onStart(pokemon) {
+			pokemon.removeVolatile('windup');
+			if (pokemon.activeTurns && (pokemon.moveThisTurnResult !== undefined || !this.queue.willMove(pokemon))) {
+				pokemon.addVolatile('windup');
+			}
+		},
+		onBeforeMovePriority: 9,
+		onBeforeMove(pokemon) {
+			if (pokemon.removeVolatile('windup')) {
+				this.add('cant', pokemon, 'ability: Windup');
+				return false;
+			}
+			pokemon.addVolatile('windup');
+		},
+		onBasePower(basePower,attacker,defender,move){
+			return this.chainModify(1.5);
+		},
+		condition: {},
+		name: "Windup",
+		desc: "Moves deal more damage but have to windup every other turn",
+		rating: -1,
+		num: 54,
+	},
+	cursedfruit: {
+		onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target)) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('slp', target);
+				}
+			}
+		},
+		name: "Cursed Fruit",
+		rating: 1.5,
+		num: 38,
+	},
+	fullbloom: {
+		onDamagingHit(damage, target, source, move) {
+			if (!target.hp) {
+				if(source){
+					source.transformInto(target, this.dex.abillities.get('fullbloom'));
+				}
+			}
+		},
+		name: "Full Bloom",
+		desc: "When Beauty and the Beast dies, its curse continues"
+	},
 };
