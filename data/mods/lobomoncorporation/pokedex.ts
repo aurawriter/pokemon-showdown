@@ -88,7 +88,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Snow White's Apple",
 		types: ["Grass","Poison"],
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
-		abilities: {0: "Cursed"},
+		abilities: {0: "Cursed Fruit"},
 	},
 	beautyandthebeast: {
 		num: -60244,
