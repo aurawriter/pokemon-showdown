@@ -140,4 +140,12 @@ penitence:{
 		rating: 3,
 		num: 153,
 	},
+	forpeace: {
+		onStart(source) {
+			this.field.setTerrain('pitchblack');
+		},
+		name: "For Peace",
+		rating: 4,
+		num: 229,
+	},
 };
