@@ -232,4 +232,22 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			crimsonshot: ["9L50"],			
 		},
 	},
+	warmheartedwoodsman: {
+		learnset: {
+			cut: ["9L1"],
+			harden: ["9L1"],
+			bulldoze: ["9L5"],
+			metalclaw: ["9L10"],
+			rocksmash: ["9L15"],
+			brutalswing: ["9L20"],
+			irondefense: ["9L25"],
+			hearttaker: ["9L30"],
+			earthquake: ["9L35"],
+			ironhead: ["9L40"],
+			guillotine: ["9L45"],
+			knockoff: ["9L50"],
+			heavyslam: ["9L55"],
+			superpower: ["9L60"],
+		},
+	}
 };
