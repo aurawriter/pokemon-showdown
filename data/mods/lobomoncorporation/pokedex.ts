@@ -1,4 +1,11 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
+	"1.76 MHz": {
+		num: -200627,
+		name: "1.76 MHz",
+		types: ["Electric"],
+		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
+		abilities: {0: "Noise"},
+	},
 	standardtrainingdummyrabbit: {
 		num: -1000,
 		name: "Standard Training-Dummy Rabbit",
@@ -47,13 +54,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Ghost","Psychic"],
 		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
 		abilities: {0: "Piling Story"},
-	},
-	"1.76 MHz": {
-		num: -200627,
-		name: "1.76 MHz",
-		types: ["Electric"],
-		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
-		abilities: {0: "Noise"},
 	},
 	thesnowqueen: {
 		num: -60137,
