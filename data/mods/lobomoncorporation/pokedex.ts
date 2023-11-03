@@ -48,7 +48,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
 		abilities: {0: "Piling Story"},
 	},
-	onepoint76MHz: {
+	"1.76 MHz": {
 		num: -200627,
 		name: "1.76 MHz",
 		types: ["Electric"],
