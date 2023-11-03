@@ -70,10 +70,31 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Logging"},
 	},
 	bigbird: {
-		num: -60532,
+		num: -150240,
 		name: "Big Bird",
 		types: ["Dark","Flying"],
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
 		abilities: {0: "For Peace"},
+	},
+	allaroundhelper: {
+		num: -20532,
+		name: "All-Around Helper",
+		types: ["Steel","Normal"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "Helper"},
+	},
+	snowwhitesapple: {
+		num: -60442,
+		name: "Snow White's Apple",
+		types: ["Grass","Poison"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "Cursed"},
+	},
+	beautyandthebeast: {
+		num: -60244,
+		name: "Beauty and the Beast",
+		types: ["Normal"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "Full Bloom"},
 	},
 };
