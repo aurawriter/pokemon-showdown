@@ -68,12 +68,12 @@ penitence:{
 			if (pokemon.side.totalFainted >= 0)
 			{
 				this.debug("Enough Pokemon are fainted! Transforming!");
-			pokemon.formeChange("Queen of Hatred-Breach");
-			for(const moveSlot of pokemon.moveSlots){
-				if(moveSlot.name === 'Arcana Beats')
-					{
-						this.debug("Found Arcana Beats!");
-						pokemon.moveSlots[moveSlot]={
+				pokemon.formeChange("Queen of Hatred-Breach");
+				const beatsIndex = pokemon.moves.indexOf('arcanabeats');
+				if(beatsIndex < 0) return false;
+				else{
+					debug.log("Found Arcana Beats");
+				pokemon.moveSlots[beatsIndex]={
 							move: 'Arcana Slave',
 							id: 'arcanaslave',
 							pp: 10,
