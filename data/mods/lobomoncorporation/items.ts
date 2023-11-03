@@ -32,4 +32,20 @@ export const Items: {[k: string]: ModdedItemData} = {
 		desc: "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
 		damage: "The shoes bit [POKEMON]!",
 	},
+	theresia: {
+		name: "Theresia",
+		desc: "At the end of every turn, holder restores 1/16 of its max HP.",
+		spritenum: 242,
+		fling: {
+			basePower: 10,
+		},
+		onResidualOrder: 5,
+		onResidualSubOrder: 4,
+		onResidual(pokemon) {
+			this.heal(pokemon.baseMaxhp / 8);
+			pokemon.trySetStatus('dsp', pokemon);
+		},
+		num: 234,
+		heal: "Theresia's song soothed [POKEMON].",
+	},
 };
