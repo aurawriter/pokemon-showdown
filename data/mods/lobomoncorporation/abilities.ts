@@ -132,7 +132,7 @@ penitence:{
 	logging: {
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
-				this.heal(target.baseMaxhp / 3);
+				this.heal(source.baseMaxhp / 3);
 			}
 		},
 		name: "Logging",
