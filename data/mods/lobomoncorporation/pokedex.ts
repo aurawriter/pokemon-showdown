@@ -69,4 +69,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
 		abilities: {0: "Logging"},
 	},
+	bigbird: {
+		num: -60532,
+		name: "Big Bird",
+		types: ["Dark Flying"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "For Peace"},
+	},
 };
