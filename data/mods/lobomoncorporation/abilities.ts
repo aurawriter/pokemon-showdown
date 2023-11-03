@@ -86,8 +86,7 @@ penitence:{
 						}
 					}
 				}
-			}
-		},
+			},
 		name: "Love and Hate",
 		desc: "Queen of Hatred transforms when at least 2 allied Pokemon are fainted",
 	},
