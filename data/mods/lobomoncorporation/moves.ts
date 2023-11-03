@@ -213,6 +213,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fighting",
 		contestType: "Beautiful",
+		desc: "Happy Teddy Bear doesn't want to let go",
 	},
 	arcanabeats: {
 		num: 295,
@@ -220,6 +221,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 70,
 		category: "Special",
 		name: "Arcana Beats",
+		desc: "50% to reduce Sp. Defense",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -239,6 +241,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		basePower: 120,
 		category: "Physical",
 		name: "Arcana Slave",
+		desc: "70% to reduce Sp. Defense",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, nosleeptalk: 1, failinstruct: 1},
@@ -262,19 +265,79 @@ hearttaker: {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onDisableMove(pokemon) {
-			if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.disableMove('gigatonhammer');
+			if (pokemon.lastMove?.id === 'hearttaker') pokemon.disableMove('hearttaker');
 		},
 		beforeMoveCallback(pokemon) {
-			if (pokemon.lastMove?.id === 'gigatonhammer') pokemon.addVolatile('gigatonhammer');
+			if (pokemon.lastMove?.id === 'hearttaker') pokemon.addVolatile('hearttaker');
 		},
 		onAfterMove(pokemon) {
-			if (pokemon.removeVolatile('gigatonhammer')) {
-				this.add('-hint', "Some effects can force a Pokemon to use Gigaton Hammer again in a row.");
+			if (pokemon.removeVolatile('hearttaker')) {
+				this.add('-hint', "Some effects can force a Pokemon to use Hearttaker again in a row.");
 			}
 		},
 		condition: {},
 		secondary: null,
 		target: "normal",
 		type: "Steel",
+		desc: "Cannot be used twice in a row.",
+	},
+	enchantingflame: {
+		num: 503,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Enchanting Flame",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, defrost: 1},
+		thawsTarget: true,
+		secondary: {
+			chance: 30,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Fire",
+		contestType: "Tough",
+	},
+	spinningblade: {
+		num: 899,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		name: "Spinning Blade",
+		pp: 10,
+		priority: 0,
+		flags: {
+			protect: 1, failencore: 1, failmefirst: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failinstruct: 1, failmimic: 1,
+		},
+		target: "normal",
+		type: "Steel",
+	},
+	tangledbramble: {
+		num: 446,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Tangled Bramble",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, mustpressure: 1},
+		sideCondition: 'tangledbramble',
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Tangled Bramble');
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('tangledbramble')), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Grass",
+		zMove: {boost: {def: 1}},
+		contestType: "Cool",
 	},
 };
