@@ -188,7 +188,7 @@ penitence:{
 		onDamagingHit(damage, target, source, move) {
 			if (!target.hp) {
 				if(source){
-					source.transformInto(target, this.dex.abillities.get('fullbloom'));
+					source.transformInto(target, this.dex.abilities.get('fullbloom'));
 				}
 			}
 		},
