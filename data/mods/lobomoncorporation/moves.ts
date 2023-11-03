@@ -236,27 +236,16 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	arcanaslave: {
 		num: 553,
 		accuracy: 90,
-		basePower: 140,
+		basePower: 120,
 		category: "Physical",
 		name: "Arcana Slave",
 		pp: 10,
 		priority: 0,
-		flags: {charge: 1, protect: 1, mirror: 1, nosleeptalk: 1, failinstruct: 1},
-		onTryMove(attacker, defender, move) {
-			if (attacker.removeVolatile(move.id)) {
-				return;
-			}
-			this.add('-prepare', attacker, move.name);
-			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
-				return;
-			}
-			attacker.addVolatile('twoturnmove', defender);
-			return null;
-		},
+		flags: {protect: 1, mirror: 1, nosleeptalk: 1, failinstruct: 1},
 		secondary: {
 			chance: 50,
 			boosts: {
-				spd: -1,
+				spd: -2,
 			},
 		},
 		target: "normal",
