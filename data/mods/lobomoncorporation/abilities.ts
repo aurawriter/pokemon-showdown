@@ -65,12 +65,13 @@ penitence:{
 	loveandhate: {
 		onStart(pokemon) {
 			if(pokemon.species.baseSpecies!=='Queen of Hatred' || pokemon.transformed) return;
-			if (pokemon.side.totalFainted >= 2)
+			if (pokemon.side.totalFainted >= 0)
 			{
 			pokemon.formeChange("Queen of Hatred-Breach");
 			for(const moveSlot of pokemon.moveSlots){
 				if(moveSlot.name === 'Arcana Beats')
 					{
+						console.log("Found Arcana Beats!"),
 						pokemon.moveSlots[moveSlot]={
 							move: 'Arcana Slave',
 							id: 'arcanaslave',
