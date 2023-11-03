@@ -48,4 +48,21 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 234,
 		heal: "Theresia's song soothed [POKEMON].",
 	},
+	mimickry: {
+		name: "Mimickry",
+		spritenum: 438,
+		fling: {
+			basePower: 30,
+		},
+		onAfterMoveSecondarySelfPriority: -1,
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (move.totalDamage && !pokemon.forceSwitchFlag) {
+				this.heal(move.totalDamage / 8, pokemon);
+			}
+		},
+		num: 253,
+		desc: "After an attack, holder gains 1/8 of the damage in HP dealt to other Pokemon.",
+
+		heal: "  [POKEMON] restored a little HP using its Shell Bell!",
+	},
 };
