@@ -104,18 +104,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
 		abilities: {0: "Nightmare of Christmas"},
 	},
-	forsakenmurderer: {
-		num: -200154,
-		name: "Forsaken Murderer",
-		types: ["Steel","Dark"],
-		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
-		abilities: {0: "Expansive Despair"},
-	},
- 	bloodbath: {
-		num: -200551,
-		name: "Bloodbath",
-		types: ["Water"],
-		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
-		abilities: {0: "Things You've Lost"},
+	littleredmerc: {
+		num: -60249,
+		name: "Little Red Merc",
+		types: ["Dark","Fighting"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:80},
+		abilities: {0: "Dead or Alive"},
 	},
 };
