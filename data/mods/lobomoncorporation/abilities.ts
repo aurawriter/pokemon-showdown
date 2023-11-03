@@ -72,7 +72,7 @@ penitence:{
 				const beatsIndex = pokemon.moves.indexOf('arcanabeats');
 				if(beatsIndex < 0) return false;
 				else{
-					debug.log("Found Arcana Beats");
+					this.debug("Found Arcana Beats");
 				pokemon.moveSlots[beatsIndex]={
 							move: 'Arcana Slave',
 							id: 'arcanaslave',
