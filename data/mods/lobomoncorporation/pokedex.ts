@@ -104,4 +104,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
 		abilities: {0: "Nightmare of Christmas"},
 	},
+ 	bloodbath: {
+		num: -60249,
+		name: "Bloodbath",
+		types: ["Water"],
+		baseStats: {hp:100,atk:100,def:100,spa:100,spd:100,spe:100},
+		abilities: {0: "Things You've Lost"},
+	},
 };
