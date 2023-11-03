@@ -110,6 +110,7 @@ penitence:{
 	},
 	noise: {
 		name: "Noise",
+		shortDesc: "Damaging static can spread to damaging enemies",
 		onDamagingHit(damage, target, source, move) {
 			const sourceAbility = source.getAbility();
 			if (sourceAbility.isPermanent || sourceAbility.id === 'mummy') {
@@ -127,5 +128,16 @@ penitence:{
 		},
 		rating: 2,
 		num: 152,
+	},
+	logging: {
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.heal(pokemon.baseMaxhp / 3);
+			}
+		},
+		name: "Logging",
+		desc: "The Woodsman logs for hearts to heal itself with.",
+		rating: 3,
+		num: 153,
 	},
 };
