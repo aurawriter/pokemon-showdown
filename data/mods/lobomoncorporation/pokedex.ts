@@ -1,5 +1,5 @@
 export const Pokedex: {[k: string]: ModdedSpeciesData} = {
-	"1.76 MHz": {
+	"176MHz": {
 		num: -200627,
 		name: "1.76 MHz",
 		types: ["Electric"],
