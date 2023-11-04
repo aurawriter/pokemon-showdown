@@ -111,4 +111,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:70,atk:50,def:60,spa:90,spd:60,spe:80},
 		abilities: {0: "Dead or Alive"},
 	},
+	queenbee: {
+		num: -200450,
+		name: "Queen Bee",
+		types: ["Bug","Poison"],
+		baseStats: {hp:80,atk:90,def:70,spa:80,spd:70,spe:110},
+		abilities: {0: "Infectious", 1: "Swarm"},
+	},
 };
