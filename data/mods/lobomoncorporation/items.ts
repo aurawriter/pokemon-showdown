@@ -14,6 +14,11 @@ export const Items: {[k: string]: ModdedItemData} = {
 		num: 273,
 	   desc: "At the end of every turn, this item attempts to frostbite the holder.",
 	},
+	darkrock: {
+		name: "Dark Rock",
+		spritenum: 88,
+		num: 285,
+	},
 	redshoes: {
 		name: "Red Shoes",
 		spritenum: 249,
