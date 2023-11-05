@@ -4368,9 +4368,19 @@ export const Formats: FormatList = [
 		section: "Modded Formats",
 	},
 	{
-		name: "[Gen 9 Aurora] National Dex Lobomon Corporation",
+		name: "[Gen 9 Aurora] National Dex Lobomon Corp",
 		
 		mod: 'lobomoncorporation',
+		searchShow: true,
+		debug: true,
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','(PU)','NFE','LC','Life Orb','Red Card','Shell Bell'],
+	},
+	{
+		name: "[Gen 9 Aurora] National Dex Lobomon Corp Doubles",
+		
+		mod: 'lobomoncorporation',
+		gameType: 'doubles',
 		searchShow: true,
 		debug: true,
 		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
