@@ -245,4 +245,17 @@ penitence:{
 		rating: 4.5,
 		num: 255,
 	},
+	infectious: {
+		onDamagingHit(damage,target,source,move) {
+			if (this.checkMoveMakesContact(move, source, target) && !source.status && source.runStatusImmunity('powder'))
+			{
+				if (target.getTypes().join() === 'Bug' || !target.setType('Bug')) return false;
+				const infectRoll = this.random(100);
+				if (infectRoll < 30)
+				{
+					this.add('-start', target, 'typechange', 'Bug');
+				}
+			}
+		},
+	},
 };
