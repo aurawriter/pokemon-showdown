@@ -140,7 +140,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			scaryface: ["9L20"],
 			airslash: ["9L25"],
 			crunch: ["9L30"],
-			enchantinglight: ["9L35"],
+			enchantingflame: ["9L35"],
 			bravebird: ["9L40"],
 			foulplay: ["9L45"],
 			skydrop: ["9L50"],
