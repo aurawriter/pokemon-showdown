@@ -56,4 +56,25 @@ meltinglove: {
 thenakednest: {
 	tier: "WAW",
 },
+wellcheers: {
+	tier: "ZAYIN",
+},
+alriune: {
+	tier: "WAW",
+},
+forsakenmurderer: {
+	tier: "TETH",
+},
+punishingbird: {
+	tier: "TETH",
+},
+willbebadwolf: {
+	tier: "WAW",
+},
+childofthegalaxy: {
+	tier: "HE",
+},
+crumblingarmor: {
+	tier: "TETH",
+},
 }
