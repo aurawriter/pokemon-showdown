@@ -423,4 +423,23 @@ hearttaker: {
 		zMove: {boost: {spd: 1}},
 		contestType: "Beautiful",
 	},
+	swarmstrike: {
+		num: 534,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Swarm Strike",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		secondary: {
+			chance: 30,
+			boosts: {
+				def: -1,
+			},
+		},
+		target: "normal",
+		type: "Bug",
+		contestType: "Cool",
+	},
 };
