@@ -321,6 +321,29 @@ penitence:{
 	openedcan: {
 		name: "Opened Can",
 		desc: "Somewhere in the distance, you can hear seagulls.",
-		
+		onModifyMove(move) {
+			if (!move.type === 'Water') return;
+			if (!move.secondaries) {
+				move.secondaries = [];
+			}
+			move.secondaries.push({
+				chance: 30,
+				status: 'dzy',
+				ability: this.dex.abilities.get('Opened Can'),
+			});
+		},
+	},
+	dusttodust: {
+		name: "Dust to Dust",
+		desc: "Bearing the hope to return to dust, it shall go back to the grave with all that desires to live.",
+		onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target)) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('dsp', target);
+				}
+			}
+		},
+		rating: 1.5,
+		num: 38,
 	},
 };
