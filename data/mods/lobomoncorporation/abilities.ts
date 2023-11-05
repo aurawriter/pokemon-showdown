@@ -346,4 +346,34 @@ penitence:{
 		rating: 1.5,
 		num: 38,
 	},
+	hammerhead: {
+		name: "Hammer Head",
+		desc: "What's really pitiful is people like you dying to the likes of me.",
+		onBasePower(basePower,attacker,defender,move){
+			if(defender.hp == defender.maxhp)
+			{
+			return this.chainModify(1.5);
+			}
+		},
+	},
+	memoriesofscars: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.adjacentFoes()) {
+				if (!activated) {
+					this.add('-ability', pokemon, 'memoriesofscars', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({spa: -1}, target, pokemon, null, true);
+				}
+			}
+		},
+		name: "Memories of Scars",
+		desc: "Still, it didn’t matter to him. After all, he was “destined” to be a big bad wolf.",
+		rating: 3.5,
+		num: 22,
+	},
 };
