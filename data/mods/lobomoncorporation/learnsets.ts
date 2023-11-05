@@ -304,4 +304,20 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			hydropump: ["9L1"],
 		},
 	},
+	meltinglove: {
+		learnset: {
+			tackle: ["9L1"],
+			charm: ["9L1"],
+			acid: ["9L5"],
+			sweetkiss: ["9L10"],
+			sludge: ["9L15"],
+			drainingkiss: ["9L20"],
+			toxic: ["9L25"],
+			gunkshot: ["9L30"],
+			moonblast: ["9L35"],
+			explosion: ["9L40"],
+			memento: ["9L45"],
+			sludgewave: ["9L50"],
+		},
+	},
 };
