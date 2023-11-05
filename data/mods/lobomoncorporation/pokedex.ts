@@ -5,6 +5,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Electric"],
 		baseStats: {hp: 80, atk: 50, def: 70, spa: 120, spd: 90, spe: 90},
 		abilities: {0: "Noise",1: "Static", H: "Soundproof"},
+		gender: "N",
 	},
 	standardtrainingdummyrabbit: {
 		num: -1000,
@@ -19,6 +20,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fire","Ghost"],
 		baseStats: {hp: 60, atk:40, def:40,spa:120,spd:80,spe:60},
 		abilities: {0:"Fourth Match Flame"},
+		gender: "F",
 	},
 	onesin: {
 		num: -15030326,
@@ -33,6 +35,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fairy"],
 		baseStats: {hp:90,atk:70,def:80,spa:110,spd:90,spe:80},
 		abilities: {0: "Love and Hate"},
+		gender: "F",
 	},
 	queenofhatredbreach:{
 		num: -150104,
@@ -40,6 +43,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Fairy","Dragon"],
 		baseStats: {hp:90,atk:90,def:105,spa:130,spd:115,spe:90},
 		abilities: {0: "Love and Hate"},
+		gender: "F",
 	},
 	happyteddybear: {
 		num: -200406,
@@ -54,6 +58,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Ghost","Psychic"],
 		baseStats: {hp: 100, atk: 40, def: 80, spa: 90, spd: 110, spe: 40},
 		abilities: {0: "Piling Story"},
+		gender: "F",
 	},
 	thesnowqueen: {
 		num: -60137,
@@ -61,6 +66,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Ice"],
 		baseStats: {hp:90,atk:70,def:80,spa:110,spd:90,spe:80},
 		abilities: {0: "Frost Splinter"},
+		gender: "F",
 	},
 	warmheartedwoodsman: {
 		num: -60532,
@@ -68,6 +74,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Steel"],
 		baseStats: {hp:100,atk:130,def:90,spa:50,spd:70,spe:60},
 		abilities: {0: "Logging"},
+		gender: "M",
 	},
 	bigbird: {
 		num: -150240,
@@ -89,6 +96,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Grass","Poison"],
 		baseStats: {hp:80,atk:90,def:100,spa:70,spd:80,spe:50},
 		abilities: {0: "Cursed Fruit"},
+		gender: "F",
 	},
 	beautyandthebeast: {
 		num: -60244,
@@ -96,6 +104,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Normal"],
 		baseStats: {hp:100,atk:80,def:60,spa:60,spd:60,spe:90},
 		abilities: {0: "Full Bloom"},
+		gender: "N",
 	},
  	rudolta: {
 		num: -60249,
@@ -110,6 +119,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Dark","Fighting"],
 		baseStats: {hp:70,atk:50,def:60,spa:90,spd:60,spe:80},
 		abilities: {0: "Dead or Alive"},
+		gender: "F",
 	},
 	queenbee: {
 		num: -200450,
@@ -117,6 +127,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Bug","Poison"],
 		baseStats: {hp:80,atk:90,def:70,spa:80,spd:70,spe:110},
 		abilities: {0: "Infectious", 1: "Swarm"},
+		gender: "F",
 	},
 	singingmachine: {
 		num: -150530,
@@ -124,6 +135,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Steel"],
 		baseStats: {hp:100,atk:90,def:120,spa:70,spd:80,spe:40},
 		abilities: {0: "Rhapsody of Machine"},
+		gender: "N",
 	},
 	bloodbath: {
 		num: -200551,
@@ -138,5 +150,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		types: ["Poison","Fairy"],
 		baseStats: {hp:100,atk:60,def:80,spa:110,spd:80,spe:50},
 		abilities: {0: "Adoration"},
+		gender: "F",
 	},
 };
