@@ -206,7 +206,7 @@ penitence:{
 			this.field.setWeather('snow');
 		},
 		name: "Nightmare of Christmas",
-		desc: "With my infinite hatred, I give you this gift."
+		desc: "With my infinite hatred, I give you this gift.",
 		rating: 1,
 		num: 245,
 	},
@@ -279,5 +279,12 @@ penitence:{
 		desc: "But nothing could compare to the music it makes when it eats a human.",
 		rating: 1.5,
 		num: 204,
+	},
+	bloodlust: {
+		onModifyMove(move){
+			if(move.flags['slicing']) {
+				if(!move.drain) move.drain = [1 , 2];
+			}
+		},
 	},
 };
