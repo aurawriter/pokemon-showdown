@@ -376,4 +376,15 @@ penitence:{
 		rating: 3.5,
 		num: 22,
 	},
+	youruniverse: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move.flags['heal']) {
+				move.universeBoosted = true;
+				return priority + 1;
+			}
+		},
+		name: "Your Universe",
+		rating: 4,
+		num: 158,
+	},
 };
