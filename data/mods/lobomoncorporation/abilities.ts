@@ -389,7 +389,7 @@ penitence:{
 	},
 	darkdash: {
 		onModifySpe(spe, pokemon) {
-			if (this.field.isWeather(['pitch black'])) {
+			if (this.field.isWeather(['PitchBlack'])) {
 				return this.chainModify(2);
 			}
 		},
