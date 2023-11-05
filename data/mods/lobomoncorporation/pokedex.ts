@@ -100,7 +100,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	beautyandthebeast: {
 		num: -60244,
-		name: "Beauty and the Beast",
+		name: "Beauty and the Beast",	
 		types: ["Normal"],
 		baseStats: {hp:100,atk:80,def:60,spa:60,spd:60,spe:90},
 		abilities: {0: "Full Bloom"},
@@ -133,7 +133,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: -150530,
 		name: "Singing Machine",
 		types: ["Steel"],
-		baseStats: {hp:100,atk:90,def:120,spa:70,spd:80,spe:40},
+		baseStats: {hp:100,atk:70,def:120,spa:90,spd:80,spe:40},
 		abilities: {0: "Rhapsody of Machine"},
 		gender: "N",
 	},
@@ -184,8 +184,8 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: -150256,
 		name: "Punishing Bird",
 		types: ["Dark","Flying"],
-		baseStats: {hp: 60, atk: 80, def: 50, spa: 40, spd: 50, spe: 100},
-		abilities: {0: "For Peace"},
+		baseStats: {hp: 60, atk: 80, def: 50, spa: 80, spd: 50, spe: 60},
+		abilities: {0: "Dark Dash"},
 	},
 	willbebadwolf: {
 		num: -60258,
@@ -198,7 +198,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: -150155,
 		name: "Child of the Galaxy",
 		types: ["Psychic"],
-		baseStats: {hp: 80, atk: 120, def: 80, spa: 40, spd: 60, spe: 100},
+		baseStats: {hp: 80, atk: 80, def: 80, spa: 80, spd: 60, spe: 100},
 		abilities: {0: "Your Universe"},
 	},
 	crumblingarmor: {
