@@ -50,3 +50,4 @@ queenbee: {
 bloodbath: {
 	tier: "TETH",
 },
+}
