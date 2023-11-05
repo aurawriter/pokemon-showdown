@@ -206,6 +206,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Crumbling Armor",
 		types: ["Steel","Ghost"],
 		baseStats: {hp: 80, atk: 120, def: 80, spa: 40, spd: 60, spe: 100},
-		abilities: {0: "Spirit of Association"},
+		abilities: {0: "Battle Armor"},
 	},
 };
