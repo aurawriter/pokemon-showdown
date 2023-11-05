@@ -36,17 +36,11 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 				this.add('-status', target, 'dsp');
 			}
 		},
-		
-		onModifySpD(spe, pokemon) {
+		onModifySpD(spd, pokemon) {
 			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
 			spd = this.finalModify(spd);
 			spd = Math.floor(spd * 50 / 100);
 			return spd;
-		},
-		onModifyDef(def, pokemon) {
-			def = this.finalModify(def);
-			def = Math.floor(def * 50 / 100);
-			return def;
 		},
 		onBeforeMovePriority: 1,
 		onBeforeMove(pokemon) {
@@ -88,4 +82,33 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 			} 
 		}, */
 	},
+		dzy: {
+		name: 'dzy',
+		effectType: 'Status',
+		onStart(target, source, sourceEffect) {
+			if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'dsp', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+			} else {
+				this.add('-status', target, 'dsp');
+			}
+		},
+		onModifyDef(def, pokemon) {
+			def = this.finalModify(def);
+			def = Math.floor(def * 50 / 100);
+			return def;
+		},
+		onBeforeMovePriority: 1,
+		onBeforeMove(pokemon) {
+			if (this.randomChance(1, 4)) {
+				this.add('cant', pokemon, 'dsp');
+				return false;
+			}
+		},
+		start: "  [POKEMON] is filled with despair! It may be unable to move!",
+		alreadyStarted: "  [POKEMON] is already filled with despair!",
+		end: "  [POKEMON] found hope once more!",
+		endFromItem: "  [POKEMON]'s [ITEM] filled it with hope!",
+		cant: "[POKEMON] is despaired! It can't move!",
+
+},
 };
