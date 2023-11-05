@@ -132,4 +132,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:90,atk:100,def:70,spa:80,spd:70,spe:60},
 		abilities: {0: "Bloodlust"},
 	},
+	meltinglove: {
+		num: -403109,
+		name: "Melting Love",
+		types: ["Poison","Fairy"],
+		baseStats: {hp:100,atk:60,def:80,spa:110,spd:80,spe:50},
+		abilities: {0: "Adoration"},
+	},
 };
