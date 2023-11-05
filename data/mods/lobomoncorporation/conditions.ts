@@ -2,7 +2,7 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 //Pitch Black
 	pitchblack: {
 		name: 'PitchBlack',
-		effectType: 'Weather'
+		effectType: 'Weather',
 		duration: 5,
 	   durationCallback(source,effect){
 			if(source?.hasItem('darkrock')){
