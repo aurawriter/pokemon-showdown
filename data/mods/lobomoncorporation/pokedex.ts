@@ -118,4 +118,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:80,atk:90,def:70,spa:80,spd:70,spe:110},
 		abilities: {0: "Infectious", 1: "Swarm"},
 	},
+	singingmachine: {
+		num: -150530,
+		name: "Singing Machine",
+		types: "Steel",
+		baseStats: {hp:100,atk:90,def:120,spa:70,spd:80,spe:40},
+		abilites: {0: "Rhapsody of Machine"},
+	},
 };
