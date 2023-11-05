@@ -375,52 +375,19 @@ hearttaker: {
 		contestType: "Cool",
 	},
 	pitchblack: {
-		num: 581,
+		num: 240,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
 		name: "Pitch Black",
-		pp: 10,
+		pp: 5,
 		priority: 0,
-		flags: {nonsky: 1},
-		terrain: 'pitchblack',
-		condition: {
-			duration: 5,
-			durationCallback(source, effect) {
-				if (source?.hasItem('terrainextender')) {
-					return 8;
-				}
-				return 5;
-			},
-			onBasePowerPriority: 6,
-			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Psychic' && defender.isGrounded() && !defender.isSemiInvulnerable()) {
-					this.debug('pitch black weaken');
-					return this.chainModify(0.5);
-				}
-			},
-			onFieldStart(field, source, effect) {
-				if (effect?.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Pitch Black', '[from] ability: ' + effect.name, '[of] ' + source);
-				} else {
-					this.add('-fieldstart', 'move: Pitch Black');
-				}
-			},
-			onModifyDamage(damage, attacker, defender, move) {
-			if (move && defender.getMoveHitData(move).typeMod > 0 && attacker.isGrounded()) {
-				return this.chainModify([4915, 4096]);
-			}
-		},
-			onFieldResidualOrder: 27,
-			onFieldResidualSubOrder: 7,
-			onFieldEnd() {
-				this.add('-fieldend', 'Pitch Black');
-			},
-		},
+		flags: {},
+		weather: 'PitchBlack',
 		secondary: null,
 		target: "all",
 		type: "Dark",
-		zMove: {boost: {spd: 1}},
+		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
 	},
 	swarmstrike: {
