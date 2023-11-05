@@ -4374,6 +4374,6 @@ export const Formats: FormatList = [
 		searchShow: true,
 		debug: true,
 		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
-		banlist: ['Uber','OU','UUBL','UU','RU','NU','PU','ZU'],
+		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','(PU)','NFE'],
 	},
 ];
