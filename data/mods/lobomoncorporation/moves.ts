@@ -442,4 +442,46 @@ hearttaker: {
 		type: "Bug",
 		contestType: "Cool",
 	},
+	grasswhistle: {
+		inherit: true,
+		status: 'dzy',
+		accuracy: 90,
+	},
+	hypnosis: {
+		inherit: true,
+		status: 'dzy',
+		accuracy: 90,
+	},
+	lovelykiss: {
+		inherit: true,
+		status: 'dzy',
+		accuracy: 90,
+	},
+	sing: {
+		inherit: true,
+		status: 'dzy',
+		accuracy: 90,
+	},
+	sleeppowder: {
+		inherit: true,
+		status: 'dzy',
+		accuracy: 90,
+	},
+	direclaw: {
+		inherit: true,
+		secondary: {
+			chance: 50,
+			onHit(target, source) {
+				const result = this.random(3);
+				if (result === 0) {
+					target.trySetStatus('psn', source);
+				} else if (result === 1) {
+					target.trySetStatus('par', source);
+				} else {
+					target.trySetStatus('dzy', source);
+				}
+			},
+		},
+	},
+	
 };
