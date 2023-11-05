@@ -4373,5 +4373,6 @@ export const Formats: FormatList = [
 		mod: 'lobomoncorporation',
 		searchShow: true,
 		debug: true,
+		ruleset: ['Standard NatDex'],
 	},
 ];
