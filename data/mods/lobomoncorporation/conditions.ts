@@ -1,4 +1,40 @@
 export const Conditions: {[id: string]: ModdedConditionData} = {
+//Pitch Black
+	pitchblack: {
+		name: 'PitchBlack',
+		effectType: 'Weather'
+		duration: 5,
+	   durationCallback(source,effect){
+			if(source?.hasItem('darkrock')){
+				return 8;
+			}
+			return 5;
+		},
+		onWeatherModifyDamage(damage, attacker, defender, move) {
+			if (move && defender.getMoveHitData(move).typeMod > 0) {
+				return this.chainModify(1.5);
+			}
+			if(move.type === 'Psychic') {
+				return this.chainModify(0.5);
+			}
+		},
+		onFieldStart(field, source, effect) {
+			if (effect?.effectType === 'Ability') {
+				if (this.gen <= 5) this.effectState.duration = 0;
+				this.add('-weather', 'PitchBlack', '[from] ability: ' + effect.name, '[of] ' + source);
+			} else {
+				this.add('-weather', 'PitchBlack');
+			}
+		},
+		onFieldResidualOrder: 1,
+		onFieldResidual() {
+			this.add('-weather', 'PitchBlack', '[upkeep]');
+			this.eachEvent('Weather');
+		},
+		onFieldEnd() {
+			this.add('-weather', 'none');
+		},
+	},
 //Frostbite
 	fbt: {
 		name: 'fbt',
