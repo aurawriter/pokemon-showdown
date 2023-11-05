@@ -110,6 +110,7 @@ penitence:{
 	},
 	noise: {
 		name: "Noise",
+		desc: "This is a recording of the day we must never forget.",
 		shortDesc: "Damaging static can spread to damaging enemies",
 		onDamagingHit(damage, target, source, move) {
 			const sourceAbility = source.getAbility();
@@ -124,7 +125,10 @@ penitence:{
 			}
 		},
 		onResidual(pokemon) {
+			if(pokemon.baseSpecies.baseSpecies !== "176mhz")
+			{
 			this.damage(pokemon.baseMaxhp / 8, pokemon, pokemon);
+			}
 		},
 		rating: 2,
 		num: 152,
@@ -136,7 +140,7 @@ penitence:{
 			}
 		},
 		name: "Logging",
-		desc: "The Woodsman logs for hearts to heal itself with.",
+		desc: "This is a forest full of hearts. No matter how many he cuts down, the forest still remains dense.",
 		rating: 3,
 		num: 153,
 	},
@@ -145,6 +149,7 @@ penitence:{
 			this.field.setTerrain('pitchblack');
 		},
 		name: "For Peace",
+		desc: "A month later, we came to this conclusion: There was no such “beast” in the forest.",
 		rating: 4,
 		num: 229,
 	},
@@ -168,7 +173,7 @@ penitence:{
 		},
 		condition: {},
 		name: "Windup",
-		desc: "Moves deal more damage but have to windup every other turn",
+		desc: "Blood covers the whole floor, screams echo, people are running away...",
 		rating: -1,
 		num: 54,
 	},
@@ -181,6 +186,7 @@ penitence:{
 			}
 		},
 		name: "Cursed Fruit",
+		desc: "The day a ripe apple fell off the tree in the garden where the princess and the king stood, the witch's heart shattered.",
 		rating: 1.5,
 		num: 38,
 	},
@@ -193,13 +199,14 @@ penitence:{
 			}
 		},
 		name: "Full Bloom",
-		desc: "When Beauty and the Beast dies, its curse continues"
+		desc: "However, the curse continues eternally, never broken."
 	},
 	nightmareofchristmas: {
 		onDamagingHit(damage, target, source, move) {
 			this.field.setWeather('snow');
 		},
 		name: "Nightmare of Christmas",
+		desc: "With my infinite hatred, I give you this gift."
 		rating: 1,
 		num: 245,
 	},
@@ -242,12 +249,13 @@ penitence:{
 			pokemon.abilityState.choiceLock = "";
 		},
 		name: "Dead or Alive",
+		desc: "I’ll hang his head over my bed. Only then can I get up in the morning without having a nightmare.",
 		rating: 4.5,
 		num: 255,
 	},
 	infectious: {
 		name: "Infectious",
-		desc: "Queen Bee turns Pokemon that touch it into bees",
+		desc: "If you feel an abdominal pain and a tingling sensation in your neck, the best thing you can do now is look at the great blue sky you'll never get to see again.",
 		onDamagingHit(damage,target,source,move) {
 			if (this.checkMoveMakesContact(move, source, target) && !source.status && source.runStatusImmunity('powder'))
 			{
@@ -259,5 +267,17 @@ penitence:{
 				}
 			}
 		},
+	},
+	rhapsodyofmachine: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if (move.flags['sound'] && !pokemon.volatiles['dynamax']) { // hardcode
+				move.type = 'Steel';
+			}
+		},
+		name: "Rhapsody of Machine",
+		desc: "But nothing could compare to the music it makes when it eats a human.",
+		rating: 1.5,
+		num: 204,
 	},
 };
