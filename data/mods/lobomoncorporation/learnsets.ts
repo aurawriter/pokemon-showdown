@@ -249,5 +249,25 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			heavyslam: ["9L55"],
 			superpower: ["9L60"],
 		},
-	}
+	},
+	queenbee: {
+		learnset: {
+			attackorder: ["9L1"],
+			defendorder: ["9L1"],
+			healorder: ["9L1"],
+			swarmstrike: ["9L1"],
+			poisonsting: ["9L1"],
+			stringshot: ["9L1"],
+			bugbite: ["9L5"],
+			furyattack: ["9L10"],
+			twineedle: ["9L15"],
+			toxicspikes: ["9L20"],
+			venoshock: ["9L25"],
+			bugbuzz: ["9L30"],
+			poisonjab: ["9L35"],
+			quiverdance: ["9L40"],
+			megahorn: ["9L45"],
+			fellstinger: ["9L50"],
+		},
+	},
 };
