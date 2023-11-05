@@ -281,6 +281,8 @@ penitence:{
 		num: 204,
 	},
 	bloodlust: {
+		name: "Bloodlust",
+		desc: "Many hands float in the bath. They are the hands of the people I once loved.",
 		onModifyMove(move){
 			if(move.flags['slicing']) {
 				if(!move.drain) move.drain = [1 , 2];
