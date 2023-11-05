@@ -387,4 +387,15 @@ penitence:{
 		rating: 4,
 		num: 158,
 	},
+	darkdash: {
+		onModifySpe(spe, pokemon) {
+			if (this.field.isWeather(['pitch black'])) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Dark Dash",
+		rating: 3,
+		num: 202,
+	},
+	},
 };
