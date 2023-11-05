@@ -5,7 +5,7 @@ fourthmatchflame:{
 				this.damage(source.baseMaxhp / 3, source, target, null, true);
 			}
 		},
-		desc: "If this Pokemon is knocked out, that move's user loses 1/4 of its maximum HP, rounded down. If any active Pokemon has the Ability Damp, this effect is prevented.",
+		desc: "If this Pokemon is knocked out, that move's user loses 1/3 of its maximum HP, rounded down. If any active Pokemon has the Ability Damp, this effect is prevented.",
 		shortDesc: "Scorched Girl explodes when she faints",
 		name: "Fourth Match Flame",
 	},
@@ -303,6 +303,7 @@ penitence:{
 			}
 		},
 		name: "Adoration",
+		desc: "...and my dear employees, I do hope you all put on the gas masks we distributed to you before we enter.",
 		rating: 0,
 		num: 79,
 	},
@@ -313,7 +314,13 @@ penitence:{
 			}
 		},
 		name: "Exuviae",
+		desc: "It can enter your body through any aperture.",
 		rating: 1,
 		num: 133,
+	},
+	openedcan: {
+		name: "Opened Can",
+		desc: "Somewhere in the distance, you can hear seagulls.",
+		
 	},
 };
