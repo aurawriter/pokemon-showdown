@@ -72,7 +72,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: -60532,
 		name: "Warm-Hearted Woodsman",
 		types: ["Steel"],
-		baseStats: {hp:100,atk:130,def:90,spa:50,spd:70,spe:60},
+		baseStats: {hp:100,atk:70,def:90,spa:70,spd:90,spe:60},
 		abilities: {0: "Logging"},
 		gender: "M",
 	},
