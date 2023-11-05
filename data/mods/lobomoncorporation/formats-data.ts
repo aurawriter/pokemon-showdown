@@ -53,4 +53,7 @@ bloodbath: {
 meltinglove: {
 	tier: "ALEPH",
 },
+thenakednest: {
+	tier: "WAW",
+},
 }
