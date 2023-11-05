@@ -289,4 +289,21 @@ penitence:{
 			}
 		},
 	},
+	adporation: {
+		onBasePowerPriority: 24,
+		onBasePower(basePower, attacker, defender, move) {
+			if (attacker.gender && defender.gender) {
+				if (attacker.gender !== defender.gender) {
+					this.debug('Adoration boost');
+					return this.chainModify(1.25);
+				} else {
+					this.debug('Adoration weaken');
+					return this.chainModify(0.75);
+				}
+			}
+		},
+		name: "Adoration",
+		rating: 0,
+		num: 79,
+	},
 };
