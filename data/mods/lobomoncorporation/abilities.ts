@@ -181,7 +181,7 @@ penitence:{
 		onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target)) {
 				if (this.randomChance(3, 10)) {
-					source.trySetStatus('slp', target);
+					source.trySetStatus('dzy', target);
 				}
 			}
 		},
