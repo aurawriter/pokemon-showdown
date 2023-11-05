@@ -397,5 +397,4 @@ penitence:{
 		rating: 3,
 		num: 202,
 	},
-	},
 };
