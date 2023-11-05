@@ -2,7 +2,7 @@ export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
 	inherit: 'gen9',
 	teambuilderConfig: {
-		customTiers: ['ZAYIN','TETH','HE','WAW','ALEPH'],
+		customTiers: ['ALEPH','WAW','HE','TETH','ZAYIN'],
 	},
 	actions: {
 		modifyDamage(baseDamage, pokemon, target, move, suppressMessages = false){
