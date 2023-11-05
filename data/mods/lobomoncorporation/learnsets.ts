@@ -320,4 +320,21 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			sludgewave: ["9L50"],
 		},
 	},
+	thenakednest: {
+		learnset: {
+			tackle: ["9L1"],
+			stringshot: ["9L1"],
+			rockthrow: ["9L5"],
+			bugbite: ["9L10"],
+			harden: ["9L15"],
+			rockblast: ["9L20"],
+			leechlife: ["9L25"],
+			stealthrock: ["9L30"],
+			infestation: ["9L35"],
+			rockslide: ["9L40"],
+			xscissor: ["9L45"],
+			stoneedge: ["9L50"],
+			
+		},
+	},
 };
