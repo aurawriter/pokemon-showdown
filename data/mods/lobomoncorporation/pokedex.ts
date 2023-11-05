@@ -185,7 +185,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		name: "Punishing Bird",
 		types: ["Dark","Flying"],
 		baseStats: {hp: 60, atk: 80, def: 50, spa: 40, spd: 50, spe: 100},
-		abilities: {0: "Punishment"},
+		abilities: {0: "For Peace"},
 	},
 	willbebadwolf: {
 		num: -60258,
