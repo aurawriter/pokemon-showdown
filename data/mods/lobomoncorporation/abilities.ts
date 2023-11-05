@@ -246,6 +246,8 @@ penitence:{
 		num: 255,
 	},
 	infectious: {
+		name: "Infectious",
+		desc: "Queen Bee turns Pokemon that touch it into bees",
 		onDamagingHit(damage,target,source,move) {
 			if (this.checkMoveMakesContact(move, source, target) && !source.status && source.runStatusImmunity('powder'))
 			{
