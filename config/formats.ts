@@ -4368,7 +4368,7 @@ export const Formats: FormatList = [
 		section: "Modded Formats",
 	},
 	{
-		name: "[NatDex Aurora] Lobomon Corporation",
+		name: "[Gen 9 Aurora] National Dex Lobomon Corporation",
 		
 		mod: 'lobomoncorporation',
 		searchShow: true,
