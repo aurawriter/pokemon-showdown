@@ -289,7 +289,7 @@ penitence:{
 			}
 		},
 	},
-	adporation: {
+	adoration: {
 		onBasePowerPriority: 24,
 		onBasePower(basePower, attacker, defender, move) {
 			if (attacker.gender && defender.gender) {
@@ -305,5 +305,15 @@ penitence:{
 		name: "Adoration",
 		rating: 0,
 		num: 79,
+	},
+	exuviae: {
+		onDamagingHit(damage, target, source, move) {
+			if (move.category === 'Special') {
+				this.boost({spd: -1, spe: 2}, target, target);
+			}
+		},
+		name: "Exuviae",
+		rating: 1,
+		num: 133,
 	},
 };
