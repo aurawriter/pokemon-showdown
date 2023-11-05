@@ -152,4 +152,11 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Adoration"},
 		gender: "F",
 	},
+	thenakednest: {
+		num: -150274,
+		name: "The Naked Nest",
+		types: ["Rock", "Bug"],
+		baseStats: {hp:80,atk:60,def:100,spa:40,spd:80,spe:60},
+		abilities: {0: "Exuviae"},
+	},
 };
