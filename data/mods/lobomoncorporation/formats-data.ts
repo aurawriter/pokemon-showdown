@@ -50,4 +50,7 @@ queenbee: {
 bloodbath: {
 	tier: "TETH",
 },
+meltinglove: {
+	tier: "ALEPH",
+},
 }
