@@ -1,5 +1,5 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
-standardtrainingdummyrabbit:{
+trainingrabbit:{
 	tier: "TETH",
 },
 scorchedgirl: {
@@ -23,10 +23,10 @@ oldlady: {
 singingmachine: {
 	tier: "HE",
 },
-warmheartedwoodsman: {
+woodsman: {
 	tier: "HE",
 },
-thesnowqueen: {
+snowqueen: {
 		tier: "HE",
 },
 bigbird: {
@@ -38,7 +38,7 @@ allaroundhelper: {
 snowwhitesapple: {
 	tier: "WAW",
 },
-beautyandthebeast: {
+beautyandbeast: {
 	tier: "TETH",
 },
 rudolta: {
