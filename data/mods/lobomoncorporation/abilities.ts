@@ -146,7 +146,7 @@ penitence:{
 	},
 	forpeace: {
 		onStart(source) {
-			this.field.setTerrain('pitchblack');
+			this.field.setWeather('pitchblack');
 		},
 		name: "For Peace",
 		desc: "On switch-in, this Pokemon summons Pitch Black",
