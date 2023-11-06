@@ -423,7 +423,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			protect: ["9M"],
 			recycle: ["9L1"],
 			astonish: ["9l1"],
-			growth: ["9L1"],
 			sweetscent: ["9L1"],
 			headbutt: ["9L1"],
 			curse: ["9L1"],
