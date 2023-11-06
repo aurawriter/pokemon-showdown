@@ -1,5 +1,5 @@
 export const Learnsets: {[k: string]: ModdedLearnsetData} = {
-	standardtrainingdummyrabbit: {
+	trainingrabbit: {
 		learnset:{
 		wobble:["9L1"],
 		counter: ["9L1"],
@@ -102,7 +102,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 		 protect: ["9M"],
     },
   },
-  thesnowqueen:{
+  snowqueen:{
     learnset:{
         powdersnow: ["9L1"],
 		  freezingkiss: ["9L1"],
@@ -469,7 +469,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			energyball: ["9L1"],
 		},
 	},
-	beautyandthebeast: {
+	beautyandbeast: {
 		learnset: {
 			tackle: ["9L1"],
 			vinewhip: ["9L1"],
@@ -551,7 +551,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			terablast: ["9M"],
 		},
 	},
-	littleredmerc: {
+	littlered: {
 		learnset: {
 			bite: ["9L1"],
 			scratch: ["9L1"],
@@ -570,7 +570,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			protect: ["9M"],
 		},
 	},
-	warmheartedwoodsman: {
+	woodsman: {
 		learnset: {
 			cut: ["9L1"],
 			harden: ["9L1"],
