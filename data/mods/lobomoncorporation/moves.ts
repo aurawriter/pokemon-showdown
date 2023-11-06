@@ -29,59 +29,61 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	freezedry: {
 		inherit: true,
 		secondary:{
-			chance: 30,
+			chance: 10,
 			status: 'fbt',
 		},
-		desc: "30% chance to frostbite. Super effective on Water.",
-		shortDesc: "30% chance to frostbite. Super effective on Water."
+		desc: "10% chance to frostbite. Super effective on Water.",
+		shortDesc: "10% chance to frostbite. Super effective on Water."
 	},
 	freezingglare: {
 		inherit: true,
 		secondary: {
-			chance: 30,
+			chance: 10,
 			status: 'fbt',
 		},
-		desc: "30% chance to frostbite the target.",
-		shortDesc: "30% chance to frostbite the target.",
+		desc: "10% chance to frostbite the target.",
+		shortDesc: "10% chance to frostbite the target.",
 	},
 	icebeam: {
 		inherit: true,
 		secondary: {
-			chance: 30,
+			chance: 10,
 			status: 'fbt',
 		},
+		desc: "10% chance to frostbite the target.",
+		shortDesc: "10% chance to frostbite the target.",
 	},
 	icefang: {
 		inherit: true,
 		secondaries: [
 			{
-				chance: 30,
+				chance: 10,
 				status: 'fbt',
 			}, {
 				chance: 10,
 				volatileStatus: 'flinch',
 			},
 		],
-		desc: "30% chance to frostbite. 10% chance to flinch.",
-		shortDesc: "30% chance to frostbite. 10% chance to flinch",
+		desc: "10% chance to frostbite. 10% chance to flinch.",
+		shortDesc: "10% chance to frostbite. 10% chance to flinch",
 	},
 	icepunch: {
 		inherit: true,
 		secondary: {
-			chance: 30,
+			chance: 10,
 			status: 'fbt',
 		},
-		desc: "30% chance to frostbite the target.",
-		shortDesc: "30% chance to frostbite the target.",
+		desc: "10% chance to frostbite the target.",
+		shortDesc: "10% chance to frostbite the target.",
 	},
 	powdersnow: {
 		inherit: true,
 		secondary: {
-			chance: 30,
+			chance: 10,
 			status: 'fbt',
 		},
-		desc: "30% chance to frostbite foe(s)",
-		shortDesc: "30% chance to frostbite foe(s)",
+		desc: "10% chance to frostbite foe(s)",
+		shortDesc: "10% chance to frostbite foe(s)",
 	},
 	triattack: {
 		inherit: true,
