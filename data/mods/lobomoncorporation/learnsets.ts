@@ -400,6 +400,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 	},
 	allaroundhelper: {
 		learnset: {
+			spinningblade: ["9L1"],
 			tackle: ["9L1"],
 			leer: ["9L1"],
 			metalclaw: ["9L5"],
