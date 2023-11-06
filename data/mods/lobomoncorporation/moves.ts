@@ -171,7 +171,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	cleansing: {
 		num: 499,
-		accuracy: true,
+		accuracy: 90,
 		basePower: 50,
 		category: "Special",
 		desc: "Cleanses the target, dealing supereffective damage to Ghosts and removing stat boosts.",
@@ -235,7 +235,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	arcanabeats: {
 		num: 295,
-		accuracy: 100,
+		accuracy: 90,
 		basePower: 70,
 		category: "Special",
 		name: "Arcana Beats",
@@ -256,7 +256,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	arcanaslave: {
 		num: 553,
-		accuracy: 90,
+		accuracy: 80,
 		basePower: 120,
 		category: "Physical",
 		name: "Arcana Slave",
@@ -304,7 +304,7 @@ hearttaker: {
 	},
 	enchantingflame: {
 		num: 503,
-		accuracy: 100,
+		accuracy: 90,
 		basePower: 80,
 		category: "Special",
 		name: "Enchanting Flame",
@@ -313,7 +313,7 @@ hearttaker: {
 		flags: {protect: 1, mirror: 1, defrost: 1},
 		thawsTarget: true,
 		secondary: {
-			chance: 30,
+			chance: 10,
 			status: 'par',
 		},
 		target: "normal",
