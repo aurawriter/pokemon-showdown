@@ -708,7 +708,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			skillswap: ["9M"],
 			substitute: ["9M"],
 			trick: ["9M"],
-			gigadrain: ["9M"],
 			energyball: ["9M"],
 			psychic: ["9M"],
 			calmmind: ["9M"],
