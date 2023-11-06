@@ -284,7 +284,6 @@ hearttaker: {
 		secondary: null,
 		target: "normal",
 		type: "Steel",
-		desc: "Cannot be used twice in a row.",
 	},
 	enchantingflame: {
 		num: 503,
@@ -304,7 +303,7 @@ hearttaker: {
 		type: "Fire",
 		contestType: "Tough",
 		desc: "30% chance of paralysis",
-		ShortDesc: "30% chance of paralysis",
+		shortDesc: "30% chance of paralysis",
 	},
 	spinningblade: {
 		num: 899,
