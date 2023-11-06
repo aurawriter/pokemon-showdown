@@ -77,4 +77,7 @@ childofthegalaxy: {
 crumblingarmor: {
 	tier: "TETH",
 },
+littlered: {
+	tier: "WAW",
+},
 }
