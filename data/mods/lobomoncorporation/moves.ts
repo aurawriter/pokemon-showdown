@@ -23,13 +23,17 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			chance: 30,
 			status: 'fbt',
 		},
+		desc: "30% chance to frostbite foe(s). Can't miss in Snow.",
+		shortDesc: "30% chance to frostbite foe(s). Can't miss in Snow.",
 	},
 	freezedry: {
 		inherit: true,
 		secondary:{
 			chance: 30,
 			status: 'fbt',
-		}
+		},
+		desc: "30% chance to frostbite. Super effective on Water.",
+		shortDesc: "30% chance to frostbite. Super effective on Water."
 	},
 	freezingglare: {
 		inherit: true,
@@ -37,6 +41,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			chance: 30,
 			status: 'fbt',
 		},
+		desc: "30% chance to frostbite the target.",
+		shortDesc: "30% chance to frostbite the target.",
 	},
 	icebeam: {
 		inherit: true,
@@ -56,6 +62,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				volatileStatus: 'flinch',
 			},
 		],
+		desc: "30% chance to frostbite. 10% chance to flinch.",
+		shortDesc: "30% chance to frostbite. 10% chance to flinch",
 	},
 	icepunch: {
 		inherit: true,
@@ -63,6 +71,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			chance: 30,
 			status: 'fbt',
 		},
+		desc: "30% chance to frostbite the target.",
+		shortDesc: "30% chance to frostbite the target.",
 	},
 	powdersnow: {
 		inherit: true,
@@ -70,6 +80,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			chance: 30,
 			status: 'fbt',
 		},
+		desc: "30% chance to frostbite foe(s)",
+		shortDesc: "30% chance to frostbite foe(s)",
 	},
 	triattack: {
 		inherit: true,
@@ -86,6 +98,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				}
 			},
 		},
+		desc: "20% chance to paralyze or burn or frostbite target.",
+		shortDesc: "20% chance to paralyze or burn or frostbite target.",
 	},
 	wobble: {
 		num: 150,
