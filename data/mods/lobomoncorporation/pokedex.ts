@@ -9,7 +9,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	standardtrainingdummyrabbit: {
 		num: -1000,
-		name: "Standard Training-Dummy Rabbit",
+		name: "Training Rabbit",
 		types: ["Electric","Normal"],
 		baseStats: {hp: 110,atk:55,def:90,spa:80,spd:90,spe:60},
 		abilities: {0: "Standard Training"},
@@ -62,7 +62,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	thesnowqueen: {
 		num: -60137,
-		name: "The Snow Queen",
+		name: "Snow Queen",
 		types: ["Ice"],
 		baseStats: {hp:90,atk:70,def:80,spa:110,spd:90,spe:80},
 		abilities: {0: "Frost Splinter"},
@@ -70,7 +70,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	warmheartedwoodsman: {
 		num: -60532,
-		name: "Warm-Hearted Woodsman",
+		name: "Woodsman",
 		types: ["Steel"],
 		baseStats: {hp:100,atk:70,def:90,spa:70,spd:90,spe:60},
 		abilities: {0: "Logging"},
@@ -100,7 +100,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	beautyandthebeast: {
 		num: -60244,
-		name: "Beauty and the Beast",	
+		name: "Beauty and Beast",	
 		types: ["Normal"],
 		baseStats: {hp:100,atk:80,def:60,spa:60,spd:60,spe:90},
 		abilities: {0: "Full Bloom"},
@@ -115,7 +115,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	},
 	littleredmerc: {
 		num: -60249,
-		name: "Little Red Merc",
+		name: "Little Red",
 		types: ["Dark","Fighting"],
 		baseStats: {hp:70,atk:50,def:60,spa:90,spd:60,spe:80},
 		abilities: {0: "Dead or Alive"},
