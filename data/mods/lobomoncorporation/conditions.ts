@@ -123,9 +123,9 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 		effectType: 'Status',
 		onStart(target, source, sourceEffect) {
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
-				this.add('-status', target, 'dsp', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+				this.add('-status', target, 'dzy', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
 			} else {
-				this.add('-status', target, 'dsp');
+				this.add('-status', target, 'dzy');
 			}
 		},
 		onModifyDef(def, pokemon) {
@@ -136,15 +136,15 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 		onBeforeMovePriority: 1,
 		onBeforeMove(pokemon) {
 			if (this.randomChance(1, 4)) {
-				this.add('cant', pokemon, 'dsp');
+				this.add('cant', pokemon, 'dzy');
 				return false;
 			}
 		},
-		start: "  [POKEMON] is filled with despair! It may be unable to move!",
-		alreadyStarted: "  [POKEMON] is already filled with despair!",
-		end: "  [POKEMON] found hope once more!",
-		endFromItem: "  [POKEMON]'s [ITEM] filled it with hope!",
-		cant: "[POKEMON] is despaired! It can't move!",
+		start: "  [POKEMON] is drowsy! It may be unable to move!",
+		alreadyStarted: "  [POKEMON] is already drowsy!",
+		end: "  [POKEMON] is awake!",
+		endFromItem: "  [POKEMON]'s [ITEM] woke it up!",
+		cant: "[POKEMON] is drowsy! It can't move!",
 
 },
 };
