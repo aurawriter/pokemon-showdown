@@ -263,6 +263,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			boomburst: ["9L50"],
 			thunder: ["9L55"],
 			perishsong: ["9L60"],
+			protect: ["9M"],
 		},
 	},
 	happyteddybear: {
@@ -347,6 +348,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			perishsong: ["9L50"],
 			takedown: ["9M"],
 			faketears: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	bigbird: {
@@ -366,6 +368,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			skydrop: ["9L50"],
 			takedown: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	allaroundhelper: {
@@ -385,6 +388,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			takedown: ["9M"],
 			charm: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	snowwhitesapple: {
@@ -407,6 +411,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			takedown: ["9M"],
 			faketears: ["9M"],
 			poisonjab: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	beautyandthebeast: {
@@ -429,6 +434,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			takedown: ["9M"],
 			faketears: ["9M"],
 			hornattack: ["9L1"],
+			protect: ["9M"],
 		},
 	},
 	rudolta: {
@@ -465,7 +471,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			avalanche: ["9M"],
 			endure: ["9M"],
 			raindance: ["9M"],
-			snowscape: ["9M"],
 			uturn: ["9M"],
 			bodyslam: ["9M"],
 			icepunch: ["9M"],
@@ -476,9 +481,6 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			encore: ["9M"],
 			icespinner: ["9M"],
 			playrough: ["9M"],
-			helpinghand: ["9M"],
-			icebeam: ["9M"],
-			blizzard: ["9M"],
 			gigaimpact: ["9M"],
 			hyperbeam: ["9M"],
 			terablast: ["9M"],
@@ -500,6 +502,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			crimsonshot: ["9L50"],
 			takedown: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	warmheartedwoodsman: {
@@ -519,6 +522,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			heavyslam: ["9L55"],
 			superpower: ["9L60"],
 			takedown: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	queenbee: {
@@ -541,6 +545,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			fellstinger: ["9L50"],
 			takedown: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	singingmachine: {
@@ -569,6 +574,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			snarl: ["9L1"],
 			supersonic: ["9L1"],
 			uproar: ["9L1"],
+			protect: ["9M"],
 			
 		},
 	},
@@ -587,6 +593,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			nightslash: ["9L1"],
 			hydropump: ["9L1"],
 			takedown: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	meltinglove: {
@@ -606,6 +613,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			takedown: ["9M"],
 			faketears: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	thenakednest: {
@@ -623,6 +631,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			xscissor: ["9L45"],
 			stoneedge: ["9L50"],
 			takedown: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	wellcheers: {
@@ -640,6 +649,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			hyrdropump: ["9L45"],
 			shiftgear: ["9L50"],
 			takedown: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	alriune: {
@@ -658,6 +668,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			petaldance: ["9L50"],
 			takedown: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	forsakenmurderer: {
@@ -676,6 +687,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			headsmash: ["9L50"],
 			takedown: ["9M"],
 			headcharge: ["9L1"],
+			protect: ["9M"],
 		},
 	},
 	punishingbird: {
@@ -695,6 +707,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			takedown: ["9M"],
 			charm: ["9M"],
 			faketears: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	willbebadwolf: {
@@ -726,6 +739,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			crushclaw: ["9L1"],
 			furyswipes: ["9L1"],
 			gigaimpact: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	childofthegalaxy: {
@@ -746,6 +760,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			charm: ["9M"],
 			faketears: ["9M"],
 			agility: ["9M"],
+			protect: ["9M"],
 		},
 	},
 	crumblingarmor: {
@@ -763,6 +778,19 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			phantomforce: ["9L45"],
 			irontail: ["9L50"],
 			takedown: ["9M"],
+			metalburst: ["9L1"],
+			scratch: ["9L1"],
+			furycutter: ["9L1"],
+			metalclaw: ["9L1"],
+			torment: ["9L1"],
+			scaryface: ["9L1"],
+			assurance: ["9L1"],
+			slash: ["9L1"],
+			nightslash: ["9L1"],
+			retaliate: ["9L1"],
+			swordsdance: ["9L1"],
+			guillotine: ["9L1"],
+			protect: ["9M"],
 		},
 	},
 };
