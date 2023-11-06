@@ -173,7 +173,7 @@ penitence:{
 		},
 		condition: {},
 		name: "Windup",
-		desc: "This Pokemon skips every other turn instead of using a move, but its moves are powered up 50%",
+		desc: "This Pokemon skips every other turn, but its moves are powered up 50%",
 		rating: -1,
 		num: 54,
 	},
