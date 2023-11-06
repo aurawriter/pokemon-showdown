@@ -599,6 +599,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 	},
 	queenbee: {
 		learnset: {
+			honeclaws: ["9L1"],
 			attackorder: ["9L1"],
 			defendorder: ["9L1"],
 			healorder: ["9L1"],
