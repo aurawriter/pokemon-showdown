@@ -183,7 +183,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 	punishingbird: {
 		num: -150256,
 		name: "Punishing Bird",
-		types: ["Dark","Flying"],
+		types: ["Flying"],
 		baseStats: {hp: 60, atk: 80, def: 50, spa: 80, spd: 50, spe: 60},
 		abilities: {0: "Dark Dash"},
 	},
