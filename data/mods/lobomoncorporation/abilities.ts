@@ -65,7 +65,7 @@ penitence:{
 	loveandhate: {
 		onStart(pokemon) {
 			if(pokemon.species.baseSpecies!=='Queen of Hatred' || pokemon.transformed) return;
-			if (pokemon.side.totalFainted >= 2)
+			if (pokemon.side.totalFainted >= 3)
 			{
 				this.debug("Enough Pokemon are fainted! Transforming!");
 				pokemon.formeChange("Queen of Hatred-Breach");
