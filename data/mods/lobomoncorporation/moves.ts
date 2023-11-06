@@ -111,6 +111,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Normal",
 		zMove: {boost: {atk: 3}},
 		contestType: "Cute",
+		desc: "Only good for training",
 		shortDesc: "Only good for training",
 	},
 	timebomb: {
@@ -234,6 +235,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Fairy",
 		contestType: "Clever",
+		shortDesc: "50% chance to reduce Sp. Def.",
 	},
 	arcanaslave: {
 		num: 553,
@@ -242,6 +244,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		category: "Physical",
 		name: "Arcana Slave",
 		desc: "70% to reduce Sp. Defense",
+		shortDesc: "70% chance to reduce Sp. Def.",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, nosleeptalk: 1, failinstruct: 1},
@@ -261,6 +264,8 @@ hearttaker: {
 		basePower: 160,
 		category: "Physical",
 		name: "Hearttaker",
+	   desc: "Cannot be used twice in a row.",
+	   shortDesc: "Cannot be used twice in a row.",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -298,6 +303,8 @@ hearttaker: {
 		target: "normal",
 		type: "Fire",
 		contestType: "Tough",
+		desc: "30% chance of paralysis",
+		ShortDesc: "30% chance of paralysis",
 	},
 	spinningblade: {
 		num: 899,
@@ -312,6 +319,8 @@ hearttaker: {
 		},
 		target: "normal",
 		type: "Steel",
+		desc: "No additional effect",
+		shortDesc: "No additional effect",
 	},
 	tangledbramble: {
 		num: 446,
@@ -339,6 +348,8 @@ hearttaker: {
 		type: "Grass",
 		zMove: {boost: {def: 1}},
 		contestType: "Cool",
+		desc: "Hurts foes on switch-in. Factors Grass weakness.",
+		shortDesc: "Hurts foes on switch-in. Factors Grass weakness",
 	},
 	crimsonshot: {
 		num: 179,
@@ -373,6 +384,8 @@ hearttaker: {
 		type: "Dark",
 		zMove: {basePower: 160},
 		contestType: "Cool",
+		desc: "More power the less HP the user has left.",
+		shortDesc: "More power the less HP the user has left.",
 	},
 	pitchblack: {
 		num: 240,
@@ -389,6 +402,8 @@ hearttaker: {
 		type: "Dark",
 		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
+		shortDesc: "For 5 turns, power super-effective moves and weaken Psychic moves",
+		desc: "For 5 turns, darkness strengthens super-effective moves, and weaknes Psychic moves",
 	},
 	swarmstrike: {
 		num: 534,
@@ -408,6 +423,8 @@ hearttaker: {
 		target: "normal",
 		type: "Bug",
 		contestType: "Cool",
+		desc: "30% chance to reduce Defense",
+		shortDesc: "30% chance to reduce Defense",
 	},
 	grasswhistle: {
 		inherit: true,
