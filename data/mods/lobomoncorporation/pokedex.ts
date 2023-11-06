@@ -41,7 +41,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		num: -150104,
 		name: "Queen of Hatred-Breach",
 		types: ["Fairy","Dragon"],
-		baseStats: {hp:90,atk:90,def:105,spa:130,spd:115,spe:90},
+		baseStats: {hp:90,atk:90,def:105,spa:130,spd:115,spe:70},
 		abilities: {0: "Love and Hate"},
 		gender: "F",
 	},
