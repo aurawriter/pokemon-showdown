@@ -42,7 +42,7 @@ penitence:{
 	},
 	standardtraining:{
 		desc: "This Pokemon is very good for training.",
-		shortDesc: "No effect.",
+		shortDesc: "This Pokemon is very good for training. No effect.",
 		name: "Standard Training",
 	},
 	pilingstory: {
@@ -88,7 +88,7 @@ penitence:{
 				}
 			},
 		name: "Love and Hate",
-		desc: "Queen of Hatred transforms when at least 2 allied Pokemon are fainted",
+		desc: "On switch in, Queen of Hatred transforms when at least 2 allied Pokemon are fainted",
 	},
 	bearpaws: {
 		// upokecenter says this is implemented as an added secondary effect
@@ -104,14 +104,14 @@ penitence:{
 			});
 		},
 		name: "Bear Paws",
-		shortDesc: "Teddy Bear's loneliness has a chance of spreading",
+		shortDesc: "This Pokemon's contact moves have a 30% chance of inflicting despair.",
 		rating: 2,
 		num: 143,
 	},
 	noise: {
 		name: "Noise",
 		desc: "This is a recording of the day we must never forget.",
-		shortDesc: "Damaging static can spread to damaging enemies",
+		shortDesc: "Damaging static can spread to enemies that damage 1.76.",
 		onDamagingHit(damage, target, source, move) {
 			const sourceAbility = source.getAbility();
 			if (sourceAbility.isPermanent || sourceAbility.id === 'mummy') {
@@ -140,7 +140,7 @@ penitence:{
 			}
 		},
 		name: "Logging",
-		desc: "This is a forest full of hearts. No matter how many he cuts down, the forest still remains dense.",
+		desc: "This Pokemon is healed ⅓ of its health if it attacks and KOes another Pokemon.",
 		rating: 3,
 		num: 153,
 	},
@@ -149,7 +149,7 @@ penitence:{
 			this.field.setTerrain('pitchblack');
 		},
 		name: "For Peace",
-		desc: "A month later, we came to this conclusion: There was no such “beast” in the forest.",
+		desc: "On switch-in, this Pokemon summons Pitch Black",
 		rating: 4,
 		num: 229,
 	},
@@ -173,7 +173,7 @@ penitence:{
 		},
 		condition: {},
 		name: "Windup",
-		desc: "Blood covers the whole floor, screams echo, people are running away...",
+		desc: "This Pokemon skips every other turn instead of using a move, but its moves are powered up 50%",
 		rating: -1,
 		num: 54,
 	},
@@ -186,7 +186,7 @@ penitence:{
 			}
 		},
 		name: "Cursed Fruit",
-		desc: "The day a ripe apple fell off the tree in the garden where the princess and the king stood, the witch's heart shattered.",
+		desc: "30% chance a Pokemon making contact with this Pokemon will become drowsy.",
 		rating: 1.5,
 		num: 38,
 	},
@@ -199,14 +199,14 @@ penitence:{
 			}
 		},
 		name: "Full Bloom",
-		desc: "However, the curse continues eternally, never broken."
+		desc: "When this Pokemon is KO’d, the opponent is transformed into it."
 	},
 	nightmareofchristmas: {
 		onDamagingHit(damage, target, source, move) {
 			this.field.setWeather('snow');
 		},
 		name: "Nightmare of Christmas",
-		desc: "With my infinite hatred, I give you this gift.",
+		desc: "When this Pokemon is hit by an attack, the effect of Snow begins.",
 		rating: 1,
 		num: 245,
 	},
@@ -255,7 +255,7 @@ penitence:{
 	},
 	infectious: {
 		name: "Infectious",
-		desc: "If you feel an abdominal pain and a tingling sensation in your neck, the best thing you can do now is look at the great blue sky you'll never get to see again.",
+		desc: "30% chance a Pokemon making contact with this Pokemon will be turned into a Bug-type.",
 		onDamagingHit(damage,target,source,move) {
 			if (this.checkMoveMakesContact(move, source, target) && !source.status && source.runStatusImmunity('powder'))
 			{
@@ -276,13 +276,13 @@ penitence:{
 			}
 		},
 		name: "Rhapsody of Machine",
-		desc: "But nothing could compare to the music it makes when it eats a human.",
+		desc: " This Pokemon's sound-based moves become Steel type.",
 		rating: 1.5,
 		num: 204,
 	},
 	bloodlust: {
 		name: "Bloodlust",
-		desc: "Many hands float in the bath. They are the hands of the people I once loved.",
+		desc: "This Pokemon’s slicing moves recover 50% of the damage dealt.",
 		onModifyMove(move){
 			if(move.flags['slicing']) {
 				if(!move.drain) move.drain = [1 , 2];
@@ -303,7 +303,7 @@ penitence:{
 			}
 		},
 		name: "Adoration",
-		desc: "...and my dear employees, I do hope you all put on the gas masks we distributed to you before we enter.",
+		desc: "This Pokemon's attacks do 1.25x on opposite gender targets; 0.75x on same gender.",
 		rating: 0,
 		num: 79,
 	},
@@ -314,13 +314,13 @@ penitence:{
 			}
 		},
 		name: "Exuviae",
-		desc: "It can enter your body through any aperture.",
+		desc: " If a special attack hits this Pokemon, Special Defense is lowered by 1, Speed is raised by 2.",
 		rating: 1,
 		num: 133,
 	},
 	openedcan: {
 		name: "Opened Can",
-		desc: "Somewhere in the distance, you can hear seagulls.",
+		desc: "This Pokemon’s Water-type moves have a 30% chance to cause the target to become drowsy.",
 		onModifyMove(move) {
 			if (!move.type === 'Water') return;
 			if (!move.secondaries) {
@@ -335,7 +335,7 @@ penitence:{
 	},
 	dusttodust: {
 		name: "Dust to Dust",
-		desc: "Bearing the hope to return to dust, it shall go back to the grave with all that desires to live.",
+		desc: "30% chance a Pokemon making contact with this Pokemon will be filled with despair.",
 		onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target)) {
 				if (this.randomChance(3, 10)) {
@@ -348,7 +348,7 @@ penitence:{
 	},
 	hammerhead: {
 		name: "Hammer Head",
-		desc: "What's really pitiful is people like you dying to the likes of me.",
+		desc: "If the target is at 100% HP, moves do 50% more damage.",
 		onBasePower(basePower,attacker,defender,move){
 			if(defender.hp == defender.maxhp)
 			{
@@ -372,7 +372,7 @@ penitence:{
 			}
 		},
 		name: "Memories of Scars",
-		desc: "Still, it didn’t matter to him. After all, he was “destined” to be a big bad wolf.",
+		desc: "On switch-in, this Pokemon lowers the Special Attack of opponents by 1 stage.",
 		rating: 3.5,
 		num: 22,
 	},
@@ -384,6 +384,7 @@ penitence:{
 			}
 		},
 		name: "Your Universe",
+		desc: "This Pokemon's healing moves have their priority raised by 1.",
 		rating: 4,
 		num: 158,
 	},
@@ -394,6 +395,7 @@ penitence:{
 			}
 		},
 		name: "Dark Dash",
+		desc: "If Pitch Black is active, this Pokemon's Speed is doubled.",
 		rating: 3,
 		num: 202,
 	},
