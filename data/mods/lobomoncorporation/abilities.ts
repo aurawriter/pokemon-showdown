@@ -263,7 +263,7 @@ penitence:{
 				const infectRoll = this.random(100);
 				if (infectRoll < 30)
 				{
-					this.add('-start', target, 'typechange', 'Bug');
+					this.add('-start', source, 'typechange', 'Bug');
 				}
 			}
 		},
