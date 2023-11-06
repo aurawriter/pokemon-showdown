@@ -687,6 +687,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			encore: ["9L1"],
 			retaliate: ["9L1"],
 			swordsdance: ["9L1"],
+			aquacutter: ["9L1"],
 		},
 	},
 	meltinglove: {
