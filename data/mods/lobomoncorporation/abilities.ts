@@ -98,7 +98,7 @@ penitence:{
 				move.secondaries = [];
 			}
 			move.secondaries.push({
-				chance: 30,
+				chance: 100,
 				status: 'dsp',
 				ability: this.dex.abilities.get('bearpaws'),
 			});
@@ -261,7 +261,7 @@ penitence:{
 			{
 				if (target.getTypes().join() === 'Bug' || !target.setType('Bug')) return false;
 				const infectRoll = this.random(100);
-				if (infectRoll < 30)
+				if (infectRoll < 100)
 				{
 					this.add('-start', source, 'typechange', 'Bug');
 				}
