@@ -18,6 +18,7 @@ export const Items: {[k: string]: ModdedItemData} = {
 		name: "Dark Rock",
 		spritenum: 88,
 		num: 285,
+		desc: "Holder's use of Pitch Black lasts 8 turns instead of 5.",
 	},
 	redshoes: {
 		name: "Red Shoes",
@@ -89,6 +90,9 @@ export const Items: {[k: string]: ModdedItemData} = {
 				}
 			}
 		},
+		desc: "If holder survives a hit, attacker is forced to switch to a random ally. Single use.",
+
+		end: " [TARGET] touched it.",
 		num: 542,
 	},
 };
