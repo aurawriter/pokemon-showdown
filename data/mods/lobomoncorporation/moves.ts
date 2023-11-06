@@ -215,6 +215,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Fighting",
 		contestType: "Beautiful",
 		desc: "Happy Teddy Bear doesn't want to let go",
+		shortDesc: "Traps and damages the target for 4-5 turns."
 	},
 	arcanabeats: {
 		num: 295,
