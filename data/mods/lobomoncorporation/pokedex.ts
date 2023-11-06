@@ -7,7 +7,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Noise",1: "Static", H: "Soundproof"},
 		gender: "N",
 	},
-	standardtrainingdummyrabbit: {
+	trainingrabbit: {
 		num: -1000,
 		name: "Training Rabbit",
 		types: ["Electric","Normal"],
@@ -60,7 +60,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Piling Story"},
 		gender: "F",
 	},
-	thesnowqueen: {
+	snowqueen: {
 		num: -60137,
 		name: "Snow Queen",
 		types: ["Ice"],
@@ -68,7 +68,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Frost Splinter"},
 		gender: "F",
 	},
-	warmheartedwoodsman: {
+	woodsman: {
 		num: -60532,
 		name: "Woodsman",
 		types: ["Steel"],
@@ -98,7 +98,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		abilities: {0: "Cursed Fruit"},
 		gender: "F",
 	},
-	beautyandthebeast: {
+	beautyandbeast: {
 		num: -60244,
 		name: "Beauty and Beast",	
 		types: ["Normal"],
@@ -113,7 +113,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		baseStats: {hp:80,atk:120,def:70,spa:60,spd:80,spe:110},
 		abilities: {0: "Nightmare of Christmas"},
 	},
-	littleredmerc: {
+	littlered: {
 		num: -60249,
 		name: "Little Red",
 		types: ["Dark","Fighting"],
