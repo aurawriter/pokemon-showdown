@@ -7718,4 +7718,34 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		num: 640,
 	},
+
+	safarihelmet: {
+		name: "Safari Helmet",
+		spritenum: 718,
+		fling: {
+			basePower: 60,
+		},
+		// Partially implemented in Pokemon.effectiveWeather() in sim/pokemon.ts
+		onStart(pokemon) {
+			if (!pokemon.ignoringItem()) return;
+			if (this.field.isTerrain('')) {
+				this.runEvent('TerrainChange', pokemon, pokemon, this.effect);
+			}
+		},
+		onUpdate(pokemon) {
+			if (!this.effectState.inactive) return;
+			this.effectState.inactive = false;
+			if (this.field.isTerrain('')) {
+				this.runEvent('TerrainChange', pokemon, pokemon, this.effect);
+			}
+		},
+		onEnd(pokemon) {
+			if (this.field.isTerrain('')) {
+				this.runEvent('TerrainChange', pokemon, pokemon, this.effect);
+			}
+			this.effectState.inactive = true;
+		},
+		num: 1123,
+		gen: 8,
+	},
 };
