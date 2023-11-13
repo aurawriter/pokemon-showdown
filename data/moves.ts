@@ -4594,7 +4594,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet') {
+				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
 					this.debug('electric terrain boost');
 					return this.chainModify([5325, 4096]);
 				}
