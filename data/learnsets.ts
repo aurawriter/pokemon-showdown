@@ -28138,6 +28138,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			thunderfang: ["7L1", "6L1", "5L1", "4L1"],
 			torment: ["7M", "6M", "5M", "4M"],
 			toxic: ["7M", "6M", "5M", "4M"],
+			toxicspikes: ["9L1"],
 			uturn: ["7M", "7L30", "6M", "6L30", "5M", "5L42", "4M", "4L38"],
 			venoshock: ["7M", "6M", "5M"],
 			xscissor: ["7M", "7L40", "6M", "6L40", "5M", "5L45", "4M", "4L42"],
