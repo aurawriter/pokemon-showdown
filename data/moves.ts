@@ -22567,4 +22567,79 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Light",
 		contestType: "Tough",
 	},
+	bloodmoon: {
+		num: 901,
+		accuracy: 100,
+		basePower: 140,
+		category: "Special",
+		name: "Blood Moon",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, cantusetwice: 1},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+	},
+	syrupbomb: {
+		num: 903,
+		accuracy: 85,
+		basePower: 60,
+		category: "Special",
+		name: "Syrup Bomb",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, bullet: 1},
+		condition: {
+			noCopy: true,
+			duration: 4,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Syrup Bomb');
+			},
+			onResidualOrder: 14,
+			onResidual() {
+				this.boost({spe: -1});
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Syrup Bomb', '[silent]');
+			},
+		},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'syrupbomb',
+		},
+		target: "normal",
+		type: "Grass",
+	},
+ivycudgel: {
+		num: 904,
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		name: "Ivy Cudgel",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		critRatio: 2,
+		onPrepareHit(target, source, move) {
+			if (move.type !== "Grass") {
+				this.attrLastMove('[anim] Ivy Cudgel ' + move.type);
+			}
+		},
+		onModifyType(move, pokemon) {
+			switch (pokemon.species.name) {
+			case 'Ogerpon-Wellspring': case 'Ogerpon-Wellspring-Tera':
+				move.type = 'Water';
+				break;
+			case 'Ogerpon-Hearthflame': case 'Ogerpon-Hearthflame-Tera':
+				move.type = 'Fire';
+				break;
+			case 'Ogerpon-Cornerstone': case 'Ogerpon-Cornerstone-Tera':
+				move.type = 'Rock';
+				break;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Grass",
+	},
 };
