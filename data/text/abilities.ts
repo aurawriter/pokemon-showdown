@@ -2324,5 +2324,46 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	dusktilldawn:{
 		name: "Dusk Till Dawn",
 		shortDesc:"On the turn this Pokemon switches in, it takes half damage",
-	}
+	},
+	mindseye: {
+		name: "Mind's Eye",
+		desc: "This Pokemon can hit Ghost types with Normal- and Fighting-type moves. Prevents other Pokemon from lowering this Pokemon's accuracy stat stage. This Pokemon ignores a target's evasiveness stat stage.",
+		shortDesc: "Fighting, Normal moves hit Ghost. Accuracy can't be lowered, ignores evasiveness.",
+	},
+		embodyaspectcornerstone: {
+		name: "Embody Aspect (Cornerstone)",
+		shortDesc: "On switch-in, this Pokemon's Defense is raised by 1 stage.",
+
+		boost: "  The Cornerstone Mask worn by [POKEMON] shone brilliantly, and [POKEMON]'s Defense rose!",
+	},
+	embodyaspecthearthflame: {
+		name: "Embody Aspect (Hearthflame)",
+		shortDesc: "On switch-in, this Pokemon's Attack is raised by 1 stage.",
+
+		boost: "  The Hearthflame Mask worn by [POKEMON] shone brilliantly, and [POKEMON]'s Attack rose!",
+	},
+	embodyaspectteal: {
+		name: "Embody Aspect (Teal)",
+		shortDesc: "On switch-in, this Pokemon's Speed is raised by 1 stage.",
+
+		boost: "  The Teal Mask worn by [POKEMON] shone brilliantly, and [POKEMON]'s Speed rose!",
+	},
+	embodyaspectwellspring: {
+		name: "Embody Aspect (Wellspring)",
+		shortDesc: "On switch-in, this Pokemon's Special Defense is raised by 1 stage.",
+
+		boost: "  The Wellspring Mask worn by [POKEMON] shone brilliantly, and [POKEMON]'s Sp. Def rose!",
+	},
+	supersweetsyrup: {
+		name: "Supersweet Syrup",
+		shortDesc: "On switch-in, this Pokemon lowers the evasiveness of opponents 1 stage. Once per battle.",
+
+		start: "  A supersweet aroma is wafting from the syrup covering [POKEMON]!",
+	},
+	hospitality: {
+		name: "Hospitality",
+		shortDesc: "On switch-in, this Pokemon restores 1/4 of its ally's maximum HP, rounded down.",
+
+		heal: "  [POKEMON] drank down all the matcha that [SOURCE] made!",
+	},
 };
