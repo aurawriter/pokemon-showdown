@@ -2389,4 +2389,12 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Vile Vial",
 		desc: "If held by a Venomicon, its Poison- and Flying-type attacks have 1.2x power.",
 	},
+	choiceedge: {
+		name: "Choice Edge",
+		desc: "Holder's crit ratio is increased 2 stages , but it can only select the first move it executes.",
+	},
+	chromearmor: {
+		name: "Chrome Armor",
+		desc: "Holder's Defense is 1.5x, but it can only select damaging moves.",
+	},
 };
