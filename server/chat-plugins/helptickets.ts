@@ -337,7 +337,7 @@ export class HelpTicket extends Rooms.SimpleRoomGame {
 	}
 
 	getButton() {
-		const color = this.ticket.claimed ? `` : this.ticket.offline ? `notifying subtle` : `notifying`;
+		const color = this.ticket.claimed ? `` : this.ticket.offline ? `alt-notifying` : `notifying`;
 		const creator = (
 			this.ticket.claimed ? Utils.html`${this.ticket.creator}` : Utils.html`<strong>${this.ticket.creator}</strong>`
 		);
@@ -2774,6 +2774,7 @@ export const commands: Chat.ChatCommands = {
 		closehelp: [`/helpticket close [user] - Closes an open ticket. Requires: % @ &`],
 
 		tb: 'ban',
+		ticketban: 'ban',
 		async ban(target, room, user) {
 			if (!target) return this.parse('/help helpticket ban');
 			const {targetUser, targetUsername, rest: reason} = this.splitUser(target, {exactName: true});
@@ -2871,6 +2872,7 @@ export const commands: Chat.ChatCommands = {
 		},
 		banhelp: [`/helpticket ban [user], (reason) - Bans a user from creating tickets for 2 days. Requires: % @ &`],
 
+		unticketban: 'unban',
 		unban(target, room, user) {
 			if (!target) return this.parse('/help helpticket unban');
 
@@ -2992,6 +2994,13 @@ export const commands: Chat.ChatCommands = {
 			`/helpticket public [user], [date] - Makes the ticket logs for the [user] on the [date] public to staff. Requires: &`,
 		],
 	},
+
+	tb: 'ticketban',
+	unticketban: 'ticketban',
+	ticketban(target, room, user, connection, cmd) {
+		return this.parse(`/helpticket ${cmd} ${target}`);
+	},
+
 	helptickethelp: [
 		`/helpticket create - Creates a new ticket, requesting help from global staff.`,
 		`/helpticket list - Lists all tickets. Requires: % @ &`,
