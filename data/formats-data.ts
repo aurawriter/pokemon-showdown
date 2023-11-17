@@ -1588,11 +1588,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 		natDexTier: "Uber",
 	},
-	ursalunabloodmoon: {
-		tier: "Uber",
-		doublesTier: "DOU",
-		natDexTier: "Uber",
-	},
 	slugma: {
 		tier: "LC",
 	},
