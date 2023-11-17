@@ -2429,20 +2429,4 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Chrome Armor",
 		desc: "Holder's Defense is 1.5x, but it can only select damaging moves.",
 	},
-	fairyfeather: {
-		name: "Fairy Feather",
-		desc: "Holder's Fairy-type attacks have 1.2x power.",
-	},
-	cornerstonemask: {
-		name: "Cornerstone Mask",
-		desc: "Ogerpon-Cornerstone: 1.2x power attacks; Terastallize to gain Embody Aspect.",
-	},
-	wellspringmask: {
-		name: "Wellspring Mask",
-		desc: "Ogerpon-Wellspring: 1.2x power attacks; Terastallize to gain Embody Aspect.",
-	},
-	hearthflamemask: {
-		name: "Hearthflame Mask",
-		desc: "Ogerpon-Hearthflame: 1.2x power attacks; Terastallize to gain Embody Aspect.",
-	},
 };

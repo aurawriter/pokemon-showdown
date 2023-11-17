@@ -6230,47 +6230,4 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	calikamiradiant: {
 		isNonstandard: "Past",
 	},
-	poltchageist: {
-		tier: "LC",
-	},
-	sinistcha: {
-		tier: "UU",
-		doublesTier: "DOU",
-		natDexTier: "UU",
-	},
-	okidogi: {
-		tier: "UU",
-		doublesTier: "DUU",
-		natDexTier: "UU",
-	},
-	munkidori: {
-		tier: "UU",
-		doublesTier: "(DUU)",
-		natDexTier: "RU",
-	},
-	fezandipiti: {
-		tier: "RU",
-		doublesTier: "DUU",
-		natDexTier: "RU",
-	},
-	ogerpon: {
-		tier: "UU",
-		doublesTier: "DUU",
-		natDexTier: "RU",
-	},
-	ogerponwellspring: {
-		tier: "OU",
-		doublesTier: "DOU",
-		natDexTier: "OU",
-	},
-	ogerponhearthflame: {
-		tier: "Uber",
-		doublesTier: "DOU",
-		natDexTier: "Uber",
-	},
-	ogerponcornerstone: {
-		tier: "OU",
-		doublesTier: "DUU",
-		natDexTier: "UU",
-	},
 };
