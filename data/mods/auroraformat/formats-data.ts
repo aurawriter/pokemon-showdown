@@ -219,7 +219,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	sandslashalola: {
-		tier: "RU",
+		tier: "OU",
 	},
 	nidoranf: {
 		isNonstandard: "Past",
@@ -1554,12 +1554,18 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	gardevoir: {
 		tier: "OU",
 	},
+	gardevoiraurora: {
+		tier: "OU",
+	},
 	gardevoirmega: {
 		isNonstandard: "Past",
 		tier: "Illegal",
 		natDexTier: "UU",
 	},
 	gallade: {
+		tier: "OU"
+	},
+	galladeaurora: {
 		tier: "OU"
 	},
 	gallademega: {
@@ -1981,9 +1987,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	luvdisc: {
-		tier: "(PU)",
-		doublesTier: "(DUU)",
-		natDexTier: "RU",
+		tier: "Illegal",
 	},
 	bagon: {
 		tier: "LC",
@@ -2139,9 +2143,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	kricketune: {
-		tier: "(PU)",
-		doublesTier: "(DUU)",
-		natDexTier: "RU",
+		tier: "OU",
 	},
 	shinx: {
 		tier: "LC",
@@ -4735,5 +4737,81 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	ogerponcornerstonetera: {
 		isNonstandard: "Future",
 		tier: "Illegal",
+	},
+	muertaguar:{
+		tier: "OU",
+	},
+	arjibee:{
+		tier: "OU",
+	},
+	macquero:{
+		tier: "OU",
+	},
+	maginata:{
+		tier: "OU",
+	},
+	arachnorok:{
+		tier: "OU",
+	},
+	ickvader:
+	{
+		tier: "OU",
+	},
+	kobolder:
+	{
+		tier: "OU",
+	},
+	waplati:
+	{
+		tier: "OU",
+	},
+	galeusair:
+	{
+		tier: "OU",
+	},
+	xinfernotl:
+	{
+		tier: "OU",
+	},
+	dwelmet:{
+		tier:"OU",
+	},
+	harmonkey:{
+		tier:"OU",
+	},
+	illumeon:{
+		tier:"OU",
+	},
+	squittack:{
+		tier:"OU",
+	},
+	pristeraph:{
+		tier:"OU"
+	},
+	gaveliant:{
+		tier:"OU",
+	},
+	glowker:{
+		tier:"OU"
+	},
+	soloth:{
+		tier:"OU",
+	},
+	cherubid:{
+		tier:"OU",
+	},
+	anglare:{
+		tier:"OU",
+	},
+	shino:{
+		tier:"OU",
+	},
+	dribblowisp:{
+		tier:"OU",
+	},
+	calikami: {
+		tier: "OU"
+	},
+	calikamiradiant: {
 	},
 };
