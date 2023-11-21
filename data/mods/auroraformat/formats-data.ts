@@ -28,7 +28,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	caterpie: {
 		tier: "Illegal",
-	}
+	},
 	metapod: {
 		tier: "Illegal",
 	},
