@@ -2423,10 +2423,14 @@ export const ItemsText: {[k: string]: ItemText} = {
 	},
 	choiceedge: {
 		name: "Choice Edge",
-		desc: "Holder's crit ratio is increased 2 stages , but it can only select the first move it executes.",
+		desc: "Crit Ratio increased 2 stages, but locked into the first move.",
 	},
 	chromearmor: {
 		name: "Chrome Armor",
 		desc: "Holder's Defense is 1.5x, but it can only select damaging moves.",
 	},
+	safarihelmet: {
+		name: "Safari Helmet",
+		desc: "Holder is unaffected by terrains."
+	}
 };
