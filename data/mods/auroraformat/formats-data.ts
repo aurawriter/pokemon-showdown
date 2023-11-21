@@ -4813,5 +4813,12 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU"
 	},
 	calikamiradiant: {
+		isNonstandard: "Unobtainable",
 	},
+	masqutirade: {
+		tier: "OU",
+	},
+	kitsolune: {
+		tier: "OU",
+	}
 };
