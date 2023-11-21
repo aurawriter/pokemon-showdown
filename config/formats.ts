@@ -4735,7 +4735,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Standard',"Terastal Clause"],
+		ruleset: ['Standard NatDex','Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	
