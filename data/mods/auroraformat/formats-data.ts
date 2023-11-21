@@ -287,7 +287,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	oddish: {
 		tier: "LC",
 	},
-	gloom: {,
+	gloom: {
 		tier: "NFE",
 	},
 	vileplume: {
