@@ -21,7 +21,17 @@ export const Formats: FormatList = [
 
 	// S/V Singles
 	///////////////////////////////////////////////////////////////////
+	{
+		section: "Aurora Singles",
+	},
+	{
+		name: "[Gen 9 Aurora] Aurora Dex",
 
+		mod: 'auroraformat',
+		debug: true,
+		ruleset: ['Standard',"Terastal Clause"],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+	},
 	{
 		section: "S/V Singles",
 	},
@@ -4731,12 +4741,5 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
 	},
-	{
-		name: "[Gen 9 Aurora] Aurora Dex",
-
-		mod: 'auroraformat',
-		debug: true,
-		ruleset: ['Standard'],
-		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
-	},
+	
 ];
