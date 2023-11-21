@@ -4731,7 +4731,7 @@ export const Formats: FormatList = [
 		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
 	},
 	{
-		name: "[Gen 9 Aurora] Aurora OU",
+		name: "[Gen 9 Aurora] National Dex Aurora OU",
 
 		mod: 'auroraformat',
 		debug: true,
