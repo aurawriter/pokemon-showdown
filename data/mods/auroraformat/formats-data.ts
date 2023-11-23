@@ -2078,16 +2078,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "UU",
 	},
 	deoxys: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	deoxysattack: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	deoxysdefense: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	deoxysspeed: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	turtwig: {
 		tier: "LC",
@@ -2407,7 +2407,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "UUBL",
 	},
 	darkrai: {
-		tier: "OU",
+		tier: "Uber",
 	},
 	shaymin: {
 		isNonstandard: "Past",
@@ -4785,7 +4785,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier:"OU",
 	},
 	pristeraph:{
-		tier:"OU"
+		tier:"Uber"
 	},
 	gaveliant:{
 		tier:"OU",
