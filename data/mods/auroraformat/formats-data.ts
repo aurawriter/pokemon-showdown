@@ -3231,19 +3231,18 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	flabebe: {
 		
-		tier: "Illegal",
+		tier: "LC",
 	},
 	floette: {
 		
-		tier: "Illegal",
+		tier: "NFE",
 	},
 	floetteeternal: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "OU",
 	},
 	florges: {
 		
-		tier: "Illegal",
+		tier: "OU",
 	},
 	skiddo: {
 		

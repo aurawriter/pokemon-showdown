@@ -19689,7 +19689,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Arachnorok",
 		types: ["Bug", "Dragon"],
 		gender: "N",
-		baseStats: {hp: 130, atk: 135, def: 112, spa: 65, spd: 55, spe: 33},
+		baseStats: {hp: 135, atk: 150, def: 112, spa: 105, spd: 55, spe: 43},
 		abilities: {0: "Compound Eyes", 1: "Anger Point", H: "Sheer Force"},
 		heightm: 6.3,
 		weightkg: 144,
