@@ -28802,7 +28802,6 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			sleeptalk: ["9M", "7M", "6M", "5T", "4M"],
 			sludgebomb: ["9M", "7M", "6M", "5M", "4M"],
 			snore: ["7T", "6T", "5T", "4T"],
-			spikes: ["9M"],
 			stealthrock: ["9M", "7T", "6T", "5T", "4M"],
 			steelwing: ["7M", "6M", "4M"],
 			stoneedge: ["9M", "7M", "6M", "5M", "4M"],
