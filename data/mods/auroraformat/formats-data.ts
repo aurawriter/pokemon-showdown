@@ -4778,6 +4778,9 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	illumeon:{
 		tier:"OU",
 	},
+	floraune: {
+		tier:"OU",
+	},
 	squittack:{
 		tier:"OU",
 	},
