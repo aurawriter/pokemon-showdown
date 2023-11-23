@@ -1052,10 +1052,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		natDexTier: "RU",
 	},
 	ledyba: {
-		tier: "LC",
+		tier: "Illegal",
 	},
 	ledian: {
-		tier: "OU",
+		tier: "Illegal",
 	},
 	spinarak: {
 		isNonstandard: "Past",
@@ -1269,14 +1269,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	slugma: {
-		isNonstandard: "Past",
-		tier: "Illegal",
-		natDexTier: "LC",
+		tier: "LC",
 	},
 	magcargo: {
-		isNonstandard: "Past",
-		tier: "Illegal",
-		natDexTier: "RU",
+		tier: "OU",
 	},
 	swinub: {
 		tier: "LC",
