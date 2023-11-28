@@ -4245,9 +4245,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return this.chainModify(1.5);
 			}
 		},
-		onTerrain(target, source, effect) {
-			if (effect.id === 'psychicterrain') {
-				this.damage(target.baseMaxhp / 8, target, target);
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if(pokemon.hasItem('utiliyumbrella')) return;
+			if(this.field.isTerrain('psychicterrain')){
+				this.damage(pokemon.baseMaxhp/8,pokemon,pokemon);
 			}
 		},
 		name: "Weird Power",
@@ -5533,7 +5536,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	badguy: {
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.type === 'Dark') {
+			if (move.type === 'Dark' && move.name != 'Power Trip') {
 				const bp = move.basePower + 20 * pokemon.positiveBoosts();
 				this.debug('BP: ' + bp);
 				return bp;

@@ -1809,8 +1809,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	weirdpower: {
 		name: "Weird Power",
-		desc: "If Psychic Terrain is active, this Pokemon's Special Attack is multiplied by 1.5.",
-		shortDesc: "If Psychic Terrain is active, this Pokemon's Sp. Atk is 1.5x;",
+		desc: "If Psychic Terrain is active, this Pokemon's Special Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn. These effects are prevented if the Pokemon is holding a Safari Helmet.",
+		shortDesc: "If Psychic Terrain is active, this Pokemon's Sp. Atk is 1.5x; loses 1/8 max HP per turn.",
 	},
 	solidrock: {
 		name: "Solid Rock",

@@ -7886,7 +7886,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
 				const weakenedMoves = ['earthquake', 'bulldoze', 'magnitude'];
-				if (weakenedMoves.includes(move.id) && defender.isGrounded() && !defender.isSemiInvulnerable() && !defender.hasItem('safarihelmet')) {
+				if (weakenedMoves.includes(move.id) && defender.isGrounded() && !defender.isSemiInvulnerable() && !(defender.hasItem('safarihelmet')||attacker.hasItem('safarihelmet'))) {
 					this.debug('move weakened by grassy terrain');
 					return this.chainModify(0.5);
 				}
@@ -10653,7 +10653,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 90,
 		basePower: 140,
 		category: "Special",
-		isNonstandard: "Past",
 		name: "Light of Ruin",
 		pp: 5,
 		priority: 0,
@@ -22600,7 +22599,7 @@ export const Moves: {[moveid: string]: MoveData} = {
         num: 565,
         accuracy: 100,
         basePower: 0,
-        category: "Status",
+        category: "Special",
         name: "Rebound Shot",
         pp: 20,
         priority: 0,

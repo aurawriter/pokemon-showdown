@@ -1832,6 +1832,34 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 2401,
 		gen: 9,
 	},
+	telescope: {
+		name: "Telescope",
+		fling: {
+			basePower: 10,
+		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && move.type === 'Cosmic') {
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		num: 2401,
+		gen: 9,
+	},
+	Flashlight: {
+		name: "Flashlight",
+		fling: {
+			basePower: 10,
+		},
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (move && move.type === 'Light') {
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		num: 2401,
+		gen: 9,
+	},
 	fairygem: {
 		name: "Fairy Gem",
 		spritenum: 611,
@@ -7808,7 +7836,6 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	choiceedge: {
 		name: "Choice Edge",
-		spritenum: 69,
 		fling: {
 			basePower: 10,
 		},
@@ -7829,11 +7856,10 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	chromearmor: {
 		name: "Chrome Armor",
-		spritenum: 581,
 		fling: {
 			basePower: 80,
 		},
-		onModifyDefPriority: 1,
+		onModifyDefPriority: 6,
 		onModifyDef(def) {
 			return this.chainModify(1.5);
 		},
@@ -7849,7 +7875,6 @@ export const Items: {[itemid: string]: ItemData} = {
 
 	safarihelmet: {
 		name: "Safari Helmet",
-		spritenum: 718,
 		fling: {
 			basePower: 60,
 		},
