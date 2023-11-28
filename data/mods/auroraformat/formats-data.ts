@@ -3233,6 +3233,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	floetteeternal: {
 		tier: "OU",
+		isNonstandard: null,
 	},
 	florges: {
 		
