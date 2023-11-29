@@ -1,4 +1,12 @@
 export const ItemsText: {[k: string]: ItemText} = {
+	telescope: {
+		name: "Telescope",
+		desc: "Holder's Cosmic-type attacks have 1.2x power.",
+	},
+	flashlight: {
+		name: "Flashlight",
+		desc: "Holder's Light-type attacks have 1.2x power.",
+	},
 	abilityshield: {
 		name: "Ability Shield",
 		desc: "Holder's Ability cannot be changed by any effect.",
