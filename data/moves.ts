@@ -2143,8 +2143,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1},
-		onHit(target) {
+		onHit(target,source) {
 			let newType = 'Normal';
+			if(source.hasItem('safarihelmet') return;
 			if (this.field.isTerrain('electricterrain')) {
 				newType = 'Electric';
 			} else if (this.field.isTerrain('grassyterrain')) {
@@ -5002,13 +5003,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onBasePower(basePower, source) {
-			if (this.field.isTerrain('psychicterrain') && source.isGrounded()) {
+			if (this.field.isTerrain('psychicterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
 				this.debug('terrain buff');
 				return this.chainModify(1.5);
 			}
 		},
 		onModifyMove(move, source, target) {
-			if (this.field.isTerrain('psychicterrain') && source.isGrounded()) {
+			if (this.field.isTerrain('psychicterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
 				move.target = 'allAdjacentFoes';
 			}
 		},
@@ -5914,7 +5915,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, reflectable: 1, heal: 1, allyanim: 1},
 		onHit(target, source) {
 			let success = false;
-			if (this.field.isTerrain('grassyterrain')) {
+			if (this.field.isTerrain('grassyterrain') && !source.hasItem('safarihelmet')) {
 				success = !!this.heal(this.modify(target.baseMaxhp, 0.667));
 			} else {
 				success = !!this.heal(Math.ceil(target.baseMaxhp * 0.5));
@@ -7856,7 +7857,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onModifyPriority(priority, source, target, move) {
-			if (this.field.isTerrain('grassyterrain') && source.isGrounded()) {
+			if (this.field.isTerrain('grassyterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
 				return priority + 1;
 			}
 		},
@@ -12548,7 +12549,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		selfdestruct: "always",
 		onBasePower(basePower, source) {
-			if (this.field.isTerrain('mistyterrain') && source.isGrounded()) {
+			if (this.field.isTerrain('mistyterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
 				this.debug('misty terrain boost');
 				return this.chainModify(1.5);
 			}
@@ -13043,6 +13044,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {failencore: 1, nosleeptalk: 1, noassist: 1, failcopycat: 1, failinstruct: 1, failmimic: 1},
 		onTryHit(target, pokemon) {
 			let move = 'triattack';
+			if (pokemon.hasItem('safarihelmet')) return;
 			if (this.field.isTerrain('electricterrain')) {
 				move = 'thunderbolt';
 			} else if (this.field.isTerrain('grassyterrain')) {
@@ -14617,7 +14619,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
 		secondary: null,
 		onBasePower(basePower, source) {
-			if (this.field.isTerrain('electricterrain')) {
+			if (this.field.isTerrain('electricterrain') && !source.hasItem('safarihelmet')) {
 				this.debug('psyblade electric terrain boost');
 				return this.chainModify(1.5);
 			}
@@ -15748,7 +15750,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		basePowerCallback(source, target, move) {
-			if (this.field.isTerrain('electricterrain') && target.isGrounded()) {
+			if (this.field.isTerrain('electricterrain') && target.isGrounded() && !(source.hasItem('safarihelmet')||target.hasItem('safarihelmet')) {
 				if (!source.isAlly(target)) this.hint(`${move.name}'s BP doubled on grounded target.`);
 				return move.basePower * 2;
 			}
@@ -16573,7 +16575,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onModifyMove(move, pokemon) {
-			if (this.field.isTerrain('')) return;
+			if (this.field.isTerrain('')|| pokemon.hasItem('safarihelmet')) return;
 			move.secondaries = [];
 			if (this.field.isTerrain('electricterrain')) {
 				move.secondaries.push({
@@ -20373,7 +20375,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, pulse: 1},
 		onModifyType(move, pokemon) {
-			if (!pokemon.isGrounded()) return;
+			if (!pokemon.isGrounded()||pokemon.hasItem('safarihelmet')) return;
 			switch (this.field.terrain) {
 			case 'electricterrain':
 				move.type = 'Electric';
@@ -20390,7 +20392,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			}
 		},
 		onModifyMove(move, pokemon) {
-			if (this.field.terrain && pokemon.isGrounded()) {
+			if (this.field.terrain && pokemon.isGrounded() &&!pokemon.hasItem('safarihelmet')) {
 				move.basePower *= 2;
 				this.debug('BP doubled in Terrain');
 			}
