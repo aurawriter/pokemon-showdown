@@ -2145,7 +2145,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {snatch: 1},
 		onHit(target,source) {
 			let newType = 'Normal';
-			if(source.hasItem('safarihelmet') return;
+			if(source.hasItem('safarihelmet')) return;
 			if (this.field.isTerrain('electricterrain')) {
 				newType = 'Electric';
 			} else if (this.field.isTerrain('grassyterrain')) {
