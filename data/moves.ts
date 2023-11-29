@@ -15750,7 +15750,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		basePowerCallback(source, target, move) {
-			if (this.field.isTerrain('electricterrain') && target.isGrounded() && !(source.hasItem('safarihelmet')||target.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('electricterrain') && target.isGrounded() && !(source.hasItem('safarihelmet')||target.hasItem('safarihelmet'))) {
 				if (!source.isAlly(target)) this.hint(`${move.name}'s BP doubled on grounded target.`);
 				return move.basePower * 2;
 			}
