@@ -2506,7 +2506,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.singleEvent('TerrainChange', this.effect, this.effectState, pokemon);
 		},
 		onTerrainChange(pokemon) {
-			if(pokemon.hasItem('safarihelmet') return;
+			if(pokemon.hasItem('safarihelmet')) return;
 			let types;
 			switch (this.field.terrain) {
 			case 'electricterrain':
