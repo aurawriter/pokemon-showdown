@@ -1847,7 +1847,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 9,
 	},
 	flashlight: {
-		name: "flashlight",
+		name: "Flashlight",
 		fling: {
 			basePower: 10,
 		},
