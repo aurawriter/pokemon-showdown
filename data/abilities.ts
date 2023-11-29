@@ -1616,7 +1616,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	grasspelt: {
 		onModifyDefPriority: 6,
 		onModifyDef(pokemon) {
-			if (this.field.isTerrain('grassyterrain')) return this.chainModify(1.5);
+			if (this.field.isTerrain('grassyterrain') && !pokemon.hasItem('safarihelmet')) return this.chainModify(1.5);
 		},
 		isBreakable: true,
 		name: "Grass Pelt",
@@ -2506,6 +2506,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.singleEvent('TerrainChange', this.effect, this.effectState, pokemon);
 		},
 		onTerrainChange(pokemon) {
+			if(pokemon.hasItem('safarihelmet') return;
 			let types;
 			switch (this.field.terrain) {
 			case 'electricterrain':
@@ -4241,14 +4242,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	weirdpower: {
 		onModifySpAPriority: 5,
 		onModifySpA(spa, pokemon) {
-			if (this.field.isTerrain('psychicterrain')) {
+			if (this.field.isTerrain('psychicterrain') && !pokemon.hasItem('safarihelmet')) {
 				return this.chainModify(1.5);
 			}
 		},
 		onResidualOrder: 28,
 		onResidualSubOrder: 2,
 		onResidual(pokemon) {
-			if(pokemon.hasItem('utiliyumbrella')) return;
+			if(pokemon.hasItem('safarihelmet')) return;
 			if(this.field.isTerrain('psychicterrain')){
 				this.damage(pokemon.baseMaxhp/8,pokemon,pokemon);
 			}
@@ -4590,7 +4591,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	surgesurfer: {
 		onModifySpe(spe) {
-			if (this.field.isTerrain('electricterrain')) {
+			if (this.field.isTerrain('electricterrain') && !pokemon.hasItem('safarihelmet')) {
 				return this.chainModify(2);
 			}
 		},
@@ -4599,8 +4600,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 207,
 	},
 	arborflow: {
-		onModifySpe(spe) {
-			if (this.field.isTerrain('grassyterrain')) {
+		onModifySpe(spe, pokemon) {
+			if (this.field.isTerrain('grassyterrain') && !pokemon.hasItem('safarihelmet')) {
 				return this.chainModify(2);
 			}
 		},
@@ -5492,7 +5493,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onResidualOrder: 28,
 		onResidualSubOrder: 2,
 		onResidual(pokemon) {
-			if (pokemon.activeTurns && this.field.isTerrain('grassyterrain')) {
+			if (pokemon.activeTurns && this.field.isTerrain('grassyterrain') && !pokemon.hasItem('safarihelmet')) {
 				this.boost({ def: 1, spd: 1 });
 			}
 		},
