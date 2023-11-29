@@ -10654,6 +10654,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 140,
 		category: "Special",
 		name: "Light of Ruin",
+		isNonstandard: null,
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
