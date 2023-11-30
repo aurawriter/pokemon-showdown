@@ -687,7 +687,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Bug"],
 		num: 909,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	buginiumz: {
 		name: "Buginium Z",
@@ -1162,7 +1161,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Cosmic"],
 		num: 909,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	cosmicberry: {
 		name: "Cosmic Berry",
@@ -1282,7 +1280,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Dark"],
 		num: 919,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	darkiniumz: {
 		name: "Darkinium Z",
@@ -1475,7 +1472,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Dragon"],
 		num: 918,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	dragonscale: {
 		name: "Dragon Scale",
@@ -1688,7 +1684,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Electric"],
 		num: 915,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	electricseed: {
 		name: "Electric Seed",
@@ -1888,7 +1883,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Fairy"],
 		num: 920,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	fastball: {
 		name: "Fast Ball",
@@ -1925,7 +1919,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Fighting"],
 		num: 904,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	fightiniumz: {
 		name: "Fightinium Z",
@@ -1993,7 +1986,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Fire"],
 		num: 912,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	firestone: {
 		name: "Fire Stone",
@@ -2121,7 +2113,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Flying"],
 		num: 905,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	flyiniumz: {
 		name: "Flyinium Z",
@@ -2350,7 +2341,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Ghost"],
 		num: 910,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	ghostiumz: {
 		name: "Ghostium Z",
@@ -2415,7 +2405,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Grass"],
 		num: 914,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	grassiumz: {
 		name: "Grassium Z",
@@ -2544,7 +2533,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Ground"],
 		num: 907,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	groundiumz: {
 		name: "Groundium Z",
@@ -2769,7 +2757,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Ice"],
 		num: 917,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	icestone: {
 		name: "Ice Stone",
@@ -3314,7 +3301,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Light"],
 		num: 909,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	loadeddice: {
 		name: "Loaded Dice",
@@ -4493,7 +4479,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Poison"],
 		num: 906,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	poisoniumz: {
 		name: "Poisonium Z",
@@ -4696,7 +4681,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Psychic"],
 		num: 916,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	psychicseed: {
 		name: "Psychic Seed",
@@ -5061,7 +5045,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Rock"],
 		num: 908,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	rockiumz: {
 		name: "Rockium Z",
@@ -5803,7 +5786,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Steel"],
 		num: 911,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	steeliumz: {
 		name: "Steelium Z",
@@ -7244,7 +7226,6 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Silvally-Water"],
 		num: 913,
 		gen: 7,
-		isNonstandard: "Past",
 	},
 	waterstone: {
 		name: "Water Stone",
