@@ -17583,7 +17583,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
-		isNonstandard: "Past",
 		name: "Asteroid Slam",
 		pp: 10,
 		priority: 0,
@@ -22579,7 +22578,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 15,
 		priority: 0,
 		target: "allAdjacent",
-		flags: {bullet: 1, protect: 1, mirror: 1, allyanim: 1},
+		flags: {protect: 1, mirror: 1, allyanim: 1},
 		onTryHit(target, source, move) {
 			if (source.isAlly(target)) {
 				move.basePower = 0;
