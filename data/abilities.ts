@@ -5833,7 +5833,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyMove(move, pokemon) {
 			if(move.flags['bullet']) {
 				 move.category = 'Physical',
-				 move.flags.push({contact}),
+				 move.flags.contact = 1
 			}
 		},
 		name: "Hamster Ball",
