@@ -5872,4 +5872,32 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 117,
 	},
+	chaoticvoid: {
+	onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Cosmic') {
+				move.accuracy = true;
+				if (!target.addVolatile('chaoticvoid')) {
+					this.add('-immune', target, '[from] ability: Chaotic Void');
+				}
+				return null;
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('chaoticvoid');
+		},
+		condition: {
+			//Using Metronome when using Cosmic moves is handled by runMove 
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(target) {
+				this.add('-start', target, 'ability: Chaotic Void');
+			},
+			onEnd(target) {
+				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
+			},
+		},
+		isBreakable: true,
+		name: "Chaotic Void",
+		rating: 3.5,
+		num: 18,
+	},
 };
