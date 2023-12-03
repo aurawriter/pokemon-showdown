@@ -19991,4 +19991,15 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
       color: "Red",
       eggGroups: ["Field", "Fairy"],
     },
+	abysmatoth: {
+		num: -1133,
+		name: "Abysmatoth",
+		types: ["Cosmic","Dark"],
+		baseStats: {hp: 140,atk: 140,def:110,spa:80,spd:110,spe:110},
+		abilities: {0: "Chaotic Void"},
+		heightm: 3,
+		weightkg: 330,
+		color: "Purple",	
+		eggGroups: ["Undiscovered"],
+	},
 };

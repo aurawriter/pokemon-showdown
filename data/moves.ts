@@ -7933,8 +7933,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onBasePower(basePower) {
-			if (['gravity'].includes(attacker.effectiveWeather())) {
+		onBasePower(basePower,source) {
+			if (['gravity'].includes(source.effectiveWeather())) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -11246,7 +11246,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (target.volatiles['smackdown'] || target.volatiles['ingrain']) return false;
 
 			// Additional Gravity check for Z-move variant
-			if (['gravity'].includes(attacker.effectiveWeather())) {
+			if (['gravity'].includes(source.effectiveWeather())) {
 				this.add('cant', source, 'move: Gravity', move);
 				return null;
 			}
@@ -17888,7 +17888,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				let applies = false;
 				if (pokemon.hasType('Flying') || pokemon.hasAbility('levitate')) applies = true;
 				if (pokemon.hasItem('ironball') || pokemon.volatiles['ingrain'] ||
-					[gravity'].includes(attacker.effectiveWeather())) applies = false;
+					['gravity'].includes(pokemon.effectiveWeather())) applies = false;
 				if (pokemon.removeVolatile('fly') || pokemon.removeVolatile('bounce')) {
 					applies = true;
 					this.queue.cancelMove(pokemon);
@@ -17935,7 +17935,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				let applies = false;
 				if (pokemon.hasType('Flying') || pokemon.hasAbility('levitate')) applies = true;
 				if (pokemon.hasItem('ironball') || pokemon.volatiles['ingrain'] ||
-				 [gravity'].includes(attacker.effectiveWeather())) applies = false;
+				 ['gravity'].includes(pokemon.effectiveWeather())) applies = false;
 				if (pokemon.removeVolatile('fly') || pokemon.removeVolatile('bounce')) {
 					applies = true;
 					this.queue.cancelMove(pokemon);
@@ -18817,7 +18817,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {gravity: 1},
 		onTry(source, target, move) {
 			// Additional Gravity check for Z-move variant
-			if (['gravity'].includes(attacker.effectiveWeather())) {
+			if (['gravity'].includes(source.effectiveWeather())) {
 				this.add('cant', source, 'move: Gravity', move);
 				return null;
 			}
@@ -20293,7 +20293,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		volatileStatus: 'telekinesis',
 		onTry(source, target, move) {
 			// Additional Gravity check for Z-move variant
-			if if (['gravity'].includes(attacker.effectiveWeather())) {
+			if (['gravity'].includes(target.effectiveWeather())) {
 				this.attrLastMove('[still]');
 				this.add('cant', source, 'move: Gravity', move);
 				return null;
@@ -22644,7 +22644,7 @@ export const Moves: {[moveid: string]: MoveData} = {
                 },
             });
             this.add('-start', source, 'move: Rebound Shot');
-			source.switchFlag='reboundshot';
+			source.switchFlag ='reboundshot';
             return this.NOT_FAIL;
         },
         selfSwitch: true,
