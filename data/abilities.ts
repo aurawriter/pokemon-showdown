@@ -5873,7 +5873,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 117,
 	},
 	chaoticvoid: {
-	onTryHit(target, source, move) {
+		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Cosmic') {
 				move.accuracy = true;
 				if (!target.addVolatile('chaoticvoid')) {
@@ -5894,6 +5894,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			onEnd(target) {
 				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
 			},
+		},
+		onHit(target, source, effect) {
+			if(source.volatiles['chaoticvoid'] && effect.type == "Cosmic")
+			{
+			const moves = this.dex.moves.all().filter(move => (
+				(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
+				!move.realMove && !move.isZ && !move.isMax &&
+				(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
+				!effect.noMetronome!.includes(move.name)
+			));
+			let randomMove = '';
+			if (moves.length) {
+				moves.sort((a, b) => a.num - b.num);
+				randomMove = this.sample(moves).id;
+			}
+			if (!randomMove) return false;
+			source.side.lastSelectedMove = this.toID(randomMove);
+			this.actions.useMove(randomMove, target);
+			}
+
 		},
 		isBreakable: true,
 		name: "Chaotic Void",

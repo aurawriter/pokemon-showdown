@@ -20017,6 +20017,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: -1135,
 		name: "Herastroid",
 		types: ["Cosmic","Fighting"],
-		baseStats: {}
+		baseStats: {hp: 80,atk:40,def:75,spa:125,spd:95,spe:85},
+		abilities: {0:"Fusion",}
 	}
 };
