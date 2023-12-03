@@ -5886,7 +5886,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			pokemon.removeVolatile('chaoticvoid');
 		},
 		condition: {
-			//Using Metronome when using Cosmic moves is handled by runMove 
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart(target) {
 				this.add('-start', target, 'ability: Chaotic Void');
@@ -5894,26 +5893,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			onEnd(target) {
 				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
 			},
-		},
-		onHit(target, source, effect) {
-			if(source.volatiles['chaoticvoid'] && effect.type == "Cosmic")
-			{
-			const moves = this.dex.moves.all().filter(move => (
-				(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
-				!move.realMove && !move.isZ && !move.isMax &&
-				(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
-				!effect.noMetronome!.includes(move.name)
-			));
-			let randomMove = '';
-			if (moves.length) {
-				moves.sort((a, b) => a.num - b.num);
-				randomMove = this.sample(moves).id;
-			}
-			if (!randomMove) return false;
-			source.side.lastSelectedMove = this.toID(randomMove);
-			this.actions.useMove(randomMove, target);
-			}
-
+			onHit(target, source, effect) {
+				if(effect.type == "Cosmic")
+				{
+				const moves = this.dex.moves.all().filter(move => (
+					(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
+					!move.realMove && !move.isZ && !move.isMax &&
+					(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
+					!effect.noMetronome!.includes(move.name)
+				));
+				let randomMove = '';
+				if (moves.length) {
+					moves.sort((a, b) => a.num - b.num);
+					randomMove = this.sample(moves).id;
+				}
+				if (!randomMove) return false;
+				source.side.lastSelectedMove = this.toID(randomMove);
+				this.actions.useMove(randomMove, target);
+				}
+	
+			},
 		},
 		isBreakable: true,
 		name: "Chaotic Void",
