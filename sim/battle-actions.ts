@@ -317,7 +317,16 @@ export class BattleActions {
 		if (move.flags['cantusetwice'] && pokemon.removeVolatile(move.id)) {
 			this.battle.add('-hint', `Some effects can force a Pokemon to use ${move.name} again in a row.`);
 		}
+		
+		//Chaotic Void Code
+		//if(move.type === "Cosmic" && pokemon.volatiles['chaoticvoid'] && moveDidSomething && !move.isExternal) {
+			//const chaos = [];
+			//for (const currentPoke of this.battle.getAllActive()) {
+			//	if (pokemon === 
+		//	}
+	//	}
 
+		
 		// Dancer's activation order is completely different from any other event, so it's handled separately
 		if (move.flags['dance'] && moveDidSomething && !move.isExternal) {
 			const dancers = [];
