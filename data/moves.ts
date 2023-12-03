@@ -7165,7 +7165,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {},
 		isMax: "Orbeetle",
 		self: {
-			pseudoWeather: 'gravity',
+			weather: 'gravity',
 		},
 		target: "adjacentFoe",
 		type: "Psychic",
@@ -7934,7 +7934,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onBasePower(basePower) {
-			if (this.field.getPseudoWeather('gravity')) {
+			if (['gravity'].includes(attacker.effectiveWeather())) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -7947,7 +7947,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Grass",
 	},
-	gravity: {
+	/* gravity: {
 		num: 356,
 		accuracy: true,
 		basePower: 0,
@@ -8036,7 +8036,24 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Psychic",
 		zMove: {boost: {spa: 1}},
 		contestType: "Clever",
+	}, */
+	gravity: {
+		num: 356,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Gravity",
+		pp: 5,
+		priority: 0,
+		flags: {nonsky: 1},
+		weather: 'gravity',
+		secondary: null,
+		target: "all",
+		type: "Cosmic",
+		zMove: {boost: {spa: 1}},
+		contestType: "Clever",
 	},
+
 	growl: {
 		num: 45,
 		accuracy: 100,
@@ -11229,7 +11246,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (target.volatiles['smackdown'] || target.volatiles['ingrain']) return false;
 
 			// Additional Gravity check for Z-move variant
-			if (this.field.getPseudoWeather('Gravity')) {
+			if (['gravity'].includes(attacker.effectiveWeather())) {
 				this.add('cant', source, 'move: Gravity', move);
 				return null;
 			}
@@ -17578,12 +17595,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Flying",
 		contestType: "Tough",
 	},
-	asteroidslam: {
+	abduct: {
 		num: 507,
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
-		name: "Asteroid Slam",
+		name: "abduct",
 		pp: 10,
 		priority: 0,
 		flags: {
@@ -17600,7 +17617,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				source.removeVolatile('skydrop');
 				source.removeVolatile('twoturnmove');
 				if (target === this.effectState.target) {
-					this.add('-end', target, 'Sky Drop', '[interrupt]');
+					this.add('-end', target, 'Abduct', '[interrupt]');
 				}
 			}
 		},
@@ -17871,7 +17888,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				let applies = false;
 				if (pokemon.hasType('Flying') || pokemon.hasAbility('levitate')) applies = true;
 				if (pokemon.hasItem('ironball') || pokemon.volatiles['ingrain'] ||
-					this.field.getPseudoWeather('gravity')) applies = false;
+					[gravity'].includes(attacker.effectiveWeather())) applies = false;
 				if (pokemon.removeVolatile('fly') || pokemon.removeVolatile('bounce')) {
 					applies = true;
 					this.queue.cancelMove(pokemon);
@@ -17902,23 +17919,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Rock",
 		contestType: "Tough",
 	},
-	gravitroncore: {
+	gravitoncore: {
 		num: 479,
 		accuracy: 100,
 		basePower: 50,
 		category: "Physical",
-		name: "Gravitron Core",
+		name: "Graviton Core",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, nonsky: 1},
-		volatileStatus: 'gravitroncore',
+		volatileStatus: 'gravitoncore',
 		condition: {
 			noCopy: true,
 			onStart(pokemon) {
 				let applies = false;
 				if (pokemon.hasType('Flying') || pokemon.hasAbility('levitate')) applies = true;
 				if (pokemon.hasItem('ironball') || pokemon.volatiles['ingrain'] ||
-					this.field.getPseudoWeather('gravity')) applies = false;
+				 [gravity'].includes(attacker.effectiveWeather())) applies = false;
 				if (pokemon.removeVolatile('fly') || pokemon.removeVolatile('bounce')) {
 					applies = true;
 					this.queue.cancelMove(pokemon);
@@ -18800,7 +18817,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {gravity: 1},
 		onTry(source, target, move) {
 			// Additional Gravity check for Z-move variant
-			if (this.field.getPseudoWeather('Gravity')) {
+			if (['gravity'].includes(attacker.effectiveWeather())) {
 				this.add('cant', source, 'move: Gravity', move);
 				return null;
 			}
@@ -20276,7 +20293,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		volatileStatus: 'telekinesis',
 		onTry(source, target, move) {
 			// Additional Gravity check for Z-move variant
-			if (this.field.getPseudoWeather('Gravity')) {
+			if if (['gravity'].includes(attacker.effectiveWeather())) {
 				this.attrLastMove('[still]');
 				this.add('cant', source, 'move: Gravity', move);
 				return null;
@@ -22515,7 +22532,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Prismatic Pyre",
 		pp: 10,
-		flags: { contact: 1, protect: 1, mirror: 1, gravity: 1, distance: 1, nonsky: 1 },
+		flags: { contact: 1, protect: 1, mirror: 1, distance: 1},
 		onEffectiveness(typeMod, target, type, move) {
 			return typeMod + this.dex.getEffectiveness('Light', type);
 		},
