@@ -5900,4 +5900,69 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 18,
 	},
+	antigrav: {
+		onModifySpe(spe, pokemon) {
+			if (['gravity'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Anti-Grav",
+		rating: 3,
+		num: 34,
+	},
+	silverlining: {
+		onTryHit(target, source, move) {
+			if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
+			if (move.id === 'skydrop' && !source.volatiles['skydrop']) return;
+			this.debug('Silver Lining immunity: ' + move.id);
+			if (target.runEffectiveness(move) == 0) {
+				if (move.smartTarget) {
+					move.smartTarget = false;
+				} else {
+					this.add('-immune', target, '[from] ability: Silver Lining');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Silver Lining",
+		rating: 5,
+		num: 25,
+	},
+	stardom:{
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.adjacentFoes()) {
+				if (!activated) {
+					this.add('-ability', pokemon, 'Stardom', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					target.addVolatile('encore')
+				}
+			}
+		},
+		name:"Stardom",
+		rating: 4,
+		num: 234,
+	},
+	tidalforce: {
+		onFoeTrapPokemon(pokemon) {
+			if (pokemon.hasType('Water') && pokemon.isAdjacent(this.effectState.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon(pokemon, source) {
+			if (!source) source = this.effectState.target;
+			if (!source || !pokemon.isAdjacent(source)) return;
+			if (!pokemon.knownType || pokemon.hasType('Water')) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		name: "Tidal Force",
+		rating: 4,
+		num: 42,
+	},
 };
