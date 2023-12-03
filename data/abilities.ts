@@ -5502,7 +5502,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 3,
 	},
 	seeddispersal: {
-	
         onDamagingHit(damage, target, source, move) {
             if (this.checkMoveMakesContact(move, source, target))
 			{
@@ -5829,5 +5828,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Embody Aspect (Wellspring)",
 		rating: 3.5,
 		num: 302,
+	},
+	hamsterball: {
+		onModifyMove(move, pokemon) {
+			if(move.flags['bullet']) {
+				 move.category = 'Physical',
+				 move.flags.push({contact}),
+			}
+		},
+		name: "Hamster Ball",
 	},
 };
