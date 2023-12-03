@@ -3403,7 +3403,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	darkvoid: {
 		num: 464,
-		accuracy: 50,
+		accuracy: 80,
 		basePower: 0,
 		category: "Status",
 		name: "Dark Void",
@@ -22668,5 +22668,134 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Light",
 		contestType: "Tough",
+	},
+	cosmicweb: {
+		num: 527,
+		accuracy: 95,
+		basePower: 55,
+		category: "Special",
+		name: "Cosmic Web",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "allAdjacentFoes",
+		type: "Cosmic",
+		contestType: "Beautiful",
+	},
+	supernova: {
+		num: 153,
+		accuracy: 100,
+		basePower: 250,
+		category: "Special",
+		name: "Supernova",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, noparentalbond: 1},
+		selfdestruct: "always",
+		secondary: null,
+		target: "allAdjacent",
+		type: "Cosmic",
+		contestType: "Beautiful",
+	},
+	asteroidslam: {
+		num: 389,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Asteroid Slam",
+		pp: 5,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTry(source, target) {
+			const action = this.queue.willMove(target);
+			const move = action?.choice === 'move' ? action.move : null;
+			if (!move || (move.category != 'Status' && move.id !== 'mefirst') || target.volatiles['mustrecharge']) {
+				return false;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Clever",
+	},
+	meteorshower: {
+		num: 754,
+		accuracy: 100,
+		basePower: 85,
+		basePowerCallback(pokemon, target, move) {
+			if (target.newlySwitched || this.queue.willMove(target)) {
+				this.debug('Bolt Beak damage boost');
+				return move.basePower * 2;
+			}
+			this.debug('Bolt Beak NOT boosted');
+			return move.basePower;
+		},
+		category: "Special",
+		isNonstandard: "Past",
+		name: "Meteor Shower",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Cosmic",
+	},
+	fallingstar: {
+		num: 820,
+		accuracy: 100,
+		basePower: 150,
+		basePowerCallback(pokemon, target, move) {
+			const bp = move.basePower * pokemon.hp / pokemon.maxhp;
+			this.debug('BP: ' + bp);
+			return bp;
+		},
+		category: "Special",
+		name: "Falling Star",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Cosmic",
+	},
+	asteroidbelt: {
+		num: 7,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Asteroid Belt",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		target: "normal",
+		type: "Cosmic",
+		contestType: "Tough",
+	},
+	blackhole: {
+		num: 573,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Black Hole",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type, move) {
+			if (move.type !== 'Dark') return;
+			   if (!target) return;
+			   if(!target.runImmunity('Dark')){
+					   if(target.hasType('Light')) return 1;
+			   }
+			   //if(type==='Ghost') return 1;
+		 },
+		target: "normal",
+		type: "Dark",
+		contestType: "Beautiful",
 	},
 };

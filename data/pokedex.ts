@@ -20002,4 +20002,21 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Purple",	
 		eggGroups: ["Undiscovered"],
 	},
+	jackalipse: {
+		num: -1134,
+		name: "Jackalipse",
+		types: ["Cosmic","Normal"],
+		baseStats: {hp: 65,atk: 100,def:80,spa:110,spd:90,spe:80},
+		abilities: {0: "Serene Grace",H:"Anti-Grav"},
+		heightm: 1.2,
+		weightkg: 54,
+		color: "Purple",
+		eggGroups: ["Field", "Human-Like"],
+	},
+	herastroid: {
+		num: -1135,
+		name: "Herastroid",
+		types: ["Cosmic","Fighting"],
+		baseStats: {}
+	}
 };
