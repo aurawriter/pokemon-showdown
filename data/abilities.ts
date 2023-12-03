@@ -5864,4 +5864,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		name: "Escape Velocity",
 	},
+	gravitationalpull: {
+		onStart(source) {
+			this.field.setWeather('gravity');
+		},
+		name: "Gravitational Pull",
+		rating: 4,
+		num: 117,
+	},
 };
