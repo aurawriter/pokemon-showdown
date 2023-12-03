@@ -5857,4 +5857,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 68,
 	},
+	escapevelocity: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			return atk + (attacker.speed * .2)
+		},
+		name: "Escape Velocity",
+	},
 };
