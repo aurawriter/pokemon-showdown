@@ -22866,7 +22866,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				return;
 			}
-			attacker.addVolatile('twoturnmove', defender);
+			attacker.addVolatile('twoturnmove', defender);		
 		}, 
 		condition: {
 			duration: 2,
