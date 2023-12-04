@@ -5909,7 +5909,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 				if (!randomMove) return false;
 				source.side.lastSelectedMove = this.toID(randomMove);
-				this.actions.useMove(randomMove, target);
+				this.actions.useMove(randomMove, source);
 				}
 	
 			},
