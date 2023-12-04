@@ -5893,7 +5893,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			onEnd(target) {
 				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
 			},
-			onHit(target, source, effect) {
+			onSourceHit(target, source, effect) {
 				if(effect.type == "Cosmic")
 				{
 				const moves = this.dex.moves.all().filter(move => (
