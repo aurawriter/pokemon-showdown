@@ -5911,9 +5911,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				if (!randomMove) return false;
 				source.side.lastSelectedMove = this.toID(randomMove);
 				this.actions.useMove(randomMove, source);
-				this.effectState.chaoticVoid = false;
 				}
-	
+				
+			},
+			onResidualOrder: 28,
+			onResidualSubOrder: 2,
+			onResidual(pokemon) {
+				this.effectState.chaoticVoid = false;
 			},
 		},
 		isBreakable: true,
