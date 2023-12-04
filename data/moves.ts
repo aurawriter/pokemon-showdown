@@ -22729,14 +22729,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		basePower: 85,
 		basePowerCallback(pokemon, target, move) {
 			if (target.newlySwitched || this.queue.willMove(target)) {
-				this.debug('Bolt Beak damage boost');
+				this.debug('Meteor Shower damage boost');
 				return move.basePower * 2;
 			}
-			this.debug('Bolt Beak NOT boosted');
+			this.debug('Meteor Shower NOT boosted');
 			return move.basePower;
 		},
 		category: "Special",
-		isNonstandard: "Past",
 		name: "Meteor Shower",
 		pp: 10,
 		priority: 0,
@@ -22776,12 +22775,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Cosmic",
 		contestType: "Tough",
 	},
-	blackhole: {
+	accretiondisk: {
 		num: 573,
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		name: "Black Hole",
+		name: "Accretion Disk",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -22796,5 +22795,22 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Dark",
 		contestType: "Beautiful",
+	},
+	flutterby: {
+		num: 42,
+		accuracy: 95,
+		basePower: 25,
+		category: "Special",
+		name: "Flutter By",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: [2, 5],
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		zMove: {basePower: 140},
+		maxMove: {basePower: 130},
+		contestType: "Cool",
 	},
 };
