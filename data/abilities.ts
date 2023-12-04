@@ -5894,8 +5894,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
 			},
 			onSourceHit(target, source, effect) {
-				if(effect.type == "Cosmic")
+				if(effect.type == "Cosmic" && !this.effectState.chaoticVoid)
 				{
+					this.effectState.chaoticVoid = true;
 				const moves = this.dex.moves.all().filter(move => (
 					(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
 					!move.realMove && !move.isZ && !move.isMax &&
@@ -5910,6 +5911,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				if (!randomMove) return false;
 				source.side.lastSelectedMove = this.toID(randomMove);
 				this.actions.useMove(randomMove, source);
+				this.effectState.chaoticVoid = false;
 				}
 	
 			},
