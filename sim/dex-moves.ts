@@ -321,7 +321,7 @@ export interface ActiveMove extends MutableMove, RuinableMove {
 	causedCrashDamage?: boolean;
 	forceStatus?: ID;
 	hasAuraBreak?: boolean;
-	hasBounced?: boolean;
+	hasBounced?: boolean;	
 	hasSheerForce?: boolean;
 	fromChaoticVoid?: boolean;
 	/** Is the move called by Dancer? Used to prevent infinite Dancer recursion. */

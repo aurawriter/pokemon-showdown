@@ -5894,23 +5894,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
 			},
 			onSourceHit(target, source, effect) {
-				if(effect.type == "Cosmic" && !this.effectState.chaoticVoid)
+				if(effect.type == "Cosmic" && !effect.fromChaoticVoid)
 				{
 					this.effectState.chaoticVoid = true;
-				const moves = this.dex.moves.all().filter(move => (
-					(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
-					!move.realMove && !move.isZ && !move.isMax &&
-					(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
-					!Dex.moves.get("Metronome").noMetronome!.includes(move.name)
-				));
-				let randomMove = '';
-				if (moves.length) {
-					moves.sort((a, b) => a.num - b.num);
-					randomMove = this.sample(moves).id;
-				}
-				if (!randomMove) return false;
-				source.side.lastSelectedMove = this.toID(randomMove);
-				this.actions.useMove(randomMove, source);
+					const moves = this.dex.moves.all().filter(move => (
+						(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
+						!move.realMove && !move.isZ && !move.isMax &&
+						(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
+						!Dex.moves.get("Metronome").noMetronome!.includes(move.name)
+					));
+					let randomMove = '';
+					if (moves.length) {
+						moves.sort((a, b) => a.num - b.num);
+						const randomMove = this.dex.getActiveMove(this.sample(moves).id);
+						randomMove.fromChaoticVoid = true;
+					}
+					if (!randomMove) return false;
+					source.side.lastSelectedMove = this.toID(randomMove);
+					this.actions.useMove(randomMove, source);
 				}
 				
 			},
