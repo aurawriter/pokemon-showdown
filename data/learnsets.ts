@@ -97730,6 +97730,7 @@ sobble: {
 			futuresight: ["9L1"],
 			flashcannon: ["9L1"],
 			signalbeam: ["9L1"],
+			abduct: ["9L1"],
 		},
 	},
 	kobolder: 
@@ -99771,6 +99772,8 @@ sobble: {
 			hyperbeam: ["9L1"],
 			lightscreen: ["9L1"],
 			sleetdrop: ["9L1"],
+			futuresight: ["9L1"],
+			heartstamp: ["9L1"],
 		},
 	},
 };

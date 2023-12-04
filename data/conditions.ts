@@ -472,9 +472,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldStart(target, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;
-				this.add('-weather', 'RainDance', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-weather', 'Gravity', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-weather', 'RainDance');
+				this.add('-weather', 'Gravity');
 			}
 			for (const pokemon of this.getAllActive()) {
 				let applies = false;

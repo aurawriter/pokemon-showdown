@@ -11333,6 +11333,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Steel",
 		contestType: "Beautiful",
 	},
+	comeinpeace: {
+		num: 874,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		name: "Come in Peace",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		self: {
+			boosts: {
+				spa: -1,
+			},
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Cosmic",
+		contestType: "Beautiful",
+	},
 	maliciousmoonsault: {
 		num: 696,
 		accuracy: true,
@@ -21416,6 +21435,21 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Bug",
 		contestType: "Cute",
 	},
+	shuttleloop: {
+		num: 369,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Shuttle Loop",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		selfSwitch: true,
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+		contestType: "Cute",
+	},
 	wormholewarp: {
 		num: 369,
 		accuracy: 100,
@@ -22825,15 +22859,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 			contact: 1, charge: 1, protect: 1, mirror: 1, gravity: 1, distance: 1, nosleeptalk: 1, noassist: 1, failinstruct: 1,
 		},
 		onTryMove(attacker, defender, move) {
-			/* if (attacker.removeVolatile(move.id)) {
+			if (attacker.removeVolatile(move.id)) {
 				return;
 			}
 			this.add('-prepare', attacker, move.name);
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				return;
-			} */
+			}
 			attacker.addVolatile('twoturnmove', defender);
-			return null;
 		}, 
 		condition: {
 			duration: 2,
