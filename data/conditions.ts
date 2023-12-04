@@ -468,7 +468,8 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return 5;
 		},
-		onFieldStart(target, source) {
+		
+		onFieldStart(target, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;
 				this.add('-weather', 'RainDance', '[from] ability: ' + effect.name, '[of] ' + source);
