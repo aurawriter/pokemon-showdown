@@ -5894,32 +5894,28 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.add('-end', target, 'ability: Chaotic Void', '[silent]');
 			},
 			onSourceHit(target, source, effect) {
-				if(effect.type == "Cosmic" && !this.effectState.chaoticVoid)
-				{
-					this.effectState.chaoticVoid = true;
-				const moves = this.dex.moves.all().filter(move => (
-					(![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
-					!move.realMove && !move.isZ && !move.isMax &&
-					(!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
-					!Dex.moves.get("Metronome").noMetronome!.includes(move.name)
-				));
-				let randomMove = '';
-				if (moves.length) {
-					moves.sort((a, b) => a.num - b.num);
-					randomMove = this.sample(moves).id;
-				}
-				if (!randomMove) return false;
-				source.side.lastSelectedMove = this.toID(randomMove);
-				this.actions.useMove(randomMove, source);
-				this.effectState.chaoticVoid = false;
-				}
-				
-			},
-			onResidualOrder: 28,
-			onResidualSubOrder: 2,
-			onResidual(pokemon) {
-				this.effectState.chaoticVoid = false;
-			}
+                if(effect.type == "Cosmic" && !effect.fromChaoticVoid)
+                {
+                    const moves = this.dex.moves.all().filter(move => (
+                        (![2, 4].includes(this.gen) || !source.moves.includes(move.id)) &&
+                        !move.realMove && !move.isZ && !move.isMax &&
+                        (!move.isNonstandard || move.isNonstandard === 'Unobtainable') &&
+                        !Dex.moves.get("Metronome").noMetronome!.includes(move.name)
+                    ));
+                    let randomMove : ActiveMove | null = null;
+                    if (moves.length) {
+                        moves.sort((a, b) => a.num - b.num);
+                        randomMove = this.dex.getActiveMove(this.sample(moves).id);
+                        randomMove.fromChaoticVoid = true;
+                    }
+                    if (randomMove)
+					{
+                    source.side.lastSelectedMove = randomMove.id;
+                    this.actions.useMove(randomMove, source);
+					}
+                }
+                
+            },
 		},
 		isBreakable: true,
 		name: "Chaotic Void",
