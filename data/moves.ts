@@ -22830,12 +22830,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dark",
 		contestType: "Beautiful",
 	},
-	flutterby: {
+	butterflydust: {
 		num: 42,
 		accuracy: 95,
 		basePower: 25,
 		category: "Special",
-		name: "Flutter By",
+		name: "Butterfly Dust",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -22866,7 +22866,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				return;
 			}
-			attacker.addVolatile('twoturnmove', defender);		
+			attacker.addVolatile('twoturnmove', defender);	
+			return;	
 		}, 
 		condition: {
 			duration: 2,
