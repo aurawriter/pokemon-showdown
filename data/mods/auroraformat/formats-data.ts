@@ -4726,5 +4726,50 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	kitsolune: {
 		tier: "OU",
-	}
+	},
+	jackalipse: {
+		tier: "OU",,
+	},
+	herastroid: {
+		tier: "OU",
+	},
+	martsunami: {
+		tier: "OU",
+	},
+	flocket: {
+		tier: "OU",
+	},
+	hamstronaut: {
+		tier: "OU",
+	},
+	stegangaea: {
+		tier: "OU",
+	},
+	braxnoir: {
+		tier: "OU",
+	},
+	redover: {
+		tier: "OU",
+	},
+	astreon: {
+		tier: "OU",
+	},
+	greydengo: {
+		tier: "OU",
+	},
+	stellangel: {
+		tier: "OU",
+	},
+	sunfloraaurora: {
+		tier: "OU",
+	},
+	moonster: {
+		tier: "OU",
+	},
+	lunarch: {
+		tier: "OU",
+	},
+	abysmatoth: {
+		tier: "Uber",
+	},
 };
