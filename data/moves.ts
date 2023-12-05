@@ -22827,6 +22827,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			   //if(type==='Ghost') return 1;
 		 },
 		target: "normal",
+		ignoreImmunity: {'Dark': true},
 		type: "Dark",
 		contestType: "Beautiful",
 	},
@@ -22850,7 +22851,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	sleetdrop: {
 		num: 19,
 		accuracy: 95,
-		basePower: 90,
+		basePower: 80,
 		category: "Physical",
 		name: "Sleet Drop",
 		pp: 15,

@@ -2369,10 +2369,52 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Radiant Order",
 		desc: "This Pokemon is immune to Light-type moves. The first time it is hit by a Light-type move, its offensive stat is multiplied by 1.5 while using a Light-type attack as long as it remains active and has this Ability.",
 		shortDesc: "Light power 1.5x and don't miss if hit by Light; Light immunity.",
-		start: "  The power of [POKEMON]'s Light-type moves rose!",
+		start: "[POKEMON] is getting radiant!",
 	},
 	dusktilldawn:{
 		name: "Dusk Till Dawn",
 		shortDesc:"On the turn this Pokemon switches in, it takes half damage",
+	},
+	fusion: {
+		name: "Fusion",
+		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Cosmic-type attack.",
+		shortDesc: "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Cosmic attacks.",
+	},
+	silverlining: {
+		name: "Wonder Guard",
+		shortDesc: "This Pokemon cannot by supereffective moves and indirect damage.",
+	},
+	hamsterball: {
+		name: "Hamster Ball",
+		shortDesc: "This Pokemon's bullet-like moves do Physical damage and make contact"
+	},
+	escapevelocity: {
+		name: "Escape Velocity",
+		shortDesc: "20% of this Pokemon's Speed is added to its Attack."
+	},
+	tidalforce: {
+		name: "Tidal Force",
+		desc: "Prevents opposing Water-type Pokemon from choosing to switch out, unless they are holding a Shed Shell or are a Ghost type.",
+		shortDesc: "Prevents opposing Water-type Pokemon from choosing to switch out.",
+	},
+	stardom: {
+		name: "stardom",
+		desc: "On switch-in, this Pokemon forces opponents to encore.",
+		shortDesc: "On switch-in, this Pokemon forces opponents to encore.",
+	},
+	antigrav: {
+		name: "Anti-Grav",
+		desc: "If Gravity is active, this Pokemon's Speed is doubled.",
+		shortDesc: "If Gravity is active, this Pokemon's Speed is doubled.",
+	},
+	gravitywell: {
+		name: "Gravity Well",
+		shortDesc: "On switch-in, this Pokemon summons Gravity.",
+	},
+	chaoticvoid: {
+		name: "Chaotic Void",
+		desc: "This Pokemon is immune to Cosmic-type moves. The first time it is hit by a Cosmic-type move, whenever it uses a Cosmic-type move it uses another random move as long as it remains active and has this Ability.",
+		shortDesc: "Cosmic type moves use random moves if hit by Cosmic; Cosmic immunity.",
+		start: "[POKEMON] is getting chaotic!",
 	},
 };

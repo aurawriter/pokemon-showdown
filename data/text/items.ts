@@ -338,6 +338,10 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Damp Rock",
 		desc: "Holder's use of Rain Dance lasts 8 turns instead of 5.",
 	},
+	heavyrock: {
+		name: "Heavy Rock",
+		desc: "Holder's use of Gravity lasts 8 turns instead of 5.",
+	},
 	darkgem: {
 		name: "Dark Gem",
 		desc: "Holder's first successful Dark-type attack will have 1.3x power. Single use.",

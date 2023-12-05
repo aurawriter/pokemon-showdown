@@ -589,6 +589,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Power doubles if the user moves before the target.",
 		shortDesc: "Power doubles if user moves before the target.",
 	},
+	meteorshower: {
+		name: "Meteor Shower",
+		desc: "Power doubles if the user moves before the target.",
+		shortDesc: "Power doubles if user moves before the target.",
+	},
 	boltstrike: {
 		name: "Bolt Strike",
 		desc: "Has a 20% chance to paralyze the target.",
@@ -5974,8 +5979,8 @@ export const MovesText: {[k: string]: MoveText} = {
 		failSelect: "Sky Drop won't let [POKEMON] go!",
 		failTooHeavy: "  [POKEMON] is too heavy to be lifted!",
 	},
-	asteroidslam: {
-		name: "Asteroid Slam",
+	abduct: {
+		name: "Abduct",
 		desc: "This attack takes the target into the air with the user on the first turn and executes on the second. Pokemon weighing 200 kg or more cannot be lifted. On the first turn, the user and the target avoid all attacks other than Gust, Hurricane, Sky Uppercut, Smack Down, Thousand Arrows, Thunder, and Twister. The user and the target cannot make a move between turns, but the target can select a move to use. This move cannot damage Flying-type Pokemon. Fails on the first turn if the target is an ally, if the target has a substitute, or if the target is using Bounce, Dig, Dive, Fly, Phantom Force, Shadow Force, or Sky Drop.",
 		shortDesc: "User and foe fly up turn 1. Damages on turn 2.",
 		gen5: {
@@ -7574,6 +7579,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Power is equal to (user's current HP * 150 / user's maximum HP), rounded down, but not less than 1.",
 		shortDesc: "Less power as user's HP decreases. Hits foe(s).",
 	},
+	fallingstar: {
+		name: "Fallig Star",
+		desc: "Power is equal to (user's current HP * 150 / user's maximum HP), rounded down, but not less than 1.",
+		shortDesc: "Less power as user's HP decreases. Hits foe(s).",
+	},
 	wavecrash: {
 		name: "Wave Crash",
 		desc: "If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
@@ -7682,6 +7692,10 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	wingattack: {
 		name: "Wing Attack",
+		shortDesc: "No additional effect.",
+	},
+	asteroidbelt: {
+		name: "Asteroid Belt",
 		shortDesc: "No additional effect.",
 	},
 	wish: {
@@ -7825,6 +7839,24 @@ export const MovesText: {[k: string]: MoveText} = {
 		},
 		gen2: {
 			desc: "Whether or not this move is successful, the user spends two or three turns locked into this move and becomes confused immediately after its move on the last turn of the effect, even if it is already confused. If the user is prevented from moving, the effect ends without causing confusion. If this move is called by Sleep Talk, the move is used for one turn and does not confuse the user.",
+		},
+	},
+	cosmicweb: {
+		name: "Cosmic Web",
+		desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
+		shortDesc: "100% chance to lower the foe(s) Speed by 1.",
+	},
+	supernova: {
+		name: "Supernova",
+		desc: "The user faints after using this move, even if this move fails for having no target. This move is prevented from executing if any active Pokemon has the Damp Ability.",
+		shortDesc: "Hits adjacent Pokemon. The user faints.",	
+	},
+	asteroidslam: {
+		name: "Asteroid Slam",
+		desc: "Fails if the target selected a physical attack, special attack, or Me First for use this turn, or if the target moves before the user.",
+		shortDesc: "Usually goes first. Fails if target is attacking.",
+		gen4: {
+			desc: "Fails if the target did not select a physical or special attack for use this turn, or if the target moves before the user.",
 		},
 	},
 };
