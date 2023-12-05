@@ -17618,7 +17618,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
-		name: "abduct",
+		name: "Abduct",
 		pp: 10,
 		priority: 0,
 		flags: {

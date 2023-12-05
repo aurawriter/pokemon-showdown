@@ -100575,6 +100575,7 @@ sobble: {
     },
 	greydengo: {
         learnset: {
+			comeinpeace: ["9L1"],
             dazzlinggleam: ["9L1"],
             flashcannon: ["9L1"],
             focusblast: ["9L1"],

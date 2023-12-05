@@ -2215,6 +2215,13 @@ export const MovesText: {[k: string]: MoveText} = {
 
 		switchOut: "#uturn",
 	},
+	shuttleloop: {
+		name: "Shuttle Loop",
+		desc: "If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button or through the effect of the Emergency Exit or Wimp Out Abilities.",
+		shortDesc: "User switches out after damaging the target.",
+
+		switchOut: "#uturn",
+	},
 	floatyfall: {
 		name: "Floaty Fall",
 		desc: "Has a 30% chance to make the target flinch.",
@@ -2234,6 +2241,10 @@ export const MovesText: {[k: string]: MoveText} = {
 		name: "Flower Trick",
 		desc: "This move is always a critical hit unless the target is under the effect of Lucky Chant or has the Battle Armor or Shell Armor Abilities. This move does not check accuracy.",
 		shortDesc: "Always results in a critical hit; no accuracy check.",
+	},
+	sleetdrop: {
+		name: "Sleet Drop",
+		shortDesc: "First Turn: Deal Damage and fly up. Second Turn: Come back down and deal damage.",
 	},
 	fly: {
 		name: "Fly",
@@ -3889,6 +3900,12 @@ export const MovesText: {[k: string]: MoveText} = {
 
 		activate: "#payday",
 	},
+	comeinpeace: {
+		name: "Come In Peace",
+		desc: "Lowers the user's Special Attack by 1 stage.",
+		shortDesc: "Lowers the user's Sp. Atk by 1. Hits foe(s).",
+
+	},
 	maliciousmoonsault: {
 		name: "Malicious Moonsault",
 		desc: "Damage doubles and no accuracy check is done if the target has used Minimize while active.",
@@ -4783,6 +4800,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		gen1: {
 			desc: "Hits two to five times. Has a 3/8 chance to hit two or three times, and a 1/8 chance to hit four or five times. Damage is calculated once for the first hit and used for every hit. If one of the hits breaks the target's substitute, the move ends.",
 		},
+	},
+	butterflydust: {
+		name: "Butterfly Dust",
+		desc: "Hits two to five times. Has a 35% chance to hit two or three times and a 15% chance to hit four or five times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit five times.",
+		shortDesc: "Hits 2-5 times in one turn.",
 	},
 	plasmafists: {
 		name: "Plasma Fists",
