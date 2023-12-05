@@ -4728,7 +4728,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	jackalipse: {
-		tier: "OU",,
+		tier: "OU",
 	},
 	herastroid: {
 		tier: "OU",
