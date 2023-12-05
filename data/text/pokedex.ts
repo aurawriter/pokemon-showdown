@@ -3767,4 +3767,7 @@ export const PokedexText: {[k: string]: PokedexText} = {
 	pokestarufopropu2: {
 		name: "Pokestar UFO-PropU2",
 	},
+	abysmatoth: {
+		name: "Å̴̡̗̊̓̉̚b̷̡̧̻̼͈͆̾y̵̨͖̭͇̣̏s̷̨̾́̈́̎͂ḿ̴̰̥͖͎͎̃a̶͎̽͌̄́́ẗ̵̥̮̭͚́̅͝ṍ̸̞̯̞͗͑̕t̷̛̞͔̋̑͂ȟ̷̨̟̱͓̀̓͛̚͜"
+	},
 };
