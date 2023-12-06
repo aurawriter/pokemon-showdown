@@ -6692,7 +6692,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		boosts: {
 			atk: 2,
 			def: 2,
-			spe: 2,
 		},
 		secondary: null,
 		target: "self",
@@ -22758,25 +22757,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Clever",
 	},
 	meteorshower: {
-		num: 754,
+		num: 419,
 		accuracy: 100,
-		basePower: 85,
+		basePower: 60,
 		basePowerCallback(pokemon, target, move) {
-			if (target.newlySwitched || this.queue.willMove(target)) {
-				this.debug('Meteor Shower damage boost');
+			const damagedByTarget = pokemon.attackedBy.some(
+				p => p.source === target && p.damage > 0 && p.thisTurn
+			);
+			if (!damagedByTarget) {
+				this.debug('BP doubled for getting hit by ' + target);
 				return move.basePower * 2;
 			}
-			this.debug('Meteor Shower NOT boosted');
 			return move.basePower;
 		},
 		category: "Special",
 		name: "Meteor Shower",
 		pp: 10,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		priority: -4,
+		flags: {protect: 1, mirror: 1},
 		secondary: null,
 		target: "normal",
 		type: "Cosmic",
+		contestType: "Beautiful",
 	},
 	fallingstar: {
 		num: 820,

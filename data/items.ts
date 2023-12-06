@@ -4574,6 +4574,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	powerherb: {
 		onChargeMove(pokemon, target, move) {
+			if(move.id === "sleetdrop") return false;
 			if (pokemon.useItem()) {
 				this.debug('power herb - remove charge turn for ' + move.id);
 				this.attrLastMove('[still]');
