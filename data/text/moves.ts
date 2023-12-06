@@ -591,8 +591,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	meteorshower: {
 		name: "Meteor Shower",
-		desc: "Power doubles if the user moves before the target.",
-		shortDesc: "Power doubles if user moves before the target.",
+		desc: "Power doubles if the user was not hit by the target this turn.",
+		shortDesc: "Power doubles if user was not damaged by the target.",
 	},
 	boltstrike: {
 		name: "Bolt Strike",
@@ -2499,8 +2499,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	celestialalignment: {
 		name: "Celestial Alignment",
-		desc: "Raises the user's Attack, Defense, and Speed by 2 stages. This attack charges on the first turn and executes on the second. If the user is holding a Power Herb, the move completes in one turn.",
-		shortDesc: "Charges, then raises Atk, Def, Spe by 2 turn 2.",
+		desc: "Raises the user's Attack and Defense by 2 stages. This attack charges on the first turn and executes on the second. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Charges, then raises Atk and Def by 2 turn 2.",
 
 		prepare: "[POKEMON] is absorbing power!",
 	},
