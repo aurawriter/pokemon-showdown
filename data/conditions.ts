@@ -468,7 +468,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return 5;
 		},
-		
 		onFieldStart(target, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;

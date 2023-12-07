@@ -944,7 +944,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	covertops: {
 		name: "Covert Ops",
-		shortDesc: "Attacks have a 30% chance to sleep, poison, or paralysis. Can't be forced to switch out.",
+		shortDesc: "Contact moves have a 30% chance to sleep, poison, or paralysis. Can't be forced to switch out.",
 			
 	},
 	misdirection:{
@@ -2365,6 +2365,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
+	// Aurora Format
 	radiantorder: {
 		name: "Radiant Order",
 		desc: "This Pokemon is immune to Light-type moves. The first time it is hit by a Light-type move, its offensive stat is multiplied by 1.5 while using a Light-type attack as long as it remains active and has this Ability.",
@@ -2398,7 +2399,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "Prevents opposing Water-type Pokemon from choosing to switch out.",
 	},
 	stardom: {
-		name: "stardom",
+		name: "Stardom",
 		desc: "On switch-in, this Pokemon forces opponents to encore.",
 		shortDesc: "On switch-in, this Pokemon forces opponents to encore.",
 	},

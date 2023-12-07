@@ -11959,7 +11959,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 19,
 		evos: ["Florges"],
 		eggGroups: ["Fairy"],
-		otherFormes: ["Floette-Eternal"],
+		//otherFormes: ["Floette-Eternal"],
 		cosmeticFormes: ["Floette-Blue", "Floette-Orange", "Floette-White", "Floette-Yellow"],
 		formeOrder: ["Floette", "Floette-Blue", "Floette-Orange", "Floette-White", "Floette-Yellow"],
 	},

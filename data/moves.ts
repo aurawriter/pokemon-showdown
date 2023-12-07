@@ -22824,7 +22824,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			if (move.type !== 'Dark') return;
 			   if (!target) return;
 			   if(!target.runImmunity('Dark')){
-					   if(target.hasType('Light')) return 1;
+					if (type === 'Light') return 1;
 			   }
 			   //if(type==='Ghost') return 1;
 		 },
