@@ -468,7 +468,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return 5;
 		},
-		
 		onFieldStart(target, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;
@@ -502,18 +501,18 @@ export const Conditions: {[k: string]: ConditionData} = {
 				}
 				if (applies) this.add('-activate', pokemon, 'move: Gravity');
 				}
-			},
-			onModifyAccuracy(accuracy) {
-				if (typeof accuracy !== 'number') return;
-				return this.chainModify([6840, 4096]);
-			},
-			onDisableMove(pokemon) {
-				for (const moveSlot of pokemon.moveSlots) {
-					if (this.dex.moves.get(moveSlot.id).flags['gravity']) {
-						pokemon.disableMove(moveSlot.id);
-					}
+		},
+		onModifyAccuracy(accuracy) {
+			if (typeof accuracy !== 'number') return;
+			return this.chainModify([6840, 4096]);
+		},
+		onDisableMove(pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				if (this.dex.moves.get(moveSlot.id).flags['gravity']) {
+					pokemon.disableMove(moveSlot.id);
 				}
-			},
+			}
+		},
 			// groundedness implemented in battle.engine.js:BattlePokemon#isGrounded
 			onBeforeMovePriority: 6,
 			onBeforeMove(pokemon, target, move) {
@@ -528,10 +527,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 					return false;
 				}
 			},
-			onFieldResidualOrder: 27,
-			onFieldResidualSubOrder: 2,
+			onFieldResidualOrder: 1,
+			onFieldResidual() {
+				this.add('-weather','Gravity','[upkeep]');
+				this.eachEvent('Weather');
+			},
 			onFieldEnd() {
-				this.add('-fieldend', 'move: Gravity');
+				this.add('-weather', 'none');
 			},
 	},
 	raindance: {

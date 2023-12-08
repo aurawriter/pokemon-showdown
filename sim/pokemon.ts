@@ -2017,7 +2017,8 @@ export class Pokemon {
 	}
 
 	isGrounded(negateImmunity = false) {
-		if ('gravity' in this.battle.field.pseudoWeather) return true;
+		//if ('gravity' in this.battle.field.pseudoWeather) return true;
+		if (['gravity'].includes(this.effectiveWeather()) ) return true;
 		if ('ingrain' in this.volatiles && this.battle.gen >= 4) return true;
 		if ('smackdown' in this.volatiles) return true;
 		const item = (this.ignoringItem() ? '' : this.item);
