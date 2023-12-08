@@ -3799,8 +3799,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	necrozmadawnwings: {
-		tier: "Uber".
-		
+		tier: "Uber",
 	},
 	necrozmaultra: {
 		tier: "Uber",
