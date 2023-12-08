@@ -1303,12 +1303,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	lugia: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	hooh: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	celebi: {
 		tier: "OU",
@@ -2275,16 +2273,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	dialga: {
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	dialgaorigin: {
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	palkia: {
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	palkiaorigin: {
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	heatran: {
 		tier: "Illegal",
@@ -2295,10 +2293,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	giratina: {
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	giratinaorigin: {
-		tier: "Illegal",
+		tier: "Uber",
 	},
 	cresselia: {
 		tier: "OU",
@@ -3742,23 +3740,19 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	cosmog: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "LC",
 		
 	},
 	cosmoem: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "NFE",
 		
 	},
 	solgaleo: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber",
 		
 	},
 	lunala: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber",
 		
 	},
 	nihilego: {
@@ -3797,23 +3791,19 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	necrozma: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "OU",
 		
 	},
 	necrozmaduskmane: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber",
 		
 	},
 	necrozmadawnwings: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber".
 		
 	},
 	necrozmaultra: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "Uber",
 		
 	},
 	magearna: {
