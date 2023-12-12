@@ -13581,7 +13581,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Eternal Light",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, failinstruct: 1},
+		flags: {protect: 1, mirror: 1, failinstruct: 1},
 		self: {
 			volatileStatus: 'lockedmove',
 		},
