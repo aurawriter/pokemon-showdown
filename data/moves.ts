@@ -22564,7 +22564,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Prismatic Pyre",
 		pp: 10,
-		flags: { contact: 1, protect: 1, mirror: 1, distance: 1},
+		flags: {protect: 1, mirror: 1, distance: 1},
 		onEffectiveness(typeMod, target, type, move) {
 			return typeMod + this.dex.getEffectiveness('Light', type);
 		},
