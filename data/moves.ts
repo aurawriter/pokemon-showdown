@@ -2665,7 +2665,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		multihit: [2, 5],
 		secondary: null,
 		target: "normal",
-		type: "Cosmic",
+		type: "Normal",
 		maxMove: {basePower: 100},
 		contestType: "Tough",
 	},
