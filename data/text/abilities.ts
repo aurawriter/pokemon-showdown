@@ -1329,7 +1329,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	dragonheart: {
 		name: "Dragonheart",
 		desc: "This Pokemon's Normal-type moves become Dragon-type moves and burn This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Dragon type and burn.",
+		shortDesc: "This Pokemon's Normal-type moves become Dragon type and have a chance to burn.",
 		gen6: {
 			desc: "This Pokemon's Normal-type moves become Dragon-type moves and burn. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
 			shortDesc: "This Pokemon's Normal-type moves become Dragon type and burn.",
