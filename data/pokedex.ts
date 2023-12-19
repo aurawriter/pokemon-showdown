@@ -20074,7 +20074,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: -1148,
 		name: "Abysmatoth",
 		types: ["Cosmic","Dark"],
-		baseStats: {hp: 140,atk: 140,def:110,spa:80,spd:110,spe:110},
+		baseStats: {hp: 140,atk: 140,def:110,spa:80,spd:110,spe:190},
 		abilities: {0: "Chaotic Void"},
 		heightm: 3,
 		weightkg: 330,
