@@ -5951,7 +5951,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 25,
 	},
-	stardom:{
+	/* stardom:{
 		onStart(pokemon) {
 			let activated = false;
 			for (const target of pokemon.adjacentFoes()) {
@@ -5967,6 +5967,37 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name:"Stardom",
+		rating: 4,
+		num: 234,
+	}, */
+	stardom: {
+		onStart(pokemon) {
+			var frontEnemy;
+			for(const target of pokemon.adjacentFoes()) {
+				
+				if(target.position != pokemon.position) {
+					frontEnemy = target;
+				}
+			}
+			if (!frontEnemy) return;
+			let i: BoostID;
+			for (i in frontEnemy.boosts) {
+				pokemon.boosts[i] = frontEnemy.boosts[i];
+			}
+			const volatilesToCopy = ['focusenergy','gmaxchistrike','laserfocus'];
+			for(const volatile of volatilesToCopy) {
+				if (frontEnemy.volatiles[volatile]) {
+					pokemon.addVolatile(volatile);
+					if (volatile === 'gmaxchistrike') {
+						pokemon.volatiles[volatile].layers = pokemon.volatiles[volatile].layers;
+					} else {
+						pokemon.removeVolatile(volatile);
+					}
+				}
+				this.add('-copyboost', pokemon, frontEnemy, '[from] ability: Stardom');
+			}
+		},
+		name: "Stardom",
 		rating: 4,
 		num: 234,
 	},
