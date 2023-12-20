@@ -2400,8 +2400,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	stardom: {
 		name: "Stardom",
-		desc: "On switch-in, this Pokemon forces opponents to encore.",
-		shortDesc: "On switch-in, this Pokemon forces opponents to encore.",
+		desc: "On switch-in, this Pokemon copies the stat boosts of the Pokemon in front of it",
+		shortDesc: "On switch-in, this Pokemon copies its opponent's stat boosts.",
 	},
 	antigrav: {
 		name: "Anti-Grav",
