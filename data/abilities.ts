@@ -5972,21 +5972,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	}, */
 	stardom: {
 		onStart(pokemon) {
-			var frontEnemy;
-			for(const target of pokemon.adjacentFoes()) {
-				
-				if(target.position != pokemon.position) {
-					frontEnemy = target;
-				}
-			}
-			if (!frontEnemy) return;
+			const target = pokemon.side.foe.active[pokemon.side.foe.active.length - 1 - pokemon.position];
+			if (target) {
 			let i: BoostID;
-			for (i in frontEnemy.boosts) {
-				pokemon.boosts[i] = frontEnemy.boosts[i];
+			for (i in target.boosts) {
+				pokemon.boosts[i] = target.boosts[i];
 			}
 			const volatilesToCopy = ['focusenergy','gmaxchistrike','laserfocus'];
 			for(const volatile of volatilesToCopy) {
-				if (frontEnemy.volatiles[volatile]) {
+				if (target.volatiles[volatile]) {
 					pokemon.addVolatile(volatile);
 					if (volatile === 'gmaxchistrike') {
 						pokemon.volatiles[volatile].layers = pokemon.volatiles[volatile].layers;
@@ -5994,7 +5988,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 						pokemon.removeVolatile(volatile);
 					}
 				}
-				this.add('-copyboost', pokemon, frontEnemy, '[from] ability: Stardom');
+			}
+			this.add('-copyboost', pokemon, target, '[from] ability: Stardom');
 			}
 		},
 		name: "Stardom",
