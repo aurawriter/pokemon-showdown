@@ -6030,7 +6030,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (!target.hp) {
-				this.actions.useMove(this.dex.getActiveMove("Explosion"), source);
+				this.actions.useMove(this.dex.getActiveMove("Explosion"), target);
 			}
 		},
 		name: "Infestive",
