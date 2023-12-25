@@ -6013,4 +6013,29 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 42,
 	},
+	infestive: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Poison') {
+				this.debug('Infestive boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Poison') {
+				this.debug('Infestive boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (!target.hp) {
+				this.actions.useMove(this.dex.getActiveMove("Explosion"), source);
+			}
+		},
+		name: "Infestive",
+		rating: 3.5,
+		num: 200,
+		
+	}
 };

@@ -2418,4 +2418,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "Cosmic type moves use random moves if hit by Cosmic; Cosmic immunity.",
 		start: "[POKEMON] is getting chaotic!",
 	},
+	infestive: {
+		name: "Infestive",
+		desc: "When this Pokemon is KO'd by another mon, it uses Explosion. Poison type moves have STAB.",
+		shortDesc: "When this is KO'd by another Pokemon, it uses Explosion. Poison type moves have STAB.",
+		
+	},
 };
