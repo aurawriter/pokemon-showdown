@@ -431,42 +431,11 @@ export class RandomGen8Teams {
 			// Four random unique moves from the movepool
 			let pool = ['struggle'];
 			if (forme === 'Smeargle') {
-				pool = this.dex.moves
-					.all()
+				pool = this.dex.moves.all()
 					.filter(move => !(move.isNonstandard || move.isZ || move.isMax || move.realMove))
 					.map(m => m.id);
 			} else {
-				const formes = ['gastrodoneast', 'pumpkaboosuper', 'zygarde10'];
-				let learnset = this.dex.species.getLearnset(species.id);
-				let learnsetSpecies = species;
-				if (formes.includes(species.id) || !learnset) {
-					learnsetSpecies = this.dex.species.get(species.baseSpecies);
-					learnset = this.dex.species.getLearnset(learnsetSpecies.id);
-				}
-				if (learnset) {
-					pool = Object.keys(learnset).filter(
-						moveid => learnset![moveid].find(learned => learned.startsWith(String(this.gen)))
-					);
-				}
-				if (learnset && learnsetSpecies === species && species.changesFrom) {
-					learnset = this.dex.species.getLearnset(toID(species.changesFrom));
-					const basePool = Object.keys(learnset!).filter(
-						moveid => learnset![moveid].find(learned => learned.startsWith(String(this.gen)))
-					);
-					pool = [...new Set(pool.concat(basePool))];
-				}
-				const evoRegion = learnsetSpecies.evoRegion && learnsetSpecies.gen !== this.gen;
-				for (let i = 0; i < 2 && learnsetSpecies.prevo; i++) {
-					learnsetSpecies = this.dex.species.get(learnsetSpecies.prevo);
-					learnset = this.dex.species.getLearnset(learnsetSpecies.id);
-					for (const moveid in learnset) {
-						if (!pool.includes(moveid) && !evoRegion || learnset[moveid].some(
-							source => !source.startsWith(`${learnsetSpecies.gen}`) || source.charAt(1) === 'E'
-						)) {
-							pool.push(moveid);
-						}
-					}
-				}
+				pool = [...this.dex.species.getMovePool(species.id)];
 			}
 
 			const moves = this.multipleSamplesNoReplace(pool, this.maxMoveCount);
@@ -564,9 +533,6 @@ export class RandomGen8Teams {
 		// Picks `n` random pokemon--no repeats, even among formes
 		// Also need to either normalize for formes or select formes at random
 		// Unreleased are okay but no CAP
-		const last = [0, 151, 251, 386, 493, 649, 721, 807, 898, 1010][this.gen];
-
-		if (n <= 0 || n > last) throw new Error(`n must be a number between 1 and ${last} (got ${n})`);
 		if (requiredType && !this.dex.types.get(requiredType).exists) {
 			throw new Error(`"${requiredType}" is not a valid type.`);
 		}
@@ -580,15 +546,13 @@ export class RandomGen8Teams {
 			for (const species of speciesPool) {
 				if (species.isNonstandard && species.isNonstandard !== 'Unobtainable') continue;
 				if (requireMoves) {
-					const hasMovesInCurrentGen = Object.values(this.dex.species.getLearnset(species.id) || {})
-						.some(sources => sources.some(source => source.startsWith('9')));
+					const hasMovesInCurrentGen = this.dex.species.getMovePool(species.id).size;
 					if (!hasMovesInCurrentGen) continue;
 				}
 				if (requiredType && !species.types.includes(requiredType)) continue;
 				if (minSourceGen && species.gen < minSourceGen) continue;
 				const num = species.num;
 				if (num <= 0 || pool.includes(num)) continue;
-				if (num > last) break;
 				pool.push(num);
 			}
 		} else {
@@ -648,6 +612,7 @@ export class RandomGen8Teams {
 			if (!(species.num in hasDexNumber)) continue;
 			if (isNotCustom && (species.gen > this.gen ||
 				(species.isNonstandard && species.isNonstandard !== 'Unobtainable'))) continue;
+			if (requiredType && !species.types.includes(requiredType)) continue;
 			if (!formes[hasDexNumber[species.num]]) formes[hasDexNumber[species.num]] = [];
 			formes[hasDexNumber[species.num]].push(species.name);
 		}
@@ -1202,7 +1167,7 @@ export class RandomGen8Teams {
 			if (
 				!isDoubles &&
 				counter.get('Status') < 2 &&
-				['Hunger Switch', 'Speed Boost', 'Moody'].every(m => !abilities.has(m))
+				['Hunger Switch', 'Speed Boost'].every(m => !abilities.has(m))
 			) return {cull: true};
 			if (movePool.includes('leechseed') || (movePool.includes('toxic') && !moves.has('wish'))) return {cull: true};
 			if (isDoubles && (
@@ -1518,7 +1483,7 @@ export class RandomGen8Teams {
 		isNoDynamax: boolean
 	): boolean {
 		if ([
-			'Flare Boost', 'Hydration', 'Ice Body', 'Immunity', 'Innards Out', 'Insomnia', 'Misty Surge',
+			'Flare Boost', 'Hydration', 'Ice Body', 'Immunity', 'Innards Out', 'Insomnia', 'Misty Surge', 'Moody',
 			'Perish Body', 'Quick Feet', 'Rain Dish', 'Snow Cloak', 'Steadfast', 'Steam Engine',
 		].includes(ability)) return true;
 
@@ -1557,7 +1522,7 @@ export class RandomGen8Teams {
 		case 'Harvest':
 			return (abilities.has('Frisk') && !isDoubles);
 		case 'Hustle': case 'Inner Focus':
-			return (counter.get('Physical') < 2 || abilities.has('Iron Fist'));
+			return ((species.id !== 'glalie' && counter.get('Physical') < 2) || abilities.has('Iron Fist'));
 		case 'Infiltrator':
 			return (moves.has('rest') && moves.has('sleeptalk')) || (isDoubles && abilities.has('Clear Body'));
 		case 'Intimidate':
@@ -2018,7 +1983,7 @@ export class RandomGen8Teams {
 		if (counter.damagingMoves.size >= 4 && defensiveStatTotal >= 235) return 'Assault Vest';
 		if (
 			['clearsmog', 'curse', 'haze', 'healbell', 'protect', 'sleeptalk', 'strangesteam'].some(m => moves.has(m)) &&
-			(ability === 'Moody' || !isDoubles)
+			!isDoubles
 		) return 'Leftovers';
 	}
 
@@ -2055,8 +2020,7 @@ export class RandomGen8Teams {
 			(!teamDetails.defog || ability === 'Intimidate' || moves.has('uturn') || moves.has('voltswitch'))
 		);
 		const spinnerCase = (moves.has('rapidspin') && (ability === 'Regenerator' || !!counter.get('recovery')));
-		// Glalie prefers Leftovers
-		if (!isDoubles && (rockWeaknessCase || spinnerCase) && species.id !== 'glalie') return 'Heavy-Duty Boots';
+		if (!isDoubles && (rockWeaknessCase || spinnerCase)) return 'Heavy-Duty Boots';
 
 		if (
 			!isDoubles && this.dex.getEffectiveness('Ground', species) >= 2 && !types.has('Poison') &&
@@ -2123,8 +2087,8 @@ export class RandomGen8Teams {
 			const customScale: {[k: string]: number} = {
 				// These Pokemon are too strong and need a lower level
 				zaciancrowned: 65, calyrexshadow: 68, xerneas: 70, necrozmaduskmane: 72, zacian: 72, kyogre: 73, eternatus: 73,
-				zekrom: 74, marshadow: 75, glalie: 78, urshifurapidstrike: 79, haxorus: 80, inteleon: 80,
-				cresselia: 83, octillery: 84, jolteon: 84, swoobat: 84, dugtrio: 84, slurpuff: 84, polteageist: 84,
+				zekrom: 74, marshadow: 75, urshifurapidstrike: 79, haxorus: 80, inteleon: 80,
+				cresselia: 83, jolteon: 84, swoobat: 84, dugtrio: 84, slurpuff: 84, polteageist: 84,
 				wobbuffet: 86, scrafty: 86,
 				// These Pokemon are too weak and need a higher level
 				delibird: 100, vespiquen: 96, pikachu: 92, shedinja: 92, solrock: 90, arctozolt: 88, reuniclus: 87,
@@ -2187,7 +2151,7 @@ export class RandomGen8Teams {
 			(isDoubles && data.doublesMoves) ||
 			(isNoDynamax && data.noDynamaxMoves) ||
 			data.moves;
-		const movePool = (randMoves || Object.keys(this.dex.species.getLearnset(species.id)!)).slice();
+		const movePool: string[] = [...(randMoves || this.dex.species.getMovePool(species.id))];
 		if (this.format.gameType === 'multi' || this.format.gameType === 'freeforall') {
 			// Random Multi Battle uses doubles move pools, but Ally Switch fails in multi battles
 			// Random Free-For-All also uses doubles move pools, for now

@@ -16,7 +16,7 @@ import {execSync} from "child_process";
 import {BattleStream} from "../sim/battle-stream";
 import * as RoomGames from "./room-game";
 import type {Tournament} from './tournaments/index';
-import {RoomSettings} from './rooms';
+import type {RoomSettings} from './rooms';
 
 type ChannelIndex = 0 | 1 | 2 | 3 | 4;
 export type PlayerIndex = 1 | 2 | 3 | 4;
@@ -59,7 +59,6 @@ export class RoomBattlePlayer extends RoomGames.RoomGamePlayer<RoomBattle> {
 	hitDisconnectLimit = false;
 	wantsTie: boolean;
 	wantsOpenTeamSheets: boolean | null;
-	active: boolean;
 	eliminated: boolean;
 	/**
 	 * Total timer.
@@ -93,8 +92,15 @@ export class RoomBattlePlayer extends RoomGames.RoomGamePlayer<RoomBattle> {
  	*/
 	dcSecondsLeft: number;
 	/**
+	 * Is the user actually in the room?
+	 */
+	active: boolean;
+	/**
 	 * Used to track a user's last known connection status, and display
 	 * the proper message when it changes.
+	 *
+	 * `.active` is set when the user joins/leaves, but `.connected` is
+	 * only set after the relevant messages are sent.
 	 */
 	connected: boolean;
 	invite: ID;
@@ -114,7 +120,7 @@ export class RoomBattlePlayer extends RoomGames.RoomGamePlayer<RoomBattle> {
 		this.request = {rqid: 0, request: '', isWait: 'cantUndo', choice: ''};
 		this.wantsTie = false;
 		this.wantsOpenTeamSheets = null;
-		this.active = true;
+		this.active = !!user?.connected;
 		this.eliminated = false;
 
 		this.secondsLeft = 1;
@@ -260,6 +266,7 @@ export class RoomBattleTimer {
 		const requestedBy = requester ? ` (requested by ${requester.name})` : ``;
 		this.battle.room.add(`|inactive|Battle timer is ON: inactive players will automatically lose when time's up.${requestedBy}`).update();
 
+		this.checkActivity();
 		this.nextRequest();
 		return true;
 	}
@@ -402,7 +409,7 @@ export class RoomBattleTimer {
 	checkActivity() {
 		if (this.battle.ended) return;
 		for (const player of this.battle.players) {
-			const isConnected = !!player?.active;
+			const isConnected = !!player.active;
 
 			if (isConnected === player.connected) continue;
 
@@ -535,7 +542,7 @@ export class RoomBattle extends RoomGames.RoomGame<RoomBattlePlayer> {
 	ended: boolean;
 	active: boolean;
 	needsRejoin: Set<ID> | null;
-	replaySaved: boolean;
+	replaySaved: boolean | 'auto';
 	forcedSettings: {modchat?: string | null, privacy?: string | null} = {};
 	p1: RoomBattlePlayer;
 	p2: RoomBattlePlayer;
@@ -920,7 +927,8 @@ export class RoomBattle extends RoomGames.RoomGame<RoomBattlePlayer> {
 		if (this.replaySaved || Config.autosavereplays) {
 			const uploader = Users.get(winnerid || p1id);
 			if (uploader?.connections[0]) {
-				Chat.parse('/savereplay silent', this.room, uploader, uploader.connections[0]);
+				const command = Config.autosavereplays === 'private' ? '/savereplay auto' : '/savereplay silent';
+				Chat.parse(command, this.room, uploader, uploader.connections[0]);
 			}
 		}
 		const parentGame = this.room.parent && this.room.parent.game;
@@ -957,6 +965,7 @@ export class RoomBattle extends RoomGames.RoomGame<RoomBattlePlayer> {
 		}
 
 		logData.p1rating = p1rating;
+		if (this.replaySaved) logData.replaySaved = this.replaySaved;
 		logData.p2rating = p2rating;
 		if (this.playerCap > 2) {
 			logData.p3rating = p3rating;
@@ -1196,6 +1205,8 @@ export class RoomBattle extends RoomGames.RoomGame<RoomBattlePlayer> {
 		player.invite = '';
 		const slot = player.slot;
 		if (user) {
+			player.active = user.inRooms.has(this.roomid);
+			player.connected = true;
 			const options = {
 				name: player.name,
 				avatar: user.avatar,
@@ -1206,6 +1217,8 @@ export class RoomBattle extends RoomGames.RoomGame<RoomBattlePlayer> {
 
 			this.room.add(`|player|${slot}|${player.name}|${user.avatar}`);
 		} else {
+			player.active = false;
+			player.connected = false;
 			const options = {
 				name: '',
 			};
@@ -1432,7 +1445,7 @@ export class BestOfGame extends RoomGames.RoomGame {
 		).update();
 		this.updateDisplay();
 		this.room.add(`|html|<h2>Game ${this.games.length}</h2>`);
-		this.room.add(`|html|<a href="/${battle.roomid}">${battle.title}</a>`);
+		this.room.add(Utils.html`|html|<a href="/${battle.roomid}">${battle.title}</a>`);
 		this.room.update();
 	}
 	updateDisplay() {
@@ -1552,7 +1565,7 @@ export class BestOfGame extends RoomGames.RoomGame {
 		this.games[this.games.length - 1].winner = isTie ? '' : winnerid;
 
 		this.room.add(
-			`|html|${winnerid ? `${this.name(winnerid)} won game ${this.games.length}!` : `Game ${this.games.length} was a tie`}`
+			Utils.html`|html|${winnerid ? `${this.name(winnerid)} won game ${this.games.length}!` : `Game ${this.games.length} was a tie`}`
 		).update();
 		for (const k in this.wins) {
 			if (this.wins[k as 'p1' | 'p2'] >= this.winThreshold) {
@@ -1569,12 +1582,12 @@ export class BestOfGame extends RoomGames.RoomGame {
 		for (const userid in room.battle.playerTable) {
 			const player = room.battle.playerTable[userid];
 			player.id = userid as ID; // re-link users so that we can use timer properly
-			const name = Utils.escapeHTML(this.name(userid));
 			const button = `|c|&|/uhtml prompt-${userid},<button class="button notifying" name="send" value="${cmd}">I'm ready!</button>`;
-			const prompt = `|c|&|/log Are you ready for game ${this.games.length + 1}, ${name}?`;
+			const prompt = `|c|&|/log Are you ready for game ${this.games.length + 1}, ${this.name(userid)}?`;
 			player.sendRoom(prompt);
 			player.sendRoom(button);
 			// send it to the main room as well, in case they x out of the old one
+			if (!this.playerTable[userid]) throw new Error(`Player ${userid} in ${this.roomid} doesn't exist`);
 			this.playerTable[userid].sendRoom(prompt);
 			this.playerTable[userid].sendRoom(button);
 		}
@@ -1759,6 +1772,7 @@ export const PM = new ProcessManager.StreamProcessManager(module, () => new Room
 
 if (!PM.isParentProcess) {
 	// This is a child process!
+	require('source-map-support').install();
 	global.Config = require('./config-loader').Config;
 	global.Dex = require('../sim/dex').Dex;
 	global.Monitor = {
