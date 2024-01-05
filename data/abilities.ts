@@ -6066,7 +6066,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.actions.useMove(this.dex.getActiveMove("Explosion"), target);
 			}
 		},
-		name: "Infestive",
+		name: "InFestive",
 		rating: 3.5,
 		num: 200,
 		
