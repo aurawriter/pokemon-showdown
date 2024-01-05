@@ -592,7 +592,7 @@ export const Formats: FormatList = [
 	{
 		section: "Pet Mods",
 	},
-	{
+	/*{
 		name: "[Gen 9] VaporeMons",
 		desc: `A Gen 9 mod where Pok&eacute;mon, moves, items, abilities, and non-stat Pok&eacute;mon adjustments are added to the game.`,
 		threads: [
@@ -606,7 +606,7 @@ export const Formats: FormatList = [
 		onSwitchIn(pokemon) {
 			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
 		},
-	},
+	},*/
 	{
 		name: "[Gen 1] Modern Gen 1",
 		desc: `A Gen 1 solomod where all Pok&eacute;mon and moves from future generations are legal.`,
