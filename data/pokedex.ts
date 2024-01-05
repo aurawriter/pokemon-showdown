@@ -20314,7 +20314,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		eggGroups: ["Amorphous"],
 		otherFormes: ["Giftrap-Sacred", "Giftrap-Mascot", "Giftrap-Carol"],
-		formeOrder: ["Giftrap", "Giftrap-Sacred", "Giftrap-Mascot", "Giftrap-Carol"],
+		formeOrder: ["Giftrap","Giftrap-Sacred","Giftrap-Mascot","Giftrap-Carol"],
 	},
 	giftrapsacred: {
 		num: -1156,
@@ -20327,8 +20327,8 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 0.3,
 		color: "Red",
 		eggGroups: ["Amorphous"],
+		changesFrom: "Giftrap",
 		otherFormes: ["Giftrap", "Giftrap-Mascot", "Giftrap-Carol"],
-		formeOrder: ["Giftrap", "Giftrap-Sacred", "Giftrap-Mascot", "Giftrap-Carol"],
 	},
 	giftrapmascot: {
 		num: -1156,
@@ -20342,7 +20342,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		eggGroups: ["Amorphous"],
 		otherFormes: ["Giftrap", "Giftrap-Sacred", "Giftrap-Carol"],
-		formeOrder: ["Giftrap", "Giftrap-Sacred", "Giftrap-Mascot", "Giftrap-Carol"],
+		changesFrom: "Giftrap",
 	},
 	giftrapcarol: {
 		num: -1156,
@@ -20356,7 +20356,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		eggGroups: ["Amorphous"],
 		otherFormes: ["Giftrap", "Giftrap-Sacred", "Giftrap-Mascot"],
-		formeOrder: ["Giftrap", "Giftrap-Sacred", "Giftrap-Mascot", "Giftrap-Carol"],
+		changesFrom: "Giftrap",
 	},
 	jolibirdmilk: {
 		num: -1157,
