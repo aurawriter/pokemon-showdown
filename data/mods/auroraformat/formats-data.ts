@@ -1234,7 +1234,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	delibird: {
-		tier: "Illegal",
+		tier: "LC",
 	},
 	mantyke: {
 		isNonstandard: "Past",
@@ -4760,5 +4760,48 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	abysmatoth: {
 		tier: "Uber",
+	},
+	giftrap: {
+		tier: "OU",
+	},
+	giftrapcarol: {
+		tier: "OU",
+	},
+	giftrapsacred: {
+		tier: "OU",
+	},
+	giftrapmascot: {
+		tier: "OU",
+	},
+	jolibirdmilk: {
+		tier: "OU",
+	},
+	jolibirdcookies: {
+		tier: "OU",
+	},
+	archaludon: {
+		tier: "Illegal",
+	},
+	hydrapple: {
+		tier: "OU",
+	},
+	gougingfire: {
+		tier: "Illegal",
+	},
+	ragingbolt: {
+		tier: "Illegal",
+	},
+	ironboulder: {
+		tier: "Illegal",
+	},
+	ironcrown: {
+		tier: "Illegal",
+	},
+	terapagos: {
+		tier: "Illegal",
+	},
+	pecharunt: {
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 };
