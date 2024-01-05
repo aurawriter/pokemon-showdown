@@ -20360,7 +20360,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	},
 	jolibirdmilk: {
 		num: -1157,
-		name: "Delibird",
+		name: "Jolibird-Milk",
 		types: ["Ice", "Flying"],
 		baseStats: {hp: 75, atk: 115, def: 60, spa: 115, spd: 65, spe: 90},
 		abilities: {0: "Vital Spirit", 1: "Hustle", H: "Guts"},
@@ -20374,7 +20374,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	},
 	jolibirdcookies: {
 		num: -1157,
-		name: "Delibird",
+		name: "Jolibird-Cookies",
 		types: ["Ice", "Fairy"],
 		baseStats: {hp: 90, atk: 60, def: 115, spa: 65, spd: 115, spe: 75},
 		abilities: {0: "Vital Spirit", 1: "Hustle", H: "Thick Fat"},
