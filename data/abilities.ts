@@ -1083,6 +1083,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 2,
 	},
+	allergyseason: {
+		onStart(source) {
+			this.field.setWeather('pollen');
+		},
+		name: "Allergy Season",
+		rating: 4,
+		num: 2,
+	},
 	drought: {
 		onStart(source) {
 			for (const action of this.queue) {
@@ -1616,7 +1624,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	grasspelt: {
 		onModifyDefPriority: 6,
-		onModifyDef(pokemon) {
+		onModifyDef(def, pokemon) {
 			if (this.field.isTerrain('grassyterrain') && !pokemon.hasItem('safarihelmet')) return this.chainModify(1.5);
 		},
 		isBreakable: true,
@@ -1796,6 +1804,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 134,
 	},
 	honeygather: {
+		onModifySpe(spe, pokemon) {
+			if (['pollen'].includes(pokemon.effectiveWeather())) {
+				return this.chainModify(2);
+			}
+		},
 		name: "Honey Gather",
 		rating: 0,
 		num: 118,
@@ -3067,6 +3080,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Parental Bond",
+		rating: 4.5,
+		num: 185,
+	},
+	hivemind: {
+		onPrepareHit(source, target, move) {
+			if (move.category === 'Status' || move.multihit || move.flags['noparentalbond'] || move.flags['charge'] ||
+			move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax) return;
+			move.multihit = 4;
+			move.multihitType = 'hivemind';
+		},
+		// Damage modifier implemented in BattleActions#modifyDamage()
+		onSourceModifySecondaries(secondaries, target, source, move) {
+			if (move.multihitType === 'hivemind' && move.id === 'secretpower' && move.hit < 2) {
+				// hack to prevent accidentally suppressing King's Rock/Razor Fang
+				return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+			}
+		},
+		name: "Hive Mind",
 		rating: 4.5,
 		num: 185,
 	},
@@ -4605,7 +4636,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 293,
 	},
 	surgesurfer: {
-		onModifySpe(spe) {
+		onModifySpe(spe, pokemon) {
 			if (this.field.isTerrain('electricterrain') && !pokemon.hasItem('safarihelmet')) {
 				return this.chainModify(2);
 			}
@@ -5540,7 +5571,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onResidualOrder: 28,
 		onResidualSubOrder: 2,
 		onResidual(pokemon) {
-			if (pokemon.activeTurns && (this.field.getWeather('raindance')||this.field.getWeather('primordialsea'))) {
+			if (pokemon.activeTurns && (this.field.getWeather().id == 'raindance')||this.field.getWeather().id == 'primordialsea') {
 				this.boost({ def: 1, spd: 1 });
 			}
 		},

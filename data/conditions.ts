@@ -959,4 +959,43 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return bp;
 		},
 	},
+	pollen: {
+		name: 'Pollen',
+		effectType: 'Weather',
+		duration: 5,
+		durationCallback(source, effect) {
+			if (source?.hasItem('floweryrock')) {
+				return 8;
+			}
+			return 5;
+		},
+		onWeatherModifyDamage(damage, attacker, defender, move) {
+			if(attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod<0)
+			{
+				return this.chainModify(2);
+			}
+		},
+		onModifySecondaries(secondaries, target) {
+			if(target.hasType('Bug'))
+			{
+			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+			}
+		},
+		onFieldStart(field, source, effect) {
+			if (effect?.effectType === 'Ability') {
+				if (this.gen <= 5) this.effectState.duration = 0;
+				this.add('-weather', 'Pollen', '[from] ability: ' + effect.name, '[of] ' + source);
+			} else {
+				this.add('-weather', 'Pollen');
+			}
+		},
+		onFieldResidualOrder: 1,
+		onFieldResidual() {
+			this.add('-weather', 'Pollen', '[upkeep]');
+			this.eachEvent('Weather');
+		},
+		onFieldEnd() {
+			this.add('-weather', 'none');
+		},
+	},
 };

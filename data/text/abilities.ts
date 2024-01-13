@@ -410,6 +410,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Drizzle",
 		shortDesc: "On switch-in, this Pokemon summons Rain Dance.",
 	},
+	allergyseason: {
+		name: "Allergy Season",
+		shortDesc: "On switch-in, this Pokemon summons Pollen.",
+	},
 	drought: {
 		name: "Drought",
 		shortDesc: "On switch-in, this Pokemon summons Sunny Day.",
@@ -706,7 +710,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	honeygather: {
 		name: "Honey Gather",
-		shortDesc: "No competitive use.",
+		desc: "If Pollen is active, this Pokemon's Speed is doubled. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+		shortDesc: "If Pollen is active, this Pokemon's Speed is doubled.",
 	},
 	hospitality: {
 		name: "Hospitality",

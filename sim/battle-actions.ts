@@ -1727,6 +1727,11 @@ export class BattleActions {
 			this.battle.debug(`Parental Bond modifier: ${bondModifier}`);
 			baseDamage = this.battle.modify(baseDamage, bondModifier);
 		}
+		else if (move.multihitType === 'hivemind' && move.hit >1) {
+			const mindModifier = .125;
+			this.battle.debug(`Hive Mind modifier: ${mindModifier}`);
+			baseDamage = this.battle.modify(baseDamage,mindModifier);
+		}
 
 		// weather modifier
 		baseDamage = this.battle.runEvent('WeatherModifyDamage', pokemon, target, move, baseDamage);

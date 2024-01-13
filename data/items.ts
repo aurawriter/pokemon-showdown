@@ -1250,6 +1250,14 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 285,
 		gen: 4,
 	},
+	floweryrock: {
+		name: "Flowery Rock",
+		spritenum: 88,
+		fling: {
+			basePower: 60,
+		},
+		num: 285,
+	},
 	heavyrock: {
 		name: "Heavy Rock",
 		spritenum: 88,
