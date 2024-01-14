@@ -1009,24 +1009,24 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onWeather(target) {
-			if(target.hasType("Steel")) {
+			if(target.hasType("Steel") && !target.hasType("Poison")) {
 				this.damage(target.baseMaxhp / 8)
 			}
-			else {
+			else if (!target.hasType("Poison")) {
 				this.damage(target.baseMaxhp / 16);
 			}
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;
-				this.add('-weather', 'Pollen', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-weather', 'Acid Rain', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-weather', 'Pollen');
+				this.add('-weather', 'Acid Rain');
 			}
 		},
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
-			this.add('-weather', 'Pollen', '[upkeep]');
+			this.add('-weather', 'Acid Rain', '[upkeep]');
 			this.eachEvent('Weather');
 		},
 		onFieldEnd() {
