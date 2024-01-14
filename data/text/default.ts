@@ -271,6 +271,26 @@ export const DefaultText: {[k: string]: DefaultText} = {
 		upkeep: "  (The sandstorm is raging.)",
 		damage: "  [POKEMON] is buffeted by the sandstorm!",
 	},
+	gravity: {
+		weatherName: "Gravity",
+		start: "  Gravity intensified!",
+		end: "  Gravity returned to normal!",
+		cant: "[POKEMON] can't use [MOVE] because of gravity!",
+		activate: "[POKEMON] fell from the sky due to the gravity!",
+	},
+	pollen: {
+		weatherName: "Pollen",
+		start: "Pollen swirls through the air",
+		end: "The pollen dissipated.",
+		upkeep: " (Pollen continues to drift through the air.)",
+	},
+	acidrain: {
+		weatherName: "Acid Rain",
+		start: "Acidic rain begins to pour down.",
+		end: "The acid rain stopped.",
+		upkeep: " (Acid rain continues to fall.)",
+		damage: " [POKEMON] is burned by the acid rain!",
+	},
 	sunnyday: {
 		weatherName: "Sun",
 		start: "  The sunlight turned harsh!",
