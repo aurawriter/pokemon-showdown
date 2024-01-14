@@ -1091,6 +1091,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 2,
 	},
+	pollution: {
+		onStart(source) {
+			this.field.setWeather('acidrain');
+		},
+		name: "Pollution",
+		rating: 4,
+		num: 2,
+	},
 	drought: {
 		onStart(source) {
 			for (const action of this.queue) {

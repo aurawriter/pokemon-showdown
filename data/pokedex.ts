@@ -2049,7 +2049,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Muk",
 		types: ["Poison"],
 		baseStats: {hp: 105, atk: 105, def: 75, spa: 65, spd: 100, spe: 50},
-		abilities: {0: "Stench", 1: "Sticky Hold", H: "Poison Touch"},
+		abilities: {0: "Pollution", 1: "Sticky Hold", H: "Poison Touch"},
 		heightm: 1.2,
 		weightkg: 30,
 		color: "Purple",
