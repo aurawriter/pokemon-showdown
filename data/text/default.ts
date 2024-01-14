@@ -361,12 +361,6 @@ export const DefaultText: {[k: string]: DefaultText} = {
 	},
 
 	// field effects
-	gravity: {
-		start: "  Gravity intensified!",
-		end: "  Gravity returned to normal!",
-		cant: "[POKEMON] can't use [MOVE] because of gravity!",
-		activate: "[POKEMON] fell from the sky due to the gravity!",
-	},
 	magicroom: {
 		start: "  It created a bizarre area in which Pok\u00E9mon's held items lose their effects!",
 		end: "  Magic Room wore off, and held items' effects returned to normal!",
