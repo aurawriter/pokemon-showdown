@@ -1648,6 +1648,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 229,
 	},
+	hauntedsurge: {
+		onStart(source) {
+			this.field.setTerrain('hauntedterrain');
+		},
+		name: "Haunted Surge",
+		rating: 4,
+		num: 229,
+	},
 	grimneigh: {
 		onSourceAfterFaint(length, target, source, effect) {
 			if (effect && effect.effectType === 'Move') {

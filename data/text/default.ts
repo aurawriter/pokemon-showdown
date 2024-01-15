@@ -359,6 +359,11 @@ export const DefaultText: {[k: string]: DefaultText} = {
 		end: "  The weirdness disappeared from the battlefield!",
 		block: "  [POKEMON] is protected by the Psychic Terrain!",
 	},
+	hauntedterrain: {
+		start: "  Ominous fog fills the battlefield!",
+		end: "  The ominous fog disappeared from the battlefield!",
+		drain: " [POKEMON] sapped [TARGET]'s life force!",
+	},
 
 	// field effects
 	magicroom: {
