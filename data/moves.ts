@@ -23303,7 +23303,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 			},
 			onDeductPP(target, source) {
-				if(target.isGrounded()&&!target.hasItem("safarihelmet")&&!target.hasType("Ghost"))
+				if(source.isGrounded()&&!source.hasItem("safarihelmet")&&!source.hasType("Ghost"))
 				{
 				return 1;
 				}
