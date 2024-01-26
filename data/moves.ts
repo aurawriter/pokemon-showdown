@@ -8037,7 +8037,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
 				const weakenedMoves = ['earthquake', 'bulldoze', 'magnitude'];
-				if (weakenedMoves.includes(move.id) && defender.isGrounded() && !defender.isSemiInvulnerable() && !(defender.hasItem('safarihelmet')||attacker.hasItem('safarihelmet'))) {
+				if (weakenedMoves.includes(move.id) && defender.isGrounded() && !defender.isSemiInvulnerable() && !defender.hasItem('safarihelmet')||attacker.hasItem('safarihelmet')) {
 					this.debug('move weakened by grassy terrain');
 					return this.chainModify(0.5);
 				}
@@ -14975,7 +14975,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (effect && (effect.priority <= 0.1 || effect.target === 'self')) {
 					return;
 				}
-				if (target.isSemiInvulnerable() || target.isAlly(source) || !target.hasItem('safarihelmet')) return;
+				if (target.isSemiInvulnerable() || target.isAlly(source) || target.hasItem('safarihelmet')) return;
 				if (!target.isGrounded()) {
 					const baseMove = this.dex.moves.get(effect.id);
 					if (baseMove.priority > 0) {
@@ -14988,7 +14988,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && attacker.hasItem('safarihelmet')) {
+				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
 					this.debug('psychic terrain boost');
 					return this.chainModify([5325, 4096]);
 				}
@@ -16038,7 +16038,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		basePowerCallback(source, target, move) {
-			if (this.field.isTerrain('electricterrain') && target.isGrounded() && !(source.hasItem('safarihelmet')||target.hasItem('safarihelmet'))) {
+			if (this.field.isTerrain('electricterrain') && target.isGrounded() && !source.hasItem('safarihelmet')||target.hasItem('safarihelmet')) {
 				if (!source.isAlly(target)) this.hint(`${move.name}'s BP doubled on grounded target.`);
 				return move.basePower * 2;
 			}
@@ -23303,7 +23303,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 			},
 			onDeductPP(target, source) {
-				if(source.isGrounded()&&!source.hasItem("safarihelmet")&&!source.hasType("Ghost"))
+				if(source.isGrounded()&& !source.hasItem("safarihelmet") && !source.hasType("Ghost"))
 				{
 				return 1;
 				}
