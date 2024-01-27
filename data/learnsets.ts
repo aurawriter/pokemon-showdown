@@ -103001,7 +103001,7 @@ swinub: {
             fallingstar: ["9L1"],
             cometrush: ["9L1"],
             cosmicimpact: ["9L1"],
-            wormhopewarp: ["9L1"],
+            wormholewarp: ["9L1"],
             astralrift: ["9L1"],
             planarbinding: ["9L1"],
             clearsmog: ["9L1"],
