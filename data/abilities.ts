@@ -963,6 +963,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 191,
 	},
+	singularity: {
+		onStart() {
+			this.effectState.duration = this.field.weatherState?.duration;
+			if(this.field.getWeather().id === 'gravity' && this.field.weatherState.duration > 0)
+			{
+				this.field.weatherState.duration = 0;
+			}
+		},
+		onEnd() {
+			if(this.field.getWeather().id === 'gravity' && this.effectState.duration && this.field.weatherState?.duration==0) {
+				this.field.weatherState.duration = this.effectState.duration;
+			}
+		},
+		onAnySetWeather(target, source, weather) {
+			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+			if (this.field.getWeather().id === 'gravity' && !strongWeathers.includes(weather.id)) return false;
+		},
+		name: "Singularity",
+		rating: 4.5,
+		num: 190,
+	},
 	desolateland: {
 		onStart(source) {
 			this.field.setWeather('desolateland');
@@ -1771,12 +1792,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 131,
 	},
 	heathaze: {
-		onModifyAccuracyPriority: -1,
-		onModifyAccuracy(accuracy) {
-			if (typeof accuracy !== 'number') return;
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
-				this.debug('Heat Haze - decreasing accuracy');
-				return this.chainModify([3277, 4096]);
+		onModifySpD(spd,pokemon) {
+			if (this.field.isWeather(['sunnyday'])) {
+				return this.chainModify(1.2);
 			}
 		},
 		isBreakable: true,
@@ -3919,13 +3937,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onImmunity(type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
-		onModifyAccuracyPriority: -1,
-		onModifyAccuracy(accuracy) {
-			if (typeof accuracy !== 'number') return;
-			if (this.field.isWeather('sandstorm')) {
-				this.debug('Sand Veil - decreasing accuracy');
-				return this.chainModify([3277, 4096]);
-			}
+		onModifyDef(def, pokemon) {
+			return this.chainModify(1.2);
 		},
 		isBreakable: true,
 		name: "Sand Veil",
@@ -4263,12 +4276,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onImmunity(type, pokemon) {
 			if (type === 'hail') return false;
 		},
-		onModifyAccuracyPriority: -1,
-		onModifyAccuracy(accuracy) {
-			if (typeof accuracy !== 'number') return;
+		onModifySpD(spd,pokemon) {
 			if (this.field.isWeather(['hail', 'snow'])) {
-				this.debug('Snow Cloak - decreasing accuracy');
-				return this.chainModify([3277, 4096]);
+				return this.chainModify(1.2);
 			}
 		},
 		isBreakable: true,
@@ -6164,4 +6174,81 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 307,
 	},
+	pollenbeard: {
+		onStart(pokemon) {
+			if (this.field.isWeather(['pollen']) &&
+				pokemon.species.id === 'sneevilshaved' && !pokemon.transformed) {
+				this.add('-activate', pokemon, 'ability: Pollen Beard');
+				this.effectState.busted = false;
+				pokemon.formeChange('Sneevil', this.effect, true);
+			}
+		},
+		onDamagePriority: 1,
+		onDamage(damage, target, source, effect) {
+			if (
+				effect && effect.effectType === 'Move' && effect.category === 'Special' &&
+				target.species.id === 'sneevil' && !target.transformed
+			) {
+				this.add('-activate', target, 'ability: Pollen Beard');
+				this.effectState.busted = true;
+				return 0;
+			}
+		},
+		onCriticalHit(target, type, move) {
+			if (!target) return;
+			if (move.category !== 'Special' || target.species.id !== 'sneevil' || target.transformed) return;
+			if (target.volatiles['substitute'] && !(move.flags['bypasssub'] || move.infiltrates)) return;
+			if (!target.runImmunity(move.type)) return;
+			return false;
+		},
+		onEffectiveness(typeMod, target, type, move) {
+			if (!target) return;
+			if (move.category !== 'Special' || target.species.id !== 'sneevil' || target.transformed) return;
+
+			const hitSub = target.volatiles['substitute'] && !move.flags['bypasssub'] && !(move.infiltrates && this.gen >= 6);
+			if (hitSub) return;
+
+			if (!target.runImmunity(move.type)) return;
+			return 0;
+		},
+		onUpdate(pokemon) {
+			if (pokemon.species.id === 'sneevil' && this.effectState.busted) {
+				pokemon.formeChange('Sneevil-Shaved', this.effect, true);
+			}
+		},
+		onWeatherChange(pokemon, source, sourceEffect) {
+			// pollen resuming because Cloud Nine/Air Lock ended does not trigger Ice Face
+			if ((sourceEffect as Ability)?.suppressWeather) return;
+			if (!pokemon.hp) return;
+			if (this.field.isWeather(['pollen']) &&
+				pokemon.species.id === 'sneevilshaved' && !pokemon.transformed) {
+				this.add('-activate', pokemon, 'ability: Pollen Beard');
+				this.effectState.busted = false;
+				pokemon.formeChange('Sneevil', this.effect, true);
+			}
+		},
+		isBreakable: true,
+		isPermanent: true,
+		name: "Pollen Beard",
+		rating: 3,
+		num: 248,
+	},
+	caustic: {
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			const target = pokemon.side.foe.active[pokemon.side.foe.active.length - 1 - pokemon.position];
+			if (pokemon.activeTurns && target.activeTurns && this.field.getWeather().id === 'acidrain' ) {
+				this.boost({def: -1,spd: -1}, target, pokemon, null, true);
+			}
+		},
+		name: "Caustic",
+		rating: 4.5,
+		num: 3,
+	},
+	miasma: {
+		name: "Miasma",
+		rating: 4.5,
+		num: 3,
+	}
 };
