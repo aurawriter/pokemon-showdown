@@ -23348,7 +23348,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Dragon' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
 					this.debug('draconic terrain boost');
-					return this.chainModify((1+(defender.hp*.5)));
+					return this.chainModify((1+((defender.hp/defender.maxhp)/2)));
 				}
 			},
 			onFieldStart(field, source, effect) {
