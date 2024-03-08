@@ -2450,4 +2450,9 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "When this Pokemon is KO'd by another Pokemon, it uses Explosion. Poison power 1.5x",
 		
 	},
+	miasma: {
+		name: "Miasma",
+		desc: "This Pokemon cures statuses and heals 1/8th HP in acid rain; immune to Acid Rain",
+		shortDesc: "When Acid Rain: Heal 1/8. Cure status. Immune to Acid Rain"
+	}
 };

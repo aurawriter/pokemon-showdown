@@ -1009,12 +1009,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onWeather(target) {
-			if(target.hasType("Steel") && !target.hasType("Poison")) {
-				this.damage(target.baseMaxhp / 8)
-			}
-			else if (!target.hasType("Poison")) {
-				this.damage(target.baseMaxhp / 16);
-			}
+			this.damage(target.baseMaxhp / 16);
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {

@@ -964,10 +964,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 191,
 	},
 	singularity: {
-		onStart() {
-			this.effectState.duration = this.field.weatherState?.duration;
-			if(this.field.getWeather().id === 'gravity' && this.field.weatherState.duration > 0)
+		onResidual() {
+			if(!this.effectState.duration && this.field.getWeather().id === 'gravity' && this.field.weatherState.duration > 0)
 			{
+				this.effectState.duration = this.field.weatherState?.duration;
 				this.field.weatherState.duration = 0;
 			}
 		},
@@ -1117,6 +1117,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.field.setWeather('acidrain');
 		},
 		name: "Pollution",
+		rating: 4,
+		num: 2,
+	},
+	draconicsurge: {
+		onStart(source) {
+			this.field.setTerrain('draconicterrain');
+		},
+		name: "Draconic Surge",
 		rating: 4,
 		num: 2,
 	},
@@ -6247,8 +6255,33 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 3,
 	},
 	miasma: {
+		onResidualOrder: 28,
+		onResidualSubOrder:2,
+		onResidual(pokemon){
+			if(pokemon.hp && this.field.getWeather().id==='acidrain'){
+				pokemon.cureStatus();
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'acidrain') {
+				this.heal(target.baseMaxhp / 8);
+				return false;
+			}
+		},
 		name: "Miasma",
 		rating: 4.5,
 		num: 3,
-	}
+	},
+	vampiric: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.drain!=null) {
+				this.debug('Vampiric boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Vampiric",
+		rating: 3.5,
+		num: 292,
+	},
 };

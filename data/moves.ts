@@ -23320,4 +23320,54 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {def: 1}},
 		contestType: "Beautiful",
 	},
+	draconicterrain: {
+		num: 604,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Draconic Terrain",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1},
+		terrain: 'draconicterrain',
+		condition: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source?.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onModifyMove(move,attacker, defender) {
+				if(attacker.isGrounded && defender?.isGrounded() && !attacker.hasItem('safarihelmet')&& !defender?.hasItem('safarihelmet'))
+				{
+					move.ignoreAbility = true;
+				}
+			},
+			onBasePowerPriority: 6,
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Dragon' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
+					this.debug('draconic terrain boost');
+					return this.chainModify((1+(defender.hp*.5)));
+				}
+			},
+			onFieldStart(field, source, effect) {
+				if (effect?.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Draconic Terrain', '[from] ability: ' + effect.name, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Draconic Terrain');
+				}
+			},
+			onFieldResidualOrder: 27,
+			onFieldResidualSubOrder: 7,
+			onFieldEnd() {
+				this.add('-fieldend', 'move: Draconic Terrain');
+			},
+		},
+		secondary: null,
+		target: "all",
+		type: "Dragon",
+		zMove: {boost: {spe: 1}},
+		contestType: "Clever",
+	},
 };
