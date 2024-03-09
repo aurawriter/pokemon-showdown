@@ -2454,5 +2454,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Miasma",
 		desc: "This Pokemon cures statuses and heals 1/8th HP in acid rain; immune to Acid Rain",
 		shortDesc: "When Acid Rain: Heal 1/8. Cure status. Immune to Acid Rain"
-	}
+	},
+	seance: {
+		name: "seance",
+		desc: "If Haunted Terrain: Frisk and Anticipation and moves can't miss.",
+		activate: "  [POKEMON] shuddered!",
+	},
 };
