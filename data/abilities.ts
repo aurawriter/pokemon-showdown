@@ -6286,7 +6286,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	seance: {
 		onStart(pokemon) {
-			if(this.field.isTerrain('hauntedterrain') && !pokemon.hasItem('safarihelmet'))
+			if(this.field.isTerrain('hauntedterrain') && !pokemon.hasItem('safarihelmet') && pokemon.)
 			{
 			for (const target of pokemon.foes()) {
 				if (target.item) {
@@ -6306,6 +6306,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		}
+		},
+		onFoeSwitchIn(pokemon){
+		
 		},
 		onSourceModifyAccuracy(accuracy) {
 			if(typeof accuracy !== 'number') return;
