@@ -6284,4 +6284,37 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 292,
 	},
+	seance: {
+		onStart(pokemon) {
+			if(this.field.isTerrain('hauntedterrain') && !pokemon.hasItem('safarihelmet'))
+			{
+			for (const target of pokemon.foes()) {
+				if (target.item) {
+					this.add('-item', target, target.getItem().name, '[from] ability: Seance', '[of] ' + pokemon, '[identify]');
+				}
+				for (const moveSlot of target.moveSlots) {
+					const move = this.dex.moves.get(moveSlot.move);
+					if (move.category === 'Status') continue;
+					const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
+					if (
+						this.dex.getImmunity(moveType, pokemon) && this.dex.getEffectiveness(moveType, pokemon) > 0 ||
+						move.ohko
+					) {
+						this.add('-ability', pokemon, 'Seance');
+						return;
+					}
+				}
+			}
+		}
+		},
+		onAccuracy(accuracy, target, source, move) {
+			if (move && this.field.isTerrain('hauntedterrain') && !source.hasItem('safarihelmet')) {
+				return true;
+			}
+			return accuracy;
+		},
+		name: "Seance",
+		rating: 3.5,
+		num: 292,
+	},
 };
