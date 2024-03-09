@@ -23372,7 +23372,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	accuracytest: {
 		num: 33,
-		accuracy: 100,
+		accuracy: 5,
 		basePower: 40,
 		category: "Physical",
 		name: "Accuracy Test",
