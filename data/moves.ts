@@ -23371,13 +23371,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Clever",
 	},
 	accuracytest: {
+		num: 33,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
 		name: "Accuracy Test",
-		type: "Normal",
-		basePower: 10,
-		accuracy: 10,
-		category: "Special",
+		pp: 35,
 		priority: 0,
-		target: "all",
-		pp: 25,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		contestType: "Tough",
 	}
 };
