@@ -23370,4 +23370,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spe: 1}},
 		contestType: "Clever",
 	},
+	accuracytest: {
+		name: "Accuracy Test",
+		type: "Normal",
+		basePower: 10,
+		accuracy: 10,
+		category: "Special",
+		priority: 0,
+		target: "all",
+		pp: 25,
+	}
 };
