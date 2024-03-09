@@ -1441,7 +1441,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	badguy:{
 		name: "Bad Guy",
-		shortDesc: "This Pokemon's Dark-type moves have increased power based on stat boosts. Does not affect Power Trip.",
+		shortDesc: "Dark moves (except Power Trip) have +20 power per stat boost",
 	},
 	propellertail: {
 		name: "Propeller Tail",
