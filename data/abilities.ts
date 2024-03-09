@@ -6336,6 +6336,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 292,
 	},
 	dragonblessing: {
+		//Being effected by terrains is handled in moves.ts
 		onModifySpe(spe, pokemon) {
 			if (this.field.isTerrain('draconicterra') && !pokemon.hasItem('safarihelmet')) {
 				return this.chainModify(2);
