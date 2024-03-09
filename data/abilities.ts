@@ -5747,7 +5747,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					return this.chainModify(1.5);
 				}
 			},
-			onAnyAccuracy(accuracy, target, source, move) {
+			onAccuracy(accuracy, target, source, move) {
 			if ((move && (source === this.effectState.target || target === this.effectState.target)) && move.type ==='Light') {
 				return true;
 			}
@@ -6307,11 +6307,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		}
 		},
-		onAccuracy(accuracy, target, source, move) {
-			if (move && this.field.isTerrain('hauntedterrain') && !source.hasItem('safarihelmet')) {
+		onSourceModifyAccuracy(accuracy) {
+			if(typeof accuracy !== 'number') return;
+			if (this.field.isTerrain('hauntedterrain') && !this.hasItem('safarihelmet') && this.isGrounded()) {
 				return true;
 			}
-			return accuracy;
 		},
 		name: "Seance",
 		rating: 3.5,
