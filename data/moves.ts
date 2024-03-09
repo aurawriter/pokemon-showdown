@@ -4683,7 +4683,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				return 5;
 			},
 			onSetStatus(status, target, source, effect) {
-				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable() && !target.hasItem('safarihelmet') ) {
+				if (status.id === 'slp' && (target.isGrounded()||target.ability==='dragonblessing') && !target.isSemiInvulnerable() && !target.hasItem('safarihelmet') ) {
 					if (effect.id === 'yawn' || (effect.effectType === 'Move' && !effect.secondaries)) {
 						this.add('-activate', target, 'move: Electric Terrain');
 					}
@@ -4691,7 +4691,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 			},
 			onTryAddVolatile(status, target) {
-				if (!target.isGrounded() || target.isSemiInvulnerable() || target.hasItem('safarihelmet')) return;
+				if (!(target.isGrounded()||target.ability==='dragonblessing') || target.isSemiInvulnerable() || target.hasItem('safarihelmet')) return;
 				if (status.id === 'yawn') {
 					this.add('-activate', target, 'move: Electric Terrain');
 					return null;
@@ -4699,7 +4699,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
+				if (move.type === 'Electric' && (attacker.isGrounded()||attacker.ability==='dragonblessing') && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
 					this.debug('electric terrain boost');
 					return this.chainModify([5325, 4096]);
 				}
@@ -5139,13 +5139,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onBasePower(basePower, source) {
-			if (this.field.isTerrain('psychicterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('psychicterrain') && (source.isGrounded()||source.ability==='dragonblessing') && !source.hasItem('safarihelmet')) {
 				this.debug('terrain buff');
 				return this.chainModify(1.5);
 			}
 		},
 		onModifyMove(move, source, target) {
-			if (this.field.isTerrain('psychicterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('psychicterrain') && (source.isGrounded()||source.ability==='dragonblessing') && !source.hasItem('safarihelmet')) {
 				move.target = 'allAdjacentFoes';
 			}
 		},
@@ -8007,7 +8007,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onModifyPriority(priority, source, target, move) {
-			if (this.field.isTerrain('grassyterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('grassyterrain') && (source.isGrounded()||source.ability==='dragonblessing') && !source.hasItem('safarihelmet')) {
 				return priority + 1;
 			}
 		},
@@ -8041,7 +8041,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					this.debug('move weakened by grassy terrain');
 					return this.chainModify(0.5);
 				}
-				if (move.type === 'Grass' && attacker.isGrounded() && !attacker.hasItem('safarihelmet')) {
+				if (move.type === 'Grass' && (attacker.isGrounded()||attacker.ability==='dragonblessing') && !attacker.hasItem('safarihelmet')) {
 					this.debug('grassy terrain boost');
 					return this.chainModify([5325, 4096]);
 				}
@@ -8056,7 +8056,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onResidualOrder: 5,
 			onResidualSubOrder: 2,
 			onResidual(pokemon) {
-				if (pokemon.isGrounded() && !pokemon.isSemiInvulnerable() && !pokemon.hasItem('safarihelmet')) {
+				if ((pokemon.isGrounded()||pokemon.ability==='dragonblessing') && !pokemon.isSemiInvulnerable() && !pokemon.hasItem('safarihelmet')) {
 					this.heal(pokemon.baseMaxhp / 16, pokemon, pokemon);
 				} else {
 					this.debug(`Pokemon semi-invuln or not grounded; Grassy Terrain skipped`);
@@ -12790,7 +12790,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		selfdestruct: "always",
 		onBasePower(basePower, source) {
-			if (this.field.isTerrain('mistyterrain') && source.isGrounded() && !source.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('mistyterrain') && (source.isGrounded()||source.ability==='dragonblessing') && !source.hasItem('safarihelmet')) {
 				this.debug('misty terrain boost');
 				return this.chainModify(1.5);
 			}
@@ -12818,14 +12818,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 				return 5;
 			},
 			onSetStatus(status, target, source, effect) {
-				if (!target.isGrounded() || target.isSemiInvulnerable() || target.hasItem('safarihelmet')) return;
+				if (!(target.isGrounded()||target.ability==='dragonblessing') || target.isSemiInvulnerable() || target.hasItem('safarihelmet')) return;
 				if (effect && ((effect as Move).status || effect.id === 'yawn')) {
 					this.add('-activate', target, 'move: Misty Terrain');
 				}
 				return false;
 			},
 			onTryAddVolatile(status, target, source, effect) {
-				if (!target.isGrounded() || target.isSemiInvulnerable() || target.hasItem('safarihelmet')) return;
+				if (!(target.isGrounded()||target.ability==='dragonblessing') || target.isSemiInvulnerable() || target.hasItem('safarihelmet')) return;
 				if (status.id === 'confusion') {
 					if (effect.effectType === 'Move' && !effect.secondaries) this.add('-activate', target, 'move: Misty Terrain');
 					return null;
@@ -12833,7 +12833,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Dragon' && defender.isGrounded() && !defender.isSemiInvulnerable() && !defender.hasItem('safarihelmet')) {
+				if (move.type === 'Dragon' && (defender.isGrounded()||defender.ability==='dragonblessing') && !defender.isSemiInvulnerable() && !defender.hasItem('safarihelmet')) {
 					this.debug('misty terrain weaken');
 					return this.chainModify(0.5);
 				}
@@ -14976,7 +14976,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					return;
 				}
 				if (target.isSemiInvulnerable() || target.isAlly(source) || target.hasItem('safarihelmet')) return;
-				if (!target.isGrounded()) {
+				if (!(target.isGrounded()||target.ability==='dragonblessing')) {
 					const baseMove = this.dex.moves.get(effect.id);
 					if (baseMove.priority > 0) {
 						this.hint("Psychic Terrain doesn't affect Pokémon immune to Ground.");
@@ -14988,7 +14988,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
+				if (move.type === 'Psychic' && (attacker.isGrounded()||attacker.ability==='dragonblessing') && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
 					this.debug('psychic terrain boost');
 					return this.chainModify([5325, 4096]);
 				}
@@ -16038,7 +16038,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 70,
 		basePowerCallback(source, target, move) {
-			if (this.field.isTerrain('electricterrain') && target.isGrounded() && !source.hasItem('safarihelmet')||target.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('electricterrain') && (target.isGrounded()||target.ability==='dragonblessing') && !source.hasItem('safarihelmet')||target.hasItem('safarihelmet')) {
 				if (!source.isAlly(target)) this.hint(`${move.name}'s BP doubled on grounded target.`);
 				return move.basePower * 2;
 			}
@@ -20744,7 +20744,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, pulse: 1},
 		onModifyType(move, pokemon) {
-			if (!pokemon.isGrounded()||pokemon.hasItem('safarihelmet')) return;
+			if (!(pokemon.isGrounded()||pokemon.ability==='dragonblessing')||pokemon.hasItem('safarihelmet')) return;
 			switch (this.field.terrain) {
 			case 'electricterrain':
 				move.type = 'Electric';
@@ -20761,7 +20761,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			}
 		},
 		onModifyMove(move, pokemon) {
-			if (this.field.terrain && pokemon.isGrounded() &&!pokemon.hasItem('safarihelmet')) {
+			if (this.field.terrain && (pokemon.isGrounded()||pokemon.ability==='dragonblessing') &&!pokemon.hasItem('safarihelmet')) {
 				move.basePower *= 2;
 				this.debug('BP doubled in Terrain');
 			}
@@ -23296,14 +23296,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 					this.add('-fieldstart', 'move: Haunted Terrain');
 				}
 			},
-			onModifyMove(move){
-				if(!(move.type==='Ghost' || move.category === 'Status')) return;
+			onModifyMove(move,attacker,defender){
+				if(!(move.type==='Ghost' || move.category === 'Status') || !(attacker.isGrounded()||attacker.ability==='dragonblessing')) return;
 				if(!move.drain){
 					move.drain = [1,16];
 				}
 			},
 			onDeductPP(target, source) {
-				if(source.isGrounded()&& !source.hasItem("safarihelmet") && !source.hasType("Ghost"))
+				if((source.isGrounded()||source.ability==='dragonblessing')&& !source.hasItem("safarihelmet") && !source.hasType("Ghost"))
 				{
 				return 1;
 				}
@@ -23339,14 +23339,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 				return 5;
 			},
 			onModifyMove(move,attacker, defender) {
-				if(attacker.isGrounded && defender?.isGrounded() && !attacker.hasItem('safarihelmet')&& !defender?.hasItem('safarihelmet'))
+				if((attacker.isGrounded()||attacker.ability==='dragonblessing') && (defender?.isGrounded()||defender?.ability==='dragonblessing') && !attacker.hasItem('safarihelmet')&& !defender?.hasItem('safarihelmet'))
 				{
 					move.ignoreAbility = true;
 				}
 			},
 			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Dragon' && attacker.isGrounded() && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
+				if (move.type === 'Dragon' && (attacker.isGrounded()||attacker.ability==='dragonblessing') && !attacker.isSemiInvulnerable() && !attacker.hasItem('safarihelmet')) {
 					this.debug('draconic terrain boost');
 					return this.chainModify((1+((defender.hp/defender.maxhp)/2)));
 				}
