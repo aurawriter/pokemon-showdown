@@ -6286,7 +6286,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	seance: {
 		onStart(pokemon) {
-			if(this.field.isTerrain('hauntedterrain') && !pokemon.hasItem('safarihelmet') && pokemon.)
+			if(this.field.isTerrain('hauntedterrain') && !pokemon.hasItem('safarihelmet') && pokemon.isGrounded())
 			{
 			for (const target of pokemon.foes()) {
 				if (target.item) {
@@ -6308,11 +6308,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		}
 		},
 		onFoeSwitchIn(pokemon){
-		
+		 if(this.field.isTerrain('hauntedterrain') && !this.effectState.target.hasItem('safarihelmet') && this.effectState.target.isGrounded())
+		 {
+			if(pokemon.item) {
+				this.add('-item', pokemon, pokemon.getItem().name, '[from] ability: Seance', '[of] ' + this.effectState.target, '[identify]');
+		 	}
+		 for(const moveSlot of pokemon.moveSlots) {
+		 		const move = this.dex.moves.get(moveSlot.move);
+			   if (move.category === 'Status') continue;
+			 	const moveType = move.id === 'hiddenpower' ? pokemon.hpType: move.type;
+			 	if (this.dex.getImmunity(moveType,this.effectState.target) && this.dex.getEffectiveness(moveType,this.effectState.target) > 0 || move.ohko)
+				{
+					this.add('-ability', this.effectState.target, 'Seance');
+					return;
+				}	
+		 }
+		 }
 		},
-		onSourceModifyAccuracy(accuracy) {
+		onSourceModifyAccuracy(accuracy,target,source,move) {
 			if(typeof accuracy !== 'number') return;
-			if (this.field.isTerrain('hauntedterrain') && !this.hasItem('safarihelmet') && this.isGrounded()) {
+			if (this.field.isTerrain('hauntedterrain') && !source.hasItem('safarihelmet') && source.isGrounded()) {
 				return true;
 			}
 		},
