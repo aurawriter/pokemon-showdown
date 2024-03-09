@@ -6335,4 +6335,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 292,
 	},
+	dragonblessing: {
+		onModifySpe(spe, pokemon) {
+			if (this.field.isTerrain('draconicterra') && !pokemon.hasItem('safarihelmet')) {
+				return this.chainModify(2);
+			}
+		},
+		name: "Dragon Blessing",
+		rating: 3.5,
+		num: 294,
+	},
 };
