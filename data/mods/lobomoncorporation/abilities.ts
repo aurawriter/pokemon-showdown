@@ -249,7 +249,7 @@ penitence:{
 			pokemon.abilityState.choiceLock = "";
 		},
 		name: "Dead or Alive",
-		desc: "I’ll hang his head over my bed. Only then can I get up in the morning without having a nightmare.",
+		desc: "choice scarf",
 		rating: 4.5,
 		num: 255,
 	},

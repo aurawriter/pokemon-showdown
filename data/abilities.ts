@@ -6338,12 +6338,115 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	dragonblessing: {
 		//Being effected by terrains is handled in moves.ts
 		onModifySpe(spe, pokemon) {
-			if (this.field.isTerrain('draconicterra') && !pokemon.hasItem('safarihelmet')) {
+			if (this.field.isTerrain('draconicterrain') && !pokemon.hasItem('safarihelmet')) {
 				return this.chainModify(2);
 			}
 		},
 		name: "Dragon Blessing",
 		rating: 3.5,
+		num: 294,
+	},
+	sugarhoard: {
+		onResidual(pokemon) {
+			if(this.field.isTerrain('draconicterrain')) {
+				if (pokemon.volatiles['stockpile'] && pokemon.volatiles['stockpile'].layers >= 3) return false;
+				pokemon.addVolatile('stockpile');
+			}
+		},
+		name: "Sugar Hoard",
+		rating: 3.6,
+		num: 294,	
+	},
+	filmnoir: {
+		onBeforeSwitchIn(pokemon) {
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
+			{
+			pokemon.illusion = null;
+			// yes, you can Illusion an active pokemon but only if it's to your right
+			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				const possibleTarget = pokemon.side.pokemon[i];
+				if (!possibleTarget.fainted) {
+					// If Ogerpon is in the last slot while the Illusion Pokemon is Terastallized
+					// Illusion will not disguise as anything
+					if (!pokemon.terastallized || possibleTarget.species.baseSpecies !== 'Ogerpon') {
+						pokemon.illusion = possibleTarget;
+					}
+					break;
+				}
+			}
+			}
+		},
+		onWeatherChange(pokemon)  {
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
+			{
+			pokemon.illusion = null;
+			// yes, you can Illusion an active pokemon but only if it's to your right
+			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				const possibleTarget = pokemon.side.pokemon[i];
+				if (!possibleTarget.fainted) {
+					// If Ogerpon is in the last slot while the Illusion Pokemon is Terastallized
+					// Illusion will not disguise as anything
+					if (!pokemon.terastallized || possibleTarget.species.baseSpecies !== 'Ogerpon') {
+						pokemon.illusion = possibleTarget;
+					}
+					break;
+				}
+			}
+			}
+		},
+		onResidual(pokemon) {
+			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
+			{
+			pokemon.illusion = null;
+			// yes, you can Illusion an active pokemon but only if it's to your right
+			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				const possibleTarget = pokemon.side.pokemon[i];
+				if (!possibleTarget.fainted) {
+					// If Ogerpon is in the last slot while the Illusion Pokemon is Terastallized
+					// Illusion will not disguise as anything
+					if (!pokemon.terastallized || possibleTarget.species.baseSpecies !== 'Ogerpon') {
+						pokemon.illusion = possibleTarget;
+					}
+					break;
+				}
+			}
+			}
+			else 
+			{
+				if(pokemon.illusion)
+				{
+					pokemon.illusion = null;
+				}
+			}
+		},
+		onBasePower(basePower, attacker, defender, move) {
+			if (attacker.illusion) {
+					return this.chainModify(1.2);
+				}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (target.illusion) {
+				this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
+			}
+		},
+		onEnd(pokemon) {
+			if (pokemon.illusion) {
+				this.debug('illusion cleared');
+				pokemon.illusion = null;
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
+					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				this.add('replace', pokemon, details);
+				this.add('-end', pokemon, 'Illusion');
+				if (this.ruleTable.has('illusionlevelmod')) {
+					this.hint("Illusion Level Mod is active, so this Pok\u00e9mon's true level was hidden.", true);
+				}
+			}
+		},
+		onFaint(pokemon) {
+			pokemon.illusion = null;
+		},
+		name: "Film Noir",
+		rating: 3.6,
 		num: 294,
 	},
 };

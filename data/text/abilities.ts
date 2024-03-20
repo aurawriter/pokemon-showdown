@@ -2456,8 +2456,16 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "When Acid Rain: Heal 1/8. Cure status. Immune to Acid Rain"
 	},
 	seance: {
-		name: "seance",
-		desc: "If Haunted Terrain: Frisk and Anticipation and moves can't miss.",
+		name: "Seance",
+		desc: "Haunted Terrain: Identify strong moves and held items. Moves can't miss.",
 		activate: "  [POKEMON] shuddered!",
 	},
+	caustic: {
+		name: "Caustic",
+		desc: "For each full turn opponent is in Acid Rain, lower their Defense and Sp Def",
+	},
+	sugarhoard: {
+		name: "Sugar Hoard",
+		desc: "At the end of each turn in Draconic Terrain, this Pokemon gains a level of Stockpile"
+	}
 };
