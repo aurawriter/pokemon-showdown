@@ -6415,7 +6415,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			{
 				if(pokemon.illusion)
 				{
-					pokemon.illusion = null;
+					if (pokemon.illusion) {
+						this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
+					}
 				}
 			}
 		},
@@ -6423,11 +6425,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (attacker.illusion) {
 					return this.chainModify(1.2);
 				}
-		},
-		onDamagingHit(damage, target, source, move) {
-			if (target.illusion) {
-				this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
-			}
 		},
 		onEnd(pokemon) {
 			if (pokemon.illusion) {
