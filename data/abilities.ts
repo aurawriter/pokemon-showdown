@@ -6415,9 +6415,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			{
 				if(pokemon.illusion)
 				{
-					if (pokemon.illusion) {
-						this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
-					}
+					pokemon.illusion = null;
 				}
 			}
 		},
