@@ -6359,22 +6359,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	filmnoir: {
 		onBeforeSwitchIn(pokemon) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
-			{
-			pokemon.illusion = null;
-			// yes, you can Illusion an active pokemon but only if it's to your right
-			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				const possibleTarget = pokemon.side.pokemon[i];
-				if (!possibleTarget.fainted) {
-					// If Ogerpon is in the last slot while the Illusion Pokemon is Terastallized
-					// Illusion will not disguise as anything
-					if (!pokemon.terastallized || possibleTarget.species.baseSpecies !== 'Ogerpon') {
-						pokemon.illusion = possibleTarget;
-					}
-					break;
-				}
-			}
-			}
+			this.singleEvent('WeatherChange',this.effect,this.effectState, pokemon);
 		},
 		onWeatherChange(pokemon)  {
 			if (!pokemon.isActive || pokemon.transformed) return;
@@ -6397,33 +6382,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 			else
 			{
-				this.debug('weather changed illusion cleared');
-				pokemon.illusion = null
-			}
-		},
-		onResidual(pokemon) {
-			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
-			{
-			pokemon.illusion = null;
-			// yes, you can Illusion an active pokemon but only if it's to your right
-			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				const possibleTarget = pokemon.side.pokemon[i];
-				if (!possibleTarget.fainted) {
-					// If Ogerpon is in the last slot while the Illusion Pokemon is Terastallized
-					// Illusion will not disguise as anything
-					if (!pokemon.terastallized || possibleTarget.species.baseSpecies !== 'Ogerpon') {
-						pokemon.illusion = possibleTarget;
-					}
-					break;
-				}
-			}
-			}
-			else 
-			{
-				if(pokemon.illusion)
-				{
-					this.debug('illusion cleared');
-					pokemon.illusion = null;
+				this.debug('illusion cleared');
+				pokemon.illusion = null;
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
+					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				this.add('replace', pokemon, details);
+				this.add('-end', pokemon, 'Illusion');
+				if (this.ruleTable.has('illusionlevelmod')) {
+					this.hint("Illusion Level Mod is active, so this Pok\u00e9mon's true level was hidden.", true);
 				}
 			}
 		},
