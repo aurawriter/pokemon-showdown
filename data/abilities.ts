@@ -6366,6 +6366,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (!pokemon.hp) return;
 			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
 			{
+				this.debug("it has started raining");
 			pokemon.illusion = null;
 			// yes, you can Illusion an active pokemon but only if it's to your right
 			for (let i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
@@ -6375,6 +6376,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					// Illusion will not disguise as anything
 					if (!pokemon.terastallized || possibleTarget.species.baseSpecies !== 'Ogerpon') {
 						pokemon.illusion = possibleTarget;
+						const targetdetails = possibleTarget.species.name + (possibleTarget.level === 100 ? '' : ', L' + possibleTarget.level) +
+						(possibleTarget.gender === '' ? '' : ', ' + possibleTarget.gender) + (possibleTarget.set.shiny ? ', shiny' : '');
+						this.add('replace', possibleTarget, targetdetails);
 					}
 					break;
 				}
@@ -6382,6 +6386,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 			else
 			{
+				this.debug("it is anything but raining now")
 				this.singleEvent('End',this.effect,this.effectState,pokemon);
 			}
 		},
