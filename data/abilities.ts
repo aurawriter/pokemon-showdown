@@ -6377,6 +6377,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onWeatherChange(pokemon)  {
+			if (!pokemon.isActive || pokemon.transformed) return;
+			if (!pokemon.hp) return;
 			if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather()))
 			{
 			pokemon.illusion = null;
@@ -6392,6 +6394,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					break;
 				}
 			}
+			}
+			else
+			{
+				this.debug('weather changed illusion cleared');
+				pokemon.illusion = null
 			}
 		},
 		onResidual(pokemon) {
@@ -6415,8 +6422,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			{
 				if(pokemon.illusion)
 				{
+					this.debug('illusion cleared');
 					pokemon.illusion = null;
 				}
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (target.illusion && !target.hp) {
+				this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
 			}
 		},
 		onBasePower(basePower, attacker, defender, move) {
@@ -6438,6 +6451,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onFaint(pokemon) {
+			this.debug('illusion cleared');
 			pokemon.illusion = null;
 		},
 		name: "Film Noir",
