@@ -6382,20 +6382,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 			else
 			{
-				this.debug('illusion cleared');
-				pokemon.illusion = null;
-				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
-					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
-				this.add('replace', pokemon, details);
-				this.add('-end', pokemon, 'Illusion');
-				if (this.ruleTable.has('illusionlevelmod')) {
-					this.hint("Illusion Level Mod is active, so this Pok\u00e9mon's true level was hidden.", true);
-				}
+				this.singleEvent('End',this.effect,this.effectState,pokemon);
 			}
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (target.illusion && !target.hp) {
-				this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, source, move);
+				this.singleEvent('End', this.dex.abilities.get('Film Noir'), target.abilityState, target, source, move);
 			}
 		},
 		onBasePower(basePower, attacker, defender, move) {
@@ -6410,7 +6402,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) +
 					(pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
-				this.add('-end', pokemon, 'Illusion');
+				this.add('-end', pokemon, 'Film Noir');
 				if (this.ruleTable.has('illusionlevelmod')) {
 					this.hint("Illusion Level Mod is active, so this Pok\u00e9mon's true level was hidden.", true);
 				}
