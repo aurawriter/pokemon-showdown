@@ -8057,6 +8057,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onResidualSubOrder: 2,
 			onResidual(pokemon) {
 				if ((pokemon.isGrounded()||pokemon.ability==='dragonblessing') && !pokemon.isSemiInvulnerable() && !pokemon.hasItem('safarihelmet')) {
+
 					this.heal(pokemon.baseMaxhp / 16, pokemon, pokemon);
 				} else {
 					this.debug(`Pokemon semi-invuln or not grounded; Grassy Terrain skipped`);

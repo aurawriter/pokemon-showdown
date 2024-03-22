@@ -6432,11 +6432,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 294,
 	},
 	brushfire: {
-		onFoeTerrain(pokemon)
-		{
-			if(!pokemon.hasType("Fire") && this.field.terrain === 'grassyterain')
-			{
-				pokemon.damage(pokemon.baseMaxhp/16,pokemon)
+		onSourceTryHeal(damage, target, source, effect) {
+			this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
+			const canBurn = ['grassyterrain'];
+			if (canBurn.includes(effect.id)&& !source.hasType("Fire")) {
+				this.damage(damage);
+				return 0;
 			}
 		},
 		name: "Brushfire",
