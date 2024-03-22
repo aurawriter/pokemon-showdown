@@ -6421,4 +6421,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.6,
 		num: 294,
 	},
+	weathering: {
+		onWeather(target, source, effect) {
+			if (effect.id === 'sandstorm') {
+				this.boost({atk: 1, def: -1, spd: -1, spe: 1}, target, target);
+			}
+		},
+		name: "Weathering",
+		rating: 3.5,
+		num: 294,
+	},
+	wildfire: {
+		onWeather(target, source, effect) {
+			if (effect.id === 'grassyterrain') {
+				this.damage(target.baseMaxhp / 16);
+			}
+		},
+		name: "Wildfire",
+		rating: 3.5,
+		num: 294,
+	},
 };
