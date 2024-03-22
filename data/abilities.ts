@@ -6438,7 +6438,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				for(const pokemon of this.getAllActive()){
 					if(pokemon === target || pokemon.fainted) continue;
 					if(!activated){
-						this.add('-ability',target,'Brushfire');
+						this.add('-ability',pokemon,'Brushfire','damage');
 						activated = true;
 						}
 				this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
