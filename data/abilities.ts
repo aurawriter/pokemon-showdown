@@ -6432,10 +6432,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 294,
 	},
 	brushfire: {
-		onTryHeal(damage, target, source, effect) {
+		onAnyTryHeal(damage, target, source, effect) {
 			this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
-			const canBurn = ['grassyterrain'];
-			if (canBurn.includes(effect.id)&& !source.hasType("Fire")) {
+			if (effect.id === 'grassyterrain' && !source.hasType("Fire")) {
 				this.damage(damage);
 				return 0;
 			}
