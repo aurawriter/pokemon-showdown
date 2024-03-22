@@ -6433,19 +6433,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	brushfire: {
 		onAnyTryHeal(damage, target, source, effect) {
-			if (effect.id === 'grassyterrain' && !target.hasType("Fire")) {
-				let activated = false;
-				for(const pokemon of this.getAllActive()){
-					if(pokemon === source || pokemon.fainted) continue;
-					if(!activated){
-						this.add('-ability',pokemon,'Brushfire','damage');
-						activated = true;
-						}
-				this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
-				this.damage(damage);
-				return 0;
+			if(effect.id === 'grassyterrain' && !source.hasType("Fire"))
+			{
+			let activated = false;
+			for (const pokemon of this.getAllActive()){
+				if(pokemon === target|| pokemon.fainted) continue;
+				if(!activated && pokemon.ability === "Brushfire") {
+					this.add('-ability',pokemon,'Brushfire')
+					activated = true;
+				}
 			}
-		}
+			this.damage(damage);
+			return 0;
+			}
 		},
 		name: "Brushfire",
 		rating: 3.5,
