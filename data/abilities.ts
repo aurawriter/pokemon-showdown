@@ -6431,13 +6431,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 294,
 	},
-	wildfire: {
+	brushfire: {
 		onWeather(target, source, effect) {
 			if (effect.id === 'grassyterrain') {
 				this.damage(target.baseMaxhp / 16);
 			}
 		},
-		name: "Wildfire",
+		name: "Brushfire",
 		rating: 3.5,
 		num: 294,
 	},
