@@ -6439,7 +6439,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			for (const pokemon of this.getAllActive()){
 				if(pokemon === target|| pokemon.fainted) continue;
 				if(!activated && pokemon.ability === "Brushfire") {
-					this.add('-ability',pokemon,'Brushfire')
+					this.add('-ability',this.effectState.target,'Brushfire')
 					activated = true;
 				}
 			}
