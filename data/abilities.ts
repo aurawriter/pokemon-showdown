@@ -6433,16 +6433,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	brushfire: {
 		onAnyTryHeal(damage, target, source, effect) {
-			let activated = false;
-			for(const pokemon of this.getAllActive()){
-			if(pokemon === target || pokemon.fainted) continue;
-			if(!activated)
-			{
-				this.add('-ability',target,'Brushfire');
-				activated = true;
-			}
-			this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
 			if (effect.id === 'grassyterrain' && !target.hasType("Fire")) {
+				let activated = false;
+				for(const pokemon of this.getAllActive()){
+					if(pokemon === target || pokemon.fainted) continue;
+					if(!activated){
+						this.add('-ability',target,'Brushfire');
+						activated = true;
+						}
+				this.debug("Heal is occurring: " + target + " <- " + source + " :: " + effect.id);
 				this.damage(damage);
 				return 0;
 			}
