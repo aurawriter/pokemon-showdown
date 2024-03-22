@@ -6436,7 +6436,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (effect.id === 'grassyterrain' && !target.hasType("Fire")) {
 				let activated = false;
 				for(const pokemon of this.getAllActive()){
-					if(pokemon === target || pokemon.fainted) continue;
+					if(pokemon === source || pokemon.fainted) continue;
 					if(!activated){
 						this.add('-ability',pokemon,'Brushfire','damage');
 						activated = true;
