@@ -6432,9 +6432,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 294,
 	},
 	brushfire: {
-		onWeather(target, source, effect) {
-			if (effect.id === 'grassyterrain') {
-				this.damage(target.baseMaxhp / 16);
+		onAnyTerrain(pokemon) {
+			if (this.field.terrain === 'grassyterrain') {
+				this.damage(pokemon.baseMaxhp / 16);
 			}
 		},
 		name: "Brushfire",
