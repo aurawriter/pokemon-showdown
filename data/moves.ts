@@ -8057,12 +8057,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onResidualSubOrder: 2,
 			onResidual(pokemon) {
 				let brushfireuser = this.getAllActive().find(source => source.hasAbility('brushfire'));
-				if ((pokemon.isGrounded()||pokemon.ability==='dragonblessing') && !pokemon.isSemiInvulnerable() && !pokemon.hasItem('safarihelmet')) {
+				this.debug('there is a pokemon with brushfire on it');
+				if ((pokemon.isGrounded()||pokemon.ability === 'dragonblessing') && !pokemon.isSemiInvulnerable() && !pokemon.hasItem('safarihelmet')) {
 					if(brushfireuser && !pokemon.hasType('Fire'))
 					{
-						this.damage(pokemon.baseMaxHp/16,pokemon,brushfireuser,this.dex.abilities.get('brushfire'));
+						this.damage(pokemon.baseMaxhp/16,pokemon,brushfireuser, this.dex.abilities.get('brushfire'));
 					}
-					else{
+					else
+					{
 					this.heal(pokemon.baseMaxhp / 16, pokemon, pokemon);
 					}
 				} else {
