@@ -8056,9 +8056,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onResidualOrder: 5,
 			onResidualSubOrder: 2,
 			onResidual(pokemon) {
+				let brushfireuser = this.getAllActive().find(source => source.hasAbility('brushfire'));
 				if ((pokemon.isGrounded()||pokemon.ability==='dragonblessing') && !pokemon.isSemiInvulnerable() && !pokemon.hasItem('safarihelmet')) {
-
+					if(brushfireuser && !pokemon.hasType('Fire'))
+					{
+						this.damage(pokemon.baseMaxHp/16,pokemon,brushfireuser,this.dex.abilities.get('brushfire'));
+					}
+					else{
 					this.heal(pokemon.baseMaxhp / 16, pokemon, pokemon);
+					}
 				} else {
 					this.debug(`Pokemon semi-invuln or not grounded; Grassy Terrain skipped`);
 				}

@@ -6432,21 +6432,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 294,
 	},
 	brushfire: {
-		onAnyTryHeal(damage, target, source, effect) {
-			if(effect.id === 'grassyterrain' && !source.hasType("Fire"))
-			{
-			let activated = false;
-			for (const pokemon of this.getAllActive()){
-				if(pokemon === target|| pokemon.fainted) continue;
-				if(!activated && pokemon.ability === "Brushfire") {
-					this.add('-ability',this.effectState.target,'Brushfire')
-					activated = true;
-				}
-			}
-			this.damage(damage);
-			return 0;
-			}
-		},
+		//This is handled in Grassy Terrain
 		name: "Brushfire",
 		rating: 3.5,
 		num: 294,
