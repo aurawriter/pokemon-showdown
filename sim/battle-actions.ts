@@ -1807,6 +1807,11 @@ export class BattleActions {
 				baseDamage = this.battle.modify(baseDamage, 0.5);
 			}
 		}
+		if (pokemon.status === 'fbt' && move.category === 'Special'){
+			if (this.battle.gen < 6 || move.id!== 'facade') {
+				baseDamage = this.battle.modify(baseDamage, 0.5);
+			}
+		}
 
 		// Generation 5, but nothing later, sets damage to 1 before the final damage modifiers
 		if (this.battle.gen === 5 && !baseDamage) baseDamage = 1;

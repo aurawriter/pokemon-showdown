@@ -103704,4 +103704,206 @@ swinub: {
 			vividburst: ["9L1"],
 		},
 	},
+	sneevil: {
+		learnset: {
+
+		},
+	},
+	grizzweet: {
+		learnset: {
+
+		},
+	},
+	ponchobake: {
+		learnset: {
+
+		},
+	},
+	revolture: {
+		learnset: {
+
+		},
+	},
+	lemurei: {
+		learnset: {
+
+		},
+	},
+	faengpire: {
+		learnset: {
+
+		},
+	},
+	glucoana: {
+		learnset: {
+			
+		},
+	},
+	dratosphere: {
+		learnset: {
+
+		},
+	},
+	citrillon: {
+		learnset: {
+
+		},
+	},
+	mothiosa: {
+		learnset: {
+
+		},
+	},
+	onisen: {
+		learnset: {
+
+		},
+	},
+	scabbardaunt: {
+		learnset: {
+
+		},
+	},
+	cobrust: {
+		learnset: {
+
+		},
+	},
+	lollibop: {
+		learnset: {
+			
+		},
+	},
+	hypnoxious: {
+		learnset: {
+
+		},
+	},
+	volkaison: {
+		learnset: {
+	
+		},
+	},
+	spiritombaurora: {
+		learnset: {
+			allyswitch: ["9E", "8M", "7T"],
+			attract: ["8M", "7M", "6M", "5M", "4M"],
+			bodyslam: ["9M"],
+			burningjealousy: ["9M", "8T"],
+			calmmind: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			captivate: ["7E", "6E", "5E", "4M"],
+			confide: ["7M", "6M"],
+			confuseray: ["9M", "9L1", "8L1", "7L1", "6L1", "5L1", "4L1"],
+			curse: ["9M", "9L40", "8L40", "7L1", "6L1", "5L1", "4L1"],
+			darkpulse: ["9M","8M", "8L50", "7M", "7L49", "6M", "6L49", "5T", "5L49", "5S0", "4M", "4L49"],
+			destinybond: ["9E", "8E", "7E", "6E", "5E", "4E"],
+			disable: ["9E", "8E", "7E"],
+			doubleteam: ["7M", "6M", "5M", "4M"],
+			dreameater: ["9L60", "8L60", "7M", "7L19", "6M", "6L19", "5M", "5L19", "4M", "4L19"],
+			embargo: ["7M", "6M", "5M", "5S0", "4M"],
+			endure: ["9M", "8M", "4M"],
+			facade: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			feintattack: ["7L7", "6L7", "5L7", "4L7"],
+			flash: ["6M", "5M", "4M"],
+			foulplay: ["9M", "8M", "7T", "7E", "6T", "6E", "5T"],
+			frustration: ["7M", "6M", "5M", "4M"],
+			gigaimpact: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			grudge: ["8E", "7E", "6E", "5E", "4E"],
+			helpinghand: ["9M"],
+			hex: ["9M", "9L25", "8M", "8L25"],
+			hiddenpower: ["7M", "6M", "5M", "4M"],
+			hyperbeam: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			hypnosis: ["9L55", "8L55", "7L13", "6L13", "5L13", "4L13"],
+			icywind: ["9M", "8M", "7T", "6T", "5T", "5D", "4T"],
+			imprison: ["9M", "8M", "7E", "6E", "5E", "4E"],
+			infestation: ["7M", "6M"],
+			lashout: ["9M", "8T"],
+			memento: ["8L30", "7L43", "6L43", "5L43", "4L43"],
+			nastyplot: ["9M","8M", "8L20", "7L37", "6L37", "5L37", "4L37"],
+			naturalgift: ["4M"],
+			nightmare: ["7E", "6E", "5E"],
+			nightshade: ["9M", "9L1", "8L1"],
+			ominouswind: ["7L25", "6L25", "5L25", "4T", "4L25"],
+			painsplit: ["9M", "9E", "8E", "7T", "7E", "6T", "6E", "5T", "5E", "5D", "4T", "4E"],
+			payback: ["8M", "8L15"],
+			phantomforce: ["9M", "8M"],
+			poltergeist: ["9M", "8T"],
+			protect: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			psybeam: ["9M"],
+			psychic: ["9M", "8M", "7M", "6M", "5M", "5S0", "4M"],
+			psychup: ["7M", "6M", "5M", "4M"],
+			psyshock: ["9M"],
+			pursuit: ["7L1", "6L1", "5L1", "4L1"],
+			quash: ["7M", "6M", "5M"],
+			raindance: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			rest: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			retaliate: ["8M", "6M", "5M"],
+			return: ["7M", "6M", "5M", "4M"],
+			rocktomb: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			round: ["8M", "7M", "6M", "5M"],
+			scaryface: ["9M"],
+			secretpower: ["6M", "4M"],
+			shadowball: ["9M", "9L45", "8M", "8L45", "7M", "6M", "5M", "4M"],
+			shadowsneak: ["9L5", "8L5", "7L1", "7E", "6L1", "6E", "5L1", "5E", "4L1", "4E"],
+			shockwave: ["7T", "6T", "4M"],
+			silverwind: ["5S0", "4M"],
+			skillswap: ["9M"],
+			sleeptalk: ["9M", "8M", "7M", "6M", "5T", "4M"],
+			smokescreen: ["9E", "8E", "7E", "6E", "5E", "4E"],
+			snarl: ["9M", "8M", "7M", "6M", "5M"],
+			snatch: ["7T", "6T", "5T", "4M"],
+			snore: ["8M", "7T", "6T", "5T", "4T"],
+			spite: ["9M", "9L10", "8L10", "7T", "7L1", "6T", "6L1", "5T", "5L1", "5D", "4T", "4L1"],
+			storedpower: ["9M"],
+			substitute: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			suckerpunch: ["8L35", "7L31", "6L31", "5L31", "4T", "4L31"],
+			sunnyday: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			swagger: ["7M", "6M", "5M", "4M"],
+			taunt: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			telekinesis: ["7T", "5M"],
+			terablast: ["9M"],
+			thief: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			torment: ["7M", "6M", "5M", "4M"],
+			toxic: ["9M", "7M", "6M", "5M", "4M"],
+			trick: ["9M", "8M", "7T", "6T", "5T", "4T"],
+			trickroom: ["9M"],
+			uproar: ["8M", "7T", "6T", "5T", "4T"],
+			waterpulse: ["7T", "6T", "4M"],
+			willowisp: ["9M", "8M", "7M", "6M", "5M", "4M"],
+			wonderroom: ["8M", "7T", "6T", "5T"],
+			astralrift: ["9L1"],
+			wormholewarp: ["9L1"],
+			asteroidbelt: ["9L35"],
+			asteroidslam:["9L20"],
+			meteorshower:["9L1"],
+			fallingstar:["9L50"],
+
+		},
+	},
+	galacast: {
+		learnset: {
+
+		},
+	},
+	santai: {
+		learnset: {
+
+		},
+	},
+	spitrus: {
+		learnset: {
+
+		},
+	},
+	peeltite: {
+		learnset: {
+
+		},
+	},
+	citrabell: {
+		learnset: {
+
+		},
+	},
+
 };

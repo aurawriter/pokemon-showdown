@@ -17,6 +17,24 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.damage(pokemon.baseMaxhp / 16);
 		},
 	},
+	fbt: {
+		name: 'fbt',
+		effectType: 'Status',
+		onStart(target, source, sourceEffect) {
+			if (sourceEffect && sourceEffect.id === 'flameorb') {
+				this.add('-status', target, 'fbt', '[from] item: Frost Orb');
+			} else if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'fbt', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+			} else { 
+				this.add('-status', target, 'fbt');
+			}
+		},
+		// Damage reduction is handled directly in the sim/battle.js damage function
+		onResidualOrder: 10,
+		onResidual(pokemon) {
+			this.damage(pokemon.baseMaxhp / 16);
+		},
+	},
 	par: {
 		name: 'par',
 		effectType: 'Status',
@@ -971,6 +989,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if(attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod<0)
+			{
+				return this.chainModify(2);
+			}
+			if(move.id==='allergicreaction')
 			{
 				return this.chainModify(2);
 			}

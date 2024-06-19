@@ -6437,4 +6437,81 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 294,
 	},
+	candycrush: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk,pokemon) {
+			if(this.field.terrain === 'mistyterrain' && !pokemon.hasItem('safarihelmet'))
+			{
+			return this.chainModify(2);
+			}	
+		},
+		name: "Candy Crush",
+		rating: 5,
+		num: 37,
+	},
+	mindovermatter: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			if(this.field.terrain==='psychicterrain' && !pokemon.hasItem('safarihelmet'))
+			{
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
+				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
+				move.type = 'Psychic';
+				move.typeChangerBoosted = this.effect;
+			}
+			}
+		},
+		onModifyMove(move)
+		{
+			if(this.field.terrain==='psychicterrain' && !pokemon.hasItem('safarihelmet'))
+			{
+			if(!(move.type === 'Psychic')||move.category === 'Status') return;
+				if(!move.secondaries){
+					move.secondaries = [];
+				}
+				move.secondaries.push({
+				chance: 30,
+				status: 'brn',
+				ability: this.dex.abilities.get('dragonheart'),
+			});
+			}
+		},
+		name: "Mind over Matter",
+		rating: 5,
+		num: 37,
+	},
+	overcharge: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (this.field.isTerrain('electricterrain') && !pokemon.hasItem('safarihelmet')) {
+				return this.chainModify(1.5);
+			}
+		},
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if(pokemon.hasItem('safarihelmet')) return;
+			if(this.field.isTerrain('electricterrain')){
+				this.damage(pokemon.baseMaxhp/8,pokemon,pokemon);
+			}
+		},
+		name: "Overcharge",
+		rating: 2,
+		num: 94,
+	},
+	swifstrike: {
+		onBasePowerPriority: 5,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.priority > 0.1)
+			{
+				return this.chainModify(1.2);
+			}
+		},
+		name: "Swift Strike",
+		rating: 2,
+		num: 95
+	}
 };

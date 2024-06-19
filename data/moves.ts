@@ -1516,7 +1516,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: {
 			chance: 10,
-			status: 'frz',
+			status: 'fbt',
 		},
 		target: "allAdjacentFoes",
 		type: "Ice",
@@ -6421,7 +6421,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: {
 			chance: 10,
-			status: 'frz',
+			status: 'fbt',
 		},
 		target: "normal",
 		type: "Ice",
@@ -6466,7 +6466,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 10,
-			status: 'frz',
+			status: 'fbt',
 		},
 		target: "normal",
 		type: "Psychic",
@@ -9806,7 +9806,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 10,
-			status: 'frz',
+			status: 'fbt',
 		},
 		target: "normal",
 		type: "Ice",
@@ -9852,7 +9852,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondaries: [
 			{
 				chance: 10,
-				status: 'frz',
+				status: 'fbt',
 			}, {
 				chance: 10,
 				volatileStatus: 'flinch',
@@ -9892,7 +9892,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
 		secondary: {
 			chance: 10,
-			status: 'frz',
+			status: 'fbt',
 		},
 		target: "normal",
 		type: "Ice",
@@ -14520,7 +14520,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 10,
-			status: 'frz',
+			status: 'fbt',
 		},
 		target: "allAdjacentFoes",
 		type: "Ice",
@@ -21385,7 +21385,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				} else if (result === 1) {
 					target.trySetStatus('par', source);
 				} else {
-					target.trySetStatus('frz', source);
+					target.trySetStatus('fbt', source);
 				}
 			},
 		},
@@ -21411,7 +21411,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				} else if (result === 1) {
 					target.trySetStatus('par', source);
 				} else {
-					target.trySetStatus('frz', source);
+					target.trySetStatus('fbt', source);
 				}
 			},
 		},
@@ -23378,6 +23378,217 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dragon",
 		zMove: {boost: {spe: 1}},
 		contestType: "Clever",
+	},
+	ghastlygrasp:{
+			num: 694,
+			accuracy: true,
+			basePower: 0,
+			category: "Status",
+			name: "Ghastly Grasp",
+			pp: 20,
+			priority: 0,
+			flags: {snatch: 1},
+			sideCondition: 'ghastlygrasp',
+			onTry() {
+				return this.field.isTerrain('hauntedterrain');
+			},
+			condition: {
+				duration: 4,
+				onAnyModifyDamage(damage, source, target, move) {
+					/*if (target !== source && this.effectState.target.hasAlly(target)) {
+						if ((target.side.getSideCondition('reflect') && this.getCategory(move) === 'Physical') ||
+								(target.side.getSideCondition('lightscreen') && this.getCategory(move) === 'Special')) {
+							return;
+						}
+						if (!target.getMoveHitData(move).crit && !move.infiltrates) {
+							this.debug('Aurora Veil weaken');
+							if (this.activePerHalf > 1) return this.chainModify([2732, 4096]);
+							return this.chainModify(0.5);
+						}
+					}*/
+					if(target.side.getSideCondition('ghastlygrasp')){
+						return this.chainModify(2);
+					}
+				},
+				onSideStart(side) {
+					this.add('-sidestart', side, 'move: Ghastly Grasp');
+				},
+				onSideResidualOrder: 26,
+				onSideResidualSubOrder: 10,
+				onSideEnd(side) {
+					this.add('-sideend', side, 'move: Ghostly Grasp');
+				},
+			},
+			secondary: null,
+			target: "foeSide",
+			type: "Ghost",
+			zMove: {boost: {spe: 1}},
+			contestType: "Beautiful",
+	},
+	dragondevastation: {
+		num: 803,
+		accuracy: 100,
+		basePower: 85,
+		category: "Special",
+		name: "Dragon Devastation",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1,mirror:1},
+		onModifyMove(move,pokemon)
+		{
+			if(this.field.isTerrain('draconicterrain')) {
+				move.boosts = {def: -2, spd: -2}
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Cool",
+	},	
+	smoggyslide: {
+			num: 803,
+			accuracy: 100,
+			basePower: 55,
+			category: "Physical",
+			name: "Smoggy Slide",
+			pp: 20,
+			priority: 0,
+			flags: {contact: 1, protect: 1, mirror: 1},
+			onModifyPriority(priority, source, target, move) {
+				if ((this.field.isWeather(['acidrain'])) ) {
+					return priority + 1;
+				}
+			},
+			secondary: null,
+			target: "normal",
+			type: "Poison",
+			contestType: "Cool",
+	},
+	allergicreaction: {
+		num: 803,
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		name: "Allergic Reaction",
+		pp: 15,
+		priority: 0,
+		flags: {protect:1, mirror:1},
+		onAfterHit(target, source) {
+			if(source.hp)
+				{
+					this.field.clearWeather();
+				}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		contestType: "Cool",
+	},
+	eeriewind: {
+		num: 223,
+		accuracy: 50,
+		basePower: 100,
+		category: "Special",
+		name: "Eerie Wind",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'fbt',
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Cool",
+	},
+	vitalitydrain: {
+		num: 891,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		name: "Vitality Drain",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1, slicing: 1},
+		drain: [1, 2],
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+	},
+	bubblegumpop: {
+		num: 255,
+		accuracy: 100,
+		basePower: 0,
+		basePowerCallback(pokemon) {
+			if (!pokemon.volatiles['stockpile']?.layers) return false;
+			return pokemon.volatiles['stockpile'].layers * 100;
+		},
+		category: "Physical",
+		name: "Bubblegum Pop",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onTry(source) {
+			return !!source.volatiles['stockpile'];
+		},
+		onAfterMove(pokemon) {
+			pokemon.removeVolatile('stockpile');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Tough",
+	},
+	doublecross: {
+		num: 814,
+		accuracy: 90,
+		basePower: 50,
+		category: "Physical",
+		name: "Double Cross",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 2,
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		maxMove: {basePower: 130},
+	
+	},
+	hydrotherapy: {
+		num: 748,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Hydrotherapy",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1},
+		volatileStatus: 'hydrotherapy',
+		onTry(source, target, move) {
+			if (source.volatiles['hydrotherapy']) return false;
+			if (source.volatiles['trapped']) {
+				delete move.volatileStatus;
+			}
+		},
+		condition: {
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'move: Hydrotherapy');
+			},
+			onTrapPokemon(pokemon) {
+				pokemon.tryTrap();
+			},
+		},
+		onHit(target, source, move) {
+			this.heal(target.maxhp);
+		},
+		boosts: {
+			def: 2,
+			spd: 2,
+		},
+		secondary: null,
+		target: "self",
+		type: "Water",
 	},
 	accuracytest: {
 		num: 33,

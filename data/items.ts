@@ -7893,4 +7893,26 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 1123,
 		gen: 8,
 	},
+	meliberry: {
+		name: "Meli Berry",
+		spritenum: 5,
+		isBerry: true,
+		naturalGift: {
+			basePower: 80,
+			type: "Grass",
+		},
+		onSourceTryPrimaryHit(target, source, move) {
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
+			if (move.type === 'Grass' && source.useItem() && (user.baseSpecies.name === 'Spitrus' || user.baseSpecies.name 	ab	) {
+				source.addVolatile('gem');
+			}
+		},
+		/*onModifyCritRatio(critRatio, user) {
+			if (user.baseSpecies.name === 'Chansey') {
+				return critRatio + 2;
+			}
+		},*/
+		itemUser: ["Citrillon", "Spitrus"],
+		num: 256,
+	},
 };
