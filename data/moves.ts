@@ -23495,7 +23495,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
 		secondary: {
 			chance: 100,
-			volatileStatus: 'fbt',
+			status: 'fbt',
 		},
 		target: "normal",
 		type: "Ghost",
