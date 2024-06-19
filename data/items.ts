@@ -7903,7 +7903,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		onSourceTryPrimaryHit(target, source, move) {
 			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
-			if (move.type === 'Grass' && source.useItem() && (user.baseSpecies.name === 'Spitrus' || user.baseSpecies.name 	ab	) {
+			if (move.type === 'Grass' && source.useItem() && (source.baseSpecies.name === 'Spitrus' || source.baseSpecies.name === 'Citrillon') {
 				source.addVolatile('gem');
 			}
 		},
