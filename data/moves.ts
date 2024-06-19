@@ -23664,6 +23664,24 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {def: 1}},
 		contestType: "Tough", 
 	},
+	jawbreaker: {
+		num: 499,
+		accuracy: true,
+		basePower: 50,
+		category: "Physical",
+		name: "Jawbreaker",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryHit(target) {
+			target.clearBoosts();
+			this.add('-clearboost', target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Beautiful",
+	},
 	accuracytest: {
 		num: 33,
 		accuracy: 5,
@@ -23677,5 +23695,5 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Normal",
 		contestType: "Tough",
-	}
+	},
 };

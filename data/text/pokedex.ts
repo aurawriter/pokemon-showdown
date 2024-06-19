@@ -3768,6 +3768,60 @@ export const PokedexText: {[k: string]: PokedexText} = {
 		name: "Pokestar UFO-PropU2",
 	},
 	abysmatoth: {
-		name: "Å̴̡̗̊̓̉̚b̷̡̧̻̼͈͆̾y̵̨͖̭͇̣̏s̷̨̾́̈́̎͂ḿ̴̰̥͖͎͎̃a̶͎̽͌̄́́ẗ̵̥̮̭͚́̅͝ṍ̸̞̯̞͗͑̕t̷̛̞͔̋̑͂ȟ̷̨̟̱͓̀̓͛̚͜"
+		name: "Å̴̡̗̊̓̉̚b̷̡̧̻̼͈͆̾y̵̨͖̭͇̣̏s̷̨̾́̈́̎͂ḿ̴̰̥͖͎͎̃a̶͎̽͌̄́́ẗ̵̥̮̭͚́̅͝ṍ̸̞̯̞͗͑̕t̷̛̞͔̋̑͂ȟ̷̨̟̱͓̀̓͛̚͜",
 	},
+	sneevil: {
+		name: "Sneevil",
+	},
+	sneevilshaved: {
+		name: "Sneevil-Shaved",
+	},
+	grizzweet: {
+		name: "Grizzweet",
+	},
+	ponchobake: {
+		name: "Ponchobake",
+	},
+	revolture: {
+		name: "Revolture",
+	},
+	lemurei: {
+		name: "Lemurei",
+	},
+	faengpire: {
+		name: "Faengpire",
+	},
+	glucoana: {
+		name: "Glucoana",
+	},
+	dratosphere: {
+		name: "Dratosphere",
+	},
+	citrillon: {
+		name: "Citrillon",
+	},
+	mothiosa: {
+		name: "Mothiosa",
+	},
+	onisen: {
+		name: "Onisen",
+	},
+	scabbardaunt: {
+		name: "Scabbardaunt",
+	},
+	cobrust: {
+		name: "Cobrust",
+	},
+	lollibop: {
+		name: "Lollibop",
+	},
+	hypnoxious: {
+		name: "Hypnoxious",
+	},
+	volkaison: {
+		name: "Volkaison",
+	},
+	spiritombaurora: {
+		name: "Spiritomb-Aurora"
+	}
 };

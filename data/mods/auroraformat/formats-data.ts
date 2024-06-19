@@ -534,16 +534,16 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	grimer: {
-		tier: "Illegal",
+		tier: "LC",
 	},
 	grimeralola: {
-		tier: "Illegal",
+		tier: "LC",
 	},
 	muk: {
-		tier: "Illegal",
+		tier: "OU",
 	},
 	mukalola: {
-		tier: "Illegal",
+		tier: "OU",
 	},
 	shellder: {
 		tier: "Illegal",
@@ -2917,9 +2917,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	druddigon: {
-		isNonstandard: "Past",
-		tier: "Illegal",
-		
+		tier: "OU",	
 	},
 	golett: {
 		isNonstandard: "Past",
@@ -4803,5 +4801,74 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	pecharunt: {
 		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
+	},
+	sneevil: {
+		tier: "OU",
+	},
+	sneevilshaved: {
+		tier: "OU",
+	},
+	grizzweet: {
+		tier: "OU",
+	},
+	ponchobake: {
+		tier: "OU",
+	},
+	revolture: {
+		tier: "OU",
+	},
+	lemurei: {
+		tier: "OU",
+	},
+	faengpire: {
+		tier: "OU",
+	},
+	glucoana: {
+		tier: "OU",
+	},
+	dratosphere: {
+		tier: "OU",
+	},
+	citrillon: {
+		tier: "OU",
+	},
+	mothiosa: {
+		tier: "OU",
+	},
+	onisen: {
+		tier: "OU",
+	},
+	scabbardaunt: {
+		tier: "OU",
+	},
+	cobrust: {
+		tier: "OU",
+	},
+	lollibop: {
+		tier: "OU",
+	},
+	hypnoxious: {
+		tier: "OU",
+	},
+	volkaison: {
+		tier: "OU",
+	},
+	spiritombaurora: {
+		tier: "OU",
+	},
+	galacastarid: {
+		tier: "OU",
+	},
+	galacasthumid: {
+		tier: "OU",
+	},
+	santai: {
+		tier: "OU",
+	},
+	peeltite: {
+		tier: "OU",
+	},
+	citrabell: {
+		tier: "OU",
 	},
 };

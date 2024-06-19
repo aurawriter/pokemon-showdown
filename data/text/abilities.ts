@@ -2470,7 +2470,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	swiftstrike:{
 		name: "Swift Strike",
 		desc: "Moves with increased priority have 1.2x power",
-	},
+	}, 	
 	pollenbeard: {
 		name: "Pollen Beard",
 		desc: "If this Pokemon is a Sneevil, the first Special hit it takes in battle deals 0 neutral damage. Its pollen beard is then broken and it changes forme to Shaved. Sneevil regains its Pollen Beard forme when Pollen begins or when Sneevil switches in while Pollen is active.",

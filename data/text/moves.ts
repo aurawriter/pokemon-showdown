@@ -7961,4 +7961,50 @@ export const MovesText: {[k: string]: MoveText} = {
 			desc: "Fails if the target did not select a physical or special attack for use this turn, or if the target moves before the user.",
 		},
 	},
+	fanout: {
+		name: "Fan Out",
+		shortDesc: "Protects from moves. Contact: Acid Rain begins",
+	},
+	eeriewind: {
+		name: "Eerie Wind",
+		desc: "Has a 100% chance to frostbite the target.",
+		shortDesc: "100% chance to frostbite the target.",
+	},
+	frostbite: {
+		name: "Frostbite",
+		desc: "Frostbites the target.",
+		shortDesc: "Frostbites the target.",
+	},
+	vitalitydrain: {
+		name: "Vitality Drain",
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "User recovers 50% of the damage dealt.",
+	},
+	bubblegumpop: {
+		name: "Bubblegum Pop",
+		desc: "Power is equal to 100 times the user's Stockpile count. Fails if the user's Stockpile count is 0. Whether or not this move is successful, the user's Defense and Special Defense decrease by as many stages as Stockpile had increased them, and the user's Stockpile count resets to 0.",
+		shortDesc: "More power with more uses of Stockpile.",
+		gen4: {
+			desc: "Power is equal to 100 times the user's Stockpile count. This move does not apply damage variance. Fails if the user's Stockpile count is 0. Unless there is no target, whether or not this move is successful the user's Defense and Special Defense decrease by as many stages as Stockpile had increased them, and the user's Stockpile count resets to 0.",
+		},
+		gen3: {
+			desc: "Damage is multiplied by the user's Stockpile count. This move does not apply damage variance and cannot be a critical hit. Fails if the user's Stockpile count is 0. Unless this move misses, the user's Stockpile count resets to 0.",
+		},
+	},
+	doublecross: {
+		name: "Double Cross",
+		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit.",
+		shortDesc: "Hits 2 times in one turn.",
+	},
+	hydrotherapy: {
+		name: "Hydrotherapy",
+		desc: "The user fully heals, and its Defense and Special Defense raise by 2 stages. Traps user.",
+		shortDesc: "Fully heal, and raises defense and special defense by 2. Traps user.",
+
+		start: "  [POKEMON] can no longer escape because it used Hydrotherapy!",
+	},
+	jawbreaker: {
+		name: "Jawbreaker",
+		shortDesc: "Reset target's stats before dealing damage",	
+	}
 };
