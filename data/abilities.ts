@@ -6513,5 +6513,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Swift Strike",
 		rating: 2,
 		num: 95
-	}
+	},
+	swiftstrike: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.priority>0) {
+				this.debug('Swift Strike boost');
+				return this.chainModify(1.2);
+			}
+		},
+		name: "Swift Strike",
+		rating: 3.5,
+		num: 292,
+	},
 };

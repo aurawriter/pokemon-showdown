@@ -2448,5 +2448,12 @@ export const ItemsText: {[k: string]: ItemText} = {
 	safarihelmet: {
 		name: "Safari Helmet",
 		desc: "Holder is unaffected by terrains."
-	}
+	},
+	meliberry: {
+		name: "Meli Berry",
+		desc: "If holder is Citrillon or Spitrus, first successful Grass-type attack will have 1.3x power. Single use."
+	},
+	floweryrock: {
+		name: "Flowery Rock",
+	},
 };

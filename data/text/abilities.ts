@@ -716,7 +716,6 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	hospitality: {
 		name: "Hospitality",
 		shortDesc: "On switch-in, this Pokemon restores 1/4 of its ally's maximum HP, rounded down.",
-
 		heal: "  [POKEMON] drank down all the matcha that [SOURCE] made!",
 	},
 	hugepower: {
@@ -2466,6 +2465,47 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	sugarhoard: {
 		name: "Sugar Hoard",
-		desc: "At the end of each turn in Draconic Terrain, this Pokemon gains a level of Stockpile"
-	}
+		desc: "At the end of each full turn in Draconic Terrain, this Pokemon gains a level of Stockpile"
+	},
+	swiftstrike:{
+		name: "Swift Strike",
+		desc: "Moves with increased priority have 1.2x power",
+	},
+	pollenbeard: {
+		name: "Pollen Beard",
+		desc: "If this Pokemon is a Sneevil, the first Special hit it takes in battle deals 0 neutral damage. Its pollen beard is then broken and it changes forme to Shaved. Sneevil regains its Pollen Beard forme when Pollen begins or when Sneevil switches in while Pollen is active.",
+		shortDesc: "If Smeevil, the first special hit it takes deals 0 damage. Effect is restored in Pollen.",
+	},
+	vampiric: {
+		name: "Vampiric",
+		desc: "Drain moves: 1.5x power. This includes Ghost moves during Haunted Terrain",
+	},
+	dragonblessing: {
+		name: "Dragon Blessing",
+		desc: "This Pokemon is always grounded for the purposes of terrains. Speed is doubled in Draconic Terrain",
+	},
+	filmnoir: {
+		name: "Film Noir",
+		desc: "When Raining, appear as last unfainted Pokemon. While appearing as another Pokemon, deal 1.2x damage."
+	},
+	weathering: {
+		name: "Weathering",
+		desc: "If Sandstorm, this Pokemon gains Spe and Atk, but loses Def and SpD each turn."
+	},
+	brushfire: {
+		name: "Brushfire",
+		desc: "If Grassy Terrain is active, instead of healing grounded Pokemon, damage non-Fire grounded Pokemon",
+	},
+	candycrush: {
+		name: "Candy Crush",
+		desc: "Misty Terrain: Double Attack"
+	},
+	mindovermatter:{
+		name: "Mind Over Matter",
+		desc: "Psychic moves have a chance to Confuse. In Psychic Terrain, Normal=type moves become Psychic-type.",
+	},
+	singularity: {
+		name: "Singularity",
+		desc: "Gravity cannot end or be changed.",
+	},
 };

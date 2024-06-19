@@ -20547,7 +20547,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	onisen: {
 		num: -1169,
 		name: "Onisen",
-		types: ["Ice","Fairy"],
+		types: ["Ice","Fire"],
 		baseStats: {hp: 90, atk: 130, def: 75, spa: 75, spd: 105, spe: 65},
 		abilities: {0: "Alpine Training"},
 		heightm: 1.7,
@@ -20570,16 +20570,16 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: -1171,
 		name: "Cobrust",
 		types: ["Grass","Fire"],
-		baseStats: {hp: 58, atk: 80, def: 110, spa: 30, spd: 70, spe: 100},
+		f
 		abilities: {0: "Brushfire"},
 		heightm: 3.5,
 		weightkg: 65,
 		color: "Orange",
 		eggGroups: ["Field", "Dragon"],
 	},
-	lollybop: {
+	lollibop: {
 		num: -1172,
-		name: "Lollybop",
+		name: "Lollibop",
 		types: ["Fairy","Fighting"],
 		baseStats: {hp: 65, atk: 75, def: 70, spa: 85, spd: 70, spe: 85},
 		abilities: {0: "Sweet Veil", H: "Candy Crush"},

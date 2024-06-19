@@ -364,6 +364,10 @@ export const DefaultText: {[k: string]: DefaultText} = {
 		end: "  The ominous fog disappeared from the battlefield!",
 		drain: " [POKEMON] sapped [TARGET]'s life force!",
 	},
+	draconicterrain: {
+		start: " Mythical power courses thorugh the battlefield!",
+		end: " The mythical power dissipates from the battlefield!",
+	},
 
 	// field effects
 	magicroom: {
