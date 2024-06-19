@@ -646,6 +646,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Grassy Surge",
 		shortDesc: "On switch-in, this Pokemon summons Grassy Terrain.",
 	},
+	hauntedsurge: {
+		name: "Haunted Surge",
+		shortDesc: "On switch-in, this Pokemon summons Haunted Terrain.",
+	},
 	grimneigh: {
 		name: "Grim Neigh",
 		desc: "This Pokemon's Special Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
@@ -717,6 +721,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Hospitality",
 		shortDesc: "On switch-in, this Pokemon restores 1/4 of its ally's maximum HP, rounded down.",
 		heal: "  [POKEMON] drank down all the matcha that [SOURCE] made!",
+	},
+	draconicsurge: {
+		name: "Draconic Surge",
+		shortDesc: "On switch-in, this Pokemon summons Draconic Terrain.",
 	},
 	hugepower: {
 		name: "Huge Power",
@@ -2482,11 +2490,11 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	dragonblessing: {
 		name: "Dragon Blessing",
-		desc: "This Pokemon is always grounded for the purposes of terrains. Speed is doubled in Draconic Terrain",
+		desc: "This Pokemon is grounded for terrains. Draconic Terrain: 2x Speed",
 	},
 	filmnoir: {
 		name: "Film Noir",
-		desc: "When Raining, appear as last unfainted Pokemon. While appearing as another Pokemon, deal 1.2x damage."
+		desc: "Rain: Appear as last unfainted Pokemon, and deal 1.2x damage."
 	},
 	weathering: {
 		name: "Weathering",
@@ -2494,7 +2502,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	brushfire: {
 		name: "Brushfire",
-		desc: "If Grassy Terrain is active, instead of healing grounded Pokemon, damage non-Fire grounded Pokemon",
+		desc: "Grassy Terrain: Damage non-Fire Pokemon instead of healing.",
 	},
 	candycrush: {
 		name: "Candy Crush",
