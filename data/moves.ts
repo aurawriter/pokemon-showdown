@@ -23555,6 +23555,22 @@ export const Moves: {[moveid: string]: MoveData} = {
 		maxMove: {basePower: 130},
 	
 	},
+	frostbite: {
+		num: 261,
+		accuracy: 85,
+		basePower: 0,
+		category: "Status",
+		name: "Frostbite",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		status: 'fbt',
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		zMove: {boost: {atk: 1}},
+		contestType: "Beautiful",
+	},
 	hydrotherapy: {
 		num: 748,
 		accuracy: true,

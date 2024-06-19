@@ -6348,7 +6348,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	sugarhoard: {
 		onResidual(pokemon) {
-			if(this.field.isTerrain('draconicterrain')) {
+			if(this.field.isTerrain('draconicterrain') && pokemon.activeTurns) {
 				if (pokemon.volatiles['stockpile'] && pokemon.volatiles['stockpile'].layers >= 3) return false;
 				pokemon.addVolatile('stockpile');
 			}
