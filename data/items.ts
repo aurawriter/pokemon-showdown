@@ -7902,8 +7902,8 @@ export const Items: {[itemid: string]: ItemData} = {
 			type: "Grass",
 		},
 		onSourceTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
-			if (move.type === 'Grass' && source.useItem() && (source.baseSpecies.name === 'Spitrus' || source.baseSpecies.name === 'Citrillon')) {
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo']|| !(source.baseSpecies.name === 'Spitrus' || source.baseSpecies.name === 'Citrillon')) return;
+			if (move.type === 'Grass' && source.useItem()) {
 				source.addVolatile('gem');
 			}
 		},
