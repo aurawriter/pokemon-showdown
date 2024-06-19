@@ -23663,7 +23663,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Poison",
 		zMove: {boost: {def: 1}},
 		contestType: "Tough", 
-	}
+	},
 	accuracytest: {
 		num: 33,
 		accuracy: 5,
