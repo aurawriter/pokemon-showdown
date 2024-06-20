@@ -20604,7 +20604,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Volkaison",
 		types: ["Electric","Fighting"],
 		baseStats: {hp: 82, atk: 107, def: 79, spa: 37, spd: 69, spe: 116},
-		abilities: {0: "Reckless", 1: "Sap Sipper", H: "Reckless"},
+		abilities: {0: "Reckless", 1: "Sap Sipper", H: "Overcharge"},
 		heightm: 1.6,
 		weightkg: 94.6,
 		color: "White",

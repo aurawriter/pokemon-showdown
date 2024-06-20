@@ -2510,7 +2510,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	mindovermatter:{
 		name: "Mind Over Matter",
-		desc: "Psychic moves have a chance to Confuse. In Psychic Terrain, Normal=type moves become Psychic-type.",
+		desc: "Psychic moves have a chance to Confuse. Psychic Terrain: Normal moves become Psychic.",
 	},
 	singularity: {
 		name: "Singularity",
