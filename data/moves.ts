@@ -22425,6 +22425,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			case 'snow':
 				move.type = 'Ice';
 				break;
+			case 'acidrain':
+				move.type = 'Poison';
+				break;
+			case 'pollen':
+				move.type = 'Bug';
+				break;
 			}
 		},
 		onModifyMove(move, pokemon) {
