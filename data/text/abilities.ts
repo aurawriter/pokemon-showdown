@@ -2479,10 +2479,15 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Swift Strike",
 		desc: "Moves with increased priority have 1.2x power",
 	}, 	
+	pollution:
+	{
+		name: "Pollution",
+		desc: "On switch-in, Acid Rain starts",
+	}
 	pollenbeard: {
 		name: "Pollen Beard",
 		desc: "If this Pokemon is a Sneevil, the first Special hit it takes in battle deals 0 neutral damage. Its pollen beard is then broken and it changes forme to Shaved. Sneevil regains its Pollen Beard forme when Pollen begins or when Sneevil switches in while Pollen is active.",
-		shortDesc: "If Smeevil, the first special hit it takes deals 0 damage. Effect is restored in Pollen.",
+		shortDesc: "If Sneevil, the first special hit it takes deals 0 damage. Effect is restored in Pollen.",
 	},
 	vampiric: {
 		name: "Vampiric",
@@ -2515,5 +2520,13 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	singularity: {
 		name: "Singularity",
 		desc: "Gravity cannot end or be changed.",
+	},
+	overcharge: {
+		name: "Overcharge",
+		desc: "If Electric Terrain is active, this Pokemon's  Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn. These effects are prevented if the Pokemon is holding a Utility Umbrella.",
+		shortDesc: "If Electric Terrain is active, this Pokemon's Atk is 1.5x; loses 1/8 max HP per turn.",
+		gen7: {
+			desc: "If Electric Terrain is active, this Pokemon's Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn.",
+		},
 	},
 };
