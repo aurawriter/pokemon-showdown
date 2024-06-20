@@ -2,9 +2,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	sneevil: {
 		tier: "WeatherWars",
 	},
-	sneevilshaved: {
-		tier: "WeatherWars",
-	},
 	grizzweet: {
 		tier: "WeatherWars",
 	},
@@ -61,11 +58,74 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	santai: {
 		tier: "WeatherWars",
-	},
-	peeltite: {
+	}
+	muk: {
 		tier: "WeatherWars",
 	},
-	citrabell: {
+	weezing: {
+		tier: "WeatherWars",
+	},
+	vespiquen: {
+		tier: "WeatherWars",
+	},
+	druddigon: {
+		tier: "WeatherWars",
+	},
+	spiritomb: {
+		tier: "WeatherWars",
+	},
+	jackalipse: {
+		tier: "WeatherWars",
+	},
+	marstunami: {
+		tier: "WeatherWars",
+	},
+	ninetales: {
+		tier: "WeatherWars",
+	}
+	torkoal: {
+		tier: "WeatherWars",
+	},
+	abomasnow: {
+		tier: "WeatherWars",
+	},
+	aurorus: {
+		tier: "WeatherWars",
+	},
+	ninetalesalola: {
+		tier: "WeatherWars",
+	},
+	gigalith: {
+		tier: "WeatherWars",
+	},
+	hippowdon: {
+		tier: "WeatherWars",
+	},
+	tyranitar: {
+		tier: "WeatherWars",
+	},
+	pelipper: {
+		tier: "WeatherWars"
+	},
+	politoed: {
+		tier: "WeatherWars"
+	},
+	kobolder: {
+		tier: "WeatherWars",
+	},
+	pincurchin: {
+		tier: "WeatherWars",
+	},
+	rillaboom: {
+		tier: "WeatherWars",
+	},
+	weezinggalar: {
+		tier: "WeatherWars",
+	},
+	indeedee: {
+		tier: "WeatherWars",
+	},
+	indeedeef: {
 		tier: "WeatherWars",
 	},
 };

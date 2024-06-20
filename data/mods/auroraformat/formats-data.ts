@@ -4806,7 +4806,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 	},
 	sneevilshaved: {
-		tier: "OU",
+		tier: "Unreleased",
 	},
 	grizzweet: {
 		tier: "OU",
