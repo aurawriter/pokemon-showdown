@@ -8009,7 +8009,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	dragondevastation: {
 		name: "Dragon Devastation",
-		shortDesc: "If Draconic Terrain: Reduce target's Def and Spd by 2 stages",
+		shortDesc: "Draconic Terrain: Reduce target's Def and Spd by 2 stages",
 	},
 	allergicreaction: {
 		name: "Allergic Reaction",

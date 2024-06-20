@@ -51366,7 +51366,7 @@ swinub: {
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			astralrift: ["9L1"],
 			wormholewarp: ["9L1"],
-			ghastlygraspgrasp: ["9L1"],
+			ghastlygrasp: ["9L1"],
 		},
 		eventData: [
 			{generation: 5, level: 61, gender: "F", nature: "Quiet", ivs: {hp: 30, atk: 30, def: 30, spa: 30, spd: 30, spe: 30}, moves: ["darkpulse", "psychic", "silverwind", "embargo"], pokeball: "cherishball"},
