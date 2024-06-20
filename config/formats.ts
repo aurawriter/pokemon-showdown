@@ -5353,7 +5353,7 @@ export const Formats: FormatList = [
 		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
 	},
 	{
-		name: "[Gen 9 Aurora] National Dex Lobomon Corp",
+		name: "[Gen 9 Aurora] Weather Wars",
 		
 		mod: 'weatherwars',
 		searchShow: true,
