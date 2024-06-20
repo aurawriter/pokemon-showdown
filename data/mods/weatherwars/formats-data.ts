@@ -82,7 +82,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	ninetales: {
 		tier: "WeatherWars",
-	}
+	},
 	torkoal: {
 		tier: "WeatherWars",
 	},
