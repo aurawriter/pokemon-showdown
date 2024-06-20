@@ -80,6 +80,21 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	marstunami: {
 		tier: "WeatherWars",
 	},
+	ninetales: {
+		tier: "WeatherWars",
+	},
+	torkoal: {
+		tier: "WeatherWars",
+	},
+	abomasnow: {
+		tier: "WeatherWars",
+	},
+	aurorus: {
+		tier: "WeatherWars",
+	},
+	ninetalesalola: {
+		tier: "WeatherWars",
+	},
 	kobolder: {
 		tier: "WeatherWars",
 	},
@@ -95,4 +110,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	indeedeef: {
 		tier: "WeatherWars",
 	},
+	ribombee: {
+		tier: "WeatherWars",
+	}
 };

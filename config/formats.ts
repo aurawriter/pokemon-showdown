@@ -58,6 +58,37 @@ export const Formats: FormatList = [
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
+		section: "Modded Formats",
+	},
+	{
+		name: "[Gen 9 Aurora] National Dex Lobomon Corp",
+		
+		mod: 'lobomoncorporation',
+		searchShow: true,
+		debug: true,
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
+	},
+	{
+		name: "[Gen 9 Aurora] National Dex Lobomon Corp Doubles",
+		
+		mod: 'lobomoncorporation',
+		gameType: 'doubles',
+		searchShow: true,
+		debug: true,
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
+	},
+	{
+		name: "[Gen 9 Aurora] Weather Wars",
+		
+		mod: 'weatherwars',
+		searchShow: true,
+		debug: true,
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','ZUBL'],
+	},
+	{
 		section: "S/V Singles",
 	},
 	{
@@ -5330,37 +5361,7 @@ export const Formats: FormatList = [
 		battle: {trunc: Math.trunc},
 		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
-	{
-		section: "Modded Formats",
-	},
-	{
-		name: "[Gen 9 Aurora] National Dex Lobomon Corp",
-		
-		mod: 'lobomoncorporation',
-		searchShow: true,
-		debug: true,
-		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
-		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
-	},
-	{
-		name: "[Gen 9 Aurora] National Dex Lobomon Corp Doubles",
-		
-		mod: 'lobomoncorporation',
-		gameType: 'doubles',
-		searchShow: true,
-		debug: true,
-		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
-		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
-	},
-	{
-		name: "[Gen 9 Aurora] Weather Wars",
-		
-		mod: 'weatherwars',
-		searchShow: true,
-		debug: true,
-		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
-		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','ZUBL'],
-	},
+	
 	
 	
 ];
