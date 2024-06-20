@@ -65314,7 +65314,7 @@ swinub: {
 			thunderpunch: ["8M", "7T", "6T", "5T"],
 			torment: ["7M", "6M", "5M"],
 			toxic: ["7M", "6M", "5M"],
-			draconicdevastation: ["9L1"],
+			dragondevastation: ["9L1"],
 			radiantsmite: ["9L1"],
 			brightfang: ["9L1"],
 		},

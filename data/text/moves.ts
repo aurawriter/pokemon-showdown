@@ -8009,7 +8009,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	dragondevastation: {
 		name: "Dragon Devastation",
-		shortDesc: "If Draconic Terrain: Reduce target's defense and special defense by 2 stages",
+		shortDesc: "If Draconic Terrain: Reduce target's Def and Spd by 2 stages",
 	},
 	allergicreaction: {
 		name: "Allergic Reaction",
@@ -8021,7 +8021,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	ghastlygrasp: {
 		name: "Ghastly Grasp",
-		shortDesc: "For 5 turns, damage to foes is doubled. Haunted Terrain only."
+		shortDesc: "For 5 turns, foes take double damage. Haunted only."
 	},
 
 };
