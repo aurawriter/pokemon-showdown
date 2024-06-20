@@ -104030,6 +104030,7 @@ swinub: {
 			speedswap: ["9L1"],
 			rapidspin: ["9L1"],
 			wish: ["9L1"],	
+			ghastlygrasp: ["9L1"],
 		},
 	},
 	faengpire: {

@@ -8006,5 +8006,22 @@ export const MovesText: {[k: string]: MoveText} = {
 	jawbreaker: {
 		name: "Jawbreaker",
 		shortDesc: "Reset target's stats before dealing damage",	
-	}
+	},
+	dragondevastation: {
+		name: "Dragon Devastation",
+		shortDesc: "If Draconic Terrain: Reduce target's defense and special defense by 2 stages",
+	},
+	allergicreaction: {
+		name: "Allergic Reaction",
+		shortDesc: "If Pollen: Double damage and clear Pollen",
+	},
+	smoggyslide: {
+		name: "Smoggy Slide",
+		shortDesc:"User on Acid Rain: +1 Priority"
+	},
+	ghastlygrasp: {
+		name: "Ghastly Grasp",
+		shortDesc: "For 5 turns, damage to foes is doubled. Haunted Terrain only."
+	},
+
 };
