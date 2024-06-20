@@ -100,5 +100,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	aurorus: {
 		tier: "WW",
+	},
+	martsunami: {
+		tier: "WW",
 	}
 };
