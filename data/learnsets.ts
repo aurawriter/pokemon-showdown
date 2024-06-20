@@ -103895,6 +103895,8 @@ swinub: {
             thunder: ["9L1"],
             thunderbolt: ["9L1"],
             voltswitch: ["9L1"],
+			shadowball: ["9L1"],
+			toxic: ["9L1"],
 		},
 	},
 	revolture: {
