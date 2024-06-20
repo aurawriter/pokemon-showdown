@@ -58,7 +58,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	santai: {
 		tier: "WeatherWars",
-	}
+	},
 	muk: {
 		tier: "WeatherWars",
 	},
