@@ -86,6 +86,7 @@ export const Aliases: {[alias: string]: string} = {
 	crossevo: "[Gen 9] Cross Evolution",
 	mayhem: "[Gen 9] Random Battle Mayhem",
 	lobomon: "Lobomon Corporation",
+	weather: "Weather Wars",
 	omotm: "[Gen 9] Shared Power",
 	lcotm: "[Gen 9] Protean Palace",
 

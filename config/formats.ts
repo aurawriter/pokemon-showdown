@@ -5352,6 +5352,15 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
 	},
+	{
+		name: "[Gen 9 Aurora] National Dex Lobomon Corp",
+		
+		mod: 'weatherwars',
+		searchShow: true,
+		debug: true,
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		banlist: ['AG','Uber','OU','UUBL','UU','RU','NU','PU','ZU','RUBL','NUBL','PUBL','NFE','LC','Life Orb','Red Card','Shell Bell'],
+	},
 	
 	
 ];
