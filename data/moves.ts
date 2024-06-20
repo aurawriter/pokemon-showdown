@@ -22431,6 +22431,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			case 'pollen':
 				move.type = 'Bug';
 				break;
+			case 'gravity':
+				move.type = 'Cosmic';
+				break;
 			}
 		},
 		onModifyMove(move, pokemon) {
