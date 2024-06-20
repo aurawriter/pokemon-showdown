@@ -104084,7 +104084,9 @@ swinub: {
 			supersonic: ["9L1"],
 			confuseray: ["9L1"],
 			haze: ["9L1"],
-	
+			shadowball: ["9L1"],
+			hex: ["9L1"],
+			shadowclaw: ["9L1"],
 		},
 	},
 	glucoana: {

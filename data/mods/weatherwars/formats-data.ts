@@ -104,4 +104,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	martsunami: {
 		tier: "WW",
 	},
+	spitrus: {
+		tier: "WW",
+	}
 };
