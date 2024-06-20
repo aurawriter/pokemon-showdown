@@ -1,104 +1,104 @@
 export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	sneevil: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	grizzweet: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	ponchobake: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	revolture: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	lemurei: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	faengpire: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	glucoana: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	dratosphere: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	citrillon: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	mothiosa: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	onisen: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	scabbardaunt: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	cobrust: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	lollibop: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	hypnoxious: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	volkaison: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	spiritombaurora: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	galacastarid: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	galacasthumid: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	santai: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	muk: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	weezing: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	vespiquen: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	druddigon: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	spiritomb: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	jackalipse: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	marstunami: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	kobolder: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	rillaboom: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	weezinggalar: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	indeedee: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	indeedeef: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	ribombee: {
-		tier: "WeatherWars",
+		tier: "WW",
 	},
 	aurorus: {
-		tier: "WeatherWars",
+		tier: "WW",
 	}
 };
