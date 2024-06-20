@@ -80,40 +80,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	marstunami: {
 		tier: "WeatherWars",
 	},
-	ninetales: {
-		tier: "WeatherWars",
-	},
-	torkoal: {
-		tier: "WeatherWars",
-	},
-	abomasnow: {
-		tier: "WeatherWars",
-	},
-	aurorus: {
-		tier: "WeatherWars",
-	},
-	ninetalesalola: {
-		tier: "WeatherWars",
-	},
-	gigalith: {
-		tier: "WeatherWars",
-	},
-	hippowdon: {
-		tier: "WeatherWars",
-	},
-	tyranitar: {
-		tier: "WeatherWars",
-	},
-	pelipper: {
-		tier: "WeatherWars"
-	},
-	politoed: {
-		tier: "WeatherWars"
-	},
 	kobolder: {
-		tier: "WeatherWars",
-	},
-	pincurchin: {
 		tier: "WeatherWars",
 	},
 	rillaboom: {
