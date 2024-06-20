@@ -20570,6 +20570,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: -1171,
 		name: "Cobrust",
 		types: ["Grass","Fire"],
+		baseStats: {hp: 58, atk: 80, def: 110, spa: 30, spd: 70, spe: 100},
 		abilities: {0: "Brushfire"},
 		heightm: 3.5,
 		weightkg: 65,
