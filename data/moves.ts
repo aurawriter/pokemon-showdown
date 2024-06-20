@@ -2229,6 +2229,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			} else if (this.field.isTerrain('psychicterrain')) {
 				newType = 'Psychic';
 			}
+			else if (this.field.isTerrain('draconicterrain')) {
+				newType = 'Dragon';
+			}
+			else if (this.field.isTerrain('hauntedterrain')) {
+				newType = 'Ghost';
+			}
 
 			if (target.getTypes().join() === newType || !target.setType(newType)) return false;
 			this.add('-start', target, 'typechange', newType);
@@ -13303,6 +13309,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			} else if (this.field.isTerrain('psychicterrain')) {
 				move = 'psychic';
 			}
+			else if (this.field.isTerrain('draconicterrain')) {
+				move = 'dragon pulse';
+			}
+			else if (this.field.isTerrain('hauntedterrain')) {
+				move = 'shadow ball';
+			}
 			this.actions.useMove(move, pokemon, target);
 			return null;
 		},
@@ -16896,6 +16908,20 @@ export const Moves: {[moveid: string]: MoveData} = {
 					chance: 30,
 					boosts: {
 						spe: -1,
+					},
+				});
+			}
+			else if (this.field.isTerrain('hauntedterrain')) {
+				move.secondaries.push({
+					chance: 30,
+					volatileStatus: 'flinch',
+				});
+			}
+			else if (this.field.isTerrain('draconicterrain')){
+				move.secondaries.push({
+					chance: 30,
+					boosts: {
+						def: -1,
 					},
 				});
 			}
@@ -20766,6 +20792,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 				break;
 			case 'psychicterrain':
 				move.type = 'Psychic';
+				break;
+			case 'hauntedterrain':
+				move.type = 'Ghost';
+				break;
+			case 'draconicterrain':
+				move.type = 'Dragon';
 				break;
 			}
 		},
