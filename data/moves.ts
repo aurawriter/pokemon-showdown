@@ -15569,12 +15569,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
 	},
-	pollinate: {
+	pollen: {
 		num: 240,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		name: "Pollinate",
+		name: "Pollen",
 		pp: 5,
 		priority: 0,
 		flags: {},

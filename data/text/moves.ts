@@ -8023,5 +8023,20 @@ export const MovesText: {[k: string]: MoveText} = {
 		name: "Ghastly Grasp",
 		shortDesc: "For 5 turns, foes take double damage. Haunted only."
 	},
-
+	pollen: {
+		name: "Pollen",
+		shortDesc: "For 5 turns, Bug-type Pokemon are protected from secondary effects and their not very effective moves deal 2x damage."
+	},
+	hauntedterrain: {
+		name: "Haunted Terrain",
+		shortDesc: "For 5 turns, Ghost-type moves drain HP, and grounded non=Ghost type Pokemon lose 1 PP on the last move they used at the end of each turn"
+	},
+	draconicterrain: {
+		name: "Draconic Terrain",
+		shortDesc: "For 5 turns, moves ignore abilities, and Dragon-type moves deal more damage the more HP the target has (1 + (currentHP/maxHP)/2)"
+	},
+	acidrain: {
+		name: "Acid Rain",
+		shortDesc: "For 5 turns, non-Poison types take 1/16th damage at the end of each turn. Steel types take twice the damage."
+	}
 };
