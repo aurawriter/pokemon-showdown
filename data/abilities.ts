@@ -6474,8 +6474,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 				move.secondaries.push({
 				chance: 30,
-				status: 'brn',
-				ability: this.dex.abilities.get('dragonheart'),
+				volatileStatus: 'confusion',
+				ability: this.dex.abilities.get('mindovermatter'),
 			});
 			}
 		},

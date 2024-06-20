@@ -184,6 +184,14 @@ export const DefaultText: {[k: string]: DefaultText} = {
 		endFromMove: "  [POKEMON]'s [MOVE] melted the ice!",
 		cant: "[POKEMON] is frozen solid!",
 	},
+	fbt: {
+		start: "  [POKEMON] was frostbitten!",
+		startFromItem: "  [POKEMON] was frostbitten by the [ITEM]!",
+		alreadyStarted: "  [POKEMON] is already frostbitten!",
+		end: "  [POKEMON]'s frostbite was healed!",
+		endFromItem: "  [POKEMON]'s [ITEM] healed its frostbite!",
+		damage: "  [POKEMON] was hurt by its frostbite!",
+	},
 	par: {
 		start: "  [POKEMON] is paralyzed! It may be unable to move!",
 		alreadyStarted: "  [POKEMON] is already paralyzed!",
