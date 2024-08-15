@@ -988,9 +988,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
-			if(attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod<0)
-			{
+			if (attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod < 0) {
 				return this.chainModify(2);
+			}
+			else if (!attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod < 0) {
+				return this.chainModify(1.33);
 			}
 			if(move.id==='allergicreaction')
 			{
@@ -998,10 +1000,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 		onModifySecondaries(secondaries, target) {
-			if(target.hasType('Bug'))
-			{
 			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
-			}
 		},
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {

@@ -23349,7 +23349,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onModifyMove(move,attacker,defender){
 				if(!(move.type==='Ghost' || move.category === 'Status') || !(attacker.isGrounded()||attacker.ability==='dragonblessing')) return;
 				if(!move.drain){
-					move.drain = [1,16];
+					move.drain = [1,8];
 				}
 			},
 			onDeductPP(target, source) {
