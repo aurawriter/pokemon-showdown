@@ -5160,7 +5160,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Dustox",
 		types: ["Bug", "Poison"],
 		baseStats: {hp: 60, atk: 50, def: 70, spa: 50, spd: 90, spe: 65},
-		abilities: {0: "Shield Dust",1: "Allergy Season" H: "Compound Eyes"},
+		abilities: {0: "Shield Dust",1: "Allergy Season" ,H: "Compound Eyes"},
 		heightm: 1.2,
 		weightkg: 31.6,
 		color: "Green",
