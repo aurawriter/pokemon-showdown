@@ -1380,24 +1380,19 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	wurmple: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "LC",
 	},
 	silcoon: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "NFE",
 	},
 	beautifly: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "OU",
 	},
 	cascoon: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "NFE",
 	},
 	dustox: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "OU",
 		
 	},
 	lotad: {
@@ -2691,13 +2686,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	trubbish: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "NFE",
 		
 	},
 	garbodor: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "OU",
 		
 	},
 	garbodorgmax: {
