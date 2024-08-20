@@ -58,6 +58,15 @@ export const Formats: FormatList = [
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
+		name: "[Gen 9 Aurora] Aurora UHD",
+
+		mod: 'auroraformat',
+		gameType: 'doubles',
+		searchShow: false,
+		bestOfDefault: true,
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
+	},
+	{
 		section: "Modded Formats",
 	},
 	{
