@@ -54,7 +54,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Standard','Terastal Clause', 'Same Type Clause','Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		ruleset: ['Standard','Terastal Clause', 'Same Type Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
