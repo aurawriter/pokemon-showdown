@@ -29,7 +29,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Standard','Terastal Clause', 'Dynamax Clause', 'Z-Move Clause'],
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
@@ -37,7 +37,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Standard','Terastal Clause', 'Dynamax Clause','Z-Move Clause'],
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
@@ -46,7 +46,7 @@ export const Formats: FormatList = [
 		mod: 'auroraformat',
 		gameType: 'doubles',
 		debug: true,
-		ruleset: ['Standard','Terastal Clause','Dynamax Clause', 'Z-Move Clause'],
+		ruleset: ['Standard NatDex', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
@@ -54,7 +54,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Standard','Terastal Clause', 'Same Type Clause', 'Dynamax Clause', 'Z-Move Clause'],
+		ruleset: ['Standard NatDex', 'Same Type Clause', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail','Heat Haze'],
 	},
 	{
@@ -64,7 +64,7 @@ export const Formats: FormatList = [
 		gameType: 'doubles',
 		searchShow: false,
 		bestOfDefault: true,
-		ruleset: ['Standard','Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
+		ruleset: ['Standard NatDex','Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
 	},
 	{
 		section: "Modded Formats",
