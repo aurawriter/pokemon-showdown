@@ -2503,7 +2503,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	weathering: {
 		name: "Weathering",
-		desc: "If Sandstorm, this Pokemon gains Spe and Atk, but loses Def and SpD each turn."
+		desc: "Whenever stats are lowered, gain Speed. In Sandstorm: Lower Def 1 Stage"
 	},
 	brushfire: {
 		name: "Brushfire",
