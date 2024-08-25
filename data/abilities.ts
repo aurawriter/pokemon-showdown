@@ -6421,7 +6421,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.6,
 		num: 294,
 	},
-	weathering: {
+	/*weathering: {
 		onWeather(target, source, effect) {
 			if (effect.id === 'sandstorm') {
 				this.boost({atk: 1, def: -1, spd: -1, spe: 1}, target, target);
@@ -6430,6 +6430,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Weathering",
 		rating: 3.5,
 		num: 294,
+	},*/
+	weathering: {
+		onChangeBoost(boost, target, source, effect) {
+			if (effect && effect.id === 'zpower') return;
+			let i: BoostID;
+			for (i in boost) {
+				if(boost[i]! <0 )
+				{
+					this.boost({spe:1},target,target);
+				}
+			}
+		},
+		onWeather(target, source, effect) {
+			if (effect.id === 'sandstorm') {
+				this.boost({def: -1}, target, target);
+			}
+		},
+		isBreakable: true,
+		name: "Weathering",
+		rating: 4.5,
+		num: 126,
 	},
 	brushfire: {
 		//This is handled in Grassy Terrain

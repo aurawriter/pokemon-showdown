@@ -4174,6 +4174,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			tripleaxel: ["9M", "8T"],
 			workup: ["8M", "7M"],
 			xscissor: ["9M", "8M", "8V", "7M"],
+			frostbite: ["9L1"],
 		},
 	},
 	nidoranf: {
@@ -5665,6 +5666,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			sunburst:["9L1"],
 			astralrift: ["9L1"],
 			wormholewarp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	igglybuff: {
@@ -14014,6 +14016,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			ghastlygrasp: ["9L1"],
 			acidrain: ["9L1"],
 			smoggyslide: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 23, gender: "F", nature: "Hardy", ivs: {hp: 19, atk: 14, def: 0, spa: 14, spd: 17, spe: 27}, moves: ["spite", "curse", "nightshade", "confuseray"], pokeball: "pokeball"},
@@ -20472,6 +20475,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			solarstrike:["9L1"],
 			sunburst:["9L1"],
 			vividburst:["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 44, moves: ["hydropump", "raindance", "blizzard", "healbell"]},
@@ -21371,6 +21375,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			workup: ["8M", "7M", "5M"],
 			vividburst: ["9L1"],
 			gravitoncore: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 5, level: 10, gender: "M", isHidden: true, moves: ["tailwhip", "tackle", "helpinghand", "sandattack"]},
@@ -22522,6 +22527,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			weatherball: ["9M", "8M"],
 			whirlwind: ["7V"],
 			vividburst:["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 50, shiny: 1, moves: ["mist", "agility", "mindreader", "icebeam"]},
@@ -28782,6 +28788,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			wonderroom: ["7T", "6T", "5T"],
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	unown: {
@@ -31497,6 +31504,7 @@ swinub: {
 			throatchop: ["9M"],
 			toxic: ["7M", "6M", "5M", "4M"],
 			trailblaze: ["9M"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 5, level: 34, gender: "M", isHidden: true, moves: ["hail", "icefang", "takedown", "doublehit"]},
@@ -31757,6 +31765,7 @@ swinub: {
 			willowisp: ["9M", "8M"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	remoraid: {
@@ -38142,6 +38151,7 @@ swinub: {
 			allergicreaction:["9L1"],
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 50, moves: ["spite", "confuseray", "shadowball", "grudge"], pokeball: "pokeball"},
@@ -44295,6 +44305,7 @@ swinub: {
 			wormholewarp: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 3, level: 37, abilities: ["insomnia"], moves: ["helpinghand", "feintattack", "shadowball", "curse"]},
@@ -44505,6 +44516,7 @@ swinub: {
 			wormholewarp: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	tropius: {
@@ -45076,6 +45088,7 @@ swinub: {
 			trailblaze: ["9M"],
 			waterpulse: ["9M", "7T", "6T", "4M", "3M"],
 			weatherball: ["9M", "9L54", "8M"],
+			frostbite: ["9L1"],
 		},
 	},
 	froslass: {
@@ -45178,6 +45191,7 @@ swinub: {
 			vividburst: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	spheal: {
@@ -51532,6 +51546,7 @@ swinub: {
 			wormholewarp: ["9L1"],
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 5, level: 61, gender: "F", nature: "Quiet", ivs: {hp: 30, atk: 30, def: 30, spa: 30, spd: 30, spe: 30}, moves: ["darkpulse", "psychic", "silverwind", "embargo"], pokeball: "cherishball"},
@@ -53027,6 +53042,7 @@ swinub: {
 			sunburst: ["9L1"],
 			lightedge: ["9L1"],
 			vividburst: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		encounters: [
 			{generation: 4, level: 38},
@@ -59312,6 +59328,7 @@ swinub: {
 			zenheadbutt: ["9M"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	basculegionf: {
@@ -60693,6 +60710,7 @@ swinub: {
 			wormholewarp: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 7, level: 66, gender: "M", moves: ["willowisp", "shadowball", "powersplit", "darkpulse"], pokeball: "cherishball"},
@@ -61554,6 +61572,7 @@ swinub: {
 			willowisp: ["9M"],
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 9, level: 50, perfectIVs: 3, moves: ["happyhour", "bittermalice", "nastyplot", "terablast"], pokeball: "cherishball"},
@@ -71354,6 +71373,7 @@ swinub: {
 			lightedge: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 6, level: 50, gender: "F", nature: "Quiet", moves: ["wideguard", "kingsshield", "shadowball", "flashcannon"], pokeball: "cherishball"},
@@ -72815,6 +72835,7 @@ swinub: {
 			waterpulse: ["7T", "6T"],
 			weatherball: ["9M", "8M"],
 			zenheadbutt: ["9M", "8M", "7T", "6T"],
+			frostbite: ["9L1"],
 		},
 	},
 	sylveon: {
@@ -80082,6 +80103,7 @@ swinub: {
 			wormholewarp: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 		eventData: [
 			{generation: 7, level: 10, moves: ["copycat", "babydolleyes", "splash", "astonish"], pokeball: "cherishball"},
@@ -80435,6 +80457,7 @@ swinub: {
 			sunburst: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	jangmoo: {
@@ -86095,6 +86118,7 @@ swinub: {
 			butterflydust: ["9L1"],
 			pollen: ["9L1"],
 			allergicreaction:["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	stonjourner: {
@@ -86214,6 +86238,7 @@ swinub: {
 			whirlpool: ["9M", "8M"],
 			zenheadbutt: ["9M", "8M"],
 			vividburst: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	indeedee: {
@@ -87032,6 +87057,7 @@ swinub: {
 			dragondevastation: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	zacian: {
@@ -94950,6 +94976,7 @@ swinub: {
 			withdraw: ["9L8"],
 			acidrain: ["9L1"],
 			smoggyslide: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	syclar: {
@@ -101030,6 +101057,7 @@ swinub: {
 			thunder: ["9L1"],
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 }
 },
 	arjibee: {
@@ -101805,6 +101833,7 @@ swinub: {
 			rollout: ["9L1"],
 			stoneedge: ["9L1"],
 			earthquake: ["9L1"],
+			frostbite: ["9L1"],
 		}
 	},
 	dribblowisp:{
@@ -101866,6 +101895,7 @@ swinub: {
 			reboundshot:["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
 		}
 	},
 	calikami:{
@@ -102910,6 +102940,7 @@ swinub: {
 			futuresight: ["9L1"],
 			heartstamp: ["9L1"],
 			starburst: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	herastroid: {
@@ -103318,6 +103349,7 @@ swinub: {
             strobelight: ["9L1"],
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
+			frostbite: ["9L1"],
         },
     },
 	redover: {
@@ -103928,6 +103960,7 @@ swinub: {
 			weatherball: ["9M"],
 			wingattack: ["9L4"],
 			vividburst: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	jolibirdcookies: {
@@ -103997,6 +104030,7 @@ swinub: {
 			wingattack: ["9L4"],
 			wish: ["9L32"],
 			vividburst: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	sneevil: {
@@ -104319,6 +104353,7 @@ swinub: {
 			wish: ["9L1"],	
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	faengpire: {
@@ -104676,7 +104711,6 @@ swinub: {
 					doubleedge: ["9L1"],
 					endure: ["9L1"],
 					facade: ["9L1"],
-					frostbite: ["9L1"],
 					frostbreath: ["9L1"],
 					fireblast: ["9L1"],
 					firefang: ["9L1"],
@@ -105009,6 +105043,8 @@ swinub: {
 			sludgebomb: ["9L1"],
 			sludgewave: ["9L1"],
 			venoshock: ["9L1"],
+			toxic: ["9L1"],
+			venomdrench: ["9L1"],
 		},
 	},
 	volkaison: {
@@ -105155,6 +105191,7 @@ swinub: {
 			fallingstar:["9L50"],
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
+			frostbite: ["9L1"],
 		},
 	},
 	galacastarid: {
