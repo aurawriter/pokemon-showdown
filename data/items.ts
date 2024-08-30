@@ -2454,6 +2454,50 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 7,
 		isNonstandard: "Past",
 	},
+	draconicseed: {
+		name: "Draconic Seed",
+		spritenum: 667,
+		fling: {
+			basePower: 10,
+		},
+		onStart(pokemon) {
+			if (!pokemon.ignoringItem() && this.field.isTerrain('draconicterrain')) {
+				pokemon.useItem();
+			}
+		},
+		onTerrainChange(pokemon) {
+			if (this.field.isTerrain('draconicterrain')) {
+				pokemon.useItem();
+			}
+		},
+		boosts: {
+			atk: 1,
+		},
+		num: 884,
+		gen: 7,
+	},
+	hauntedseed: {
+		name: "Haunted Seed",
+		spritenum: 667,
+		fling: {
+			basePower: 10,
+		},
+		onStart(pokemon) {
+			if (!pokemon.ignoringItem() && this.field.isTerrain('hauntedterrain')) {
+				pokemon.useItem();
+			}
+		},
+		onTerrainChange(pokemon) {
+			if (this.field.isTerrain('hauntedterrain')) {
+				pokemon.useItem();
+			}
+		},
+		boosts: {
+		 	spa: 1,
+		},
+		num: 884,
+		gen: 7,
+	},
 	grassyseed: {
 		name: "Grassy Seed",
 		spritenum: 667,

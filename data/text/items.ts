@@ -730,6 +730,14 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Grassy Seed",
 		desc: "If the terrain is Grassy Terrain, raises holder's Defense by 1 stage. Single use.",
 	},
+	draconicseed: {
+		name: "Draconic Seed",
+		desc: "If the terrain is Draconic Terrain, raises holder's Attack by 1 stage. Single use.",
+	},
+	hauntedseed: {
+		name: "Haunted Seed",
+		desc: "If the terrain is Haunted Terrain, raises holder's Special Attack by 1 stage. Single use.",
+	},
 	greatball: {
 		name: "Great Ball",
 		desc: "A high-performance Ball that provides a higher catch rate than a Poke Ball.",
@@ -2455,5 +2463,10 @@ export const ItemsText: {[k: string]: ItemText} = {
 	},
 	floweryrock: {
 		name: "Flowery Rock",
+		desc: "Holder's use of Pollen lasts 8 turns instead of 5.",
+	},
+	smoggyrock: {
+		name: "Smoggy Rock",
+		desc: "Holder's use of Acid Rain lasts 8 turns instead of 5.",
 	},
 };
