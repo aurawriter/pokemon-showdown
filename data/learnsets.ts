@@ -79551,7 +79551,7 @@ swinub: {
 			lastresort: ["7T"],
 			magiccoat: ["7T"],
 			metalsound: ["9M", "8L20", "7L45"],
-			multiattack: ["8L0", "7L1", "7S0"],
+			multiattack: ["9L0", "8L0", "7L1", "7S0"],
 			outrage: ["9M", "8M", "7T"],
 			partingshot: ["8L60", "7L85", "7S0"],
 			payback: ["8M", "7M"],
