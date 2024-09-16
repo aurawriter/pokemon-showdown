@@ -168,6 +168,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 148,
 	},
+	escapevelocitytest: {
+		onBasePowerPriority: 21,
+		onBasePower(basePower, pokemon) {
+			let boosted = false;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (this.queue.willMove(target)) {
+					boosted = true;
+					break;
+				}
+			}
+			if (boosted) {
+				this.debug('Escape Velocity boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		name: "Escape Velocity Test",
+		rating: 2.5,
+		num: 148,
+	},
 	angerpoint: {
 		onHit(target, source, move) {
 			if (!target.hp) return;
