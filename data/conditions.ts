@@ -992,7 +992,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return this.chainModify(2);
 			}
 			else if (!attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod < 0) {
-				return this.chainModify(1.33);
+				return this.chainModify(1.30);
 			}
 			if(move.id==='allergicreaction')
 			{
