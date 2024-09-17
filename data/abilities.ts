@@ -170,23 +170,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	escapevelocitytest: {
 		onBasePowerPriority: 21,
-		onBasePower(basePower, pokemon) {
-			let boosted = false;
-			for (const target of this.getAllActive()) {
-				if (target === pokemon) continue;
-				if (this.queue.willMove(target)) {
-					boosted = true;
-					break;
+        onBasePower(basePower, pokemon) {
+            let boosted = false;
+            for (const target of this.getAllActive()) {
+                if (target === pokemon) continue;
+                if (target.newlySwitched || this.queue.willMove(target)) {
+                    boosted = true;
+                    break;
+                }
+				else
+				{
+					boosted = false;
 				}
-			}
-			if (boosted) {
-				this.debug('Escape Velocity boost');
-				return this.chainModify([5325, 4096]);
-			}
-		},
-		name: "Escape Velocity Test",
-		rating: 2.5,
-		num: 148,
+            }
+            if (boosted) {
+                this.debug('Escape Velocity boost');
+                return this.chainModify([5325, 4096]);
+            }
+        },
+        name: "Escape Velocity Test",
+        rating: 2.5,
+        num: 317,
 	},
 	angerpoint: {
 		onHit(target, source, move) {
