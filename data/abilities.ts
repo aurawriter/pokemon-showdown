@@ -176,11 +176,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
                 if (target === pokemon) continue;
                 if (target.newlySwitched || this.queue.willMove(target)) {
                     boosted = true;
-                    break;
                 }
 				else
 				{
 					boosted = false;
+					break;
 				}
             }
             if (boosted) {
