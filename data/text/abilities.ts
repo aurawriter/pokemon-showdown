@@ -900,8 +900,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	fieryfists: {
 		name: "Fiery Fists",
-		desc: "This Pokemon's punch-based attacks also count as Fire-type moves for effectiveness.",
-		shortDesc: "This Pokemon's punch-based also count as Fire-type moves for effectiveness.",
+		desc: "This Pokemon's Fighting-type moves become Fire type and have 1.2x power.",
+		shortDesc: "This Pokemon's Fighting-type moves become Fire type and have 1.2x power.",
 	},
 	justified: {
 		name: "Justified",
@@ -2424,7 +2424,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	escapevelocity: {
 		name: "Escape Velocity",
-		shortDesc: "20% of this Pokemon's Speed is added to its Attack."
+		shortDesc: "This Pokemon's attacks have 1.3x power if it is the first to move in a turn."
 	},
 	tidalforce: {
 		name: "Tidal Force",

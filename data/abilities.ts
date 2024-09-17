@@ -168,30 +168,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 148,
 	},
-	escapevelocitytest: {
-		onBasePowerPriority: 21,
-        onBasePower(basePower, pokemon) {
-            let boosted = false;
-            for (const target of this.getAllActive()) {
-                if (target === pokemon) continue;
-                if (target.newlySwitched || this.queue.willMove(target)) {
-                    boosted = true;
-                }
-				else
-				{
-					boosted = false;
-					break;
-				}
-            }
-            if (boosted) {
-                this.debug('Escape Velocity boost');
-                return this.chainModify([5325, 4096]);
-            }
-        },
-        name: "Escape Velocity Test",
-        rating: 2.5,
-        num: 317,
-	},
 	angerpoint: {
 		onHit(target, source, move) {
 			if (!target.hp) return;
@@ -3249,17 +3225,24 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 124,
 	},	
 	fieryfists:{
-		onModifyDamage(damage, source, target, move) {
-
-		if (move.flags['punch']) {
-			const typeMod = this.clampIntRange(target.runEffectiveness('Fire'), -6, 6);
-			const multi = Math.pow(2, typeMod);
-			return this.chainModify(multi);
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Fighting' && !noModifyType.includes(move.id) &&
+				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
+				move.type = 'Fire';
+				move.typeChangerBoosted = this.effect;
 			}
 		},
-		name:"Fiery Fists",
-		rating: 1,
-		num: 124,
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.typeChangerBoosted === this.effect) return this.chainModify([4915, 4096]);
+		},
+		name: "Fiery Fists",
+		rating: 4,
+		num: 184,
 	},
 	pickup: {
 		onResidualOrder: 28,
@@ -5969,11 +5952,28 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 68,
 	},
 	escapevelocity: {
-		onModifyAtkPriority: 5,
-		onModifyAtk(atk, attacker, defender, move) {
-			return atk + (attacker.speed * .2)
-		},
-		name: "Escape Velocity",
+		onBasePowerPriority: 21,
+        onBasePower(basePower, pokemon) {
+            let boosted = false;
+            for (const target of this.getAllActive()) {
+                if (target === pokemon) continue;
+                if (target.newlySwitched || this.queue.willMove(target)) {
+                    boosted = true;
+                }
+				else
+				{
+					boosted = false;
+					break;
+				}
+            }
+            if (boosted) {
+                this.debug('Escape Velocity boost');
+                return this.chainModify([5325, 4096]);
+            }
+        },
+        name: "Escape Velocity",
+        rating: 2.5,
+        num: 317,
 	},
 	gravitywell: {
 		onStart(source) {
