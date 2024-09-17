@@ -13307,10 +13307,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 				move = 'psychic';
 			}
 			else if (this.field.isTerrain('draconicterrain')) {
-				move = 'dragon pulse';
+				move = 'dragonpulse';
 			}
 			else if (this.field.isTerrain('hauntedterrain')) {
-				move = 'shadow ball';
+				move = 'shadowball';
 			}
 			this.actions.useMove(move, pokemon, target);
 			return null;
