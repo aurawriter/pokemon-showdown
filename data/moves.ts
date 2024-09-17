@@ -18525,7 +18525,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return null;
 		},
 		onBasePower(basePower, pokemon, target) {
-			const weakWeathers = ['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'];
+			const weakWeathers = ['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow','acidrain','pollen'];
 			if (weakWeathers.includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
@@ -18562,7 +18562,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return null;
 		},
 		onBasePower(basePower, pokemon, target) {
-			const weakWeathers = ['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'];
+			const weakWeathers = ['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow','acidrain','pollen'];
 			if (weakWeathers.includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
@@ -18599,7 +18599,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return null;
 		},
 		onBasePower(basePower, pokemon, target) {
-			const weakWeathers = ['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow'];
+			const weakWeathers = ['raindance', 'primordialsea', 'sandstorm', 'hail', 'snow','acidrain','pollen'];
 			if (weakWeathers.includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
