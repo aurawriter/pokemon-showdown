@@ -23466,7 +23466,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	dragondevastation: {
 		num: 803,
 		accuracy: 100,
-		basePower: 85,
+		basePower: 60,
 		category: "Special",
 		name: "Dragon Devastation",
 		pp: 20,
