@@ -3468,26 +3468,29 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	pumpkaboosmall: {
-		
+		tier: "LC",
 	},
 	pumpkaboolarge: {
-		
+		tier: "LC",
 	},
 	pumpkaboosuper: {
-		
+		tier: "LC",
 	},
 	gourgeist: {
 		tier: "OU",
 		doublesTier: "DOU",
 	},
 	gourgeistsmall: {
-		
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	gourgeistlarge: {
-
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	gourgeistsuper: {
-
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	bergmite: {
 		tier: "Illegal",
