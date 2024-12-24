@@ -23752,24 +23752,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target && !target.fainted) {
 					if (this.effectState.bestStat == 'atk')
 					{
-						this.boost({atk: 2})
+						this.boost({atk: 2},target)
 					}
 					if (this.effectState.bestStat == 'def')
 					{
-						this.boost({def: 2})
+						this.boost({def: 2},target)
 					}
 					if (this.effectState.bestStat == 'spa')
 					{
-						this.boost({spa: 2})
+						this.boost({spa: 2},target)
 					}
 					if (this.effectState.bestStat == 'spd')
 					{
-						this.boost({spd: 2})
+						this.boost({spd: 2},target)
 					}
 					if (this.effectState.bestStat == 'spe')
 					{
-						this.boost({spe: 2})
+						this.boost({spe: 2},target)
 					}
+					this.add('-start', target, 'move: Dragon Cheer');
 					//const damage = this.heal(this.effectState.hp, target, target);
 					//if (damage) {
 						//this.add('-heal', target, target.getHealth, '[from] move: Stellar Wish', '[wisher] ' + this.effectState.source.name);
@@ -23804,23 +23805,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target && !target.fainted) {
 					if (this.effectState.bestStat == 'atk')
 					{
-						this.boost({atk: 2})
+						this.boost({atk: 2},target)
 					}
 					if (this.effectState.bestStat == 'def')
 					{
-						this.boost({def: 2})
+						this.boost({def: 2},target)
 					}
 					if (this.effectState.bestStat == 'spa')
 					{
-						this.boost({spa: 2})
+						this.boost({spa: 2},target)
 					}
 					if (this.effectState.bestStat == 'spd')
 					{
-						this.boost({spd: 2})
+						this.boost({spd: 2},target)
 					}
 					if (this.effectState.bestStat == 'spe')
 					{
-						this.boost({spe: 2})
+						this.boost({spe: 2},target)
 					}
 					//const damage = this.heal(this.effectState.hp, target, target);
 					//if (damage) {
