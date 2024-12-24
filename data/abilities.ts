@@ -6644,12 +6644,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onFoeSwitchIn(pokemon){
-			if(!target.hasType('???'))
+			if(!pokemon.hasType('???'))
 			this.add('-start', pokemon, 'typechange', '???');
 		},
 		onAllySwitchIn(pokemon)
 		{
-			if(!target.hasType('???'))
+			if(!pokemon.hasType('???'))
 			this.add('-start', pokemon, 'typechange', '???');
 		},
 		onAnyModifyDamage()
