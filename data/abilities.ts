@@ -6571,4 +6571,23 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 292,
 	},
+	littlegoth: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Dark') {
+				this.debug('Little Goth boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Dark') {
+				this.debug('Little Goth boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Little Goth",
+		rating: 3.5,
+		num: 200,
+	},
 };
