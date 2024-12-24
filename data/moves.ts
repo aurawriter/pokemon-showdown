@@ -23752,23 +23752,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target && !target.fainted) {
 					if (this.effectState.bestStat == 'atk')
 					{
-						this.boost({atk: 2}
+						this.boost({atk: 2})
 					}
 					if (this.effectState.bestStat == 'def')
 					{
-						this.boost({def: 2}
+						this.boost({def: 2})
 					}
 					if (this.effectState.bestStat == 'spa')
 					{
-						this.boost({spa: 2}
+						this.boost({spa: 2})
 					}
 					if (this.effectState.bestStat == 'spd')
 					{
-						this.boost({spd: 2}
+						this.boost({spd: 2})
 					}
 					if (this.effectState.bestStat == 'spe')
 					{
-						this.boost({spe: 2}
+						this.boost({spe: 2})
 					}
 					//const damage = this.heal(this.effectState.hp, target, target);
 					//if (damage) {
