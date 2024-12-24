@@ -6613,7 +6613,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				activated = true;
 				const oldAbility = pokemon.setAbility('auroradaze');
 				if(oldAbility){
-					this.add('-ability',target,'Aurora Daze','[from] ability: Shimmering Aether');
+					this.add('-ability',target,'Aurora Daze','[from] ability: Shimmering Aether',pokemon);
 				}
 			}
 			
