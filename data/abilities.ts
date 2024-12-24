@@ -6655,7 +6655,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onAnyModifyDamage()
 		{
 			return this.chainModify(1.5);
-		}
+		},
 		name: "Great Equalizer",
 		rating: 2.5,
 		num: 36,
@@ -6664,6 +6664,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Aurora Daze",
 		rating: 2.5,
 		num: 36,
-	}	
+	},	
 			
 };
