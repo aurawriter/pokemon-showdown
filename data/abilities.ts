@@ -6641,9 +6641,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	greatequalizer: {
 		onAnyModifyDamage(damage,source,target,move)
 		{
-			if(target.getMoveHitData(move.typeMod != 0))
+			if(target.getMoveHitData(move).typeMod != 0)
 				{
-					tmove.typeMod = 0;
+					target.getMoveHitData(move).typeMod = 0;
 				}
 		},
 		name: "Great Equalizer",
