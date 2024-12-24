@@ -6605,7 +6605,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const foeAbilities = [];
 			let activated = false;
 			for(const target of pokemon.adjacentFoes()) {
-			   foeAbilities.push(target.getAbility());
+				foeAbility = target.getAbility();
+			   foeAbilities.push(foeAbility);
 				if (!activated) {
 					this.add('-ability', pokemon, 'Shimmering Aether');
 				}
@@ -6615,7 +6616,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-ability',target,'Aurora Daze','[from] ability: Shimmering Aether');
 				}
 			}
-
+			
 			if (!pokemon.isStarted || this.effectState.gaveUp) return;
 
 			const additionalBannedAbilities = [
@@ -6623,7 +6624,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				'noability','commander', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode','shimmeringaether',
 			];
 			const possibleTargets = foeAbilities.filter(target => (
-				!target.getAbility().isPermanent && !additionalBannedAbilities.includes(target.ability)
+				!target.isPermanent && !additionalBannedAbilities.includes(target)
 			));
 			if (!possibleTargets.length) return;
 
