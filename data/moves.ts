@@ -10871,7 +10871,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Beautiful",
 	},
 	ruininglight: {
-		num: 617,
+		num: 2000,
 		accuracy: 90,
 		basePower: 140,
 		category: "Special",
