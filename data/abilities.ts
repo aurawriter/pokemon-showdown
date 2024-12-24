@@ -6699,6 +6699,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if(!target.hasType('???'))
 			this.add('-start', pokemon, 'typechange', '???');
 		},
+		onAnyModifyDamage()
+		{
+			return this.chainModify(1.5);
+		}
 		name: "Great Equalizer",
 		rating: 2.5,
 		num: 36,
