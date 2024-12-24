@@ -6606,11 +6606,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			for (const target of pokemon.adjacentFoes()) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Shimmering Aether');
-					activated = true;
 				}
-				const oldAbility = target.setAbility('auroradaze', pokemon);
+				activated = true;
+				const oldAbility = pokemon.setAbility('auroradaze', target);
 				if (oldAbility) {
-					this.add('-activate', pokemon, 'ability: Shimmering Aether', this.dex.abilities.get(oldAbility).name, '[of] ' + target);
+					this.add('-activate', target, 'ability: Shimmering Aether', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
 				}
 			}
 		},
