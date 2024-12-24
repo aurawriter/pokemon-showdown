@@ -6684,24 +6684,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 36,
 	},
 	greatequalizer: {
-		onAnyModifyDamage(damage, source, target, move) {
-			//target.getMoveHitData(move).typeMod - 0;
-			if (target.getMoveHitData(move).typeMod == 2) {
-				this.debug('Great Equalizer neutralize');
-				return this.chainModify(0.5);
+		onStart(){
+			for (const target of this.getAllActive()) {
+				this.add('-start', target, 'typechange', '???');
 			}
-			if (target.getMoveHitData(move).typeMod == 4) {
-				this.debug('Great Equalizer neutralize');
-				return this.chainModify(0.25);
-			}
-			if (target.getMoveHitData(move).typeMod ==-4) {
-				this.debug('Great Equalizer boost');
-				return this.chainModify(4);
-			}
-			if (target.getMoveHitData(move).typeMod == -2) {
-				this.debug('Great Equalizer boost');
-				return this.chainModify(2);
-			}
+		},
+		onFoeSwitchIn(pokemon){
+			this.add('-start', pokemon, 'typechange', '???');
+		},
+		onAllySwitchIn(pokemon)
+		{
+			this.add('-start', pokemon, 'typechange', '???');
 		},
 		name: "Great Equalizer",
 		rating: 2.5,
