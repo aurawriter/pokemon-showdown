@@ -6615,7 +6615,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-ability',target,'Aurora Daze','[from] ability: Shimmering Aether');
 				}
 			}
-			
+		},
 		onUpdate(pokemon) {
 			if (!pokemon.isStarted || this.effectState.gaveUp) return;
 
