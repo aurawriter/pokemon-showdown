@@ -2529,4 +2529,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 			desc: "If Electric Terrain is active, this Pokemon's Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn.",
 		},
 	},
+	notaphase: {
+		name: "Not A Phase",
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Dark-type attack.",
+	},
 };
