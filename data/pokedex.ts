@@ -20681,4 +20681,17 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		tags: ["Mythical"],
 		eggGroups: ["Undiscovered"],
 	},
+	sovocteign: {
+		num: -1178,
+		name: "Sovocteign",
+		types: ["???"],
+		gender: "N",
+		baseStats: {hp: 140, atk: 120, def: 110, spa: 110, spd: 110, spe: 90},
+		abilities: {0: "Great Equalizer"},
+		heightm: 6.3,
+		weightkg: 660,
+		color: "Black",
+		tags: ["Legendary"],
+		eggGroups: ["Undiscovered"],
+	}
 };
