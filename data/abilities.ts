@@ -6685,7 +6685,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	greatequalizer: {
 		onAnyModifyDamage(damage, source, target, move) {
-			if (target.getMoveHitData(move).typeMod = 2) {
+			target.getMoveHitData(move).typeMod - 0;
+			/*if (target.getMoveHitData(move).typeMod = 2) {
 				this.debug('Great Equalizer neutralize');
 				return this.chainModify(0.5);
 			}
@@ -6700,7 +6701,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (target.getMoveHitData(move).typeMod = .5) {
 				this.debug('Great Equalizer boost');
 				return this.chainModify(2);
-			}
+			}*/
 		},
 		name: "Great Equalizer",
 		rating: 2.5,
