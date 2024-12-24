@@ -3359,7 +3359,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (!this.effectState.target.hp) return;
 			const ability = target.getAbility();
 			const additionalBannedAbilities = [
-				'noability', 'commander','flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'wonderguard',
+				'noability', 'commander','flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'wonderguard','shimmeringaether'
 			];
 			if (target.getAbility().isPermanent || additionalBannedAbilities.includes(target.ability)) return;
 			if (this.effectState.target.setAbility(ability)) {
@@ -6608,7 +6608,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 
 			const additionalBannedAbilities = [
 				// Zen Mode included here for compatability with Gen 5-6
-				'noability','commander', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode',
+				'noability','commander', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode','shimmeringaether','wonderguard',
 			];
 			const possibleTargets = pokemon.adjacentFoes().filter(target => (
 				!target.getAbility().isPermanent && !additionalBannedAbilities.includes(target.ability)
@@ -6618,12 +6618,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const target = this.sample(possibleTargets);
 			const ability = target.getAbility();
 			if (pokemon.setAbility(ability)) {
-				this.add('-ability', pokemon, ability, '[from] ability: Trace', '[of] ' + target);
+				this.add('-ability', pokemon, ability, '[from] ability: Shimmering Aether', '[of] ' + target);
 			}
 		},
 		onPreStart(pokemon) {
 			if (pokemon.transformed) return;
-			this.add('-ability', pokemon, 'Neutralizing Gas');
+			this.add('-ability', pokemon, 'Shimmering Aether');
 			pokemon.abilityState.ending = false;
 			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
 			for (const target of this.getAllActive()) {
@@ -6636,25 +6636,25 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					continue;
 				}
 				if (target.illusion) {
-					this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, pokemon, 'neutralizinggas');
+					this.singleEvent('End', this.dex.abilities.get('Illusion'), target.abilityState, target, pokemon, 'shimmeringaether');
 				}
 				if (target.volatiles['slowstart']) {
 					delete target.volatiles['slowstart'];
 					this.add('-end', target, 'Slow Start', '[silent]');
 				}
 				if (strongWeathers.includes(target.getAbility().id)) {
-					this.singleEvent('End', this.dex.abilities.get(target.getAbility().id), target.abilityState, target, pokemon, 'neutralizinggas');
+					this.singleEvent('End', this.dex.abilities.get(target.getAbility().id), target.abilityState, target, pokemon, 'shimmeringaether');
 				}
 			}
 		},
 		onEnd(source) {
 			if (source.transformed) return;
 			for (const pokemon of this.getAllActive()) {
-				if (pokemon !== source && pokemon.hasAbility('Neutralizing Gas')) {
+				if (pokemon !== source && pokemon.hasAbility('Shimmering Aether')) {
 					return;
 				}
 			}
-			this.add('-end', source, 'ability: Neutralizing Gas');
+			this.add('-end', source, 'ability: Shimmering Aether');
 
 			// FIXME this happens before the pokemon switches out, should be the opposite order.
 			// Not an easy fix since we cant use a supported event. Would need some kind of special event that
