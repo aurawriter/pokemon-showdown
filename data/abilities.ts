@@ -6686,14 +6686,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	greatequalizer: {
 		onStart(){
 			for (const target of this.getAllActive()) {
+				if(!target.hasType('???'))
 				this.add('-start', target, 'typechange', '???');
 			}
 		},
 		onFoeSwitchIn(pokemon){
+			if(!target.hasType('???'))
 			this.add('-start', pokemon, 'typechange', '???');
 		},
 		onAllySwitchIn(pokemon)
 		{
+			if(!target.hasType('???'))
 			this.add('-start', pokemon, 'typechange', '???');
 		},
 		name: "Great Equalizer",
