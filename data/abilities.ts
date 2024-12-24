@@ -6571,7 +6571,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 292,
 	},
-	littlegoth: {
+	notaphase: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Dark') {
@@ -6586,7 +6586,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return this.chainModify(1.5);
 			}
 		},
-		name: "Little Goth",
+		name: "Not A Phase",
 		rating: 3.5,
 		num: 200,
 	},
