@@ -6602,7 +6602,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.add('-block', pokemon, 'item: Ability Shield');
 				this.effectState.gaveUp = true;
 			}
+			this.effectState.foeAbilities = [];
 			let activated = false;
+			for(const target of pokemon.adjacentFoes()) {
+				foeAbilities.push(target.getAbility);
+				if (!activated) {
+					this.add('-ability', pokemon, 'Shimmering Aether');
+				}
+				activated = true;
+				
+			}
+			
+		
 			for (const target of pokemon.adjacentFoes()) {
 				if (!activated) {
 					this.add('-ability', pokemon, 'Shimmering Aether');
