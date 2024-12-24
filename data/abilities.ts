@@ -6694,11 +6694,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.debug('Great Equalizer neutralize');
 				return this.chainModify(0.25);
 			}
-			if (target.getMoveHitData(move).typeMod ==.25) {
+			if (target.getMoveHitData(move).typeMod ==-4) {
 				this.debug('Great Equalizer boost');
 				return this.chainModify(4);
 			}
-			if (target.getMoveHitData(move).typeMod == .5) {
+			if (target.getMoveHitData(move).typeMod == -2) {
 				this.debug('Great Equalizer boost');
 				return this.chainModify(2);
 			}
