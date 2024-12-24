@@ -23732,4 +23732,55 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fighting",
 		contestType: "Beautiful",
 	},
+	stellarwish1: {
+		num: 273,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Stellar Wish",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		slotCondition: 'Stellar Wish',
+		condition: {
+			duration: 2,
+			onStart(pokemon, source) {
+				this.effectState.bestStat = pokemon.getBestStat(false, true);
+			},
+			onResidualOrder: 4,
+			onEnd(target) {
+				if (target && !target.fainted) {
+					if (this.effectState.bestStat == 'atk')
+					{
+						this.boost({atk: 2}
+					}
+					if (this.effectState.bestStat == 'def')
+					{
+						this.boost({def: 2}
+					}
+					if (this.effectState.bestStat == 'spa')
+					{
+						this.boost({spa: 2}
+					}
+					if (this.effectState.bestStat == 'spd')
+					{
+						this.boost({spd: 2}
+					}
+					if (this.effectState.bestStat == 'spe')
+					{
+						this.boost({spe: 2}
+					}
+					//const damage = this.heal(this.effectState.hp, target, target);
+					//if (damage) {
+						//this.add('-heal', target, target.getHealth, '[from] move: Stellar Wish', '[wisher] ' + this.effectState.source.name);
+					//}
+				}
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Cosmic",
+		zMove: {boost: {spd: 1}},
+		contestType: "Cute",
+	},
 };
