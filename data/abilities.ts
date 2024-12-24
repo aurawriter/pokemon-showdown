@@ -6639,24 +6639,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 36,
 	},
 	greatequalizer: {
-		onStart(){
-			for (const target of this.getAllActive()) {
-				if(!target.hasType('???'))
-				this.add('-start', target, 'typechange', '???');
-			}
-		},
-		onFoeSwitchIn(pokemon){
-			if(!pokemon.hasType('???'))
-			this.add('-start', pokemon, 'typechange', '???');
-		},
-		onAllySwitchIn(pokemon)
+		onAnyModifyDamage(damage,source,target,move)
 		{
-			if(!pokemon.hasType('???'))
-			this.add('-start', pokemon, 'typechange', '???');
-		},
-		onAnyModifyDamage()
-		{
-			return this.chainModify(1.5);
+			if(target.getMoveHitData(move.typeMod != 0)
+				{
+					tmove.typeMod = 0;
+				}
 		},
 		name: "Great Equalizer",
 		rating: 2.5,
