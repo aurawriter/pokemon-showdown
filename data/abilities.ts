@@ -6613,6 +6613,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-activate', target, 'ability: Shimmering Aether', this.dex.abilities.get(oldAbility).name, '[of] ' + source);
 				}
 			}
+		},
 		onUpdate(pokemon) {
 			if (!pokemon.isStarted || this.effectState.gaveUp) return;
 
