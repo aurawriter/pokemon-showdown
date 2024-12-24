@@ -6605,26 +6605,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.effectState.foeAbilities = [];
 			let activated = false;
 			for(const target of pokemon.adjacentFoes()) {
-				foeAbilities.push(target.getAbility);
+				foeAbilities.push(target.getAbility());
 				if (!activated) {
 					this.add('-ability', pokemon, 'Shimmering Aether');
 				}
 				activated = true;
-				
+				const oldAbility = pokemon.setAbility('auroradaze');
+				if(oldability){
+					this.add('-ability',target,'Aurora Daze','[from] ability: Shimmering Aether');
+				}
 			}
 			
-		
-			for (const target of pokemon.adjacentFoes()) {
-				if (!activated) {
-					this.add('-ability', pokemon, 'Shimmering Aether');
-				}
-				activated = true;
-				const oldAbility = pokemon.setAbility('auroradaze', target);
-				if (oldAbility) {
-					this.add('-activate', target, 'ability: Aurora Daze', this.dex.abilities.get(oldAbility).name, '[of] ' + pokemon);
-				}
-			}
-		},
 		onUpdate(pokemon) {
 			if (!pokemon.isStarted || this.effectState.gaveUp) return;
 
@@ -6632,7 +6623,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				// Zen Mode included here for compatability with Gen 5-6
 				'noability','commander', 'flowergift', 'forecast', 'hungerswitch', 'illusion', 'imposter', 'neutralizinggas', 'powerofalchemy', 'receiver', 'trace', 'zenmode','shimmeringaether',
 			];
-			const possibleTargets = pokemon.adjacentFoes().filter(target => (
+			const possibleTargets = this.effectState.foeAbilities.filter(target => (
 				!target.getAbility().isPermanent && !additionalBannedAbilities.includes(target.ability)
 			));
 			if (!possibleTargets.length) return;
