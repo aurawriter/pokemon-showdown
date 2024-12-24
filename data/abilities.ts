@@ -6610,7 +6610,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 				const oldAbility = target.setAbility('auroradaze', pokemon);
 				if (oldAbility) {
-					this.add('-activate', target, 'ability: Shimmering Aether', this.dex.abilities.get(oldAbility).name, '[of] ' + source);
+					this.add('-activate', pokemon, 'ability: Shimmering Aether', this.dex.abilities.get(oldAbility).name, '[of] ' + target);
 				}
 			}
 		},
