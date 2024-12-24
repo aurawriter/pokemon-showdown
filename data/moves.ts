@@ -23732,16 +23732,16 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fighting",
 		contestType: "Beautiful",
 	},
-	stellarwish1: {
+	stellarwish: {
 		num: 273,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		name: "Stellar Wish 1",
+		name: "Stellar Wish",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		slotCondition: 'stellarwish1',
+		slotCondition: 'stellarwish',
 		condition: {
 			duration: 2,
 			onStart(pokemon, source) {
@@ -23753,25 +23753,24 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target && !target.fainted) {
 					if (this.effectState.bestStat == 'atk')
 					{
-						this.boost({atk: 2},target)
+						this.boost({atk: 1},target)
 					}
 					if (this.effectState.bestStat == 'def')
 					{
-						this.boost({def: 2},target)
+						this.boost({def: 1},target)
 					}
 					if (this.effectState.bestStat == 'spa')
 					{
-						this.boost({spa: 2},target)
+						this.boost({spa: 1},target)
 					}
 					if (this.effectState.bestStat == 'spd')
 					{
-						this.boost({spd: 2},target)
+						this.boost({spd: 1},target)
 					}
 					if (this.effectState.bestStat == 'spe')
 					{
-						this.boost({spe: 2},target)
+						this.boost({spe: 1},target)
 					}
-					this.add('-start', target, 'move: Dragon Cheer');
 					//const damage = this.heal(this.effectState.hp, target, target);
 					//if (damage) {
 						//this.add('-heal', target, target.getHealth, '[from] move: Stellar Wish', '[wisher] ' + this.effectState.source.name);
@@ -23785,7 +23784,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spd: 1}},
 		contestType: "Cute",
 	},
-	stellarwish2: {
+/*	stellarwish2: {
 		num: 273,
 		accuracy: true,
 		basePower: 0,
@@ -23837,5 +23836,5 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Cosmic",
 		zMove: {boost: {spd: 1}},
 		contestType: "Cute",
-	},
+	},*/
 };
