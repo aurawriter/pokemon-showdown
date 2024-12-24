@@ -6685,22 +6685,21 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	greatequalizer: {
 		onAnyModifyDamage(damage, source, target, move) {
-			if (target.getMoveHitData(move).typeMod > 0) {
+			if (target.getMoveHitData(move).typeMod = 2) {
 				this.debug('Great Equalizer neutralize');
 				return this.chainModify(0.5);
 			}
-			if (target.getMoveHitData(move).typeMod < 0) {
+			if (target.getMoveHitData(move).typeMod = 4) {
+				this.debug('Great Equalizer neutralize');
+				return this.chainModify(0.25);
+			}
+			if (target.getMoveHitData(move).typeMod = .25) {
+				this.debug('Great Equalizer boost');
+				return this.chainModify(4);
+			}
+			if (target.getMoveHitData(move).typeMod = .5) {
 				this.debug('Great Equalizer boost');
 				return this.chainModify(2);
-			}
-		},
-		onModifyAnyMove(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Fighting'] = true;
-				move.ignoreImmunity['Normal'] = true;
-				move.ignoreImmunity['Dark'] = true;
-				move.ignoreImmunity['Dragon'] = true;
 			}
 		},
 		name: "Great Equalizer",
