@@ -5171,4 +5171,11 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "DOU",
 	},
+	sovocteign: {
+		tier:"Uber",
+	},
+	aerora: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
 };
