@@ -2537,4 +2537,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Great Equalizer",
 		shortDesc: "Every Pokemon becomes ??? type. All Pokemon's moves are boosted by 1.5",
 	},
+	shimmeringaether: {
+		name: "Shimmering Aether",
+		shortDesc: "Copy a random adjacent foe's Ability. Set foe abilities to Aurora Daze.",
+	},
 };
