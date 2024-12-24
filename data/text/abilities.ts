@@ -2535,6 +2535,6 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	greatequalizer: {
 		name: "Great Equalizer",
-		shortDesc: "While this Pokemon is active every Pokemon becomes ??? type. All Pokemon's moves are boosted by 1.5",
+		shortDesc: "Every Pokemon becomes ??? type. All Pokemon's moves are boosted by 1.5",
 	},
 };
