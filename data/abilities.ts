@@ -6605,7 +6605,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const foeAbilities = [];
 			let activated = false;
 			for(const target of pokemon.adjacentFoes()) {
-				foeAbility = target.getAbility();
+				const foeAbility = target.getAbility();
 			   foeAbilities.push(foeAbility);
 				if (!activated) {
 					this.add('-ability', pokemon, 'Shimmering Aether');
@@ -6629,7 +6629,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (!possibleTargets.length) return;
 
 			const target = this.sample(possibleTargets);
-			const ability = target.getAbility();
+			const ability = target;
 			if (pokemon.setAbility(ability)) {
 				this.add('-ability', pokemon, ability, '[from] ability: Shimmering Aether', '[of] ' + target);
 			}
