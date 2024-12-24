@@ -6678,6 +6678,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					}
 				}
 			}
+		},
 		name: "Shimmering Aether",
 		rating: 2.5,
 		num: 36,
