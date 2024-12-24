@@ -6605,7 +6605,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.effectState.foeAbilities = [];
 			let activated = false;
 			for(const target of pokemon.adjacentFoes()) {
-				foeAbilities.push(target.getAbility());
+				this.effectState.foeAbilities.push(target.getAbility());
 				if (!activated) {
 					this.add('-ability', pokemon, 'Shimmering Aether');
 				}
