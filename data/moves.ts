@@ -23741,7 +23741,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		slotCondition: 'Stellar Wish',
+		slotCondition: 'stellarwish1',
 		condition: {
 			duration: 2,
 			onStart(pokemon, source) {
@@ -23794,7 +23794,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		slotCondition: 'Stellar Wish',
+		slotCondition: 'stellarwish2',
 		condition: {
 			duration: 2,
 			//onStart(pokemon, source) {
