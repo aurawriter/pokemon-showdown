@@ -20693,5 +20693,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Black",
 		tags: ["Legendary"],
 		eggGroups: ["Undiscovered"],
+		forceTeraType: "Stellar",
 	}
 };
