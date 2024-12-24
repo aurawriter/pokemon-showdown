@@ -2533,4 +2533,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Not A Phase",
 		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Dark-type attack.",
 	},
+	greatequalizer: {
+		name: "Great Equalizer",
+		shortDesc: "While this Pokemon is active every Pokemon becomes ??? type. All Pokemon's moves are boosted by 1.5",
+	},
 };
