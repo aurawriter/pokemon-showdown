@@ -23746,6 +23746,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			duration: 2,
 			onStart(pokemon, source) {
 				this.effectState.bestStat = pokemon.getBestStat(false, true);
+				this.debug("Stellar Wish 1 Best Stat Is: " + this.effectState.bestStat);
 			},
 			onResidualOrder: 4,
 			onEnd(target) {
@@ -23802,6 +23803,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onResidualOrder: 4,
 			onEnd(target) {
 				this.effectState.bestStat = target.getBestStat(false, true);
+				this.debug("Stellar Wish 1 Best Stat Is: " + this.effectState.bestStat);
 				if (target && !target.fainted) {
 					if (this.effectState.bestStat == 'atk')
 					{
