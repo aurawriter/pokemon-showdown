@@ -6642,7 +6642,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onAnyEffectiveness(typeMod, target, type, move)
 		{
 			return 0;
-		}
+		},
 		/*onAnyModifyDamage(damage,source,target,move)
 		{
 			if(target.getMoveHitData(move).typeMod != 0)
