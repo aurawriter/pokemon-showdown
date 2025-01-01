@@ -2535,7 +2535,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	greatequalizer: {
 		name: "Great Equalizer",
-		shortDesc: "Every Pokemon becomes ??? type. All Pokemon's moves are boosted by 1.5",
+		shortDesc: "All moves are neutral. Pokemon's non-STAB moves are boosted by 1.5",
 	},
 	shimmeringaether: {
 		name: "Shimmering Aether",
