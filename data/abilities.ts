@@ -6644,6 +6644,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.add('-ability', target, 'Great Equalizer');
 			return 0;
 		},
+		onAnyModifyDamage(move, pokemon) {
+			if(!pokemon.hasType(move.type))
+			{
+				return this.chainModify(1.5);
+			}
+		},
 		/*onAnyModifyDamage(damage,source,target,move)
 		{
 			if(target.getMoveHitData(move).typeMod != 0)
