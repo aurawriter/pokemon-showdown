@@ -8043,5 +8043,10 @@ export const MovesText: {[k: string]: MoveText} = {
 	acidrain: {
 		name: "Acid Rain",
 		shortDesc: "For 5 turns, non-Poison types take 1/16th damage at the end of each turn. Steel types take twice the damage."
-	}
+	},
+	accretiondisk: {
+		name: "Accretion Disk",
+		desc: "This move's type effectiveness against Light is changed to be super effective no matter what this move's type is.",
+		shortDesc: "Super effective on Light.",
+	},
 };
