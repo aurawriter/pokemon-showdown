@@ -6639,13 +6639,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 36,
 	},
 	greatequalizer: {
-		onAnyModifyDamage(damage,source,target,move)
+		onAnyEffectiveness(typeMod, target, type, move)
+		{
+			return 0;
+		}
+		/*onAnyModifyDamage(damage,source,target,move)
 		{
 			if(target.getMoveHitData(move).typeMod != 0)
 				{
 					target.getMoveHitData(move).typeMod = 0;
 				}
-		},
+		},*/
 		name: "Great Equalizer",
 		rating: 2.5,
 		num: 36,
