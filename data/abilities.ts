@@ -6645,7 +6645,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			return 0;
 		},
 		onAnyModifyDamage(move, pokemon) {
-			if(!pokemon.hasType(move.type))
+			const type = move.type;
+			if(!pokemon.hasType(type))
 			{
 				return this.chainModify(1.5);
 			}
