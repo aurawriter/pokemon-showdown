@@ -11981,7 +11981,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: 671,
 		name: "Florges",
 		baseForme: "Red",
-		types: ["Fairy"],
+		types: ["Fairy","Grass"],
 		gender: "F",
 		baseStats: {hp: 78, atk: 65, def: 68, spa: 112, spd: 154, spe: 75},
 		abilities: {0: "Flower Veil", H: "Symbiosis"},
