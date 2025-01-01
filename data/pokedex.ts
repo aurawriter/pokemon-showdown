@@ -20674,7 +20674,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		types: ["Ice", "Light"],
 		gender: "N",
 		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
-		abilities: {0: "Shimmering Aether"},
+		abilities: {0: "Trace"},
 		heightm: 0.6,
 		weightkg: 5,
 		color: "Green",
