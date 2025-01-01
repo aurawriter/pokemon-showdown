@@ -16499,6 +16499,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Dark",
 		contestType: "Tough",
 	},
+	reckoning: {
+		num: 877,
+		accuracy: 90,
+		basePower: 0,
+		damageCallback(pokemon, target) {
+			return this.clampIntRange(Math.floor(target.getUndynamaxedHP() / 2), 1);
+		},
+		category: "Physical",
+		name: "Reckoning",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "???",
+		contestType: "Tough",
+	},
 	sacredfire: {
 		num: 221,
 		accuracy: 95,
