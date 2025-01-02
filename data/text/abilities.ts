@@ -2535,7 +2535,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	greatequalizer: {
 		name: "Great Equalizer",
-		shortDesc: "All moves are neutral. Pokemon's non-STAB moves are boosted by 1.5",
+		shortDesc: "Nullifies type effectiveness and STAB. All moves are boosted by 50%",
 	},
 	shimmeringaether: {
 		name: "Shimmering Aether",
