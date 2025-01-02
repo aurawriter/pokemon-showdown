@@ -6647,6 +6647,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onAnyModifyMove(move) {
 			move.stab = 1;
 		},
+		onAnyModifyDamage(move,pokemon) {
+			return this.chainModify(1.5);
+		}
 		/*onAnyModifyDamage(move, pokemon) {
 			const type = move.type;
 			if(!pokemon.hasType(type))
