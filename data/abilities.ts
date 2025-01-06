@@ -6701,7 +6701,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.add('-activate', pokemon, 'ability: Treat-Filled');
 			side.addSideCondition('tastytreats',pokemon);
 		},
-		name: "Treat-Filled",
+		name: "Treat Filled",
 		rating: 4.5,
 		num: 190,
 	}
