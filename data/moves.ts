@@ -23758,7 +23758,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		sideCondition: 'tastytreats,
+		sideCondition: 'tastytreats',
 		condition: {
 			// this is a side condition
 			onSideStart(side) {
