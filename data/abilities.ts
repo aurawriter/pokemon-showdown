@@ -6673,5 +6673,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 36,
 	},	
+	highnoon: {
+		onResidual() {
+			if(!this.effectState.duration && this.field.getWeather().id === 'sunnyday' && this.field.weatherState.duration > 0)
+			{
+				this.effectState.duration = this.field.weatherState?.duration;
+				this.field.weatherState.duration = 0;
+			}
+		},
+		onEnd() {
+			if(this.field.getWeather().id === 'sunnyday' && this.effectState.duration && this.field.weatherState?.duration==0) {
+				this.field.weatherState.duration = this.effectState.duration;
+			}
+		},
+		onAnySetWeather(target, source, weather) {
+			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+			if (this.field.getWeather().id === 'sunnyday' && !strongWeathers.includes(weather.id)) return false;
+		},
+		name: "High Noon",
+		rating: 4.5,
+		num: 190,
+	},
 			
 };
