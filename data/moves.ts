@@ -23767,6 +23767,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onEntryHazard(pokemon) {
 				if (pokemon.hasItem('heavydutyboots')) return;
 				this.heal(pokemon.baseMaxhp / 2 );
+				pokemon.side.removeSideCondition('tastytreats');
 			},
 			
 		},
