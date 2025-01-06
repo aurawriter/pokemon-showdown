@@ -6695,15 +6695,30 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 190,
 	},
 	treatfilled: {
-		onFaint(pokemon) {
-			const side = pokemon.side;
+		onDamagingHit(damage,target,source,move) {
+			const side = target.side;
 			const tastytreats = side.sideConditions['tastytreats'];
-			this.add('-activate', pokemon, 'ability: Treat-Filled');
-			side.addSideCondition('tastytreats', pokemon);
+			if(move.category === 'Physical' && (!tastytreats || tastytreats.layers < 4)
+			{
+				this.add('-activate', pokemon, 'ability: Treat-Filled');
+				side.addSideCondition('tastytreats', pokemon);
+			}
 		},
 		name: "Treat Filled",
 		rating: 4.5,
 		num: 190,
 	},
-	
+	/*toxicdebris: {
+		onDamagingHit(damage, target, source, move) {
+			const side = source.isAlly(target) ? source.side.foe : source.side;
+			const toxicSpikes = side.sideConditions['toxicspikes'];
+			if (move.category === 'Physical' && (!toxicSpikes || toxicSpikes.layers < 2)) {
+				this.add('-activate', target, 'ability: Toxic Debris');
+				side.addSideCondition('toxicspikes', target);
+			}
+		},
+		name: "Toxic Debris",
+		rating: 3.5,
+		num: 295,
+	},*/
 };
