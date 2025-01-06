@@ -23749,6 +23749,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fighting",
 		contestType: "Beautiful",
 	},
+	tastytreats: {
+		num: 274,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Tasty Treats",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		sideCondition: 'tastytreats,
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Tasty Treats');
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots')) return;
+				this.heal(pokemon.baseMaxhp / 2 );
+			},
+			
+		},
+	}
 	stellarwish: {
 		num: 273,
 		accuracy: true,
