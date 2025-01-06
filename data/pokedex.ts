@@ -19853,7 +19853,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
         name: "Maginata",
         types: ["Fire", "Fairy"],
         baseStats: {hp: 100, atk: 55, def: 90, spa: 95, spd: 90, spe: 100},
-        abilities: {0: "Blaze", H: "Flame Body"},
+        abilities: {0: "Blaze",1: "Treat Filled", H: "Flame Body"},
         heightm: 6.7,
         weightkg: 110,
         color: "Red",
