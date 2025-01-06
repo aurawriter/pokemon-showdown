@@ -23759,18 +23759,61 @@ export const Moves: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		sideCondition: 'tastytreats',
+		target: "allySide",
 		condition: {
 			// this is a side condition
 			onSideStart(side) {
 				this.add('-sidestart', side, 'move: Tasty Treats');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 4) return false;
+				this.add('-sidestart', side, 'Tasty Treats');
+				this.effectState.layers++;
 			},
 			onEntryHazard(pokemon) {
 				if (pokemon.hasItem('heavydutyboots')) return;
-				this.heal(pokemon.baseMaxhp / 2 );
-				pokemon.side.removeSideCondition('tastytreats');
+				const healAmounts = [0, 4, 2, 4/3, 1]
+				if(healAmounts[this.effectState.layers]!=0)
+				{
+					this.heal(pokemon.baseMaxhp / healAmounts[this.effectState.layers]);
+					pokemon.side.removeSideCondition('tastytreats');
+				}
 			},
-			
 		},
+	},
+	spikes: {
+		num: 191,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1, mustpressure: 1},
+		sideCondition: 'spikes',
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'Spikes');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 3) return false;
+				this.add('-sidestart', side, 'Spikes');
+				this.effectState.layers++;
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded() || pokemon.hasItem('heavydutyboots')) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectState.layers] * pokemon.maxhp / 24);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Ground",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
 	},
 	stellarwish: {
 		num: 273,
