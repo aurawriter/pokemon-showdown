@@ -6694,5 +6694,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 190,
 	},
-			
+	treatfilled: {
+		onFaint(pokemon): {
+			const side = pokemon.side;
+			const treatfilled = side.sideConditions['treatfilled'];
+			this.add('-activate', pokemon, 'ability: Treat-Filled');
+			side.addSideCondition('treatfilled',pokemon);
+			condition:
+		}
+	}
+	
 };
