@@ -23771,7 +23771,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			
 		},
-	}
+	},
 	stellarwish: {
 		num: 273,
 		accuracy: true,
