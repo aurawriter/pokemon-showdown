@@ -19864,7 +19864,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
         name: "Macquero",
         types: ["Grass", "Fighting"],
         baseStats: {hp: 75, atk: 122, def: 60, spa: 95, spd: 78, spe: 100},
-        abilities: {0: "Overgrow", H: "Sand Rush"},
+        abilities: {0: "Overgrow",1:"High Noon", H: "Sand Rush"},
         heightm: 5.6,
         weightkg: 12,
         color: "Green",
