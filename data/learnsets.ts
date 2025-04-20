@@ -105664,6 +105664,7 @@ swinub: {
 			psyshock: ["9L1"],
 			quash: ["9L1"],
 			recover: ["9L1"],
+	      reckoning: ["9L1"],
 			reflecttype: ["9L1"],
 			rest: ["9L1"],
 			roar: ["9L1"],
