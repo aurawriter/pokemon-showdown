@@ -6698,8 +6698,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamagingHit(damage,target,source,move) {
 			const side = target.side;
 			const tastytreats = side.sideConditions['tastytreats'];
-			if(move.category === 'Physical' && (!tastytreats || tastytreats.layers < 4)
-			{
+			if(move.category === 'Physical' && (!tastytreats || tastytreats.layers < 4)) {
 				this.add('-activate', pokemon, 'ability: Treat-Filled');
 				side.addSideCondition('tastytreats', pokemon);
 			}
