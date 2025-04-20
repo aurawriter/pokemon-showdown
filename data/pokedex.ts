@@ -19875,7 +19875,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
         name: "Muertaguar",
         types: ["Water", "Ghost"],
         baseStats: {hp: 120, atk: 80, def: 75, spa: 110, spd: 55, spe: 90},
-        abilities: {0: "Torrent", H: "Competitive"},
+        abilities: {0: "Torrent",1:"Soul Shepherd", H: "Competitive"},
         heightm: 6.4,
         weightkg: 30,
         color: "Blue",
