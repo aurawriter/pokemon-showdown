@@ -71641,6 +71641,7 @@ swinub: {
 			thunderbolt: ["8M", "7M", "6M"],
 			toxic: ["7M", "6M"],
 			wish: ["8L30", "7L45", "6L45"],
+			tastytreats: ["9L1"],
 		},
 	},
 	inkay: {
@@ -85898,6 +85899,7 @@ swinub: {
 			sunburst: ["9L1"],
 			astralrift: ["9L1"],
 			wormholewarp: ["9L1"],
+			tastytreats: ["9L1"],
 		},
 	},
 	falinks: {
@@ -100897,6 +100899,7 @@ swinub: {
 			mistyexplosion: ["9L1"],
 			playrough: ["9L1"],
 			holyfire:["9L1"],
+			tastytreats: ["9L1"],
 		}
 	},
 	macquero: {
@@ -104153,6 +104156,7 @@ swinub: {
             substitute: ["9L1"],
             thunderpunch: ["9L1"],
             uturn: ["9L1"],
+				tastytreats: ["9L1"],
 		},
 	},
 	ponchobake: {
@@ -104458,6 +104462,7 @@ swinub: {
 			bubblegumpop: ["9L1"],
 			draconicterrain: ["9L1"],
 			dragondevastation: ["9L1"],
+			tastytreats: ["9L1"],
 		},
 	},
 	dratosphere: {
@@ -104974,6 +104979,7 @@ swinub: {
 			vacuumwave: ["9L1"],
 			wakeupslap: ["9L1"],
 			workup: ["9L1"],
+			tastytreats: ["9L1"],
 		},
 	},
 	hypnoxious: {
