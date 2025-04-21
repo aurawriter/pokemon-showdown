@@ -6453,6 +6453,14 @@ export const MovesText: {[k: string]: MoveText} = {
 		end: "  The spikes disappeared from the ground around [TEAM]!",
 		damage: "  [POKEMON] was hurt by the spikes!",
 	},
+	tastytreats: {
+		name: "Tasty Treats",
+		desc: "Sets up a hazard on the friendly side of the field, healing the first friendly Pokemon that switches in, unless it is a Flying-type Pokemon or has the Levitate Ability. Can be used up to four times before failing. Ally gains 25% HP for each layer.",
+		shortDesc: "Heals first grounded ally on switch-in. Max 4 layers.",
+		start: "  Tasty Treats were scattered on the ground all around [TEAM]!",
+		end: "  The tasty treats were eaten from the ground around [TEAM]!",
+		heal: "  [POKEMON] was healed by the candy!",
+	},
 	spikyshield: {
 		name: "Spiky Shield",
 		desc: "The user is protected from most attacks made by other Pokemon during this turn, and Pokemon making contact with the user lose 1/8 of their maximum HP, rounded down. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails, if the user's last move used is not Baneful Bunker, Burning Bulwark, Detect, Endure, King's Shield, Max Guard, Obstruct, Protect, Quick Guard, Silk Trap, Spiky Shield, or Wide Guard, or if it was one of those moves and the user's protection was broken. Fails if the user moves last this turn.",
