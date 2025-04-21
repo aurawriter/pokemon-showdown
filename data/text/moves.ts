@@ -5613,6 +5613,11 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Deals damage to the target equal to half of its current HP, rounded down, but not less than 1 HP.",
 		shortDesc: "Does damage equal to 1/2 target's current HP.",
 	},
+	reckoning: {
+		name: "Reckoning",
+		desc: "Deals damage to the target equal to half of its current HP, rounded down, but not less than 1 HP.",
+		shortDesc: "Does damage equal to 1/2 target's current HP.",
+	},
 	sacredfire: {
 		name: "Sacred Fire",
 		desc: "Has a 50% chance to burn the target.",
