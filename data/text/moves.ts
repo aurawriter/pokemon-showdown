@@ -7824,6 +7824,11 @@ export const MovesText: {[k: string]: MoveText} = {
 
 		heal: "  [NICKNAME]'s wish came true!",
 	},
+	stellarwish: {
+		name: "Stellar Wish",
+		desc: "At the end of the next turn, the Pokemon at the user's position has a stat raised based on the user's highest stat.",
+		shortDesc: "Next turn, raise user's highest stat.",
+	},
 	withdraw: {
 		name: "Withdraw",
 		desc: "Raises the user's Defense by 1 stage.",
