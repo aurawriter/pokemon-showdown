@@ -1993,6 +1993,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 
 		activate: "  [POKEMON] gained strength from the fallen!",
 	},
+	soulshepherd: {
+		name: "Soul Shepherd",
+		desc: "This Pokemon's Defenses are increased by 1 stage for each fainted ally, up to 5 allies.",
+	},
 	surgesurfer: {
 		name: "Surge Surfer",
 		shortDesc: "If Electric Terrain is active, this Pokemon's Speed is doubled.",
@@ -2170,6 +2174,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	toxicdebris: {
 		name: "Toxic Debris",
 		shortDesc: "If this Pokemon is hit by a physical attack, Toxic Spikes are set on the opposing side.",
+	},
+	treatfilled: {
+		name: "Treat-Filled",
+		shortDesc: "If this Pokemon is hit by a physical attack, Tasty Treats are set on the friendly side.",
 	},
 	bouldertrap: {
 		name: "Boulder Trap",
@@ -2520,6 +2528,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	singularity: {
 		name: "Singularity",
 		desc: "Gravity cannot end or be changed.",
+	},
+	highnoon: {
+		name: "High Noon",
+		desc: "Sunny Day cannot end or be changed.",
 	},
 	overcharge: {
 		name: "Overcharge",
