@@ -6720,15 +6720,39 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 295,
 	},*/
-	soulshepherd: {
+	/*supremeoverlord: {
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
 				this.add('-activate', pokemon, 'ability: Supreme Overlord');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
-				this.boost({def: fallen}, source);
-				this.boost({spd: fallen}, source);
+			}
+		},
+		onEnd(pokemon) {
+			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
+		},
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.effectState.fallen) {
+				const powMod = [4096, 4506, 4915, 5325, 5734, 6144];
+				this.debug(`Supreme Overlord boost: ${powMod[this.effectState.fallen]}/4096`);
+				return this.chainModify([powMod[this.effectState.fallen], 4096]);
+			}
+		},
+		name: "Supreme Overlord",
+		rating: 4,
+		num: 293,
+	},*/
+	soulshepherd: {
+		onStart(pokemon) {
+			if (pokemon.side.totalFainted) {
+				this.add('-activate', pokemon, 'ability: Soul Shepherd');
+				const fallen = Math.min(pokemon.side.totalFainted, 5);
+				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
+				this.effectState.fallen = fallen;
+				this.boost({def: fallen});
+				this.boost({spd: fallen});
 			}
 		},
 		onEnd(pokemon) {
