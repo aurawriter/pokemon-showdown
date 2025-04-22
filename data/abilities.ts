@@ -6697,10 +6697,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	treatfilled: {
 		onDamagingHit(damage,target,source,move) {
 			const side = target.side;
-			const tastytreats = side.sideConditions['tastytreats'];
-			if(move.category === 'Physical' && (!tastytreats || tastytreats.layers < 4)) {
-				this.add('-activate', pokemon, 'ability: Treat Filled');
-				side.addSideCondition('tastytreats', pokemon);
+			const tastyTreats = side.sideConditions['tastytreats'];
+			if(move.category === 'Physical' && (!tastyTreats || tastyTreats.layers < 4)) {
+				this.add('-activate', target, 'ability: Treat Filled');
+				side.addSideCondition('tastytreats', target);
 			}
 		},
 		name: "Treat Filled",
