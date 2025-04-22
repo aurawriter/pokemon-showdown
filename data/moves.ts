@@ -23774,7 +23774,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onEntryHazard(pokemon) {
 				if (pokemon.hasItem('heavydutyboots')) return;
 				const healAmounts = [0, 4, 2, 4/3, 1]
-				if(healAmounts[this.effectState.layers]!=0)
+				if(healAmounts[this.effectState.layers]!=0 && pokemon.hp < pokemon.maxhp)
 				{
 					this.heal(pokemon.baseMaxhp / healAmounts[this.effectState.layers]);
 					pokemon.side.removeSideCondition('tastytreats');
