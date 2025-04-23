@@ -2424,7 +2424,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	silverlining: {
 		name: "Wonder Guard",
-		shortDesc: "This Pokemon cannot be damaged by supereffective moves and indirect damage.",
+		shortDesc: "This Pokemon cannot be damaged by supereffective moves.",
 	},
 	hamsterball: {
 		name: "Hamster Ball",
