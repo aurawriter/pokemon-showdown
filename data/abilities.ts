@@ -6524,7 +6524,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			});
 			}
 		},
-		name: "Mind over Matter",
+		name: "Mind Over Matter",
 		rating: 5,
 		num: 37,
 	},
