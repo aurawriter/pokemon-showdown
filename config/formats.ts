@@ -29,7 +29,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Min Source Gen = 9','Obtainable','Team Preview', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		ruleset: ['Min Source Gen = 9','Obtainable','Team Preview','Cancel Mod', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	{
@@ -37,7 +37,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Min Source Gen = 9','Obtainable', 'Team Preview','Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		ruleset: ['Min Source Gen = 9','Obtainable', 'Cancel Mod','Team Preview','Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['AG', 'Arena Trap', 'Moody',  'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	{
@@ -46,7 +46,7 @@ export const Formats: FormatList = [
 		mod: 'auroraformat',
 		gameType: 'doubles',
 		debug: true,
-		ruleset: ['Min Source Gen = 9','Obtainable', 'Team Preview' ,'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		ruleset: ['Min Source Gen = 9','Obtainable', 'Cancel Mod','Team Preview' ,'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	{
@@ -54,7 +54,7 @@ export const Formats: FormatList = [
 
 		mod: 'auroraformat',
 		debug: true,
-		ruleset: ['Min Source Gen = 9','Team Preview' , 'Same Type Clause', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
+		ruleset: ['Min Source Gen = 9','Team Preview' , 'Cancel Mod','Same Type Clause', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	{
