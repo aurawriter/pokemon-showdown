@@ -35704,7 +35704,7 @@ swinub: {
 		encounters: [
 			{generation: 3, level: 5},
 			{generation: 4, level: 5},
-			{generation: 6, level: 2, maxEggMoves: 1},t
+			{generation: 6, level: 2, maxEggMoves: 1},
 		],
 	},
 	dustox: {
@@ -61119,7 +61119,7 @@ swinub: {
 			confide: ["7M", "6M"],
 			corrosivegas: ["8T"],
 			curse: ["9M","9E","8E", "7E", "6E", "5E"],
-			darkpulse: ["9M','"8M", "7M", "6M", "5T"],
+			darkpulse: ["9M","8M", "7M", "6M", "5T"],
 			doubleslap: ["7L14", "6L14", "5L14"],
 			doubleteam: ["7M", "6M", "5M"],
 			drainpunch: ["9M","8M", "7T", "6T", "5T"],
