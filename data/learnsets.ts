@@ -35691,6 +35691,7 @@ swinub: {
 			venoshock: ["9M","7M", "6M", "5M"],
 			whirlwind: ["9L30","7L30", "6L27", "5L27", "4L27", "3L27"],
 			allergicreaction: ["9L1"],
+			pollen: ["9M"],
 		},
 	},
 	cascoon: {
@@ -35771,6 +35772,7 @@ swinub: {
 			venoshock: ["9M","9L20","7M", "7L20", "6M", "6L20", "5M"],
 			whirlwind: ["9L30","7L30", "6L27", "5L27", "4L27", "3L27"],
 			allergicreaction: ["9L1"],
+			pollen: ["9M"],
 		},
 	},
 	lotad: {
@@ -61239,6 +61241,8 @@ swinub: {
 			toxicspikes: ["9M", "9L15", "8M", "8L15", "7L1", "6L1", "5L1"],
 			venomdrench: ["8M"],
 			venoshock: ["9M", "8M", "7M", "6M", "5M"],
+	      smoggyslide: ["9M"],
+		   acidrain: ["9M"],
 		},
 		encounters: [
 			{generation: 5, level: 31},
