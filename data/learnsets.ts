@@ -35688,7 +35688,7 @@ swinub: {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
 			uturn: ["9M","7M", "6M", "5M", "4M"],
-			venoshock: ["9M','"7M", "6M", "5M"],
+			venoshock: ["9M","7M", "6M", "5M"],
 			whirlwind: ["9L30","7L30", "6L27", "5L27", "4L27", "3L27"],
 			allergicreaction: ["9L1"],
 		},
