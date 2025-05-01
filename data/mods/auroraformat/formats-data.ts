@@ -5115,6 +5115,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "DOU",
 	},
+	spitrus:{
+		tier: "OU",
+		doublesTier: "DOU",
+	}
 	citrillon: {
 		tier: "OU",
 		doublesTier: "DOU",
