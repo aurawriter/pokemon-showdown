@@ -6751,8 +6751,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
-				this.boost({def: fallen});
-				this.boost({spd: fallen});
+				/*this.boost({def: fallen});
+				this.boost({spd: fallen});*/
+				pokemon.heal((pokemon.baseMaxhp / 10)*fallen);
 			}
 		},
 		onEnd(pokemon) {
