@@ -6786,4 +6786,3 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 293,
 	},
 };
-};
