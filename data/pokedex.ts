@@ -20007,9 +20007,9 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Yellow",
 		eggGroups: ["Undiscovered"],
 	},
-	gaveliant:{
+	valiadin:{
 		num: -1132,
-		name: "Gaveliant",
+		name: "Valiadin",
 		types: ["Light"],
 		baseStats:{hp:60,atk:95,def:115,spa:95,spd:115,spe:60},
 		abilities:{0:"Mirror Armor",1:"Magic Bounce",H:"Justified"},
