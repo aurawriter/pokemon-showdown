@@ -102392,7 +102392,7 @@ swinub: {
 			luminacrash:["9L1"],
 		},
 	},
-	gaveliant:{
+	valiadin:{
 		learnset:{
 			lightedge:["9L1"],
 			dazzledart:["9L1"],
@@ -102453,7 +102453,6 @@ swinub: {
 			terrainpulse: ["9L1"],
 			wish: ["9L1"],
 			barrier:["9L1"],
-			icehammer:["9L1"],
 			knockoff:["9L1"],
 			payback:["9L1"],
 			punishment:["9L1"],
