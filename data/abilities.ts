@@ -6776,7 +6776,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onResidual(pokemon) {
-				pokemon.heal((pokemon.baseMaxhp / 50) * this.effectState.fallen);
+				this.heal((pokemon.baseMaxhp / 50) * this.effectState.fallen);
 		},
 		onEnd(pokemon) {
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
