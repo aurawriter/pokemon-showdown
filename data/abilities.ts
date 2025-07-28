@@ -6744,10 +6744,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 293,
 	},*/
-	soulshepherdregenerator: {
+	soulregenerator: {
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
-				this.add('-activate', pokemon, 'ability: Soul Shepherd Regenerator');
+				this.add('-activate', pokemon, 'ability: Soul Regenerator');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
@@ -6759,14 +6759,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
 		},
-		name: "Soul Shepherd Regenerator",
+		name: "Soul Regenerator",
 		rating: 4,
 		num: 293,
 	},
-	soulshepherdleftovers: {
+	soulleftovers: {
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
-				this.add('-activate', pokemon, 'ability: Soul Shepherd Leftovers');
+				this.add('-activate', pokemon, 'ability: Soul Leftovers');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
@@ -6776,12 +6776,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		onResidual(pokemon) {
-				pokemon.heal((pokemon.baseMaxhp / 50)*fallen);
+				pokemon.heal((pokemon.baseMaxhp / 50) * this.effectState.fallen);
 		},
 		onEnd(pokemon) {
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
 		},
-		name: "Soul Shepherd Leftovers",
+		name: "Soul Leftovers",
 		rating: 4,
 		num: 293,
 	},
