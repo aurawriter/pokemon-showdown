@@ -6759,7 +6759,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
 		},
-		name: "Soul Shepherd (Regenerator)",
+		name: "Soul Shepherd Regenerator",
 		rating: 4,
 		num: 293,
 	},
@@ -6781,7 +6781,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onEnd(pokemon) {
 			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
 		},
-		name: "Soul Shepherd (Leftovers)",
+		name: "Soul Shepherd Leftovers",
 		rating: 4,
 		num: 293,
 	},
