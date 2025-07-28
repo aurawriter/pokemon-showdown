@@ -1,4 +1,4 @@
-/*
+x/*
 
 Ratings and how they work:
 
@@ -6753,7 +6753,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.effectState.fallen = fallen;
 				/*this.boost({def: fallen});
 				this.boost({spd: fallen});*/
-				pokemon.heal((pokemon.baseMaxhp / 10)*fallen);
+				this.heal((pokemon.baseMaxhp / 10)*fallen);
 			}
 		},
 		onEnd(pokemon) {
