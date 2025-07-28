@@ -6747,7 +6747,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	soulshepherdregenerator: {
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
-				this.add('-activate', pokemon, 'ability: Soul Shepherd');
+				this.add('-activate', pokemon, 'ability: Soul Shepherd Regenerator');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
@@ -6766,7 +6766,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	soulshepherdleftovers: {
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
-				this.add('-activate', pokemon, 'ability: Soul Shepherd');
+				this.add('-activate', pokemon, 'ability: Soul Shepherd Leftovers');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
