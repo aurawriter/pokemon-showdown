@@ -1995,7 +1995,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	soulshepherd: {
 		name: "Soul Shepherd",
-		desc: "This Pokemon's Defenses are increased by 1 stage for each fainted ally, up to 5 allies.",
+		desc: "At the end of each turn, heal 4% for each fainted ally.",
 	},
 	surgesurfer: {
 		name: "Surge Surfer",
