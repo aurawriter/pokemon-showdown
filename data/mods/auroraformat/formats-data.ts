@@ -4939,7 +4939,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	pristeraph:{
 		tier:"Uber"
 	},
-	gaveliant:{
+	valiadin:{
 		tier:"OU",
 	},
 	glowker:{
