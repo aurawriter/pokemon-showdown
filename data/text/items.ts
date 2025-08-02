@@ -3,6 +3,11 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Telescope",
 		desc: "Holder's Cosmic-type attacks have 1.2x power.",
 	},
+	frostorb: {
+		name: "Frost Orb",
+		desc: "At the end of every turn, this item attempts to frostbite the holder.",
+	},
+	
 	flashlight: {
 		name: "Flashlight",
 		desc: "Holder's Light-type attacks have 1.2x power.",
