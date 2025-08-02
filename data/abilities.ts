@@ -6787,4 +6787,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 293,
 	},
+	resolve: {
+		onModifySpaPriority: 5,
+		onModifySpa(spa, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Resolve",
+		rating: 3.5,
+		num: 62,
+	},
 };
+
