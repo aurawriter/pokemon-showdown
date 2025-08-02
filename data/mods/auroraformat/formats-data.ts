@@ -1266,7 +1266,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	ursalunabloodmoon: {
-		tier: "NU",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	slugma: {
@@ -3292,9 +3292,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	floetteeternal: {
+		isNonstandard: null,
 		tier: "OU",
 		doublesTier: "DOU",
-		isNonstandard: null,
+		
 	},
 	florges: {
 		
