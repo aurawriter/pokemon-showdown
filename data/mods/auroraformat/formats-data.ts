@@ -3292,10 +3292,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	floetteeternal: {
-		isNonstandard: null,
-		tier: "OU",
-		doublesTier: "DOU",
-		
+		isNonstandard: "Past",
+		tier: "Illegal",
 	},
 	florges: {
 		
