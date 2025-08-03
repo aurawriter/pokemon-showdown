@@ -100810,6 +100810,7 @@ swinub: {
 			allergicreaction:["9L1"],
 			draconicterrain: ["9L1"],
 			dragondevastation: ["9L1"],
+			bugbuzz: ["9L1"],
 		},
 	},
 	maginata:{
