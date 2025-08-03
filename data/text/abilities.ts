@@ -2461,8 +2461,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	infestive: {
 		name: "InFestive",
-		desc: "When this Pokemon is KO'd by another mon, it uses Explosion. Poison power 1.5x",
-		shortDesc: "When this Pokemon is KO'd by another Pokemon, it uses Explosion. Poison power 1.5x",
+		desc: "When this Pokemon is KO'd by another mon, it uses Misty Explosion. Poison power 1.5x",
+		shortDesc: "On being KO'd by another Pokemon: Misty Explosion. Poison power 1.5x",
 		
 	},
 	miasma: {

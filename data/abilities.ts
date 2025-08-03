@@ -6152,7 +6152,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (!target.hp) {
-				this.actions.useMove(this.dex.getActiveMove("Explosion"), target);
+				this.actions.useMove(this.dex.getActiveMove("Misty Explosion"), target);
 			}
 		},
 		name: "InFestive",

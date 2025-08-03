@@ -105222,6 +105222,7 @@ swinub: {
 			ghastlygrasp: ["9L1"],
 			hauntedterrain: ["9L1"],
 			frostbite: ["9L1"],
+			gravity: ["9L1"],
 		},
 	},
 	galacastarid: {

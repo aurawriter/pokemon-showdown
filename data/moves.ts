@@ -22068,7 +22068,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	solarstrike: {
 		num: 876,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 60,
 		category: "Special",
 		name: "Solar Strike",
 		pp: 15,
