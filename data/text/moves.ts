@@ -596,8 +596,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	meteorshower: {
 		name: "Meteor Shower",
-		desc: "Power doubles if the user was not hit by the target this turn.",
-		shortDesc: "Power doubles if user was not damaged by the target.",
+		desc: "2x Power if the user was not hit by the target this turn.",
+		shortDesc: "2x power if user was not damaged by the target.",
 	},
 	boltstrike: {
 		name: "Bolt Strike",
