@@ -2478,7 +2478,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	samurott: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 	},
 	samurotthisui: {
@@ -4496,7 +4496,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	meowscarada: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 	},
 	fuecoco: {
