@@ -5806,7 +5806,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			console.log(pokemon.getAbility().id);
 		},
 		onResidualOrder:29,
-		onBeforeTurn(pokemon){
+		onResidual(pokemon){
 			console.log(pokemon.species.name);
 			console.log(pokemon.getAbility().id);
 			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
@@ -5820,7 +5820,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamage(damage,target,source,effect){
 			if(this.effectState.radiant) 
 			{
-				return damage/2;
+				return damage * .75;
 			}
 		},
 		name: "Dusk Till Dawn",
@@ -6828,6 +6828,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
