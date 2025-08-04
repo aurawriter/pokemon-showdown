@@ -5810,7 +5810,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			console.log(pokemon.species.name);
 			console.log(pokemon.getAbility().id);
 			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
-			if(pokemon.species.name==='Calikami-Radiant")
+			if(pokemon.species.name==="Calikami-Radiant")
 				{
 					console.log("Changing form");
 					pokemon.formeChange("Calikami");
@@ -6828,5 +6828,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
