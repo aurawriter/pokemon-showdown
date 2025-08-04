@@ -5806,7 +5806,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			console.log(pokemon.getAbility().id);
 		},
 		onResidualOrder:29,
-		onResidual(pokemon){
+		onBeforeTurn(pokemon){
 			console.log(pokemon.species.name);
 			console.log(pokemon.getAbility().id);
 			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
@@ -6828,6 +6828,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
