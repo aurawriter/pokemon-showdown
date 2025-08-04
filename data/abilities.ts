@@ -5770,7 +5770,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 18,
 	},
 	
-	dusktilldawn:{
+	/*dusktilldawn:{
 		onStart(pokemon){
 			if(pokemon.species.baseSpecies!=='Calikami' || pokemon.transformed) return;
 			pokemon.formeChange("Calikami-Radiant");
@@ -5794,6 +5794,35 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		
+		name: "Dusk Till Dawn",
+		rating: 4,
+		num: 201,
+	},*/
+	dusktilldawn: {
+		onStart(pokemon){
+			if(pokemon.species.baseSpecies!=='Calikami' || pokemon.transformed) return;
+			pokemon.formeChange("Calikami-Radiant");
+			this.effectState.radiant = true;
+			console.log(pokemon.getAbility().id);
+		},
+		onResidualOrder:29,
+		onResidual(pokemon){
+			console.log(pokemon.species.name);
+			console.log(pokemon.getAbility().id);
+			if(pokemon.species.baseSpecies!=='Calikami'||pokemon.transformed) return;
+			if(pokemon.species.name==='Calikami-Radiant")
+				{
+					console.log("Changing form");
+					pokemon.formeChange("Calikami");
+					this.effectState.radiant = false;
+				}
+			},
+		onDamage(damage,target,source,effect){
+			if(this.effectState.radiant) 
+			{
+				return damage/2;
+			}
+		},
 		name: "Dusk Till Dawn",
 		rating: 4,
 		num: 201,
@@ -6799,4 +6828,5 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
