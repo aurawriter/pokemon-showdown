@@ -2415,7 +2415,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	dusktilldawn:{
 		name: "Dusk Till Dawn",
-		shortDesc:"On the turn this Pokemon switches in, it takes half damage",
+		shortDesc:"On the turn this Pokemon switches in, it takes 3/4th damage",
 	},
 	fusion: {
 		name: "Fusion",
