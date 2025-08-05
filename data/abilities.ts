@@ -5674,18 +5674,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 143,
 	},
 	misdirection: {
-		onFoeTryMove(target,source, move) {
-			if(!this.effectState.misdirection)
-			{
-				this.effectState.misdirection = true;
-				this.actions.useMove(this.dex.getActiveMove("Substitute"), target);
-			}
-		},
-		onSwitchIn(pokemon) {
+		onStart(pokemon) {
 			if (this.effectState.misdirection) return;
 			if (pokemon.volatiles['disable']) return;
 			this.effectState.misdirection = true;
-			this.actions.useMove(this.dex.getActiveMove("Substitute"), target);
+			pokemon.addVolatile('substitute');
+			this.damage(pokemon.baseMaxhp/4,pokemon,pokemon);
 		},
 		name: "Misdirection",
 		rating: 4,
@@ -6835,6 +6829,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
