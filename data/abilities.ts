@@ -5622,7 +5622,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	iaijutsu: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move.flags['slicing'] && pokemon.activeMoveActions <= 1) return priority + 1;
+			if (move.flags['slicing'] && pokemon.activeMoveActions < 1) return priority + 1;
 		},
 		name: "Iaijutsu",
 		rating: 2.5,
@@ -6828,6 +6828,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
