@@ -5678,7 +5678,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (this.effectState.misdirection) return;
 			if (pokemon.volatiles['disable']) return;
 			this.effectState.misdirection = true;
-			this.actions.useMove(this.dex.getActiveMove("Substitute"), target);
+			pokemon.actions.useMove(this.dex.getActiveMove("Substitute"), pokemon);
 		},
 		name: "Misdirection",
 		rating: 4,
@@ -6828,6 +6828,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
