@@ -5674,7 +5674,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 143,
 	},
 	misdirection: {
-		onStart(pokemon) {
+		onAfterSwitchIn(pokemon) {
 			if (this.effectState.misdirection) return;
 			if (pokemon.volatiles['disable']) return;
 			this.effectState.misdirection = true;
@@ -6828,6 +6828,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
