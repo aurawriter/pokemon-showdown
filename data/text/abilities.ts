@@ -613,7 +613,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	iaijutsu: {
 		name: "Iaijutsu",
-		shortDesc: "This Pokemon's slicing moves have their priority increased by 1.",
+		shortDesc: "If this Pokemon's first move is a slicing move, +1 priority.",
 	},
 	galvanize: {
 		name: "Galvanize",
@@ -961,7 +961,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	misdirection:{
 		name: "Misdirection",
-		desc: "The first time it enters battle, this Pokemon sets up a Substitute to take attacks for it.",
+		desc: "The first time it enters battle, this Pokemon uses Substitute.",
 	},
 	lightmetal: {
 		name: "Light Metal",
