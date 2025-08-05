@@ -5622,7 +5622,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	iaijutsu: {
 		onModifyPriority(priority, pokemon, target, move) {
-			if (move.flags['slicing']) return priority + 1;
+			if (move.flags['slicing'] && pokemon.activeMoveActions <= 1) return priority + 1;
 		},
 		name: "Iaijutsu",
 		rating: 2.5,
@@ -5678,7 +5678,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (this.effectState.misdirection) return;
 			if (pokemon.volatiles['disable']) return;
 			this.effectState.misdirection = true;
-			pokemon.addVolatile('substitute');
+			this.actions.useMove(this.dex.getActiveMove("Substitute"), target);
 		},
 		name: "Misdirection",
 		rating: 4,
@@ -6828,6 +6828,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
