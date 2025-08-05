@@ -961,7 +961,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	misdirection:{
 		name: "Misdirection",
-		desc: "The first time it enters battle, this Pokemon uses Substitute.",
+		desc: "The first time it enters battle, this Pokemon takes 25% damage to set up a Substitute.",
 	},
 	lightmetal: {
 		name: "Light Metal",
