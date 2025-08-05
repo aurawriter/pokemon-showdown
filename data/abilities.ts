@@ -5674,6 +5674,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 143,
 	},
 	misdirection: {
+		onFoeTryMove(target,source, move) {
+			if(!this.effectState.misdirection)
+			{
+				this.effectState.misdirection = true;
+				this.actions.useMove(this.dex.getActiveMove("Substitute"), target);
+			}
+		},
 		onSwitchIn(pokemon) {
 			if (this.effectState.misdirection) return;
 			if (pokemon.volatiles['disable']) return;
@@ -6828,6 +6835,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
