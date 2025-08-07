@@ -20682,7 +20682,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Undiscovered"],
 	},
 	sovocteign: {
-		num: -1178,
+		num: -1179,
 		name: "Sovocteign",
 		types: ["???"],
 		gender: "N",
@@ -20694,5 +20694,16 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		tags: ["Legendary"],
 		eggGroups: ["Undiscovered"],
 		forceTeraType: "Stellar",
-	}
+	},
+	/*steerling: {
+		num: -1180,
+		name: "Steerling",
+		types: ["Steel","Rock"],
+		baseStats: {hp:94, atk:69,def:80,spa:68,spd:93, spe:88},
+		abilitie: {0: "Rough Skin", 1: "Fluffy", H: "Cud Chew"},
+		heightm: 1.4, 
+		weightkg: 176.8,
+		color: "Gray",
+		eggGroups: ["Field"],
+	},*/
 };
