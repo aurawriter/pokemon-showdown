@@ -20698,7 +20698,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	/*steerling: {
 		num: -1180,
 		name: "Steerling",
-		types: ["Steel","Rock"],
+		types: ["Steel","Ground"],
 		baseStats: {hp:94, atk:69,def:80,spa:68,spd:93, spe:88},
 		abilitie: {0: "Rough Skin", 1: "Fluffy", H: "Cud Chew"},
 		heightm: 1.4, 
