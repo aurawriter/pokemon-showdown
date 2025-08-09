@@ -10429,7 +10429,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		isNonstandard: "Past",
 		name: "King's Shield",
 		pp: 10,
 		priority: 4,

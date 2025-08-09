@@ -49779,7 +49779,7 @@ swinub: {
 			furyswipes: ["9L16", "8L16", "7L13", "6L13", "5L19", "4L19"],
 			gigaimpact: ["9M", "8M", "7M", "6M", "5M", "4M"],
 			gust: ["9L1", "8L1", "7L1", "6L1", "5L1", "4L1"],
-			healorder: ["7L29", "6L29", "5L25", "4L25"],
+			healorder: ["9L29","7L29", "6L29", "5L25", "4L25"],
 			helpinghand: ["9M"],
 			hex: ["9M", "8M"],
 			hiddenpower: ["7M", "6M", "5M", "4M"],

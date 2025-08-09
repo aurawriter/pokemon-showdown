@@ -988,8 +988,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return 5;
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
-			if (attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod < 0) {
-				return this.chainModify(2);
+			if (attacker.hasType('Bug'))
+			{
+				this.debug("Bug type in Pollen!")
+				if (defender.getMoveHitData(move).typeMod < 0) {
+					this.debug("NVE move!")
+					return this.chainModify(2);
+				}
 			}
 			else if (!attacker.hasType('Bug') && defender.getMoveHitData(move).typeMod < 0) {
 				return this.chainModify(1.30);
