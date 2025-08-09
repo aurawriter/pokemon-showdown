@@ -1160,7 +1160,7 @@ export const commands: Chat.ChatCommands = {
 			let buffer = '<div class="scrollable"><table cellpadding="1" width="100%"><tr><th></th>';
 			const icon: {[k: string]: string} = {};
 			for (const type of dex.types.names()) {
-				icon[type] = `<img src="https://${Config.routes.client}/sprites/types/${type}.png" width="32" height="14">`;
+				icon[type] = `<img src="https://raw.githubusercontent.com/aurawriter/AuroraClientAssets/refs/heads/main/play.pokemonshowdown.com/sprites/types/${type}.png" width="32" height="14">`;
 				// row of icons at top
 				buffer += `<th>${icon[type]}</th>`;
 			}
