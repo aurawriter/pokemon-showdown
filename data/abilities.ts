@@ -6798,7 +6798,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	soulshepherd: {
 		onStart(pokemon) {
 			if (pokemon.side.totalFainted) {
-				this.add('-activate', pokemon, 'ability: Soul Leftovers');
+				this.add('-activate', pokemon, 'ability: Soul Shepherd');
 				const fallen = Math.min(pokemon.side.totalFainted, 5);
 				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
 				this.effectState.fallen = fallen;
@@ -6829,6 +6829,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 62,
 	},
 };
+
 
 
 
