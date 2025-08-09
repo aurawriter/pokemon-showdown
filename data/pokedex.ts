@@ -20096,7 +20096,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
         weightkg: 60.7,
         color: "Black",
         eggGroups: ["Undiscovered"],
-		  cosmeticFormes: ["Calikami-Radiant"],
+		  otherFormes: ["Calikami-Radiant"],
 		  formeOrder: ["Calikami", "Calikami-Radiant"],
     },
 	calikamiradiant: {
