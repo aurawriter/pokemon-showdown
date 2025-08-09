@@ -101911,7 +101911,6 @@ swinub: {
 	calikami:{
 		learnset:{
 			flashbang: ["9L1"],
-			radiantpunishment: ["9L1"],
 			radiantshield: ["9L1"],
 			lightedge: ["9L1"],
 			dazzledart: ["9L1"],
