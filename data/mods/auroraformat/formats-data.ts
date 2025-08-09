@@ -4962,9 +4962,6 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	calikami: {
 		tier: "OU"
 	},
-	calikamiradiant: {
-		isNonstandard: "Past",
-	},
 	masqutirade: {
 		tier: "OU",
 		doublesTier: "DOU",
