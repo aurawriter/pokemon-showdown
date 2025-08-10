@@ -100911,6 +100911,7 @@ swinub: {
 			playrough: ["9L1"],
 			holyfire:["9L1"],
 			tastytreats: ["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	macquero: {
@@ -101001,6 +101002,7 @@ swinub: {
 			terablast: ["9L1"],
 			radiantsmite:["9L1"],
 			righteousrend:["9L1"],
+		
 }
 },
 	muertaguar: {
@@ -101351,6 +101353,7 @@ swinub: {
 			ironhead:["9L1"],
 			smartstrike:["9L1"],
 			righteousrend:["9L1"],
+			protect: ["9L1"],
 		},
 	},
 	galeusair:{
@@ -101391,6 +101394,8 @@ swinub: {
 			liquidation:["9L1"],
 			scald:["9L1"],
 			wavecrash:["9L1"],
+	      protect: ["9L1"],
+		   endure: ["9L1"],
 		}
 	},
 	xinfernotl:{
@@ -101433,6 +101438,8 @@ swinub: {
 			vividburst:["9L1"],
 			holyfire:["9L1"],
 			flashheal:["9L1"],
+			protect: ["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	squittack:{
@@ -101491,6 +101498,8 @@ swinub: {
 			liquidation:["9L1"],
 			waterfall:["9L1"],
 			wavecrash:["9L1"],
+	      protect: ["9L1"],
+		   endure: ["9L1"],
 		}
 	},
 	floraune:{
@@ -101580,6 +101589,7 @@ swinub: {
 			brightfang:["9L1"],
 			acidrain: ["9L1"],
 			smoggyslide: ["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	soloth:{
@@ -101647,6 +101657,7 @@ swinub: {
 			assurance: ["9L1"],
 			starpower: ["9L1"],
 			lightshow:["9L1"],
+			protect: ["9L1"],
 		}
 	},
 	cherubid:{
@@ -101718,6 +101729,8 @@ swinub: {
 		holyfire:["9L1"],
 		radiantsmite:["9L1"],
 		righteousrend:["9L1"],
+	   protect: ["9L1"],
+	   endure: ["9L1"],
 		}
 	},
 	anglare:{
@@ -101788,6 +101801,7 @@ swinub: {
 			snarl: ["9L1"],
 			acidrain: ["9L1"],
 			smoggyslide: ["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	shino:{
@@ -101906,6 +101920,7 @@ swinub: {
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
 			frostbite: ["9L1"],
+	      endure: ["9L1"],
 		}
 	},
 	calikami:{
@@ -101976,6 +101991,7 @@ swinub: {
 			sludgebomb: ["9L1"],
 			gunkshot: ["9L1"],
 			shadowball: ["9L1"],
+	      endure: ["9L1"],
 		}
 	},
 	gardevoiraurora:
@@ -102209,6 +102225,7 @@ swinub: {
 			shadowball: ["9L1"],
 			confuseray: ["9L1"],
 			cosmicpower:["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	illumeon:{
@@ -102545,6 +102562,7 @@ swinub: {
 			terrainpulse: ["9L1"],
 			terablast: ["9L1"],
 			weatherball: ["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	masqutirade: {
@@ -102615,6 +102633,7 @@ swinub: {
 			charm: ["9L1"],
 			drainingkiss: ["9L1"],
 			playrough: ["9L1"],
+			endure: ["9L1"],
 		},
 	},
 
@@ -102949,6 +102968,8 @@ swinub: {
 			heartstamp: ["9L1"],
 			starburst: ["9L1"],
 			frostbite: ["9L1"],
+			protect: ["9L1"],
+		   endure: ["9L1"],
 		},
 	},
 	herastroid: {
@@ -102997,6 +103018,8 @@ swinub: {
             trickroom: ["9L1"],
             wonderroom: ["9L1"],
             magicroom: ["9L1"],
+			   protect: ["9L1"],
+			   endure: ["9L1"],
         },
     },
 	martsunami: {
@@ -103208,7 +103231,8 @@ swinub: {
             eerieimpulse: ["9L1"],
             trailblaze: ["9L1"],
             swift: ["9L1"],
-            spinout: ["9L1"]
+            spinout: ["9L1"],
+				endure: ["9L1"],	
 
         },
     },
@@ -103358,6 +103382,7 @@ swinub: {
 			hauntedterrain: ["9L1"],
 			ghastlygrasp: ["9L1"],
 			frostbite: ["9L1"],
+			endure: ["9L1"],
         },
     },
 	redover: {
@@ -103442,7 +103467,7 @@ swinub: {
             lightspeed: ["9L1"],
             gravitoncore: ["9L1"],
             meteorshower: ["9L1"]
-
+				endure: ["9L1"],
         },
     },
 	greydengo: {
@@ -104643,6 +104668,7 @@ swinub: {
 			acrobatics: ["9L1"],
 			highhorsepower: ["9L1"],
 			aquastep: ["9L1"],
+			endure: ["9L1"],
                         
 		},
 	},
@@ -105287,6 +105313,7 @@ swinub: {
             whirlwind: ["9L1"],
             taunt: ["9L1"],
             helpinghand: ["9L1"],
+				endure: ["9L1"],
 		},
 	},
 	galacasthumid: {
@@ -105351,6 +105378,7 @@ swinub: {
             whirlwind: ["9L1"],
             taunt: ["9L1"],
             helpinghand: ["9L1"],
+			endure: ["9L1"],
 		}
 	},
 	santai: {
@@ -105529,6 +105557,7 @@ swinub: {
 			worryseed: ["9L1"],
 			naturepower: ["9L1"],
 			naturalgift: ["9L1"],
+			endure:["9L1"],
 		},
 	},
 	citrabell: {
@@ -105573,7 +105602,8 @@ swinub: {
 			ingrain: ["9L1"],
 			worryseed: ["9L1"],
 			naturepower: ["9L1"],
-			naturalgift: ["9L1"],	
+			naturalgift: ["9L1"],
+			endure: ["9L1"],
 		},
 	},
 	aerora: {
@@ -105741,6 +105771,7 @@ swinub: {
 			willowisp: ["9L1"],
 			wish: ["9L1"],
 			wrap: ["9L1"],
+		   endure: ["9L1"],
 		},
 	},
 };

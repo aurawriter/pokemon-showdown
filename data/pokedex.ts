@@ -20196,7 +20196,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Stegangaea",
 		types: ["Ground","Cosmic"],
 		baseStats: {hp: 120,atk:118,def:67,spa:45,spd:95,spe:50},
-		abilities: {0: "Battle Armor",1: "Stamina"},
+		abilities: {0: "Battle Armor",H: "Stamina"},
 		heightm: 1.3,
 		weightkg: 149.5,
 		color: "Purple",
