@@ -103467,7 +103467,6 @@ swinub: {
             lightspeed: ["9L1"],
             gravitoncore: ["9L1"],
             meteorshower: ["9L1"],
-				endure: ["9L1"],
         },
     },
 	greydengo: {
