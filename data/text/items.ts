@@ -7,7 +7,14 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Frost Orb",
 		desc: "At the end of every turn, this item attempts to frostbite the holder.",
 	},
-	
+	nebulaplate: {
+     name: "Nebula Plate",
+	  desc: "Holder's Cosmic-type attacks have 1.2x power. Judgement is Cosmic type."
+	}, 
+	radiantplate: {
+     name: "Radiant Plate",
+	  desc: "Holder's Light-type attacks have 1.2x power. Judgement is Light type."
+	}, 
 	flashlight: {
 		name: "Flashlight",
 		desc: "Holder's Light-type attacks have 1.2x power.",
