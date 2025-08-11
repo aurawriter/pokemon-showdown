@@ -79194,7 +79194,7 @@ swinub: {
 			endure: ["9M", "8M"],
 			facade: ["9M", "8M", "7M"],
 			falseswipe: ["9M", "8M", "7M"],
-			firstimpression: ["8L0", "7L1"],
+			firstimpression: ["9L0", "8L0", "7L1"],
 			fling: ["9M", "8M", "7M"],
 			focusblast: ["9M", "8M", "7M"],
 			frostbreath: ["7M"],
