@@ -14160,7 +14160,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
-		isNonstandard: "Past",
 		name: "Light Geyser",
 		pp: 5,
 		priority: 0,
