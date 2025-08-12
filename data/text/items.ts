@@ -258,6 +258,14 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Charti Berry",
 		desc: "Halves damage taken from a supereffective Rock-type attack. Single use.",
 	},
+	sarapberry: {
+		name: "Sarap Berry",
+		desc: "Halves damage taken from a supereffective Cosmic-type attack. Single use.",
+	},
+	kondaiberry: {
+		name: "Kondai Berry",
+		desc: "Halves damage taken from a supereffective Light-type attack. Single use.",
+	},
 	cheriberry: {
 		name: "Cheri Berry",
 		desc: "Holder cures itself if it is paralyzed. Single use.",
@@ -364,6 +372,14 @@ export const ItemsText: {[k: string]: ItemText} = {
 	darkmemory: {
 		name: "Dark Memory",
 		desc: "Holder's Multi-Attack is Dark type.",
+	},
+	cosmicmemory: {
+		name: "Cosmic Memory",
+		desc: "Holder's Multi-Attack is Cosmic type.",
+	},
+	lightmemory: {
+		name: "Light Memory",
+		desc: "Holder's Multi-Attack is Light type.",
 	},
 	darkiniumz: {
 		name: "Darkinium Z",

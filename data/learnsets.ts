@@ -79132,7 +79132,7 @@ swinub: {
 	},
 	wimpod: {
 		learnset: {
-			aquajet: ["8E", "7E"],
+			aquajet: ["9E", "8E", "7E"],
 			assurance: ["8M"],
 			attract: ["8M", "7M"],
 			bugbuzz: ["9M", "8M"],
@@ -79143,7 +79143,7 @@ swinub: {
 			facade: ["9M", "8M", "7M"],
 			frustration: ["7M"],
 			hail: ["8M", "7M"],
-			harden: ["8E", "7E"],
+			harden: ["9E","8E", "7E"],
 			hiddenpower: ["7M"],
 			leechlife: ["9M", "8M", "7M"],
 			metalclaw: ["9M", "8E", "7E"],
@@ -79152,7 +79152,7 @@ swinub: {
 			raindance: ["9M", "8M", "7M"],
 			rest: ["9M", "8M", "7M"],
 			return: ["7M"],
-			rollout: ["8E"],
+			rollout: ["9E", "8E"],
 			round: ["8M", "7M"],
 			sandattack: ["8L1", "7L1"],
 			scald: ["9M", "8M", "7M"],
@@ -79169,7 +79169,7 @@ swinub: {
 			taunt: ["9M", "8M", "7M"],
 			toxic: ["9M", "7M"],
 			waterfall: ["9M", "8M", "7M"],
-			wideguard: ["8E", "7E"],
+			wideguard: ["9E","8E", "7E"],
 		},
 	},
 	golisopod: {

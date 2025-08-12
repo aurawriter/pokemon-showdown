@@ -11206,7 +11206,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Hydreigon",
 		types: ["Dark", "Dragon"],
 		baseStats: {hp: 92, atk: 105, def: 90, spa: 125, spd: 90, spe: 98},
-		abilities: {0: "Levitate",1: "Dragonheart"},
+		abilities: {0: "Levitate"},
 		heightm: 1.8,
 		weightkg: 160,
 		color: "Blue",
@@ -20691,7 +20691,6 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 6.3,
 		weightkg: 660,
 		color: "Black",
-		tags: ["Legendary"],
 		eggGroups: ["Undiscovered"],
 		forceTeraType: "Stellar",
 	},
@@ -20700,10 +20699,30 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Steerling",
 		types: ["Steel","Ground"],
 		baseStats: {hp:94, atk:69,def:80,spa:68,spd:93, spe:88},
-		abilitie: {0: "Rough Skin", 1: "Fluffy", H: "Cud Chew"},
+		abilities: {0: "Rough Skin", 1: "Fluffy", H: "Cud Chew"},
 		heightm: 1.4, 
 		weightkg: 176.8,
 		color: "Gray",
 		eggGroups: ["Field"],
-	},*/
+	},
+	{
+		num: -1181,
+		name: "Dalmaltian",
+		types: ["Ice","Normal"],
+		baseStats: {},
+		abilities: {0:,1:,H:},
+		heightm: 
+	},
+	{
+		num: ???,
+		name: "OverstattedKlutzHaver"
+		types: ["Bug"],
+		baseStats: {hp:104 , atk: 104,def:104, spa:150, spd:104, spe:104}
+		heightm:
+		weightkg:
+		color:
+		eggGroups: [],
+	}
+	*/
+
 };

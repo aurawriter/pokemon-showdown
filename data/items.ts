@@ -1160,8 +1160,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 909,
 		gen: 7,
 	},
-	cosmicberry: {
-		name: "Cosmic Berry",
+	sarapberry: {
+		name: "Sarap Berry",
 		spritenum: 603,
 		isBerry: true,
 		naturalGift: {
@@ -3319,8 +3319,8 @@ export const Items: {[itemid: string]: ItemData} = {
 		num: 236,
 		gen: 2,
 	},
-	lightberry: {
-		name: "Light Berry",
+	kondaiberry: {
+		name: "Kondai Berry",
 		spritenum: 603,
 		isBerry: true,
 		naturalGift: {
