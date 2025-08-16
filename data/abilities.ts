@@ -6870,7 +6870,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		isBreakable: true,
 		name: "Purifying Flames",
-		rating: 2,
+		rating: -3,
 		num: 29,
 	},
 	flurryofblows: {
@@ -6883,10 +6883,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		if(flurryofBlows)
 		{
 			source.side.lastSelectedMove = flurryofBlows.id;
-			this.actions.useMove(flurrofBlows,source);
-		}
+			this.actions.useMove(flurryofBlows,source);
+		},
+		name: "Flurry of Blows",
+		rating: 2,
+		num: -2,
 	},
 };
+
 
 
 
