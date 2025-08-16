@@ -2553,4 +2553,16 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Shimmering Aether",
 		shortDesc: "Copy a random adjacent foe's Ability. Set foe abilities to Aurora Daze.",
 	},
+	ghostofhisui: {
+		name: "Ghost of Hisui",
+		shortDesc: "This Pokemon's moves are boosted 1.5x when attacking statused targets.
+	},
+	purifyingflames: {
+		name: "Purifying Flames",
+		shortDesc: "Stats cannot be dropped. Take half Ghost-type damage",
+	},
+	flurryofblows: {
+		name: "Flurry of Blows",
+		shortDesc: "After using a Fighting-type move, use Arm Thrust",
+	}
 };
