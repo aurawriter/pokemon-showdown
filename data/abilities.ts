@@ -6828,7 +6828,66 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 62,
 	},
+	ghostofhisui: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender.status || defender.hasAbility('comatose') {
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Ghost of Hisui",
+		rating: 3.5,
+		num: -1,
+	},
+	purifyingflames: {
+		onTryBoost(boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			let i: BoostID;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
+				this.add("-fail", target, "unboost", "[from] ability: Purifying Flames", "[of] " + target);
+			}
+		},
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Purifying Flames weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(spa, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Purifying Flames weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		isBreakable: true,
+		name: "Purifying Flames",
+		rating: 2,
+		num: 29,
+	},
+	flurryofblows: {
+		onSourceHit(target,source,effect){
+		if(effect.type == "Fighting" && !effect.fromFlurryOfBlows)
+		{
+		 flurryofBlows = this.dex.getActiveMove("Arm Thrust");
+	    flurryofBlows.fromFlurryOfBlows = true;
+		}
+		if(flurryofBlows)
+		{
+			source.side.lastSelectedMove = flurryofBlows.id;
+			this.actions.useMove(flurrofBlows,source);
+		}
+	},
 };
+
 
 
 
