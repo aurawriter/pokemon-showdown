@@ -29,13 +29,17 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'fbt');
 			}
 		},
+		onBeforeMovePriority: 10,
+		onBeforeMove(pokemon, target, move) {
+			if (move.flags['defrost']) return;
+		},
 		// Damage reduction is handled directly in the sim/battle.js damage function
 		onResidualOrder: 10,
 		onResidual(pokemon) {
 			this.damage(pokemon.baseMaxhp / 16);
 		},
 	},
-	par: {
+	/*par: { // Old paralysis condition
 		name: 'par',
 		effectType: 'Status',
 		onStart(target, source, sourceEffect) {
@@ -60,6 +64,29 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return false;
 			}
 		},
+	},*/
+	par: { // New paralysis condition
+	    name: 'par',
+		effectType: 'Status',
+		onStart(target, source, sourceEffect) {
+			if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'par', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+			} else {
+				this.add('-status', target, 'par');
+			}
+		},
+		onModifySpe(spe, pokemon) {
+			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
+			spe = this.finalModify(spe);
+			if (!pokemon.hasAbility('quickfeet')) {
+				spe = Math.floor(spe * 50 / 100);
+			}
+			return spe;
+		},
+		onDeductPP(target, source) {
+			if (source.hasAbility('quickfeet')) return;
+			return 1;
+		},
 	},
 	slp: {
 		name: 'slp',
@@ -74,6 +101,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			// 1-3 turns
 			this.effectState.startTime = this.random(2, 5);
+			//this.effectState.startTime = 2; // for a non rng sleep
 			this.effectState.time = this.effectState.startTime;
 
 			if (target.removeVolatile('nightmare')) {
@@ -85,6 +113,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			if (pokemon.hasAbility('earlybird')) {
 				pokemon.statusState.time--;
 			}
+			if (move.flags['energize']) return;
 			pokemon.statusState.time--;
 			if (pokemon.statusState.time <= 0) {
 				pokemon.cureStatus();
@@ -95,6 +124,35 @@ export const Conditions: {[k: string]: ConditionData} = {
 				return;
 			}
 			return false;
+		},
+	},
+	dsy: {
+		name: 'dsy',
+		effectType: 'Status',
+		onStart(target, source, sourceEffect) {
+			if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'dsy', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+			} else {
+				this.add('-status', target, 'dsy');
+			}
+		},
+		onBeforeMovePriority: 10,
+		onBeforeMove(pokemon, target, move) {
+			if (move.flags['energize']) return;
+			this.add('cant', pokemon, 'dsy');
+			return false;
+		},
+		onModifyDef(def, pokemon) {
+			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
+			def = this.finalModify(def);
+			def = Math.floor(def * 50 / 100);
+			return def;
+		},
+		onModifySpD(spd, pokemon) {
+			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
+			spd = this.finalModify(spd);
+			spd = Math.floor(spd * 50 / 100);
+			return spd;
 		},
 	},
 	frz: {

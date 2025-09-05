@@ -2179,7 +2179,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 8.8,
 		weightkg: 210,
 		color: "Gray",
-		evos: ["Steelix"],
+		evos: ["Steelix","Amethix"],
 		eggGroups: ["Mineral"],
 	},
 	drowzee: {
@@ -2706,7 +2706,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 1.5,
 		weightkg: 56,
 		color: "Green",
-		evos: ["Scizor", "Kleavor"],
+		evos: ["Scizor", "Kleavor","Dryllor"],
 		eggGroups: ["Bug"],
 	},
 	jynx: {
@@ -19834,7 +19834,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 6.3,
 		weightkg: 144,
 		color: "Brown",
-		eggGroups: ["Field"],
+		eggGroups: ["Bug", "Dragon"],
 	},
 	arjibee: {
 		num: -1117,
@@ -20694,7 +20694,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Undiscovered"],
 		forceTeraType: "Stellar",
 	},
-	/*steerling: {
+	steerling: {
 		num: -1180,
 		name: "Steerling",
 		types: ["Steel","Ground"],
@@ -20705,24 +20705,40 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Gray",
 		eggGroups: ["Field"],
 	},
-	{
+	dalmaltian: {
 		num: -1181,
 		name: "Dalmaltian",
 		types: ["Ice","Normal"],
-		baseStats: {},
-		abilities: {0:,1:,H:},
-		heightm: 
+		baseStats: {hp:65,atk:101,def:50,spa:81,spd:92,spe:101},
+		abilities: {0:"Ice Body",1:"Sweet Veil",H:"Snow Swirl"},
+		heightm: 0.6,
+		weightkg: 28.8,
+		color: "White",
+		eggGroups: ["Field","Mineral"],
 	},
-	{
-		num: ???,
-		name: "OverstattedKlutzHaver"
-		types: ["Bug"],
-		baseStats: {hp:104 , atk: 104,def:104, spa:150, spd:104, spe:104}
-		heightm:
-		weightkg:
-		color:
-		eggGroups: [],
-	}
-	*/
+	amethix: {
+		num: -1182,
+		name: "Amethix",
+		types: ["Psychic","Rock"],
+		baseStats: {hp:75,atk:30,def:55,spa:65,spd:200,spe:85},
+		abilities: {0: "Rock Head",1:"Sturdy",H:"Focusing Crystals"},
+		heightm: 10.5,
+		weightkg: 300,
+		color: "Purple",
+		eggGroups: ["Mineral"],
+
+		
+	},
+	dryllor: {
+		num: -1183,
+		name: "Dryllor",
+		types: ["Bug","Psychic"],
+		baseStats: {hp:70,atk:75, def:110,spa:130,spd:60,spe:55},
+		abilities: {0: "Swarm",1:"Mold Breaker",H:"Focusing Crystals"},
+		heightm: 1.5,
+		weightkg: 38,
+		color: "Red",
+		eggGroups: ["Bug","Mineral"],
+	},
 
 };

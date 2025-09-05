@@ -386,6 +386,7 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	psychic: {
 		damageTaken: {
+			//slp: 3,
 			Bug: 1,
 			Dark: 1,
 			Dragon: 0,

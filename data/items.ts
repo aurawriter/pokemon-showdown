@@ -7915,6 +7915,7 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	chromearmor: {
 		name: "Chrome Armor",
+		spriteNum: 753
 		fling: {
 			basePower: 80,
 		},
@@ -7982,4 +7983,98 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Citrillon", "Spitrus"],
 		num: 256,
 	},
+	/*fistessence: {
+		name: "Fist Essence",
+		onEssence: 'Fighting',
+		num: 2419,
+	},
+	skyessence: {
+		name: "Sky Essence",
+		onEssence: 'Flying',	
+		num: 2420,
+	},
+	earthessence:{
+		name: "Earth Essence",
+		onEssence: 'Ground',
+		num: 2421,
+	},
+	stoneessence:{
+		name: "Stone Essence",
+		onEssence: 'Rock',
+		num: 2422,
+	},
+	insectessence: {
+		name: "Insect Essence",
+		onEssence: 'Bug',
+		num: 2423,
+	},
+	spookyessence :{
+		name: "Spooky Essence",
+		onEssence: 'Ghost',
+		num: 2424,
+	},
+	ironessence: {
+		name: "Iron Essence",
+		onEssence: 'Steel',
+		num: 2425,
+	},
+	flameessence: {
+		name: "Flame Essence",
+		onEssence: 'Fire',
+		num: 2426,
+	},
+	splashessence: {
+		name: "Splash Essence",
+		onEssence: 'Water',
+		num: 2427,
+	},
+	meadowessence: {
+		name: "Meadow Essence",
+		onEssence: 'Grass',
+		num: 2428,
+	},
+	zapessence: {
+		name: "Zap Essence",
+		onEssence: 'Electric',
+		num: 2429,
+	},
+	mindessence: {
+		name: "Mind Essence",
+		onEssence: 'Psychic',
+		num: 2430,
+	},
+	icicleessence: {
+		name: "Icicle Essence",
+		onEssence: 'Ice',
+		num: 2431,
+	},
+	dracoessence: {
+		name: "Draco Essence",
+		onEssence: 'Dragon',	
+		num: 2432,
+	},
+	dreadessence: {
+		name: "Dread Essence",
+		onEssence: 'Dark',
+		num: 2433,
+	},
+	pixieessence: {
+		name: "Pixie Essence",
+		onEssence: 'Fairy',
+		num: 2434,
+	},
+	nebulaessence: {
+		name: "Nebula Essence",
+		onEssence: 'Cosmic',
+		num: 2435,
+	},
+	radiantessence:{
+		name: "Radiant Essence",
+		onEssence: 'Light',
+		num: 2436,
+	}, */
+
+	
+
+	
 };

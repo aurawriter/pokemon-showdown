@@ -82,6 +82,8 @@ export class Item extends BasicEffect implements Readonly<BasicEffect> {
 	readonly isBerry: boolean;
 	/** Whether or not this item ignores the Klutz ability. */
 	readonly ignoreKlutz: boolean;
+	/** The type the holder's Essence Burst will be. */
+	readonly onEssence?: string;
 	/** The type the holder will change into if it is an Arceus. */
 	readonly onPlate?: string;
 	/** Is this item a Gem? */

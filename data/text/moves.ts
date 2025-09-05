@@ -7924,7 +7924,7 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Causes the target to fall asleep at the end of the next turn. Fails when used if the target cannot fall asleep or if it already has a non-volatile status condition. At the end of the next turn, if the target is still active, does not have a non-volatile status condition, and can fall asleep, it falls asleep. If the target becomes affected, this effect cannot be prevented by Safeguard or a substitute, or by falling asleep and waking up during the effect.",
 		shortDesc: "Puts the target to sleep after 1 turn.",
 
-		start: "  [POKEMON] grew drowsy!",
+		start: "  [POKEMON] grew sleepy!",
 	},
 	zapcannon: {
 		name: "Zap Cannon",

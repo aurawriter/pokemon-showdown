@@ -69,7 +69,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -101,7 +101,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -351,7 +351,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onResidual(pokemon) {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.foes()) {
-				if (target.status === 'slp' || target.hasAbility('comatose')) {
+				if (target.status === 'dsy' || target.status === 'slp' || target.hasAbility('comatose')) {
 					this.damage(target.baseMaxhp / 8, target, pokemon);
 				}
 			}
@@ -1566,7 +1566,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -2016,7 +2016,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -2148,13 +2148,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	insomnia: {
 		onUpdate(pokemon) {
-			if (pokemon.status === 'slp') {
+			if (pokemon.status === 'slp' || pokemon.status === 'dsy') {
 				this.add('-activate', pokemon, 'ability: Insomnia');
 				pokemon.cureStatus();
 			}
 		},
 		onSetStatus(status, target, source, effect) {
-			if (status.id !== 'slp') return;
+			if (status.id !== 'slp' || status.id !== 'dsy') return;
 			if ((effect as Move)?.status) {
 				this.add('-immune', target, '[from] ability: Insomnia');
 			}
@@ -2959,7 +2959,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: 1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (!(move.isZ && move.category !== 'Status') && !noModifyType.includes(move.id) &&
 				// TODO: Figure out actual interaction
@@ -3228,7 +3228,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Fighting' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -3267,7 +3267,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -3762,7 +3762,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -3940,6 +3940,38 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 1,
 		num: 245,
 	},
+	snowswirl: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setWeather('snow');
+		},
+		name: "Snow Swirl",
+		rating: 1,
+		num: 245,
+	},
+	fluffyrainsandspit: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setWeather('rain');
+		},
+		name: "Fluffy Rain Sand Spit",
+		rating: 1,
+		num: 245,
+	},
+	fluffypollensandspit: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setWeather('pollen');
+		},
+		name: "Fluffy Pollen Sand Spit",
+		rating: 1,
+		num: 245,
+	},
+	fluffyacidrainsandspit: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setWeather('pollen');
+		},
+		name: "Fluffy Acid Rain Sand Spit",
+		rating: 1,
+		num: 245,
+	},
 	sandstream: {
 		onStart(source) {
 			this.field.setWeather('sandstorm');
@@ -4060,6 +4092,46 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Seed Sower",
 		rating: 2.5,
 		num: 269,
+	},
+	fluffyelectricsower: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setTerrain('electricterrain');
+		},
+		name: "Fluffy Electric Sower",
+		rating: 2.5,
+		num: 269,
+	},
+	fluffymistysower: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setTerrain('mistyterrain');
+		},
+		name: "Fluffy Misty Sower",
+		rating: 2.5,
+		num: 269,
+	},
+	fluffypsychicsower: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setTerrain('psychicterrain');
+		},
+		name: "Fluffy Psychic Sower",
+		rating: 2.5,
+		num: 269,
+	},	
+	fluffydraconicsower: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setTerrain('draconicterrain');
+		},
+		name: "Fluffy Draconic Sower",
+		rating: 2.5,
+		num: 269,
+	},
+	fluffyhauntedsower: {
+		onDamagingHit(damage, target, source, move) {
+			this.field.setTerrain('hauntedterrain');
+		},
+		name: "Fluffy Haunted Sower",
+		rating: 2.5,
+		num: 269,	
 	},
 	serenegrace: {
 		onModifyMovePriority: -2,
@@ -5654,7 +5726,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			});
 			move.secondaries.push({
 				chance: 10,
-				status: 'slp',
+				status: 'dsy',
 				ability: this.dex.abilities.get('covertops'),
 			});
 			move.secondaries.push({
@@ -6530,7 +6602,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if(this.field.terrain==='psychicterrain' && !pokemon.hasItem('safarihelmet'))
 			{
 			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
@@ -6818,8 +6890,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 293,
 	},
 	resolve: {
-		onModifySpaPriority: 5,
-		onModifySpa(spa, pokemon) {
+		onModifySpAPriority: 5,
+		onModifySpA(spa, pokemon) {
 			if (pokemon.status) {
 				return this.chainModify(1.5);
 			}
@@ -6874,21 +6946,53 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 29,
 	},
 	flurryofblows: {
-		onSourceHit(target,source,effect){
-		if(effect.type == "Fighting" && !effect.fromFlurryOfBlows)
-		{
-		 flurryofBlows = this.dex.getActiveMove("Arm Thrust");
-	    flurryofBlows.fromFlurryOfBlows = true;
-		}
-		if(flurryofBlows)
-		{
-			source.side.lastSelectedMove = flurryofBlows.id;
-			this.actions.useMove(flurryofBlows,source);
-		},
-		name: "Flurry of Blows",
+		 onSourceHit(target, source, move) {
+        // Only trigger for Fighting-type moves, and avoid recursion
+        if (move.type === "Fighting" && !move.fromFlurryOfBlows) {
+            const flurryMove = this.dex.getActiveMove("armthrust");
+            flurryMove.fromFlurryOfBlows = true;
+            source.side.lastSelectedMove = flurryMove.id;
+            this.actions.useMove(flurryMove, source);
+        }
+    },
+		name: "Flurry Of Blows",
 		rating: 2,
 		num: -2,
 	},
+	/*prismatic: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
+				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
+				const prismaticTypes = ['Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy','Cosmic','Light'];
+				move.type = this.sample(prismaticTypes);
+				move.typeChangerBoosted = this.effect;
+			}
+		},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.typeChangerBoosted === this.effect) return this.chainModify([5324, 4096]);
+		},
+		name: "Prismatic",
+		rating: 4,
+		num: 296,
+	},*/
+	focusingcrystals: {
+		onAllyBasePowerPriority: 22,
+		onAllyBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Psychic') {
+				this.debug('Focusing Crystals boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Focusing Crystals",
+		rating: 3.5,
+		num: 252,
+	}
+	}
 };
 
 

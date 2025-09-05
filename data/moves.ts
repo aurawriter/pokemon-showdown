@@ -3490,7 +3490,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
-		status: 'slp',
+		status: 'dsy',
 		onTry(source, target, move) {
 			if (source.species.name === 'Darkrai' || move.hasBounced) {
 				return;
@@ -3885,7 +3885,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				} else if (result === 1) {
 					target.trySetStatus('par', source);
 				} else {
-					target.trySetStatus('slp', source);
+					target.trySetStatus('dsy', source);
 				}
 			},
 		},
@@ -4423,7 +4423,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1, heal: 1},
 		drain: [1, 2],
 		onTryImmunity(target) {
-			return target.status === 'slp' || target.hasAbility('comatose');
+			return target.status === 'slp' || target.hasAbility('comatose') || target.status === 'dsy';
 		},
 		secondary: null,
 		target: "normal",
@@ -4688,7 +4688,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				return 5;
 			},
 			onSetStatus(status, target, source, effect) {
-				if (status.id === 'slp' && (target.isGrounded()||target.ability==='dragonblessing') && !target.isSemiInvulnerable() && !target.hasItem('safarihelmet') ) {
+				if ((status.id === 'dsy' || status.id === 'slp') && (target.isGrounded()||target.ability==='dragonblessing') && !target.isSemiInvulnerable() && !target.hasItem('safarihelmet') ) {
 					if (effect.id === 'yawn' || (effect.effectType === 'Move' && !effect.secondaries)) {
 						this.add('-activate', target, 'move: Electric Terrain');
 					}
@@ -9714,14 +9714,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	hypnosis: {
 		num: 95,
-		accuracy: 60,
+		accuracy: 700,
 		basePower: 0,
 		category: "Status",
 		name: "Hypnosis",
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
-		status: 'slp',
+		status: 'dsy',
 		secondary: null,
 		target: "normal",
 		type: "Psychic",
@@ -15854,8 +15854,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	relicsong: {
 		num: 547,
-		accuracy: 100,
-		basePower: 75,
+		accuracy: 90,
+		basePower: 95,
 		category: "Special",
 		name: "Relic Song",
 		pp: 10,
@@ -15863,7 +15863,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1, sound: 1, bypasssub: 1},
 		secondary: {
 			chance: 10,
-			status: 'slp',
+			status: 'dsy',
 		},
 		onHit(target, pokemon, move) {
 			if (pokemon.baseSpecies.baseSpecies === 'Meloetta' && !pokemon.transformed) {
@@ -17599,14 +17599,14 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	sing: {
 		num: 47,
-		accuracy: 55,
+		accuracy: 60,
 		basePower: 0,
 		category: "Status",
 		name: "Sing",
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, sound: 1, bypasssub: 1},
-		status: 'slp',
+		status: 'dsy',
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -18105,7 +18105,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {powder: 1, protect: 1, reflectable: 1, mirror: 1},
-		status: 'slp',
+		status: 'dsy',
 		secondary: null,
 		target: "normal",
 		type: "Grass",
@@ -18462,7 +18462,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1, sound: 1, bypasssub: 1},
 		sleepUsable: true,
 		onTry(source) {
-			return source.status === 'slp' || source.hasAbility('comatose');
+			return source.status == 'slp'|| source.hasAbility('comatose');
 		},
 		secondary: {
 			chance: 30,
@@ -18729,7 +18729,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Spark",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1,energize: 1},
 		secondary: {
 			chance: 30,
 			status: 'par',
@@ -21922,9 +21922,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 			const activeTeam = target.side.activeTeam();
 			const foeActiveTeam = target.side.foe.activeTeam();
 			for (const [i, allyActive] of activeTeam.entries()) {
-				if (allyActive && allyActive.status === 'slp') allyActive.cureStatus();
+				if (allyActive && (allyActive.status === 'slp' || allyActive.status ==='dsy')) allyActive.cureStatus();
 				const foeActive = foeActiveTeam[i];
-				if (foeActive && foeActive.status === 'slp') foeActive.cureStatus();
+				if (foeActive && (foeActive.status === 'slp'||foeActive.status === 'dsy')) foeActive.cureStatus();
 			}
 		},
 		condition: {
@@ -22162,7 +22162,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Volt Tackle",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1,energize: 1},
 		recoil: [33, 100],
 		secondary: {
 			chance: 10,
@@ -22629,7 +22629,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Wild Charge",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, energize: 1},
 		secondary: null,
 		target: "normal",
 		type: "Electric",
@@ -23835,57 +23835,78 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {spd: 1}},
 		contestType: "Cute",
 	},
-/*	stellarwish2: {
-		num: 273,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Stellar Wish 2",
+	geokinesis: {
+		num: 560,
+		accuracy: 95,
+		basePower: 100,
+		category: "Special",
+		name: "Geokinesis",
 		pp: 10,
+		flags: {protect: 1, mirror: 1, distance: 1},
+		onEffectiveness(typeMod, target, type, move) {
+			return typeMod + this.dex.getEffectiveness('Rock', type);
+		},
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		slotCondition: 'stellarwish2',
-		condition: {
-			duration: 2,
-			//onStart(pokemon, source) {
-			
-			//},
-			onResidualOrder: 4,
-			onEnd(target) {
-				this.effectState.bestStat = target.getBestStat(false, true);
-				this.debug("Stellar Wish 1 Best Stat Is: " + this.effectState.bestStat);
-				if (target && !target.fainted) {
-					if (this.effectState.bestStat == 'atk')
-					{
-						this.boost({atk: 2},target)
-					}
-					if (this.effectState.bestStat == 'def')
-					{
-						this.boost({def: 2},target)
-					}
-					if (this.effectState.bestStat == 'spa')
-					{
-						this.boost({spa: 2},target)
-					}
-					if (this.effectState.bestStat == 'spd')
-					{
-						this.boost({spd: 2},target)
-					}
-					if (this.effectState.bestStat == 'spe')
-					{
-						this.boost({spe: 2},target)
-					}
-					//const damage = this.heal(this.effectState.hp, target, target);
-					//if (damage) {
-						//this.add('-heal', target, target.getHealth, '[from] move: Stellar Wish', '[wisher] ' + this.effectState.source.name);
-					//}
-				}
-			},
+		secondary: null,
+		target: "any",
+		type: "Psychic",
+		zMove: { basePower: 170 },
+		contestType: "Tough",
+	},
+	clearingwinds: {
+		num: 861,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		name: "Clearings Winds",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, wind: 1},
+		onAfterHit(target, source) {
+			if (source.hp) {
+				this.field.clearWeather();
+			}
+		},
+		onAfterSubDamage(damage, target, source) {
+			if (source.hp) {
+				this.field.clearWeather();
+			}
 		},
 		secondary: null,
-		target: "self",
-		type: "Cosmic",
-		zMove: {boost: {spd: 1}},
-		contestType: "Cute",
-	},*/
+		target: "normal",
+		type: "Ice",
+	},
+	essenceburst: {
+		num: 38,
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		name: "Essence Burst",
+		pp: 15,
+		priority: 0,
+		secondary: null,
+		type: "Normal",
+		target: "normal",
+		flags: {protect: 1, mirror: 1},
+		onModifyType(move, pokemon, target) {
+			const item = pokemon.getItem();
+			if (item && item.onEssence) {
+				move.type = item.onEssence;
+			}
+		},
+		onModifyMove(move,pokemon,target) {
+			const item = pokemon.getItem();
+			if (item && item.onEssence) {
+				if(pokemon.getStat('spa', false, true) > pokemon.getStat('atk', false, true))
+				{
+					move.category = 'Special';
+				}
+				else
+				{
+					move.category = 'Physical';
+				}
+			}
+		},
+		
+	}
 };
