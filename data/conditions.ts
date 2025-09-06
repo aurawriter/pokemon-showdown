@@ -139,7 +139,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onBeforeMovePriority: 10,
 		onBeforeMove(pokemon, target, move) {
 			if (move.flags['energize']) return;
-			this.add('cant', pokemon, 'dsy');
 			return false;
 		},
 		onModifyDef(def, pokemon) {
