@@ -83,11 +83,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return spe;
 		},
-		onBeforeMove(pokemon,target,move) {
-			if(!pokemon.hasAbility('quickfeet')) {
-				pokemon.deductPP(move, 1);
-			}
-		},
+		onSourceDeductPP(target, source) {
+			this.debug("Trying to deduct PP");
+   		    if(!source.hasAbility('quickfeet')) {    
+				this.debug("Deducting PP");
+      			return 1;
+            }
+	},
 	},
 	slp: {
 		name: 'slp',
