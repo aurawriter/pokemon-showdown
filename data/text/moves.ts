@@ -7804,7 +7804,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	wildcharge: {
 		name: "Wild Charge",
 		desc: "Wakes the user up.",
-		shortDesc: "Wakes the user up.
+		shortDesc: "Wakes the user up.",
 	},
 	willowisp: {
 		name: "Will-O-Wisp",
