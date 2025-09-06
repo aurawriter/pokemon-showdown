@@ -2497,4 +2497,80 @@ export const ItemsText: {[k: string]: ItemText} = {
 		name: "Smoggy Rock",
 		desc: "Holder's use of Acid Rain lasts 8 turns instead of 5.",
 	},
+	dracoessence: {
+		name: "Draco Essence",
+		desc: "Essence Burst is Dragon type.",
+	},
+	dreadessence: {
+		name: "Dread Essence",
+		desc: "Essence Burst is Dark type.",
+	},
+	earthessence: {
+		name: "Earth Essence",
+		desc: "Essence Burst is Ground type.",
+	},
+	fistessence: {
+		name: "Fist Essence",
+		desc: "Essence Burst is Fighting type.",
+	},
+	flameessence: {
+		name: "Flame Essence",
+		desc: "Essence Burst is Fire type.",
+	},
+	icicleessence: {
+		name: "Icicle Essence",
+		desc: "Essence Burst is Ice type.",
+	},
+	insectessence: {
+		name: "Insect Essence",
+		desc: "Essence Burst is Bug type.",
+	},
+	ironessence: {
+		name: "Iron Essence",
+		desc: "Essence Burst is Steel type.",
+	},
+	meadowessence: {
+		name: "Meadow Essence",
+		desc: "Essence Burst is Grass type.",
+	},
+	mindessence: {
+		name: "Mind Essence",
+		desc: "Essence Burst is Pyschic type.",
+	},
+	nebulaessence: {
+		name: "Nebula Essence",
+		desc: "Essence Burst is Cosmic type",
+	},
+	pixieessence: {
+		name: "Pixie Essence",
+		desc: "Essence Burst is Fairy type",
+	},
+	radiantessence: {
+		name: "Radiant Essence",
+		desc: "Essence Burst is Light type",
+	},
+	skyessence: {
+		name: "Sky Essence",
+		desc: "Essence Burst is Flying type",
+	},
+	splashessence: {
+		name: "Splash Essence",
+		desc: "Essence Burst is Water type",
+	},
+	spookyessence: {
+		name: "Spooky Essence",
+		desc: "Essence Burst is Ghost type",
+	},
+	stoneessence: {
+		name: "Stone Essence",
+		desc: "Essence Burst is Rock type",
+	},
+	toxicessence: {
+		name: "Toxic Essence",
+		desc: "Essence Burst is Toxic Type",
+	},
+	zapessence: {
+		name: "Zap Essence",
+		desc: "Essence Burst is Electric Type",
+	}
 };

@@ -8068,4 +8068,9 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "This move's type effectiveness against Light is changed to be super effective no matter what this move's type is.",
 		shortDesc: "Super effective on Light.",
 	},
+	essenceburst: {
+		name: "Essence Burst",
+		desc: "This move's type depends on the user's held Essence.",
+		shortDesc: "Type varies based on the held Essence.",
+	},
 };

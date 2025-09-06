@@ -104079,7 +104079,6 @@ swinub: {
 			endure: ["9L1"],
 			facade: ["9L1"],
 			cottonguard: ["9L1"],
-			tailglow: ["9L1"],
 			bugbuzz: ["9L1"],
 			nastyplot: ["9L1"],
 			gigadrain: ["9L1"],

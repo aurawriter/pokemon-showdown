@@ -7982,7 +7982,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		itemUser: ["Citrillon", "Spitrus"],
 		num: 256,
 	},
-	/*fistessence: {
+	fistessence: {
 		name: "Fist Essence",
 		onEssence: 'Fighting',
 		num: 2419,
@@ -8071,7 +8071,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		name: "Radiant Essence",
 		onEssence: 'Light',
 		num: 2436,
-	}, */
+	}, 
 
 	
 
