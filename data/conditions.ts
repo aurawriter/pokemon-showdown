@@ -136,10 +136,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'dsy');
 			}
 		},
-		onBeforeMovePriority: 10,
-		onBeforeMove(pokemon, target, move) {
-			if (move.flags['energize']) return;
-			return false;
+		onModifyMove(move, pokemon) {
+			if (move.flags['energize']) {
+				this.add('-curestatus', pokemon, 'dsy', '[from] move: ' + move);
+				pokemon.clearStatus();
+			}
 		},
 		onModifyDef(def, pokemon) {
 			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
