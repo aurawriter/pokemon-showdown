@@ -2564,5 +2564,13 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	flurryofblows: {
 		name: "Flurry of Blows",
 		shortDesc: "After using a Fighting-type move, use Arm Thrust",
+	},
+	permafrost: {
+		name: "Permafrost",
+		shortDesc: "30% chance a Pokemon making contact with this Pokemon will be frostbitten.",
+	},
+	raincoat: {
+		name: "Rain Coat",
+		desc: "1.2x Defense in Rain.",
 	}
 };

@@ -84,7 +84,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			return spe;
 		},
 		onDeductPP(target, source) {
-			if (source.hasAbility('quickfeet')) return;
+			if (target.hasAbility('quickfeet')) return;
 			return 1;
 		},
 	},

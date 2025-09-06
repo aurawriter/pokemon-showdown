@@ -3992,6 +3992,15 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 1.5,
 		num: 8,
 	},
+	raincoat: {
+		onModifyDef(def, pokemon) {
+			return this.chainModify(1.2);
+		},
+		isBreakable: true,
+		name: "Rain Coat",
+		rating: 1.5,
+		num: 8,
+	},
 	sapsipper: {
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
@@ -6991,7 +7000,19 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Focusing Crystals",
 		rating: 3.5,
 		num: 252,
-	}
+	},
+	permafrost: {
+		onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target)) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('par', target);
+				}
+			}
+		},
+		name: "Static",
+		rating: 2,
+		num: 9,
+	},
 };
 
 
