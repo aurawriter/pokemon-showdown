@@ -6903,7 +6903,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	ghostofhisui: {
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
-			if (defender.status || defender.hasAbility('comatose') {
+			if (defender.status || defender.hasAbility('comatose')) {
 				return this.chainModify(1.5);
 			}
 		},

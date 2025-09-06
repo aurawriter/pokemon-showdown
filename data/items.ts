@@ -7915,7 +7915,6 @@ export const Items: {[itemid: string]: ItemData} = {
 	},
 	chromearmor: {
 		name: "Chrome Armor",
-		spriteNum: 753
 		fling: {
 			basePower: 80,
 		},
