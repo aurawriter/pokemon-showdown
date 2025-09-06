@@ -108,6 +108,12 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-end', target, 'Nightmare', '[silent]');
 			}
 		},
+		onModifyMove(move, pokemon) {
+			if (move.flags['energize']) {
+				this.add('-curestatus', pokemon, 'slp', '[from] move: ' + move);
+				pokemon.clearStatus();
+			}
+		},
 		onBeforeMovePriority: 10,
 		onBeforeMove(pokemon, target, move) {
 			if (pokemon.hasAbility('earlybird')) {

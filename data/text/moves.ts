@@ -1285,7 +1285,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	darkvoid: {
 		name: "Dark Void",
 		desc: "Causes the target to fall asleep. This move cannot be used successfully unless the user's current form, while considering Transform, is Darkrai.",
-		shortDesc: "Darkrai: Causes the foe(s) to fall asleep.",
+		shortDesc: "Darkrai: Causes the foe(s) to become drowsy.",
 		gen6: {
 			desc: "Causes the target to fall asleep.",
 			shortDesc: "Causes the foe(s) to fall asleep.",
@@ -1410,7 +1410,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	direclaw: {
 		name: "Dire Claw",
-		desc: "Has a 50% chance to cause the target to either fall asleep, become poisoned, or become paralyzed.",
+		desc: "Has a 50% chance to cause the target to either become drowsy, become poisoned, or become paralyzed.",
 		shortDesc: "50% chance to sleep, poison, or paralyze target.",
 	},
 	disable: {
@@ -3322,7 +3322,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	hypnosis: {
 		name: "Hypnosis",
-		shortDesc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the target to become drowsy.",
 	},
 	iceball: {
 		name: "Ice Ball",
@@ -5405,8 +5405,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	relicsong: {
 		name: "Relic Song",
-		desc: "Has a 10% chance to cause the target to fall asleep. If this move is successful on at least one target and the user is a Meloetta, it changes to Pirouette Forme if it is currently in Aria Forme, or changes to Aria Forme if it is currently in Pirouette Forme. This forme change does not happen if the Meloetta has the Sheer Force Ability. The Pirouette Forme reverts to Aria Forme when Meloetta is not active.",
-		shortDesc: "10% chance to sleep foe(s). Meloetta transforms.",
+		desc: "Has a 10% chance to cause the target to become drowsy. If this move is successful on at least one target and the user is a Meloetta, it changes to Pirouette Forme if it is currently in Aria Forme, or changes to Aria Forme if it is currently in Pirouette Forme. This forme change does not happen if the Meloetta has the Sheer Force Ability. The Pirouette Forme reverts to Aria Forme when Meloetta is not active.",
+		shortDesc: "10% chance to make foe(s) drowsy. Meloetta transforms.",
 	},
 	rest: {
 		name: "Rest",
@@ -5964,7 +5964,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	sing: {
 		name: "Sing",
-		shortDesc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the target to become drowsy.",
 	},
 	sinisterarrowraid: {
 		name: "Sinister Arrow Raid",
@@ -6101,7 +6101,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	sleeppowder: {
 		name: "Sleep Powder",
-		shortDesc: "Causes the target to fall asleep.",
+		shortDesc: "Causes the target to become drowsy.",
 	},
 	sleeptalk: {
 		name: "Sleep Talk",
@@ -6373,8 +6373,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	spark: {
 		name: "Spark",
-		desc: "Has a 30% chance to paralyze the target.",
-		shortDesc: "30% chance to paralyze the target.",
+		desc: "Has a 30% chance to paralyze the target. Wakes the user up.",
+		shortDesc: "30% chance to paralyze the target. Wakes the user up.",
 	},
 	sparklingaria: {
 		name: "Sparkling Aria",
@@ -7620,8 +7620,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	volttackle: {
 		name: "Volt Tackle",
-		desc: "Has a 10% chance to paralyze the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
-		shortDesc: "Has 33% recoil. 10% chance to paralyze target.",
+		desc: "Has a 10% chance to paralyze the target. If the target lost HP, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP. Wakes the user up.",
+		shortDesc: "Has 33% recoil. 10% chance to paralyze target. Wakes the user up.",
 		gen4: {
 			desc: "Has a 10% chance to paralyze the target. If the target lost HP, the user takes recoil damage equal to 1/3 the HP lost by the target, rounded down, but not less than 1 HP.",
 			shortDesc: "Has 1/3 recoil. 10% chance to paralyze target.",
@@ -7803,8 +7803,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	wildcharge: {
 		name: "Wild Charge",
-		desc: "No additional effect",
-		shortDesc: "No additional effect",
+		desc: "Wakes the user up.",
+		shortDesc: "Wakes the user up.
 	},
 	willowisp: {
 		name: "Will-O-Wisp",

@@ -956,7 +956,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	covertops: {
 		name: "Covert Ops",
-		shortDesc: "Contact moves have a 30% chance to sleep, poison, or paralysis. Can't be forced to switch out.",
+		shortDesc: "Contact moves have a 30% chance to drowsy, poison, or paralysis. Can't be forced to switch out.",
 			
 	},
 	misdirection:{
