@@ -83,9 +83,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return spe;
 		},
-		onDeductPP(target, source) {
-			if (target.hasAbility('quickfeet')) return;
-			return 1;
+		onAfterMove(pokemon,target,move) {
+			if(!pokemon.hasAbility('quickfeet')) {
+				pokemon.deductPP(move, 1);
+			}
 		},
 	},
 	slp: {
