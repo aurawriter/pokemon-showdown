@@ -2555,7 +2555,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	ghostofhisui: {
 		name: "Ghost of Hisui",
-		shortDesc: "This Pokemon's moves are boosted 1.5x when attacking statused targets.,
+		shortDesc: "This Pokemon's moves are boosted 1.5x when attacking statused targets.",
 	},
 	purifyingflames: {
 		name: "Purifying Flames",
