@@ -8073,4 +8073,9 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "This move's type depends on the user's held Essence.",
 		shortDesc: "Type varies based on the held Essence.",
 	},
+	geokinesis: {
+		name: "Geokinesis",
+		desc: "This move combines Rock in its type effectiveness against the target.",
+		shortDesc: "Combines Rock in its type effectiveness.",
+	},
 };

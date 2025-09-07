@@ -2572,5 +2572,18 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	raincoat: {
 		name: "Rain Coat",
 		desc: "1.2x Defense in Rain.",
-	}
+	},
+	soothingsong: {
+		name: "Soothing Song",
+		desc: "When this Pokemon uses a sound-based move, it heals itself and allies for 25% of their max HP.",
+	},
+	focusingcrystals: {
+		name: "Focusing Crystals",
+		desc: "This Pokemon and its allies' Psychic-type moves have their power multiplied by 1.5.",
+		shortDesc: "This Pokemon and its allies' Psychic-type moves have their power multiplied by 1.5.",
+	},
+	snowswirl: {
+		name: "Snow Swirl",
+		shortDesc: "When this Pokemon is hit by an attack, the effect of Snow begins.",
+	},
 };
