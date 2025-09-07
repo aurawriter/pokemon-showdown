@@ -7018,8 +7018,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			this.debug ("After move!")
 			if (move.flags['sound']) {
 				this.debug ("Souohthing Song triggered!")
-				this.heal(target.baseMaxhp / 4, source);
-				for (const ally of target.adjacentAllies()) {
+				this.heal(source.baseMaxhp / 4);
+				for (const ally of source.adjacentAllies()) {
 					this.heal(ally.baseMaxhp / 4, ally);
 			}
 		}	
