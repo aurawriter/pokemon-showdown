@@ -3895,7 +3895,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 0.3,
 		weightkg: 1.8,
 		color: "Yellow",
-		evos: ["Sunflora"],
+		evos: ["Sunflora","Sunflora-Aurora"],
 		eggGroups: ["Grass"],
 	},
 	sunflora: {
