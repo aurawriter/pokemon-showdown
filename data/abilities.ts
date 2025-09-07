@@ -7009,7 +7009,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
 			}
 		},
-		name: "Static",
+		name: "Permafrost",
 		rating: 2,
 		num: 9,
 	},
