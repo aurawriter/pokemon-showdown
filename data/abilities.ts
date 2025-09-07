@@ -7015,7 +7015,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	soothingsong: {
 		onAfterMove(target, source, move) {
+			this.debug ("After move!")
 			if (move.flags['sound']) {
+				this.debug ("Souohthing Song triggered!")
 				source.heal(source.baseMaxhp / 4, source);
 				for (const ally of source.adjacentAllies()) {
 					this.heal(ally.baseMaxhp / 4, ally);
