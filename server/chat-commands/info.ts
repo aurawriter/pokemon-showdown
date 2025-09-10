@@ -1051,39 +1051,45 @@ export const commands: Chat.ChatCommands = {
 		if (!this.runBroadcast()) return;
 		if (!target) return this.parse("/help coverage");
 
-		const {dex, targets} = this.splitFormat(target.split(/[,+/]/));
-		const sources: (string | Move)[] = [];
+		// Argument parsing similar to /randompokemon
+		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
+		let mod = dex.currentMod;
 		let tier = '';
+		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
+		for (const t of dex.types.names()) bestCoverage[t] = -5;
 		let hasThousandArrows = false;
 
-		for (const type of dex.types.names()) {
-			// This command uses -5 to designate immunity
-			bestCoverage[type] = -5;
-		}
-
-		for (let arg of targets) {
-			arg = toID(arg);
-
-			// special flag to list Pok\u00e9mon that resist the given sources
-			if (arg === 'resistlist') { resistList = true; continue; }
-
-			// optionally a tier token
-			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) { tier = arg.toUpperCase(); continue; }
-
-			// arg is the gen?
-			if (arg === dex.currentMod) continue;
-
-			// arg is 'table' or 'all'?
+		// First pass: parse for special parameters
+		const moveTypeArgs: string[] = [];
+		for (let rawArg of targets) {
+			const arg = rawArg.trim();
+			if (!arg) continue;
+			if (arg.toLowerCase() === 'resistlist') {
+				resistList = true;
+				continue;
+			}
+			if (arg.startsWith('mod=')) {
+				mod = arg.slice(4).replace(/['"]/g, '');
+				continue;
+			}
+			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
+				tier = arg.toUpperCase();
+				continue;
+			}
 			if (arg === 'table' || arg === 'all') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
 				dispTable = true;
 				continue;
 			}
+			moveTypeArgs.push(arg);
+		}
 
-			// arg is a type?
+		// Second pass: resolve moves/types
+		for (let arg of moveTypeArgs) {
+			const idArg = toID(arg);
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
 			let eff;
 			if (dex.types.isName(argType)) {
@@ -1095,15 +1101,12 @@ export const commands: Chat.ChatCommands = {
 				}
 				continue;
 			}
-
-			// arg is a move?
-			const move = dex.moves.get(arg);
+			const move = dex.moves.get(idArg);
 			if (!move.exists) {
 				return this.errorReply(`Type or move '${arg}' not found.`);
 			} else if (move.gen > dex.gen) {
 				return this.errorReply(`Move '${arg}' is not available in Gen ${dex.gen}.`);
 			}
-
 			if (!move.basePower && !move.basePowerCallback) continue;
 			if (move.id === 'thousandarrows') hasThousandArrows = true;
 			sources.push(move);
@@ -1119,92 +1122,63 @@ export const commands: Chat.ChatCommands = {
 				if (eff > bestCoverage[type]) bestCoverage[type] = eff;
 			}
 		}
+
 		if (sources.length === 0) return this.errorReply("No moves using a type table for determining damage were specified.");
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
 		
-		// Optional: if 'resistlist' flag is set, list all Pok\u00e9mon (by typing) that resist every provided source (<= 0.5x)
 		if (resistList) {
-			const pokedex = dex.species.all();
+			// Choose the dex to operate on (respect mod= if provided)
+			const mdex = (mod && mod !== dex.currentMod) ? this.dex.mod(mod as ID) : dex;
+
+			// Get the Pokémon pool from that dex, optionally filter by tier
+			const tierId = toID(tier);
+			const pokedex = mdex.species.all();
+			const formatMons = pokedex.filter(mon => {
+				// Some mods use variations like 'OU (NFE)' – compare normalized ids
+				const monTierId = toID(mon.tier || '');
+				return (!tierId || monTierId === tierId);
+			});
+
+			// Normalize sources into this dex (moves may differ across mods)
+			const sourcesNorm = sources.map(s => typeof s === 'string' ? s : mdex.moves.get(s.id));
+
+			// Map: type combo -> list of Pokémon
 			const resistMap: {[combo: string]: string[]} = {};
 
-			for (const mon of pokedex) {
+			for (const mon of formatMons) {
 				const types = mon.types;
-				if (!types || !types.length) continue;
-				// If a tier was specified, filter by it
-				if (tier) {
-					const monTier = (mon.tier || '').toUpperCase();
-					if (monTier !== tier) continue;
-				}
-
-				let resistedAll = true;
-				for (const source of sources) {
-					let mult = 1;
-
-					if (types.length === 1) {
-						const type1 = types[0];
-						if (typeof source === 'string') {
-							if (!dex.getImmunity(source, type1)) {
-								mult = 0;
-							} else {
-								const modSum = dex.getEffectiveness(source, type1);
-								mult = Math.pow(2, modSum);
-							}
-						} else {
-							const move = source as Move;
-							if (!dex.getImmunity(move.type, type1) && !move.ignoreImmunity) {
-								mult = 0;
-							} else {
-								const baseMod = dex.getEffectiveness(move, type1);
-								const moveMod = move.onEffectiveness?.call({dex} as Battle, baseMod, null, type1, move as ActiveMove);
-								const modSum = typeof moveMod === 'number' ? moveMod : baseMod;
-								mult = Math.pow(2, modSum);
-							}
-						}
-					} else {
-						const [type1, type2] = types;
-						if (typeof source === 'string') {
-							if (!dex.getImmunity(source, type1) || !dex.getImmunity(source, type2)) {
-								mult = 0;
-							} else {
-								let modSum = dex.getEffectiveness(source, type1);
-								modSum += dex.getEffectiveness(source, type2);
-								mult = Math.pow(2, modSum);
-							}
-						} else {
-							const move = source as Move;
-							if ((!dex.getImmunity(move.type, type1) || !dex.getImmunity(move.type, type2)) && !move.ignoreImmunity) {
-								mult = 0;
-							} else {
-								let baseMod = dex.getEffectiveness(move, type1);
-								let moveMod = move.onEffectiveness?.call({dex} as Battle, baseMod, null, type1, move as ActiveMove);
-								let modSum = typeof moveMod === 'number' ? moveMod : baseMod;
-								baseMod = dex.getEffectiveness(move, type2);
-								moveMod = move.onEffectiveness?.call({dex} as Battle, baseMod, null, type2, move as ActiveMove);
-								modSum += typeof moveMod === 'number' ? moveMod : baseMod;
-								mult = Math.pow(2, modSum);
-							}
-						}
+				let resisted = true;
+				for (const source of sourcesNorm) {
+					let eff = 1;
+					for (const type of types) {
+						const moveType = typeof source === 'string' ? source : source.type;
+						const typeEff = mdex.getEffectiveness(moveType, type);
+						eff *= Math.pow(2, typeEff);
 					}
-					if (mult > 0.5) { resistedAll = false; break; }
+					if (eff > 0.5) { // any source hits neutral or better
+						resisted = false;
+						break;
+					}
 				}
-
-				if (resistedAll) {
+				if (resisted) {
 					const combo = types.join('/');
 					if (!resistMap[combo]) resistMap[combo] = [];
 					resistMap[combo].push(mon.name);
 				}
 			}
 
+			// Format output
+			const headerSuffix = tier ? ` in ${mod ? `${mod} ` : ''}${tier}` : (mod ? ` in ${mod}` : '');
 			const buffer: string[] = [];
-			const tierLabel = tier ? ` in ${tier}` : '';
-			buffer.push(`<b>Pok\u00e9mon${tierLabel} that resist ${sources.map(s => typeof s === 'string' ? s : s.name).join(' + ')}:</b>`);
+			buffer.push(`<b>Pok\u00e9mon${headerSuffix} that resist ${sources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ')}:</b>`);
 			for (const combo in resistMap) {
 				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
 			if (buffer.length === 1) buffer.push('None found.');
 			return this.sendReplyBox(buffer.join('<br />'));
 		}
+
 
 		// converts to fractional effectiveness, 0 for immune
 		for (const type in bestCoverage) {
@@ -1296,6 +1270,8 @@ export const commands: Chat.ChatCommands = {
 						}
 						if (bestEff === -5) {
 							bestEff = 0;
+						} else if (typeof bestEff === 'undefined') {
+							bestEff = 0;
 						} else {
 							bestEff = Math.pow(2, bestEff);
 						}
@@ -1335,8 +1311,7 @@ export const commands: Chat.ChatCommands = {
 		`/coverage [move 1], [move 2] ... - Provides the best effectiveness match-up against all defending types for given moves or attacking types`,
 		`!coverage [move 1], [move 2] ... - Shows this information to everyone.`,
 		`Adding the parameter 'all' or 'table' will display the information with a table of all type combinations.`,
-	
-		`Add 'resistlist' to list Pok\u00e9mon (optionally filtered by a tier like OU/UU/etc.) that resist all provided moves or types.`,],
+	],
 
 	statcalc(target, room, user) {
 		if (!target) return this.parse("/help statcalc");
@@ -1599,7 +1574,7 @@ export const commands: Chat.ChatCommands = {
 		return this.sendReplyBox(`Base ${baseStat} ${calcHP ? ' HP ' : ' '}at level ${level} with ${iv} IVs, ${ev}${nature === 1.1 ? '+' : nature === 0.9 ? '-' : ''} EVs${modifier > 0 && !calcHP ? ` at ${positiveMod ? '+' : '-'}${modifier}` : ''}: <b>${Math.floor(output)}</b>.`);
 	},
 	statcalchelp: [
-		`/statcalc [level] [base stat] [IVs] [nature] [EVs] [modifier] (only base stat is required) - Calculates what the actual stat of a Pok\u00e9mon is with the given parameters. For example, '/statcalc lv50 100 30iv positive 252ev scarf' calculates the speed of a base 100 scarfer with HP Ice in Battle Spot, and '/statcalc uninvested 90 neutral' calculates the attack of an uninvested Crobat.`,
+		`/statcalc [level] [base stat] [IVs] [nature] [EVs] [modifier] (only base stat is required) - Calculates what the actual stat of a Pokémon is with the given parameters. For example, '/statcalc lv50 100 30iv positive 252ev scarf' calculates the speed of a base 100 scarfer with HP Ice in Battle Spot, and '/statcalc uninvested 90 neutral' calculates the attack of an uninvested Crobat.`,
 		`!statcalc [level] [base stat] [IVs] [nature] [EVs] [modifier] (only base stat is required) - Shows this information to everyone.`,
 		`Inputting 'hp' as an argument makes it use the formula for HP. Instead of giving nature, '+' and '-' can be appended to the EV amount (e.g. 252+ev) to signify a boosting or inhibiting nature.`,
 		`An actual stat can be given in place of a base stat or EVs. In this case, the minumum base stat or EVs necessary to have that real stat with the given parameters will be determined. For example, '/statcalc 502real 252+ +1' calculates the minimum base speed necessary for a positive natured fully invested scarfer to outspeed`,
@@ -2050,7 +2025,7 @@ export const commands: Chat.ChatCommands = {
 				`- /tour create <em>format</em>, roundrobin: create a new round robin tournament in the current room.`,
 				`- /tour end: forcibly end the tournament in the current room`,
 				`- /tour start: start the tournament in the current room`,
-				`- /tour banlist [pokemon], [talent], [...]: ban moves, abilities, Pok\u00e9mon or items from being used in a tournament (it must be created first)`,
+				`- /tour banlist [pokemon], [talent], [...]: ban moves, abilities, Pokémon or items from being used in a tournament (it must be created first)`,
 			],
 			[
 				`More detailed help can be found in the <a href="https://www.smogon.com/forums/posts/6777489/">tournaments guide</a>`,
@@ -2174,10 +2149,10 @@ export const commands: Chat.ChatCommands = {
 			buffer.push(this.tr`Custom avatars are given to Global Staff members, contributors (coders and spriters) to Pokemon Showdown, and Smogon badgeholders at the discretion of the PS! Administrators. They are also sometimes given out as rewards for major events such as PSPL (Pokemon Showdown Premier League). If you're curious, you can view the entire list of <a href="https://www.smogon.com/smeargle/customs/">custom avatars</a>.`);
 		}
 		if (showAll || ['privacy', 'private'].includes(target)) {
-			buffer.push(`<a href="https://pokemonshowdown.com/${this.tr`pages/privacy`}">${this.tr`Pok\u00e9mon Showdown privacy policy`}</a>`);
+			buffer.push(`<a href="https://pokemonshowdown.com/${this.tr`pages/privacy`}">${this.tr`Pokémon Showdown privacy policy`}</a>`);
 		}
 		if (showAll || ['lostpassword', 'password', 'lostpass'].includes(target)) {
-			buffer.push(`If you need your Pok\u00e9mon Showdown password reset, you can fill out a <a href="https://www.smogon.com/forums/password-reset-form/">${this.tr`Password Reset Form`}</a>. You will need to make a Smogon account to be able to fill out the form, as password resets are processed through the Smogon forums.`);
+			buffer.push(`If you need your Pokémon Showdown password reset, you can fill out a <a href="https://www.smogon.com/forums/password-reset-form/">${this.tr`Password Reset Form`}</a>. You will need to make a Smogon account to be able to fill out the form, as password resets are processed through the Smogon forums.`);
 		}
 		if (!buffer.length && target) {
 			this.errorReply(`'${target}' is an invalid FAQ.`);
@@ -3129,7 +3104,7 @@ export const pages: Chat.PageTable = {
 			`<li><code>- Mega</code> or <code>- CAP</code>: Ban a Pok&eacute;mon category</li></ul>`,
 			`<h3>Complex bans</h3>`,
 			`<ul><li><code>- Blaziken + Speed Boost</code>: Ban a combination of things in a single Pokemon (you can have a Blaziken, and you can have Speed Boost on the same team, but the Blaziken can't have Speed Boost)</li>`,
-			`<li><code>- Drizzle ++ Swift Swim</code>: Ban a combination of things in a team (if any Pok\u00e9mon on your team have Drizzle, no Pok\u00e9mon can have Swift Swim)</li></ul>`,
+			`<li><code>- Drizzle ++ Swift Swim</code>: Ban a combination of things in a team (if any Pokémon on your team have Drizzle, no Pokémon can have Swift Swim)</li></ul>`,
 			`<h2><u>Unbans</u></h2>`,
 			`<p>Using a <code>+</code> instead of a <code>-</code> unbans that category.</p>`,
 			`<ul><li><code>+ Blaziken</code>: Unban/unrestrict a Pok&eacute;mon.</li></ul>`,
@@ -3202,7 +3177,7 @@ export const pages: Chat.PageTable = {
 		buf += `<li><code>- Mega</code> or <code>- CAP</code>: Ban a Pok&eacute;mon category</li></ul>`;
 		buf += `<h3>Complex bans</h3>`;
 		buf += `<ul><li><code>- Blaziken + Speed Boost</code>: Ban a combination of things in a single Pokemon (you can have a Blaziken, and you can have Speed Boost on the same team, but the Blaziken can't have Speed Boost)</li>`;
-		buf += `<li><code>- Drizzle ++ Swift Swim</code>: Ban a combination of things in a team (if any Pok\u00e9mon on your team have Drizzle, no Pok\u00e9mon can have Swift Swim)</li></ul>`;
+		buf += `<li><code>- Drizzle ++ Swift Swim</code>: Ban a combination of things in a team (if any Pokémon on your team have Drizzle, no Pokémon can have Swift Swim)</li></ul>`;
 		buf += `<h2><u>Unbans</u></h2>`;
 		buf += `<p>Using a <code>+</code> instead of a <code>-</code> unbans that category.</p>`;
 		buf += `<ul><li><code>+ Blaziken</code>: Unban/unrestrict a Pok&eacute;mon.</li></ul></small></details><br />`;
