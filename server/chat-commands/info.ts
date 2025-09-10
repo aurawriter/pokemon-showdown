@@ -1188,6 +1188,27 @@ if (resistList) {
 		const dt = __trimParens(sp.doublesTier || '');
 		return toID(st) !== 'illegal' && toID(dt) !== 'illegal';
 	});
+	// ---------- CAP policy (unconditional) ----------
+	(function() {
+		let allowCAP = false;
+		// if user explicitly requested CAP tiers, allow
+		const req = toID(tier);
+		if (req === 'cap' || req === 'caplc' || req === 'capnfe') allowCAP = true;
+		// if a format is selected and it explicitly allows CAP, allow
+		if (!allowCAP && fmt) {
+			const rt = Dex.formats.getRuleTable(fmt);
+			if (rt?.has('cap') || rt?.has('allowcap')) allowCAP = true;
+		}
+		if (!allowCAP) {
+			function _trim(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
+			pool = pool.filter(sp => {
+				const st = toID(_trim((usedNatDexTier ? (sp as any).natDexTier : sp.tier) || ''));
+				const dt = toID(_trim(sp.doublesTier || ''));
+				const isCAP = ((sp as any).isNonstandard === 'CAP') || st === 'cap' || dt === 'cap';
+				return !isCAP;
+			});
+		}
+	})();
 			// Exclude CAP mons unless the format explicitly allows CAP
 			if (fmt) {
 				const ruleTable = Dex.formats.getRuleTable(fmt);
