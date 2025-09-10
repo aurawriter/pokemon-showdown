@@ -1094,7 +1094,7 @@ export const commands: Chat.ChatCommands = {
 			moveTypeArgs.push(arg);
 		}
 		// Second pass: resolve moves/types
-Second pass: resolve moves/types
+		// Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
 			const idArg = toID(arg);
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
