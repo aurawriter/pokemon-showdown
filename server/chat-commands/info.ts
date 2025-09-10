@@ -1096,6 +1096,56 @@ export const commands: Chat.ChatCommands = {
 				return this.errorReply(`Move '${arg}' is not available in Gen ${dex.gen}.`);
 			}
 
+			//arg is resistlist? 
+			const resistlists: string[] = [];
+			for (const arg of targets) {
+    		if (arg.startsWith('resistlist=')) {
+       			 const val = arg.split('=')[1];
+       		 if (val) resistlists.push(val);
+   				 }
+			}
+
+			
+		// If resistlists are specified, filter Pokémon
+			if (resistlists.length) {
+    	// Example: get Pokémon in the specified format/tier
+    	// You may need to implement Dex.getFormatPokemon(format, tier)
+   		  const format = resistlists[0];
+    	  const tier = resistlists[1] || '';
+          const pokedex = Dex.getFormatPokemon(format, tier); // Returns array of Pokémon objects
+		// Find Pokémon that resist all specified types
+    const resistTypes = sources.filter(s => typeof s === 'string') as string[];
+    const resists: {[combo: string]: string[]} = {};
+
+    for (const mon of pokedex) {
+        const types = mon.types;
+        let resistsAll = true;
+        for (const atkType of resistTypes) {
+            let eff = 1;
+            for (const defType of types) {
+                eff *= Dex.getEffectiveness(atkType, defType) || 1;
+            }
+            if (eff > 0.5) { // Not a resist
+                resistsAll = false;
+                break;
+            }
+        }
+        if (resistsAll) {
+            const combo = types.join('/');
+            if (!resists[combo]) resists[combo] = [];
+            resists[combo].push(mon.name);
+        }
+    }
+
+    // Format output
+    const buffer: string[] = [];
+    for (const combo in resists) {
+        buffer.push(`${combo}: ${resists[combo].join(', ')}`);
+    }
+    return this.sendReplyBox(buffer.join('<br />'));
+}
+
+
 			if (!move.basePower && !move.basePowerCallback) continue;
 			if (move.id === 'thousandarrows') hasThousandArrows = true;
 			sources.push(move);
