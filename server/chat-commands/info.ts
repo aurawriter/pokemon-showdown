@@ -1094,7 +1094,6 @@ export const commands: Chat.ChatCommands = {
 			moveTypeArgs.push(arg);
 		}
 		// Second pass: resolve moves/types
-		// Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
 			const idArg = toID(arg);
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
@@ -1174,7 +1173,7 @@ export const commands: Chat.ChatCommands = {
 	const singlesSet: any = {ag:1, uber:1, ubers:1, ou:1, uubl:1, uu:1, rubl:1, ru:1, nubl:1, nu:1, publ:1, pu:1, zubl:1, zu:1, nfe:1, lc:1, cap:1, caplc:1, capnfe:1, monotype:1, vgc:1, doubles:1};
 	const doublesSet: any = {duber:1, dubers:1, doublesuber:1, doublesubers:1, dou:1, doublesou:1, dbl:1, doublesbl:1, duu:1, doublesuu:1, dnu:1, doublesnu:1};
 	const singlesTier = (tReqId in singlesSet) ? (tier || '').toUpperCase() : '';
-	const doublesTier = (tReqId in doublesSet) ? ( ({" + "doublesubers:'DUber',doublesuber:'DUber',duber:'DUber',dubers:'DUber',doublesou:'DOU',dou:'DOU',doublesbl:'DBL',dbl:'DBL',doublesuu:'DUU',duu:'DUU',doublesnu:'(DUU)',dnu:'(DUU)'}" + ")[tReqId] || tier ) : '';
+	const doublesTier = (tReqId in doublesSet) ? (doublesTierMap[tReqId] || tier) : '';
 	if (tier) {
 		pool = pool.filter(sp => {
 			if (doublesTier) {
