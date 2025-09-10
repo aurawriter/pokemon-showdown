@@ -1059,7 +1059,6 @@ export const commands: Chat.ChatCommands = {
 		let tier = '';
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
-		for (const t of dex.types.names()) bestCoverage[t] = -5;
 		let hasThousandArrows = false;
 
 		// First pass: parse for special parameters
@@ -1127,84 +1126,118 @@ export const commands: Chat.ChatCommands = {
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
 		
-		
-		
-		if (resistList) {
-			// Choose the dex to operate on (respect mod= if provided). Avoid using this.dex here.
-			const mdex = (mod && mod !== dex.currentMod) ? Dex.mod(mod as ID) : dex;
+if (resistList) {
+  // Resolve the environment Dex: allow "mod=" to be either a data mod (Dex.dexes)
+  // or a format id (Dex.formats). If it's a format, also filter species by that format's RuleTable.
+  const modId = toID(mod);
+  let envDex = dex;
+  let fmt: any = null;
 
-			// Get the Pokémon pool from that dex, optionally filter by tier
-			const tierId = toID(tier);
-			const pokedex = mdex.species.all();
-			const formatMons = pokedex.filter(mon => {
-				// Some mods use variations like 'OU (NFE)' – compare normalized ids
-				const monTierId = toID(mon.tier || '');
-				return (!tierId || monTierId === tierId);
-			});
+  if (modId && modId !== toID(dex.currentMod)) {
+    const maybeFormat = Dex.formats.get(modId);
+    if (maybeFormat?.exists) {
+      fmt = maybeFormat;
+      envDex = Dex.forFormat(maybeFormat);
+    } else if ((Dex as any).dexes && (Dex as any).dexes[modId]) {
+      envDex = Dex.mod(modId as ID);
+    } else {
+      // ignore unknown mod token; keep current dex
+    }
+  }
 
-			// Normalize sources into this dex (moves may differ across mods)
-			const sourcesNorm = sources.map(s => typeof s === 'string' ? s : mdex.moves.get((s as Move).id));
+  // Move/type sources must be from the environment Dex
+  const envSources = sources.map(s => typeof s === 'string' ? s : envDex.moves.get((s as Move).id));
 
-			// Map: type combo -> list of Pokémon
-			const resistMap: {[combo: string]: string[]} = {};
+  // Build candidate species pool from envDex, then optionally restrict to the format's legal mons
+  let pool = envDex.species.all();
+  if (fmt) {
+    const ruleTable = Dex.formats.getRuleTable(fmt);
+    pool = pool.filter(sp => !ruleTable.isBannedSpecies(sp));
+  }
 
-			for (const mon of formatMons) {
-				const types = mon.types;
-				let resistedAll = true;
+  // If a tier is provided, normalize and filter
+  const tierId = toID(tier);
+  if (tierId) {
+    // Determine whether the format uses NatDex tiers
+    let useNatDexTier = false;
+    if (fmt) {
+      const rt = Dex.formats.getRuleTable(fmt);
+      useNatDexTier = rt.has('standardnatdex');
+    }
+    pool = pool.filter(sp => {
+      let t: string = (useNatDexTier ? (sp as any).natDexTier : sp.tier) || '';
+      if (t.startsWith('(') && t.endsWith(')')) t = t.slice(1, -1);
+      return toID(t) === tierId;
+    });
+  }
 
-				for (const source of sourcesNorm) {
-					let factor = 1; // cumulative damage multiplier across both defensive types
-					for (const type of types) {
-						if (typeof source === 'string') {
-							// Treat immunities explicitly (e.g., Electric -> Ground)
-							if (!mdex.getImmunity(source, type)) {
-								factor *= 0;
-								continue;
-							}
-							const typeMod = mdex.getEffectiveness(source, type);
-							factor *= Math.pow(2, typeMod);
-						} else {
-							const move = source as Move;
-							if (!mdex.getImmunity(move.type, type) && !move.ignoreImmunity) {
-								factor *= 0;
-								continue;
-							}
-							const baseMod = mdex.getEffectiveness(move, type);
-							const moveMod = move.onEffectiveness?.call({dex: mdex} as Battle, baseMod, null, type, move as ActiveMove);
-							const typeMod = typeof moveMod === 'number' ? moveMod : baseMod;
-							factor *= Math.pow(2, typeMod);
-						}
-					}
-					if (factor > 0.5) { // any source hits neutral or better
-						resistedAll = false;
-						break;
-					}
-				}
+  // Group by defensive typing
+  const resistMap: {[combo: string]: string[]} = {};
 
-				if (resistedAll) {
-					const combo = types.join('/');
-					if (!resistMap[combo]) resistMap[combo] = [];
-					resistMap[combo].push(mon.name);
-				}
-			}
+  for (const mon of pool) {
+    const types = mon.types;
+    let resistedAll = true;
 
-			// Format output
-			const labels: string[] = [];
-			if (mod && mod !== dex.currentMod) labels.push(mod);
-			if (tier) labels.push(tier);
-			const headerSuffix = labels.length ? ` in ${labels.join(' ')}` : '';
-			const buffer: string[] = [];
-			buffer.push(
-				`<b>Pok\u00e9mon${headerSuffix} that resist ${sources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ')}:</b>`
-			);
-			for (const combo in resistMap) {
-				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
-			}
-			if (buffer.length === 1) buffer.push('None found.');
-			return this.sendReplyBox(buffer.join('<br />'));
-		}
+    for (const source of envSources) {
+      let factor = 1;
 
+      for (const defType of types) {
+        if (typeof source === 'string') {
+          // Type source
+          if (!envDex.getImmunity(source, defType)) {
+            factor *= 0; // immunity counts as resist
+            continue;
+          }
+          const typeMod = envDex.getEffectiveness(source, defType);
+          factor *= Math.pow(2, typeMod);
+        } else {
+          // Move source
+          const move = source as Move;
+          const notImmune = (move.id === 'thousandarrows' || envDex.getImmunity(move.type, defType)) &&
+            !(move.id === 'sheercold' && envDex.gen >= 7 && types.includes('Ice'));
+          if (!notImmune && !move.ignoreImmunity) {
+            factor *= 0; // immunity not ignored by this move
+            continue;
+          }
+          const baseMod = envDex.getEffectiveness(move, defType);
+          const moveMod = move.onEffectiveness?.call(
+            {dex: envDex} as unknown as Battle, baseMod, null, defType, move as unknown as ActiveMove
+          );
+          const typeMod = typeof moveMod === 'number' ? moveMod : baseMod;
+          factor *= Math.pow(2, typeMod);
+        }
+      }
 
+      if (factor > 0.5) {
+        resistedAll = false;
+        break;
+      }
+    }
+
+    if (resistedAll) {
+      const combo = types.join('/');
+      if (!resistMap[combo]) resistMap[combo] = [];
+      resistMap[combo].push(mon.name);
+    }
+  }
+
+  // Format header
+  const labels: string[] = [];
+  if (fmt) labels.push(fmt.name);
+  else if (modId && modId !== toID(dex.currentMod)) labels.push(mod);
+  if (tier) labels.push(tier.toUpperCase());
+  const headerSuffix = labels.length ? ` in ${labels.join(' ')}` : '';
+
+  const buffer: string[] = [];
+  buffer.push(
+    `<b>Pok\u00e9mon${headerSuffix} that resist ${envSources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ')}:</b>`
+  );
+  for (const combo in resistMap) {
+    buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+  }
+  if (buffer.length === 1) buffer.push('None found.');
+  return this.sendReplyBox(buffer.join('<br />'));
+}
 
 
 		// converts to fractional effectiveness, 0 for immune
