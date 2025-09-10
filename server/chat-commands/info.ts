@@ -1328,7 +1328,7 @@ if (resistList) {
 		dbg.push('gen/mod: gen' + envDex.gen + ' / ' + envDex.currentMod);
 		if (fmt) dbg.push('rules: ' + Array.from(rt!.keys()).join(', '));
 		dbg.push('species: all=' + before + (fmt ? (', legal=' + after) : ''));
-		if (tier) dbg.push('tier filter: ' + tier + (usedNatDexTier ? ' (NatDex singles)' : (doublesTier ? ' (doubles)' : ' (singles)')));
+		if (tier) dbg.push('tier filter: ' + tier + (usedNatDexTier ? ' (NatDex singles)' : (doublesTierNorm ? ' (doubles)' : ' (singles)')));
 		dbg.push('sample: ' + (sample.join('; ') || '-'));
 		lines.push('<details><summary><code>debug</code></summary><pre>' + dbg.join('\n') + '</pre></details>');
 	}
