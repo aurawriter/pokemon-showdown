@@ -1055,49 +1055,45 @@ export const commands: Chat.ChatCommands = {
 		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
+		let debug = false;
 		let mod = dex.currentMod;
 		let tier = '';
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
 		for (const t of dex.types.names()) bestCoverage[t] = -5;
 		let hasThousandArrows = false;
-
-		// // --- First pass: pull out flags, mod, tiers; leave only moves/types in moveTypeArgs ---
-let dispTable = false;
-let resistList = false;
-let debug = false;
-let mod = dex.currentMod;   // default to current
-let tier = '';              // singles/doubles tier token (OU, DOU, etc.)
-const moveTypeArgs: string[] = [];
-const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-	ag: 'AG', anythinggoes: 'AG', uber: 'Uber', ubers: 'Uber', ou: 'OU',
-	uubl: 'UUBL', uu: 'UU', rubl: 'RUBL', ru: 'RU', nubl: 'NUBL', nu: 'NU',
-	publ: 'PUBL', pu: 'PU', zubl: 'ZUBL', zu: 'ZU', nfe: 'NFE', lc: 'LC',
-	cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE', monotype: 'Monotype', vgc: 'VGC', doubles: 'Doubles',
-});
-const doublesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-	doublesubers: 'DUber', doublesuber: 'DUber', duber: 'DUber', dubers: 'DUber',
-	doublesou: 'DOU', dou: 'DOU', doublesbl: 'DBL', dbl: 'DBL', doublesuu: 'DUU', duu: 'DUU', doublesnu: '(DUU)', dnu: '(DUU)',
-});
-for (let rawArg of targets) {
-	if (!rawArg) continue;
-	const arg = rawArg.trim();
-	if (!arg) continue;
-	const aID = toID(arg);
-	if (arg.toLowerCase() === 'resistlist') { resistList = true; continue; }
-	if (aID === 'debug') { debug = true; continue; }
-	// allow mod=foo, mod="foo", or flattened modfoo
-	if (arg.startsWith('mod=')) { mod = arg.slice(4).replace(/['"]/g, ''); continue; }
-	if (aID.startsWith('mod') && aID.length > 3) { mod = aID.slice(3); continue; }
-	// tiers (singles or doubles)
-	if (singlesTierMap[aID]) { tier = singlesTierMap[aID]; continue; }
-	if (doublesTierMap[aID]) { tier = doublesTierMap[aID]; continue; }
-	if (arg === 'table' || arg === 'all') {
-		if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
-		dispTable = true; continue;
-	}
-	moveTypeArgs.push(arg);
-}
+		// --- First pass: pull out flags, mod, tiers; leave only moves/types in moveTypeArgs ---
+		const moveTypeArgs: string[] = [];
+		const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
+			ag: 'AG', anythinggoes: 'AG', uber: 'Uber', ubers: 'Uber', ou: 'OU',
+			uubl: 'UUBL', uu: 'UU', rubl: 'RUBL', ru: 'RU', nubl: 'NUBL', nu: 'NU',
+			publ: 'PUBL', pu: 'PU', zubl: 'ZUBL', zu: 'ZU', nfe: 'NFE', lc: 'LC',
+			cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE', monotype: 'Monotype', vgc: 'VGC', doubles: 'Doubles',
+		});
+		const doublesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
+			doublesubers: 'DUber', doublesuber: 'DUber', duber: 'DUber', dubers: 'DUber',
+			doublesou: 'DOU', dou: 'DOU', doublesbl: 'DBL', dbl: 'DBL', doublesuu: 'DUU', duu: 'DUU', doublesnu: '(DUU)', dnu: '(DUU)',
+		});
+		for (let rawArg of targets) {
+			if (!rawArg) continue;
+			const arg = rawArg.trim();
+			if (!arg) continue;
+			const aID = toID(arg);
+			if (arg.toLowerCase() === 'resistlist') { resistList = true; continue; }
+			if (aID === 'debug') { debug = true; continue; }
+			// allow mod=foo, mod="foo", or flattened modfoo
+			if (arg.startsWith('mod=')) { mod = arg.slice(4).replace(/['"]/g, ''); continue; }
+			if (aID.startsWith('mod') && aID.length > 3) { mod = aID.slice(3); continue; }
+			// tiers (singles or doubles)
+			if (singlesTierMap[aID]) { tier = singlesTierMap[aID]; continue; }
+			if (doublesTierMap[aID]) { tier = doublesTierMap[aID]; continue; }
+			if (arg === 'table' || arg === 'all') {
+				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
+				dispTable = true; continue;
+			}
+			moveTypeArgs.push(arg);
+		}
+		// Second pass: resolve moves/types
 Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
 			const idArg = toID(arg);
