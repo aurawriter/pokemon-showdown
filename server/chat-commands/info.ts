@@ -1178,8 +1178,13 @@ if (resistList) {
 	}
 	// Always drop mons marked as Illegal in this dex (singles or doubles tier), regardless of tier filtering
 	function __trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
+			function getSinglesTier(sp: any) {
+				let v = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
+				if (!v) v = (sp as any).natDexTier || sp.tier || '';
+				return __trimParens(v);
+			}
 	pool = pool.filter(sp => {
-		const st = __trimParens((usedNatDexTier ? (sp as any).natDexTier : sp.tier) || '');
+		const st = getSinglesTier(sp);
 		const dt = __trimParens(sp.doublesTier || '');
 		return toID(st) !== 'illegal' && toID(dt) !== 'illegal';
 	});
@@ -1198,52 +1203,32 @@ if (resistList) {
 			}
 
 
-	// ---------- tier filtering (singles/doubles) ----------
-	function trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
-	function normTierId(s: string) { return toID(trimParens(s).replace(/^cap\s+/i, '').replace(/\s+/g, ' ')); }
-	const tReqId = toID(tier);
-	const singlesSet: any = {ag:1, uber:1, ubers:1, ou:1, uubl:1, uu:1, rubl:1, ru:1, nubl:1, nu:1, publ:1, pu:1, zubl:1, zu:1, nfe:1, lc:1, cap:1, caplc:1, capnfe:1, monotype:1, vgc:1, doubles:1};
-	const doublesSet: any = {duber:1, dubers:1, doublesuber:1, doublesubers:1, dou:1, doublesou:1, dbl:1, doublesbl:1, duu:1, doublesuu:1, dnu:1, doublesnu:1};
-	const doublesTierMap: {[k: string]: string} = {doublesubers:'DUber',doublesuber:'DUber',duber:'DUber',dubers:'DUber',doublesou:'DOU',dou:'DOU',doublesbl:'DBL',dbl:'DBL',doublesuu:'DUU',duu:'DUU',doublesnu:'(DUU)',dnu:'(DUU)'};
-	const singlesTier = (tReqId in singlesSet) ? (tier || '').toUpperCase() : '';
-	const doublesTier = (tReqId in doublesSet) ? (doublesTierMap[tReqId] || tier) : '';
-			// ---------- CAP policy ----------
-			// By default, exclude CAP Pokémon unless explicitly allowed by the format rules or requested CAP tiers.
-			(function() {
-				let allowCAP = false;
-				// Allowed if user requested a CAP tier (cap/caplc/capnfe)
-				if (tReqId === 'cap' || tReqId === 'caplc' || tReqId === 'capnfe') allowCAP = true;
-				// Or if the selected format declares CAP allowed
-				if (fmt) {
-					const rt = Dex.formats.getRuleTable(fmt);
-					if (rt?.has('cap') || rt?.has('allowcap')) allowCAP = true;
-				}
-				if (!allowCAP) {
-					pool = pool.filter(sp => {
-						const st = __trimParens((usedNatDexTier ? (sp as any).natDexTier : sp.tier) || '');
-						const dt = __trimParens(sp.doublesTier || '');
-						const isCAP = ((sp as any).isNonstandard === 'CAP') || toID(st) === 'cap' || toID(dt) === 'cap';
-						return !isCAP;
-					});
-				}
-			})();
+	
+			// ---------- tier filtering (singles/doubles) ----------
+			function trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
+			function normTierId(s: string) { return toID(trimParens(String(s || '')).replace(/^cap\s+/i, '').replace(/\s+/g, ' ')); }
 
+			const tReqId = toID(tier);
+			const singlesSet: any = {ag:1, uber:1, ubers:1, ou:1, uubl:1, uu:1, rubl:1, ru:1, nubl:1, nu:1, publ:1, pu:1, zubl:1, zu:1, nfe:1, lc:1, cap:1, caplc:1, capnfe:1, monotype:1, vgc:1, doubles:1};
+			const doublesSet: any = {duber:1, dubers:1, doublesuber:1, doublesubers:1, dou:1, doublesou:1, dbl:1, doublesbl:1, duu:1, doublesuu:1, dnu:1, doublesnu:1};
+			const doublesTierMap: {[k: string]: string} = {doublesubers:'DUber',doublesuber:'DUber',duber:'DUber',dubers:'DUber',doublesou:'DOU',dou:'DOU',doublesbl:'DBL',dbl:'DBL',doublesuu:'DUU',duu:'DUU',doublesnu:'(DUU)',dnu:'(DUU)'};
+			const singlesTierNorm = (tReqId in singlesSet) ? normTierId(tier || '') : '';
+			const doublesTierNorm = (tReqId in doublesSet) ? normTierId(doublesTierMap[tReqId] || tier) : '';
 
-
-	if (tier) {
-		pool = pool.filter(sp => {
-			if (doublesTier) {
-				let t = trimParens(sp.doublesTier || '');
-				return normTierId(t) === normTierId(doublesTier);
-			} else {
-				let t = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
-				t = trimParens(t || '');
-				return normTierId(t) === normTierId(singlesTier || tier);
+			if (singlesTierNorm || doublesTierNorm) {
+				pool = pool.filter(sp => {
+					if (doublesTierNorm) {
+						const t = normTierId(sp.doublesTier || '');
+						return t && t === doublesTierNorm;
+					} else {
+						const base = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
+						const t = normTierId(base || '');
+						return t && t === singlesTierNorm;
+					}
+				});
 			}
-		});
-	}
+			// ---------- effectiveness helpers ----------
 
-	// ---------- effectiveness helpers ----------
 	function moveTypeAndImmunity(mvOrType: string | Move, defType: string) {
 		if (typeof mvOrType === 'string') {
 			const t = mvOrType;
@@ -1281,10 +1266,10 @@ if (resistList) {
 	const resultByCombo: {[combo: string]: ComboRow} = Object.create(null);
 	const comboLabelCache: {[combo: string]: string} = Object.create(null);
 	function comboLabel(types: string[]) {
-		const key = types.join('/');
+		const key = types.slice().sort().join('/');
 		if (comboLabelCache[key]) return comboLabelCache[key];
 		const parts: string[] = [];
-		for (const t of types) {
+		for (const t of types.slice().sort()) {
 			const cls = classifyDefType(t, envSources);
 			parts.push(typeBadge(t, cls));
 		}
@@ -1306,7 +1291,7 @@ if (resistList) {
 			if (factor > maxFactor) maxFactor = factor;
 		}
 		if (!ok) continue;
-		const key = types.join('/');
+		const key = types.slice().sort().join('/');
 		if (!resultByCombo[key]) resultByCombo[key] = {label: comboLabel(types), immune: [], resist: []};
 		if (maxFactor === 0) resultByCombo[key].immune.push(sp.name);
 		else resultByCombo[key].resist.push(sp.name);
