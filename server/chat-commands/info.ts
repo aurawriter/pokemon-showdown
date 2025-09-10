@@ -1257,7 +1257,8 @@ export const commands: Chat.ChatCommands = {
 							if (curEff > bestEff) bestEff = curEff;
 						}
 						if (bestEff === -5) {
-						if (typeof bestEff === 'undefined' || bestEff === -5) {
+							bestEff = 0;
+						} else if (typeof bestEff === 'undefined') {
 							bestEff = 0;
 						} else {
 							bestEff = Math.pow(2, bestEff);
