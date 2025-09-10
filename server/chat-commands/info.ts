@@ -1207,6 +1207,28 @@ if (resistList) {
 	const doublesTierMap: {[k: string]: string} = {doublesubers:'DUber',doublesuber:'DUber',duber:'DUber',dubers:'DUber',doublesou:'DOU',dou:'DOU',doublesbl:'DBL',dbl:'DBL',doublesuu:'DUU',duu:'DUU',doublesnu:'(DUU)',dnu:'(DUU)'};
 	const singlesTier = (tReqId in singlesSet) ? (tier || '').toUpperCase() : '';
 	const doublesTier = (tReqId in doublesSet) ? (doublesTierMap[tReqId] || tier) : '';
+			// ---------- CAP policy ----------
+			// By default, exclude CAP Pokémon unless explicitly allowed by the format rules or requested CAP tiers.
+			(function() {
+				let allowCAP = false;
+				// Allowed if user requested a CAP tier (cap/caplc/capnfe)
+				if (tReqId === 'cap' || tReqId === 'caplc' || tReqId === 'capnfe') allowCAP = true;
+				// Or if the selected format declares CAP allowed
+				if (fmt) {
+					const rt = Dex.formats.getRuleTable(fmt);
+					if (rt?.has('cap') || rt?.has('allowcap')) allowCAP = true;
+				}
+				if (!allowCAP) {
+					pool = pool.filter(sp => {
+						const st = __trimParens((usedNatDexTier ? (sp as any).natDexTier : sp.tier) || '');
+						const dt = __trimParens(sp.doublesTier || '');
+						const isCAP = ((sp as any).isNonstandard === 'CAP') || toID(st) === 'cap' || toID(dt) === 'cap';
+						return !isCAP;
+					});
+				}
+			})();
+
+
 
 	if (tier) {
 		pool = pool.filter(sp => {
