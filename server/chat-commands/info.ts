@@ -1183,6 +1183,20 @@ if (resistList) {
 		const dt = __trimParens(sp.doublesTier || '');
 		return toID(st) !== 'illegal' && toID(dt) !== 'illegal';
 	});
+			// Exclude CAP mons unless the format explicitly allows CAP
+			if (fmt) {
+				const ruleTable = Dex.formats.getRuleTable(fmt);
+				const allowCAP = !!(ruleTable && (ruleTable.has('cap') || ruleTable.has('allowcap')));
+				if (!allowCAP) {
+					pool = pool.filter(sp => {
+						const tierID = toID((sp.tier || '').toString());
+						const dtID = toID((sp.doublesTier || '').toString());
+						const isCAP = ((sp as any).isNonstandard === 'CAP') || tierID === 'cap' || dtID === 'cap';
+						return !isCAP;
+					});
+				}
+			}
+
 
 	// ---------- tier filtering (singles/doubles) ----------
 	function trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
