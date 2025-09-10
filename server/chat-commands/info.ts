@@ -1052,11 +1052,12 @@ export const commands: Chat.ChatCommands = {
 		if (!target) return this.parse("/help coverage");
 
 		// Argument parsing similar to /randompokemon
-		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
+		let {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
 		let mod = dex.currentMod;
-		let tier = '';
+		// If the user passed a format (e.g., OU), use that as the initial tier
+		let tier = format && format.id ? format.id.toUpperCase() : '';
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
 		let hasThousandArrows = false;
@@ -1085,6 +1086,18 @@ export const commands: Chat.ChatCommands = {
 			}
 			moveTypeArgs.push(arg);
 		}
+
+		// If a mod= was provided, switch to that mod's dex so species/tier lookups are correct
+		if (mod && mod !== dex.currentMod) {
+			try {
+				dex = Dex.mod(toID(mod)).includeData();
+			} catch {
+				return this.errorReply(`Mod '${mod}' not found.`);
+			}
+		}
+
+		// Initialize coverage table for every defending type
+		for (const t of dex.types.names()) bestCoverage[t] = -5;
 
 		// Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
@@ -1160,7 +1173,8 @@ export const commands: Chat.ChatCommands = {
 
 			// Format output
 			const buffer: string[] = [];
-			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sources.join(' + ')}:</b>`);
+			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
+			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sourceNames.join(' + ')}:</b>`);
 			for (const combo in resistMap) {
 				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
@@ -1204,7 +1218,8 @@ export const commands: Chat.ChatCommands = {
 					throw new Error(`/coverage effectiveness of ${bestCoverage[type]} from parameters: ${target}`);
 				}
 			}
-			buffer.push(`Coverage for ${sources.join(' + ')}:`);
+			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
+			buffer.push(`Coverage for ${sourceNames.join(' + ')}:`);
 			buffer.push(`<b><font color=#559955>Super Effective</font></b>: ${superEff.join(', ') || '<font color=#999999>None</font>'}`);
 			buffer.push(`<span class="message-effect-resist">Neutral</span>: ${neutral.join(', ') || '<font color=#999999>None</font>'}`);
 			buffer.push(`<span class="message-effect-weak">Resists</span>: ${resists.join(', ') || '<font color=#999999>None</font>'}`);
@@ -1292,7 +1307,8 @@ export const commands: Chat.ChatCommands = {
 				buffer += "<br /><b>Thousand Arrows has neutral type effectiveness on Flying-type Pok\u00e9mon if not already smacked down.";
 			}
 
-			this.sendReplyBox(`Coverage for ${sources.join(' + ')}:<br />${buffer}`);
+			const finalSourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
+			this.sendReplyBox(`Coverage for ${finalSourceNames.join(' + ')}:<br />${buffer}`);
 		}
 	},
 	coveragehelp: [
@@ -1574,7 +1590,9 @@ export const commands: Chat.ChatCommands = {
 
 	uptime(target, room, user) {
 		if (!this.runBroadcast()) return;
-		const uptime = process.uptime();
+	// use globalThis.process to avoid TS errors when @types/node isn't installed
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	const uptime = (globalThis as any).process?.uptime ? (globalThis as any).process.uptime() : 0;
 		let uptimeText;
 		if (uptime > 24 * 60 * 60) {
 			const uptimeDays = Math.floor(uptime / (24 * 60 * 60));
@@ -3263,11 +3281,21 @@ export const pages: Chat.PageTable = {
 	},
 };
 
-process.nextTick(() => {
+if ((globalThis as any).process?.nextTick) {
+	(globalThis as any).process.nextTick(() => {
+		Dex.includeData();
+		Chat.multiLinePattern.register(
+			'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
+			'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml', '/addhtmlfaq',
+			'/sendhtmlpage',
+		);
+	});
+} else {
+	// Fallback for environments without Node typings
 	Dex.includeData();
 	Chat.multiLinePattern.register(
 		'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
 		'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml', '/addhtmlfaq',
 		'/sendhtmlpage',
 	);
-});
+}
