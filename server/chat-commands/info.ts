@@ -1137,8 +1137,15 @@ export const commands: Chat.ChatCommands = {
     const pokedex = dex.species.all();
     const formatMons = pokedex.filter(mon => {
         // Check if mon is in the format/tier
-        const data = dex.formatsData.get(mon.id, mod);
-        return data && data.tier && data.tier.toUpperCase() === tier.toUpperCase();
+        let data; 
+		if (dex.formatsData && typeof dex.formatsData.get === 'function') {
+   		 data = dex.formatsData.get(mon.id, mod);
+		} else if (mon.formatsData) {
+   		 data = mon.formatsData;
+		} else if (mon.tier) {
+    		data = {tier: mon.tier};
+		}
+		return data && data.tier && data.tier.toUpperCase() === tier.toUpperCase();
     });
 
     // Map: type combo -> list of Pokémon
