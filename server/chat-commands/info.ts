@@ -1207,6 +1207,11 @@ if (resistList) {
 			// ---------- tier filtering (singles/doubles) ----------
 			function trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
 			function normTierId(s: string) { return toID(trimParens(String(s || '')).replace(/^cap\s+/i, '').replace(/\s+/g, ' ')); }
+function sameTier(a: string, b: string) {
+  if (!a || !b) return false;
+  if (a === b) return true;
+  return a.startsWith(b) || b.startsWith(a);
+}
 
 			const tReqId = toID(tier);
 			const singlesSet: any = {ag:1, uber:1, ubers:1, ou:1, uubl:1, uu:1, rubl:1, ru:1, nubl:1, nu:1, publ:1, pu:1, zubl:1, zu:1, nfe:1, lc:1, cap:1, caplc:1, capnfe:1, monotype:1, vgc:1, doubles:1};
@@ -1219,11 +1224,11 @@ if (resistList) {
 				pool = pool.filter(sp => {
 					if (doublesTierNorm) {
 						const t = normTierId(sp.doublesTier || '');
-						return t && t === doublesTierNorm;
+						return t && sameTier(t, doublesTierNorm);
 					} else {
 						const base = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
 						const t = normTierId(base || '');
-						return t && t === singlesTierNorm;
+						return t && sameTier(t, singlesTierNorm);
 					}
 				});
 			}
