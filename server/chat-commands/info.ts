@@ -1127,9 +1127,11 @@ export const commands: Chat.ChatCommands = {
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
 		
+		
+		
 		if (resistList) {
-			// Choose the dex to operate on (respect mod= if provided)
-			const mdex = (mod && mod !== dex.currentMod) ? this.dex.mod(mod as ID) : dex;
+			// Choose the dex to operate on (respect mod= if provided). Avoid using this.dex here.
+			const mdex = (mod && mod !== dex.currentMod) ? Dex.mod(mod as ID) : dex;
 
 			// Get the Pokémon pool from that dex, optionally filter by tier
 			const tierId = toID(tier);
@@ -1141,27 +1143,45 @@ export const commands: Chat.ChatCommands = {
 			});
 
 			// Normalize sources into this dex (moves may differ across mods)
-			const sourcesNorm = sources.map(s => typeof s === 'string' ? s : mdex.moves.get(s.id));
+			const sourcesNorm = sources.map(s => typeof s === 'string' ? s : mdex.moves.get((s as Move).id));
 
 			// Map: type combo -> list of Pokémon
 			const resistMap: {[combo: string]: string[]} = {};
 
 			for (const mon of formatMons) {
 				const types = mon.types;
-				let resisted = true;
+				let resistedAll = true;
+
 				for (const source of sourcesNorm) {
-					let eff = 1;
+					let factor = 1; // cumulative damage multiplier across both defensive types
 					for (const type of types) {
-						const moveType = typeof source === 'string' ? source : source.type;
-						const typeEff = mdex.getEffectiveness(moveType, type);
-						eff *= Math.pow(2, typeEff);
+						if (typeof source === 'string') {
+							// Treat immunities explicitly (e.g., Electric -> Ground)
+							if (!mdex.getImmunity(source, type)) {
+								factor *= 0;
+								continue;
+							}
+							const typeMod = mdex.getEffectiveness(source, type);
+							factor *= Math.pow(2, typeMod);
+						} else {
+							const move = source as Move;
+							if (!mdex.getImmunity(move.type, type) && !move.ignoreImmunity) {
+								factor *= 0;
+								continue;
+							}
+							const baseMod = mdex.getEffectiveness(move, type);
+							const moveMod = move.onEffectiveness?.call({dex: mdex} as Battle, baseMod, null, type, move as ActiveMove);
+							const typeMod = typeof moveMod === 'number' ? moveMod : baseMod;
+							factor *= Math.pow(2, typeMod);
+						}
 					}
-					if (eff > 0.5) { // any source hits neutral or better
-						resisted = false;
+					if (factor > 0.5) { // any source hits neutral or better
+						resistedAll = false;
 						break;
 					}
 				}
-				if (resisted) {
+
+				if (resistedAll) {
 					const combo = types.join('/');
 					if (!resistMap[combo]) resistMap[combo] = [];
 					resistMap[combo].push(mon.name);
@@ -1169,15 +1189,22 @@ export const commands: Chat.ChatCommands = {
 			}
 
 			// Format output
-			const headerSuffix = tier ? ` in ${mod ? `${mod} ` : ''}${tier}` : (mod ? ` in ${mod}` : '');
+			const labels: string[] = [];
+			if (mod && mod !== dex.currentMod) labels.push(mod);
+			if (tier) labels.push(tier);
+			const headerSuffix = labels.length ? ` in ${labels.join(' ')}` : '';
 			const buffer: string[] = [];
-			buffer.push(`<b>Pok\u00e9mon${headerSuffix} that resist ${sources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ')}:</b>`);
+			buffer.push(
+				`<b>Pok\u00e9mon${headerSuffix} that resist ${sources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ')}:</b>`
+			);
 			for (const combo in resistMap) {
 				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
 			if (buffer.length === 1) buffer.push('None found.');
 			return this.sendReplyBox(buffer.join('<br />'));
 		}
+
+
 
 
 		// converts to fractional effectiveness, 0 for immune
