@@ -1059,23 +1059,20 @@ export const commands: Chat.ChatCommands = {
 		let tier = '';
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
+		for (const t of dex.types.names()) bestCoverage[t] = -5;
 		let hasThousandArrows = false;
 
-				// First pass: parse for special parameters
+		// First pass: parse for special parameters
 		const moveTypeArgs: string[] = [];
 		for (let rawArg of targets) {
 			const arg = rawArg.trim();
 			if (!arg) continue;
-			if (arg.toLowerCase() === 'resistlist') {
-				resistList = true;
-				continue;
-			}
-			if (arg.startsWith('mod=')) {
-				mod = arg.slice(4).replace(/['"]/g, '');
-				continue;
-			}
-			// Singles & doubles tier tokens (accept many synonyms)
-			const tierToken = toID(arg);
+			const aID = toID(arg);
+			if (arg.toLowerCase() === 'resistlist') { resistList = true; continue; }
+			// Accept mod=foo or tokens like mod"foo" that some splitters produce → aID 'modfoo'
+			if (arg.startsWith('mod=')) { mod = arg.slice(4).replace(/['"]/g, ''); continue; }
+			if (aID.startsWith('mod') && aID.length > 3) { mod = aID.slice(3); continue; }
+			// Singles & doubles tier tokens
 			const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
 				ag: 'AG', anythinggoes: 'AG',
 				uber: 'Uber', ubers: 'Uber', ou: 'OU',
@@ -1084,8 +1081,7 @@ export const commands: Chat.ChatCommands = {
 				nubl: 'NUBL', nu: 'NU',
 				publ: 'PUBL', pu: 'PU',
 				zubl: 'ZUBL', zu: 'ZU',
-				nfe: 'NFE',
-				lc: 'LC',
+				nfe: 'NFE', lc: 'LC',
 				cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE',
 				monotype: 'Monotype', vgc: 'VGC', doubles: 'Doubles',
 			});
@@ -1096,8 +1092,8 @@ export const commands: Chat.ChatCommands = {
 				doublesuu: 'DUU', duu: 'DUU',
 				doublesnu: '(DUU)', dnu: '(DUU)',
 			});
-			if (singlesTierMap[tierToken]) { tier = singlesTierMap[tierToken]; continue; }
-			if (doublesTierMap[tierToken]) { tier = doublesTierMap[tierToken]; continue; }
+			if (singlesTierMap[aID]) { tier = singlesTierMap[aID]; continue; }
+			if (doublesTierMap[aID]) { tier = doublesTierMap[aID]; continue; }
 			if (arg === 'table' || arg === 'all') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
 				dispTable = true;
@@ -1105,8 +1101,7 @@ export const commands: Chat.ChatCommands = {
 			}
 			moveTypeArgs.push(arg);
 		}
-
-		// Second pass: resolve moves/types
+// Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
 			const idArg = toID(arg);
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
@@ -1145,154 +1140,138 @@ export const commands: Chat.ChatCommands = {
 		if (sources.length === 0) return this.errorReply("No moves using a type table for determining damage were specified.");
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
-		
-    if (resistList) {
-      // Build environment Dex based on mod=: allow either a data mod (Dex.dexes) or a format id
-      const modId = toID(mod);
-      let envDex = dex;
-      let fmt: any = null;
-      if (modId && modId !== toID(dex.currentMod)) {
-        const maybeFormat = Dex.formats.get(modId);
-        if (maybeFormat?.exists) {
-          fmt = maybeFormat;
-          envDex = Dex.forFormat(maybeFormat);
-        } else if ((Dex as any).dexes && (Dex as any).dexes[modId]) {
-          envDex = Dex.mod(modId as ID);
-        }
-      }
-      // Rehydrate sources from the environment Dex so move typing/effectiveness match
-      const envSources: (string | Move)[] = sources.map(s => typeof s === 'string' ? s : envDex.moves.get((s as Move).id));
-      // Species pool
-      let pool = envDex.species.all();
-      // If a real format was given, restrict to legal species for that format
-      if (fmt) {
-        const ruleTable = Dex.formats.getRuleTable(fmt);
-        pool = pool.filter(sp => !ruleTable.isBannedSpecies(sp));
-      }
-      // Normalize tier token (singles or doubles); mirror datasearch's maps
-      const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-        ag: 'AG', anythinggoes: 'AG',
-        uber: 'Uber', ubers: 'Uber', ou: 'OU',
-        uubl: 'UUBL', uu: 'UU',
-        rubl: 'RUBL', ru: 'RU',
-        nubl: 'NUBL', nu: 'NU',
-        publ: 'PUBL', pu: 'PU',
-        zubl: 'ZUBL', zu: 'ZU',
-        nfe: 'NFE',
-        lc: 'LC',
-        cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE',
-        monotype: 'Monotype', vgc: 'VGC', doubles: 'Doubles',
-      });
-      const doublesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-        doublesubers: 'DUber', doublesuber: 'DUber', duber: 'DUber', dubers: 'DUber',
-        doublesou: 'DOU', dou: 'DOU',
-        doublesbl: 'DBL', dbl: 'DBL',
-        doublesuu: 'DUU', duu: 'DUU',
-        doublesnu: '(DUU)', dnu: '(DUU)',
-      });
-      const tierToken = toID(tier);
-      const singlesTier = singlesTierMap[tierToken];
-      const doublesTier = doublesTierMap[tierToken];
-      // NatDex tier check for formats with Standard NatDex rules
-      let useNatDexTier = false;
-      if (fmt) {
-        const rt = Dex.formats.getRuleTable(fmt);
-        useNatDexTier = rt.has('standardnatdex');
-      }
-      if (singlesTier || doublesTier) {
-        pool = pool.filter(sp => {
-          if (doublesTier) {
-            let t: string = sp.doublesTier || '';
-            if (t && t.startsWith('(') && t !== '(DUU)') t = t.slice(1, -1) as string;
-            return toID(t) === toID(doublesTier);
-          } else {
-            let t: string = (useNatDexTier ? (sp as any).natDexTier : sp.tier) || '';
-            if (t && t.startsWith('(') && t.endsWith(')')) t = t.slice(1, -1) as string;
-            return toID(t) === toID(singlesTier);
-          }
-        });
-      }
-      // Build results grouped by defensive typing, colored by immunity/resist
-      const resultByCombo: {[combo: string]: {immune: string[], resist: string[]}} = Object.create(null);
-      for (const mon of pool) {
-        const types = mon.types;
-        let factors: number[] = [];
-        for (const source of envSources) {
-          let factor = 1;
-          for (const defType of types) {
-            if (typeof source === 'string') {
-              if (!envDex.getImmunity(source, defType)) { factor *= 0; continue; }
-              const typeMod = envDex.getEffectiveness(source, defType);
-              factor *= Math.pow(2, typeMod);
-            } else {
-              const move = source as Move;
-              if (!envDex.getImmunity(move.type, defType) && !move.ignoreImmunity) { factor *= 0; continue; }
-              const baseMod = envDex.getEffectiveness(move, defType);
-              const moveMod = move.onEffectiveness?.call({dex: envDex} as unknown as Battle, baseMod, null, defType, move as unknown as ActiveMove);
-              const typeMod = typeof moveMod === 'number' ? moveMod : baseMod;
-              factor *= Math.pow(2, typeMod);
-            }
-          }
-          factors.push(factor);
-          if (factor > 0.5) { factors = []; break; } // fails resist-all test
-        }
-        if (!factors.length) continue;
-        const combo = types.join('/');
-        if (!resultByCombo[combo]) resultByCombo[combo] = {immune: [], resist: []};
-        const maxFactor = Math.max(...factors);
-        if (maxFactor === 0) resultByCombo[combo].immune.push(mon.name);
-        else resultByCombo[combo].resist.push(mon.name);
-      }
-      const labels: string[] = [];
-      if (fmt) labels.push(fmt.name);
-      else if (modId && modId !== toID(dex.currentMod)) labels.push(mod);
-      if (tier) labels.push((singlesTier || doublesTier || tier).toUpperCase());
-      const headerSuffix = labels.length ? ` in ${labels.join(' ')}` : '';
-      const IMM_BG = '#666666', IMM_FG = '#000000';
-      const RES_BG = '#AA5544', RES_FG = '#660000';
-      const lines: string[] = [];
-      const sourceLabel = envSources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ');
-      lines.push(`<b>Pok\u00e9mon${headerSuffix} that resist ${sourceLabel}:</b>`);
-      for (const combo of Object.keys(resultByCombo).sort()) {
-        const groups = resultByCombo[combo];
-        if (groups.immune.length) {
-          lines.push(`<b><span style=\"background:${IMM_BG};color:${IMM_FG};padding:1px 3px;border-radius:3px\" title=\"${combo}\">${combo}</span> (immune):</b> ${groups.immune.join(', ')}`);
-        }
-        if (groups.resist.length) {
-          lines.push(`<b><span style=\"background:${RES_BG};color:${RES_FG};padding:1px 3px;border-radius:3px\" title=\"${combo}\">${combo}</span> (resist):</b> ${groups.resist.join(', ')}`);
-        }
-      }
-      if (lines.length === 1) lines.push('None found.');
-      return this.sendReplyBox(lines.join('<br />'));
-    }
-let resisted = true;
-				for (const source of sources) {
-					let eff = 1;
-					for (const type of types) {
-						const moveType = typeof source === 'string' ? source : source.type;
-						const typeEff = dex.getEffectiveness(moveType, type);
-						eff *= Math.pow(2, typeEff);
-					}
-					if (eff > 0.5) {
-						resisted = false;
-						break;
-					}
-				}
-				if (resisted) {
-					const combo = types.join('/');
-					if (!resistMap[combo]) resistMap[combo] = [];
-					resistMap[combo].push(mon.name);
+		if (resistList) {
+			// Build environment Dex: allow mod= to be a data mod (Dex.mod) or a format id (Dex.formats.get)
+			const modId = toID(mod);
+			let envDex = dex;
+			let fmt: any = null;
+
+			if (modId && modId !== toID(dex.currentMod)) {
+				const maybeFormat = Dex.formats.get(modId);
+				if (maybeFormat?.exists) {
+					fmt = maybeFormat;
+					envDex = Dex.forFormat(maybeFormat);
+				} else if ((Dex as any).dexes && (Dex as any).dexes[modId]) {
+					envDex = Dex.mod(modId as ID);
 				}
 			}
 
-			// Format output
-			const buffer: string[] = [];
-			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sources.join(' + ')}:</b>`);
-			for (const combo in resistMap) {
-				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+			// Rehydrate sources (moves/types) from the selected Dex
+			const envSources: (string | Move)[] = sources.map(s => typeof s === 'string' ? s : envDex.moves.get((s as Move).id));
+
+			// Build species pool (optionally restricted by format legality)
+			let pool = envDex.species.all();
+			if (fmt) {
+				const ruleTable = Dex.formats.getRuleTable(fmt);
+				pool = pool.filter(sp => !ruleTable.isBannedSpecies(sp));
 			}
-			if (buffer.length === 1) buffer.push('None found.');
-			return this.sendReplyBox(buffer.join('<br />'));
+
+			// Tier normalization (singles + doubles); consider NatDex rules
+			const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
+				ag: 'AG', anythinggoes: 'AG',
+				uber: 'Uber', ubers: 'Uber', ou: 'OU',
+				uubl: 'UUBL', uu: 'UU',
+				rubl: 'RUBL', ru: 'RU',
+				nubl: 'NUBL', nu: 'NU',
+				publ: 'PUBL', pu: 'PU',
+				zubl: 'ZUBL', zu: 'ZU',
+				nfe: 'NFE', lc: 'LC',
+				cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE',
+				monotype: 'Monotype', vgc: 'VGC', doubles: 'Doubles',
+			});
+			const doublesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
+				doublesubers: 'DUber', doublesuber: 'DUber', duber: 'DUber', dubers: 'DUber',
+				doublesou: 'DOU', dou: 'DOU',
+				doublesbl: 'DBL', dbl: 'DBL',
+				doublesuu: 'DUU', duu: 'DUU',
+				doublesnu: '(DUU)', dnu: '(DUU)',
+			});
+			const tierToken = toID(tier);
+			const singlesTier = singlesTierMap[tierToken];
+			const doublesTier = doublesTierMap[tierToken];
+
+			let useNatDexTier = false;
+			if (fmt) {
+				const rt = Dex.formats.getRuleTable(fmt);
+				useNatDexTier = rt.has('standardnatdex');
+			}
+
+			if (singlesTier || doublesTier) {
+				pool = pool.filter(sp => {
+					if (doublesTier) {
+						let t: string = sp.doublesTier || '';
+						if (t && t.startsWith('(') && t !== '(DUU)') t = t.slice(1, -1);
+						return toID(t) === toID(doublesTier);
+					} else {
+						let t: string = (useNatDexTier ? (sp as any).natDexTier : sp.tier) || '';
+						if (t && t.startsWith('(') && t.endsWith(')')) t = t.slice(1, -1);
+						return toID(t) === toID(singlesTier);
+					}
+				});
+			}
+
+			// Compute resist-all, grouped by defensive typing; color badges like /coverage
+			const resultByCombo: {[combo: string]: {immune: string[], resist: string[]}} = Object.create(null);
+
+			for (const mon of pool) {
+				const types = mon.types;
+				let factors: number[] = [];
+
+				for (const source of envSources) {
+					let factor = 1;
+
+					for (const defType of types) {
+						if (typeof source === 'string') {
+							if (!envDex.getImmunity(source, defType)) { factor *= 0; continue; }
+							const typeMod = envDex.getEffectiveness(source, defType);
+							factor *= Math.pow(2, typeMod);
+						} else {
+							const move = source as Move;
+							if (!envDex.getImmunity(move.type, defType) && !move.ignoreImmunity) { factor *= 0; continue; }
+							const baseMod = envDex.getEffectiveness(move, defType);
+							const moveMod = move.onEffectiveness?.call(
+								{dex: envDex} as unknown as Battle, baseMod, null, defType, move as unknown as ActiveMove
+							);
+							const typeMod = typeof moveMod === 'number' ? moveMod : baseMod;
+							factor *= Math.pow(2, typeMod);
+						}
+					}
+
+					if (factor > 0.5) { factors = []; break; }
+					factors.push(factor);
+				}
+
+				if (!factors.length) continue;
+				const combo = types.join('/');
+				if (!resultByCombo[combo]) resultByCombo[combo] = {immune: [], resist: []};
+				const maxFactor = Math.max(...factors);
+				if (maxFactor === 0) resultByCombo[combo].immune.push(mon.name);
+				else resultByCombo[combo].resist.push(mon.name);
+			}
+
+			const labels: string[] = [];
+			if (fmt) labels.push(fmt.name);
+			else if (modId && modId !== toID(dex.currentMod)) labels.push(mod);
+			if (tier) labels.push((singlesTier || doublesTier || tier).toUpperCase());
+			const headerSuffix = labels.length ? ` in ${labels.join(' ')}` : '';
+
+			const IMM_BG = '#666666', IMM_FG = '#000000';
+			const RES_BG = '#AA5544', RES_FG = '#660000';
+
+			const lines: string[] = [];
+			const sourceLabel = envSources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ');
+			lines.push(`<b>Pok\u00e9mon${headerSuffix} that resist ${sourceLabel}:</b>`);
+			for (const combo of Object.keys(resultByCombo).sort()) {
+				const groups = resultByCombo[combo];
+				if (groups.immune.length) {
+					lines.push(`<b><span style="background:${IMM_BG};color:${IMM_FG};padding:1px 3px;border-radius:3px" title="${combo}">${combo}</span> (immune):</b> ${groups.immune.join(', ')}`);
+				}
+				if (groups.resist.length) {
+					lines.push(`<b><span style="background:${RES_BG};color:${RES_FG};padding:1px 3px;border-radius:3px" title="${combo}">${combo}</span> (resist):</b> ${groups.resist.join(', ')}`);
+				}
+			}
+			if (lines.length === 1) lines.push('None found.');
+			return this.sendReplyBox(lines.join('<br />'));
 		}
 
 		// converts to fractional effectiveness, 0 for immune
