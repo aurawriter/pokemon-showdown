@@ -1051,75 +1051,57 @@ export const commands: Chat.ChatCommands = {
 		if (!this.runBroadcast()) return;
 		if (!target) return this.parse("/help coverage");
 
-		// Argument parsing similar to /randompokemon
-		let {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
-		let dispTable = false;
+		const {dex, targets} = this.splitFormat(target.split(/[,+/]/));
 		let resistList = false;
-		let mod = dex.currentMod;
-		// If the user passed a format (e.g., OU), use that as the initial tier
-		let tier = format && format.id ? format.id.toUpperCase() : '';
+		let tier = \'\';
 		const sources: (string | Move)[] = [];
+		let dispTable = false;
 		const bestCoverage: {[k: string]: number} = {};
 		let hasThousandArrows = false;
 
-		// First pass: parse for special parameters
-		const moveTypeArgs: string[] = [];
-		for (let rawArg of targets) {
-			const arg = rawArg.trim();
-			if (!arg) continue;
-			if (arg.toLowerCase() === 'resistlist') {
-				resistList = true;
-				continue;
-			}
-			if (arg.startsWith('mod=')) {
-				mod = arg.slice(4).replace(/['"]/g, '');
-				continue;
-			}
-			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
-				tier = arg.toUpperCase();
-				continue;
-			}
+		for (const type of dex.types.names()) {
+			// This command uses -5 to designate immunity
+			bestCoverage[type] = -5;
+		}
+
+		for (let arg of targets) {
+			arg = toID(arg);
+
+
+			// custom flags
+			if (arg === 'resistlist') { resistList = true; continue; }
+			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) { tier = arg.toUpperCase(); continue; }
+			// arg is the gen?
+			if (arg === dex.currentMod) continue;
+
+			// arg is 'table' or 'all'?
 			if (arg === 'table' || arg === 'all') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
 				dispTable = true;
 				continue;
 			}
-			moveTypeArgs.push(arg);
-		}
 
-		// If a mod= was provided, switch to that mod's dex so species/tier lookups are correct
-		if (mod && mod !== dex.currentMod) {
-			try {
-				dex = Dex.mod(toID(mod)).includeData();
-			} catch {
-				return this.errorReply(`Mod '${mod}' not found.`);
-			}
-		}
-
-		// Initialize coverage table for every defending type
-		for (const t of dex.types.names()) bestCoverage[t] = -5;
-
-		// Second pass: resolve moves/types
-		for (let arg of moveTypeArgs) {
-			const idArg = toID(arg);
+			// arg is a type?
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
 			let eff;
-	    if (dex.types.isName(argType)) {
+			if (dex.types.isName(argType)) {
 				sources.push(argType);
 				for (const type in bestCoverage) {
-					// skip if defender type is immune to this attacking type
 					if (!dex.getImmunity(argType, type)) continue;
 					eff = dex.getEffectiveness(argType, type);
 					if (eff > bestCoverage[type]) bestCoverage[type] = eff;
 				}
 				continue;
 			}
-			const move = dex.moves.get(idArg);
+
+			// arg is a move?
+			const move = dex.moves.get(arg);
 			if (!move.exists) {
 				return this.errorReply(`Type or move '${arg}' not found.`);
 			} else if (move.gen > dex.gen) {
 				return this.errorReply(`Move '${arg}' is not available in Gen ${dex.gen}.`);
 			}
+
 			if (!move.basePower && !move.basePowerCallback) continue;
 			if (move.id === 'thousandarrows') hasThousandArrows = true;
 			sources.push(move);
@@ -1127,8 +1109,7 @@ export const commands: Chat.ChatCommands = {
 				if (move.id === "struggle") {
 					eff = 0;
 				} else {
-					// skip if defender type is immune to this move (unless the move ignores immunity)
-					if (!dex.getImmunity(move, type) && !move.ignoreImmunity) continue;
+					if (!dex.getImmunity(move.type, type) && !move.ignoreImmunity) continue;
 					const baseMod = dex.getEffectiveness(move, type);
 					const moveMod = move.onEffectiveness?.call({dex} as Battle, baseMod, null, type, move as ActiveMove);
 					eff = typeof moveMod === 'number' ? moveMod : baseMod;
@@ -1136,21 +1117,18 @@ export const commands: Chat.ChatCommands = {
 				if (eff > bestCoverage[type]) bestCoverage[type] = eff;
 			}
 		}
-
 		if (sources.length === 0) return this.errorReply("No moves using a type table for determining damage were specified.");
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
 		if (resistList) {
-			// Get all Pokémon in the format/tier
+			// Get all Pokémon in the optional tier
 			const pokedex = dex.species.all();
 			const formatMons = pokedex.filter(mon => {
 				const monTier = (mon.tier || '').toUpperCase();
 				return (!tier || monTier === tier);
 			});
-
 			// Map: type combo -> list of Pokémon
 			const resistMap: {[combo: string]: string[]} = {};
-
 			for (const mon of formatMons) {
 				const types = mon.types;
 				let resisted = true;
@@ -1161,10 +1139,7 @@ export const commands: Chat.ChatCommands = {
 						const typeEff = dex.getEffectiveness(moveType, type);
 						eff *= Math.pow(2, typeEff);
 					}
-					if (eff > 0.5) {
-						resisted = false;
-						break;
-					}
+					if (eff > 0.5) { resisted = false; break; }
 				}
 				if (resisted) {
 					const combo = types.join('/');
@@ -1172,17 +1147,15 @@ export const commands: Chat.ChatCommands = {
 					resistMap[combo].push(mon.name);
 				}
 			}
-
-			// Format output
 			const buffer: string[] = [];
-			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
-			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sourceNames.join(' + ')}:</b>`);
+			buffer.push(`<b>Pokémon${tier ? ` in ${dex.currentMod} ${tier}` : ''} that resist ${sources.join(' + ')}:</b>`);
 			for (const combo in resistMap) {
 				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
 			if (buffer.length === 1) buffer.push('None found.');
 			return this.sendReplyBox(buffer.join('<br />'));
 		}
+
 
 		// converts to fractional effectiveness, 0 for immune
 		for (const type in bestCoverage) {
@@ -1220,8 +1193,7 @@ export const commands: Chat.ChatCommands = {
 					throw new Error(`/coverage effectiveness of ${bestCoverage[type]} from parameters: ${target}`);
 				}
 			}
-			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
-			buffer.push(`Coverage for ${sourceNames.join(' + ')}:`);
+			buffer.push(`Coverage for ${sources.join(' + ')}:`);
 			buffer.push(`<b><font color=#559955>Super Effective</font></b>: ${superEff.join(', ') || '<font color=#999999>None</font>'}`);
 			buffer.push(`<span class="message-effect-resist">Neutral</span>: ${neutral.join(', ') || '<font color=#999999>None</font>'}`);
 			buffer.push(`<span class="message-effect-weak">Resists</span>: ${resists.join(', ') || '<font color=#999999>None</font>'}`);
@@ -1252,7 +1224,6 @@ export const commands: Chat.ChatCommands = {
 						for (const move of sources) {
 							let curEff = 0;
 							if (typeof move === 'string') {
-								// skip if either defender type is immune to this attacking type
 								if (!dex.getImmunity(move, type1) || !dex.getImmunity(move, type2)) {
 									continue;
 								}
@@ -1261,8 +1232,7 @@ export const commands: Chat.ChatCommands = {
 								baseMod = dex.getEffectiveness(move, type2);
 								curEff += baseMod;
 							} else {
-								// skip if either defender type is immune to this move (unless it ignores immunity)
-								if ((!dex.getImmunity(move, type1) || !dex.getImmunity(move, type2)) && !move.ignoreImmunity) {
+								if ((!dex.getImmunity(move.type, type1) || !dex.getImmunity(move.type, type2)) && !move.ignoreImmunity) {
 									continue;
 								}
 								let baseMod = dex.getEffectiveness(move.type, type1);
@@ -1276,8 +1246,6 @@ export const commands: Chat.ChatCommands = {
 							if (curEff > bestEff) bestEff = curEff;
 						}
 						if (bestEff === -5) {
-							bestEff = 0;
-						} else if (typeof bestEff === 'undefined') {
 							bestEff = 0;
 						} else {
 							bestEff = Math.pow(2, bestEff);
@@ -1311,14 +1279,18 @@ export const commands: Chat.ChatCommands = {
 				buffer += "<br /><b>Thousand Arrows has neutral type effectiveness on Flying-type Pok\u00e9mon if not already smacked down.";
 			}
 
-			const finalSourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
-			this.sendReplyBox(`Coverage for ${finalSourceNames.join(' + ')}:<br />${buffer}`);
+			this.sendReplyBox(`Coverage for ${sources.join(' + ')}:<br />${buffer}`);
 		}
 	},
 	coveragehelp: [
 		`/coverage [move 1], [move 2] ... - Provides the best effectiveness match-up against all defending types for given moves or attacking types`,
 		`!coverage [move 1], [move 2] ... - Shows this information to everyone.`,
 		`Adding the parameter 'all' or 'table' will display the information with a table of all type combinations.`,
+		`Add 'resistlist' to list Pokémon (optionally filter by OU/UU/RU/NU/PU/ZU/Ubers/LC/Monotype/Doubles/VGC/AnythingGoes) that resist all provided sources.`,
+	],
+		`!coverage [move 1], [move 2] ... - Shows this information to everyone.`,
+		`Adding the parameter 'all' or 'table' will display the information with a table of all type combinations.
+		`Add 'resistlist' to list Pokémon (optionally filter by OU/UU/RU/NU/PU/ZU/Ubers/LC/Monotype/Doubles/VGC/AnythingGoes) that resist all provided sources.`,`,
 	],
 
 	statcalc(target, room, user) {
@@ -1594,9 +1566,7 @@ export const commands: Chat.ChatCommands = {
 
 	uptime(target, room, user) {
 		if (!this.runBroadcast()) return;
-	// use globalThis.process to avoid TS errors when @types/node isn't installed
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-	const uptime = (globalThis as any).process?.uptime ? (globalThis as any).process.uptime() : 0;
+		const uptime = process.uptime();
 		let uptimeText;
 		if (uptime > 24 * 60 * 60) {
 			const uptimeDays = Math.floor(uptime / (24 * 60 * 60));
@@ -3285,21 +3255,11 @@ export const pages: Chat.PageTable = {
 	},
 };
 
-if ((globalThis as any).process?.nextTick) {
-	(globalThis as any).process.nextTick(() => {
-		Dex.includeData();
-		Chat.multiLinePattern.register(
-			'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
-			'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml', '/addhtmlfaq',
-			'/sendhtmlpage',
-		);
-	});
-} else {
-	// Fallback for environments without Node typings
+process.nextTick(() => {
 	Dex.includeData();
 	Chat.multiLinePattern.register(
 		'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
 		'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml', '/addhtmlfaq',
 		'/sendhtmlpage',
 	);
-}
+});
