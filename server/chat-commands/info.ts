@@ -1104,9 +1104,10 @@ export const commands: Chat.ChatCommands = {
 			const idArg = toID(arg);
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
 			let eff;
-			if (dex.types.isName(argType)) {
+	    if (dex.types.isName(argType)) {
 				sources.push(argType);
 				for (const type in bestCoverage) {
+					// skip if defender type is immune to this attacking type
 					if (!dex.getImmunity(argType, type)) continue;
 					eff = dex.getEffectiveness(argType, type);
 					if (eff > bestCoverage[type]) bestCoverage[type] = eff;
@@ -1126,7 +1127,8 @@ export const commands: Chat.ChatCommands = {
 				if (move.id === "struggle") {
 					eff = 0;
 				} else {
-					if (!dex.getImmunity(move.type, type) && !move.ignoreImmunity) continue;
+					// skip if defender type is immune to this move (unless the move ignores immunity)
+					if (!dex.getImmunity(move, type) && !move.ignoreImmunity) continue;
 					const baseMod = dex.getEffectiveness(move, type);
 					const moveMod = move.onEffectiveness?.call({dex} as Battle, baseMod, null, type, move as ActiveMove);
 					eff = typeof moveMod === 'number' ? moveMod : baseMod;
@@ -1250,6 +1252,7 @@ export const commands: Chat.ChatCommands = {
 						for (const move of sources) {
 							let curEff = 0;
 							if (typeof move === 'string') {
+								// skip if either defender type is immune to this attacking type
 								if (!dex.getImmunity(move, type1) || !dex.getImmunity(move, type2)) {
 									continue;
 								}
@@ -1258,7 +1261,8 @@ export const commands: Chat.ChatCommands = {
 								baseMod = dex.getEffectiveness(move, type2);
 								curEff += baseMod;
 							} else {
-								if ((!dex.getImmunity(move.type, type1) || !dex.getImmunity(move.type, type2)) && !move.ignoreImmunity) {
+								// skip if either defender type is immune to this move (unless it ignores immunity)
+								if ((!dex.getImmunity(move, type1) || !dex.getImmunity(move, type2)) && !move.ignoreImmunity) {
 									continue;
 								}
 								let baseMod = dex.getEffectiveness(move.type, type1);
