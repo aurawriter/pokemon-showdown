@@ -1055,44 +1055,37 @@ export const commands: Chat.ChatCommands = {
 		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
-		let debug = false;
 		let mod = dex.currentMod;
 		let tier = '';
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
-		for (const t of dex.types.names()) bestCoverage[t] = -5;
 		let hasThousandArrows = false;
-		// --- First pass: pull out flags, mod, tiers; leave only moves/types in moveTypeArgs ---
+
+		// First pass: parse for special parameters
 		const moveTypeArgs: string[] = [];
-		const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-			ag: 'AG', anythinggoes: 'AG', uber: 'Uber', ubers: 'Uber', ou: 'OU',
-			uubl: 'UUBL', uu: 'UU', rubl: 'RUBL', ru: 'RU', nubl: 'NUBL', nu: 'NU',
-			publ: 'PUBL', pu: 'PU', zubl: 'ZUBL', zu: 'ZU', nfe: 'NFE', lc: 'LC',
-			cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE', monotype: 'Monotype', vgc: 'VGC', doubles: 'Doubles',
-		});
-		const doublesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-			doublesubers: 'DUber', doublesuber: 'DUber', duber: 'DUber', dubers: 'DUber',
-			doublesou: 'DOU', dou: 'DOU', doublesbl: 'DBL', dbl: 'DBL', doublesuu: 'DUU', duu: 'DUU', doublesnu: '(DUU)', dnu: '(DUU)',
-		});
 		for (let rawArg of targets) {
-			if (!rawArg) continue;
 			const arg = rawArg.trim();
 			if (!arg) continue;
-			const aID = toID(arg);
-			if (arg.toLowerCase() === 'resistlist') { resistList = true; continue; }
-			if (aID === 'debug') { debug = true; continue; }
-			// allow mod=foo, mod="foo", or flattened modfoo
-			if (arg.startsWith('mod=')) { mod = arg.slice(4).replace(/['"]/g, ''); continue; }
-			if (aID.startsWith('mod') && aID.length > 3) { mod = aID.slice(3); continue; }
-			// tiers (singles or doubles)
-			if (singlesTierMap[aID]) { tier = singlesTierMap[aID]; continue; }
-			if (doublesTierMap[aID]) { tier = doublesTierMap[aID]; continue; }
+			if (arg.toLowerCase() === 'resistlist') {
+				resistList = true;
+				continue;
+			}
+			if (arg.startsWith('mod=')) {
+				mod = arg.slice(4).replace(/['"]/g, '');
+				continue;
+			}
+			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
+				tier = arg.toUpperCase();
+				continue;
+			}
 			if (arg === 'table' || arg === 'all') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
-				dispTable = true; continue;
+				dispTable = true;
+				continue;
 			}
 			moveTypeArgs.push(arg);
 		}
+
 		// Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
 			const idArg = toID(arg);
@@ -1133,159 +1126,55 @@ export const commands: Chat.ChatCommands = {
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
 		if (resistList) {
-	// ---------- environment Dex ----------
-	function resolveEnvDex(modToken: string) {
-		const id = toID(modToken);
-		let envDex = dex;
-		let fmt: any = null;
-		let source: 'current' | 'format' | 'mod' = 'current';
-		if (id && id !== toID(dex.currentMod)) {
-			const maybeFormat = Dex.formats.get(id);
-			if (maybeFormat?.exists) {
-				fmt = maybeFormat;
-				envDex = Dex.forFormat(maybeFormat);
-				source = 'format';
-			} else {
-				try {
-					const md = Dex.mod(id as ID);
-					if (md?.currentMod === id) { envDex = md; source = 'mod'; }
-				} catch {}
-			}
-		}
-		return {envDex, fmt, source, id};
-	}
-	const {envDex, fmt, source: envSource, id: envId} = resolveEnvDex(mod);
-	// ---------- sources in this Dex ----------
-	const envSources: (string | Move)[] = sources.map(s => typeof s === 'string' ? s : envDex.moves.get((s as Move).id));
-	// ---------- species pool & legality ----------
-	const allSpecies = envDex.species.all();
-	let pool = allSpecies.slice();
-	let usedNatDexTier = false;
-	if (fmt) {
-		const ruleTable = Dex.formats.getRuleTable(fmt);
-		pool = pool.filter(sp => !ruleTable.isBannedSpecies(sp));
-		usedNatDexTier = ruleTable.has('standardnatdex');
-	}
-	// ---------- tier filtering (singles/doubles) ----------
-	function trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
-	function normTierId(s: string) { return toID(trimParens(s).replace(/^cap\s+/i, '').replace(/\s+/g, ' ')); }
-	const tReqId = toID(tier);
-	const singlesSet: any = {ag:1, uber:1, ubers:1, ou:1, uubl:1, uu:1, rubl:1, ru:1, nubl:1, nu:1, publ:1, pu:1, zubl:1, zu:1, nfe:1, lc:1, cap:1, caplc:1, capnfe:1, monotype:1, vgc:1, doubles:1};
-	const doublesSet: any = {duber:1, dubers:1, doublesuber:1, doublesubers:1, dou:1, doublesou:1, dbl:1, doublesbl:1, duu:1, doublesuu:1, dnu:1, doublesnu:1};
-	const singlesTier = (tReqId in singlesSet) ? (tier || '').toUpperCase() : '';
-	const doublesTier = (tReqId in doublesSet) ? (doublesTierMap[tReqId] || tier) : '';
-	if (tier) {
-		pool = pool.filter(sp => {
-			if (doublesTier) {
-				let t = trimParens(sp.doublesTier || '');
-				return normTierId(t) == normTierId(doublesTier);
-			} else {
-				let t = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
-				t = trimParens(t || '');
-				return normTierId(t) == normTierId(singlesTier || tier);
-			}
-		});
-	}
-	// ---------- effectiveness helpers ----------
-	function moveTypeAndImmunity(mvOrType: string | Move, defType: string) {
-		if (typeof mvOrType === 'string') {
-			const t = mvOrType;
-			const immune = !envDex.getImmunity(t, defType);
-			const mod = envDex.getEffectiveness(t, defType);
-			return {immune, mod};
-		} else {
-			const move = mvOrType as Move;
-			const type = move.type;
-			const immune = !envDex.getImmunity(type, defType) && !move.ignoreImmunity;
-			let mod = envDex.getEffectiveness(move, defType);
-			const hooked = move.onEffectiveness?.call({dex: envDex} as unknown as Battle, mod, null, defType, move as unknown as ActiveMove);
-			if (typeof hooked === 'number') mod = hooked;
-			return {immune, mod};
-		}
-	}
-	function classifyDefType(defType: string, sourcesArr: (string | Move)[]): 'immune'|'resist'|'none' {
-		let sawResist = false;
-		for (const src of sourcesArr) {
-			const {immune, mod} = moveTypeAndImmunity(src, defType);
-			if (immune) return 'immune';
-			if (mod < 0) sawResist = true;
-		}
-		return sawResist ? 'resist' : 'none';
-	}
-	function typeBadge(typeName: string, cls: 'immune'|'resist'|'none') {
-		if (cls === 'immune') return '<span style="background:#666666;color:#000000;padding:1px 3px;border-radius:3px">' + typeName + '</span>';
-		if (cls === 'resist') return '<span style="background:#AA5544;color:#660000;padding:1px 3px;border-radius:3px">' + typeName + '</span>';
-		return '<span>' + typeName + '</span>';
-	}
-	type ComboRow = { label: string, immune: string[], resist: string[] };
-	const resultByCombo: {[combo: string]: ComboRow} = Object.create(null);
-	const comboLabelCache: {[combo: string]: string} = Object.create(null);
-	function comboLabel(types: string[]) {
-		const key = types.join('/');
-		if (comboLabelCache[key]) return comboLabelCache[key];
-		const parts: string[] = [];
-		for (const t of types) {
-			const cls = classifyDefType(t, envSources);
-			parts.push(typeBadge(t, cls));
-		}
-		const lbl = parts.join('/');
-		comboLabelCache[key] = lbl; return lbl;
-	}
-	for (const sp of pool) {
-		const types = sp.types;
-		let ok = true; let maxFactor = 0;
-		for (const src of envSources) {
-			let factor = 1;
-			for (const defType of types) {
-				const {immune, mod} = moveTypeAndImmunity(src, defType);
-				if (immune) { factor *= 0; continue; }
-				factor *= Math.pow(2, mod);
-			}
-			if (factor > 0.5) { ok = false; break; }
-			if (factor > maxFactor) maxFactor = factor;
-		}
-		if (!ok) continue;
-		const key = types.join('/');
-		if (!resultByCombo[key]) resultByCombo[key] = {label: comboLabel(types), immune: [], resist: []};
-		if (maxFactor === 0) resultByCombo[key].immune.push(sp.name);
-		else resultByCombo[key].resist.push(sp.name);
-	}
-	const labels: string[] = [];
-	if (fmt) labels.push(fmt.name);
-	else if (envSource === 'mod') labels.push(envId);
-	if (tier) labels.push(tier.toUpperCase());
-	const headerSuffix = labels.length ? ' in ' + labels.join(' ') : '';
-	const srcLabel = envSources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ');
-	const lines: string[] = [];
-	lines.push('<b>Pok\u00e9mon' + headerSuffix + ' that resist ' + srcLabel + ':</b>');
-	const combos = Object.keys(resultByCombo).sort();
-	for (const combo of combos) {
-		const row = resultByCombo[combo];
-		if (row.immune.length) lines.push('<b>' + row.label + ' (immune):</b> ' + row.immune.join(', '));
-		if (row.resist.length) lines.push('<b>' + row.label + ' (resist):</b> ' + row.resist.join(', '));
-	}
-	if (lines.length === 1) lines.push('None found.');
-	if (debug) {
-		const before = allSpecies.length;
-		const after = pool.length;
-		const rt = fmt ? Dex.formats.getRuleTable(fmt) : null;
-		const sample = pool.slice(0, 8).map(s => {
-			const st = trimParens((usedNatDexTier ? (s as any).natDexTier : s.tier) || '');
-			const dt = trimParens(s.doublesTier || '');
-			return s.name + ' [' + (st || '-') + ' | ' + (dt || '-') + ']';
-		});
-		const dbg: string[] = [];
-		dbg.push('env: ' + (fmt ? ('format ' + fmt.id) : (envSource === 'mod' ? ('mod ' + envId) : 'current')));
-		dbg.push('gen/mod: gen' + envDex.gen + ' / ' + envDex.currentMod);
-		if (fmt) dbg.push('rules: ' + Array.from(rt!.keys()).join(', '));
-		dbg.push('species: all=' + before + (fmt ? (', legal=' + after) : ''));
-		if (tier) dbg.push('tier filter: ' + tier + (usedNatDexTier ? ' (NatDex singles)' : (doublesTier ? ' (doubles)' : ' (singles)')));
-		dbg.push('sample: ' + (sample.join('; ') || '-'));
-		lines.push('<details><summary><code>debug</code></summary><pre>' + dbg.join('\n') + '</pre></details>');
-	}
-	return this.sendReplyBox(lines.join('<br />'));
-}
+			// Get all Pokémon in the format/tier
+			const pokedex = dex.species.all();
+			let formatMons = pokedex.filter(mon => {
+				const monTier = (mon.tier || '').toUpperCase();
+				return (!tier || monTier === tier);
+			});
 
+			
+			// Drop mons marked as Illegal in the selected dex, regardless of tier filtering
+			function _trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
+			formatMons = formatMons.filter(mon => {
+				const st = _trimParens((mon as any).natDexTier ?? mon.tier ?? '');
+				const dt = _trimParens((mon as any).doublesTier ?? '');
+				return toID(st) !== 'illegal' && toID(dt) !== 'illegal';
+			});
+// Map: type combo -> list of Pokémon
+			const resistMap: {[combo: string]: string[]} = {};
+
+			for (const mon of formatMons) {
+				const types = mon.types;
+				let resisted = true;
+				for (const source of sources) {
+					let eff = 1;
+					for (const type of types) {
+						const moveType = typeof source === 'string' ? source : source.type;
+						const typeEff = dex.getEffectiveness(moveType, type);
+						eff *= Math.pow(2, typeEff);
+					}
+					if (eff > 0.5) {
+						resisted = false;
+						break;
+					}
+				}
+				if (resisted) {
+					const combo = types.join('/');
+					if (!resistMap[combo]) resistMap[combo] = [];
+					resistMap[combo].push(mon.name);
+				}
+			}
+
+			// Format output
+			const buffer: string[] = [];
+			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sources.join(' + ')}:</b>`);
+			for (const combo in resistMap) {
+				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+			}
+			if (buffer.length === 1) buffer.push('None found.');
+			return this.sendReplyBox(buffer.join('<br />'));
+		}
 
 		// converts to fractional effectiveness, 0 for immune
 		for (const type in bestCoverage) {
