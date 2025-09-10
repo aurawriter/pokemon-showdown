@@ -1051,46 +1051,44 @@ export const commands: Chat.ChatCommands = {
 		if (!this.runBroadcast()) return;
 		if (!target) return this.parse("/help coverage");
 
-		const {dex, targets} = this.splitFormat(target.split(/[,+/]/));
-		const sources: (string | Move)[] = [];
+		// Argument parsing similar to /randompokemon
+		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
-		const bestCoverage: {[k: string]: number} = {};
-		let hasThousandArrows = false;
 		let resistList = false;
 		let mod = dex.currentMod;
 		let tier = '';
-		const movesOrTypes: (string | Move)[] = [];
-		for (const type of dex.types.names()) {
-			// This command uses -5 to designate immunity
-			bestCoverage[type] = -5;
-		}
+		const sources: (string | Move)[] = [];
+		const bestCoverage: {[k: string]: number} = {};
+		let hasThousandArrows = false;
 
-		for (let arg of targets) {
-			arg = toID(arg);
-
-			// arg is the gen?
-			if (arg === dex.currentMod) continue;
-
-			// arg is 'table' or 'all'?
+		// First pass: parse for special parameters
+		const moveTypeArgs: string[] = [];
+		for (let rawArg of targets) {
+			const arg = rawArg.trim();
+			if (!arg) continue;
+			if (arg.toLowerCase() === 'resistlist') {
+				resistList = true;
+				continue;
+			}
+			if (arg.startsWith('mod=')) {
+				mod = arg.slice(4).replace(/['"]/g, '');
+				continue;
+			}
+			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
+				tier = arg.toUpperCase();
+				continue;
+			}
 			if (arg === 'table' || arg === 'all') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
 				dispTable = true;
 				continue;
 			}
-			if (arg.toLowerCase() === 'resistlist') {
-        		resistList = true;
-        		continue;
- 		   }
-   		    if (arg.startsWith('mod=')) {
-                mod = arg.slice(4);
-                continue;
-		 	}
-   			 // Check for tier (e.g., OU)
-   			if (/^[A-Z]{2,}$/.test(arg)) {
-        		tier = arg;
-        		continue;
-    		}
-			// arg is a type?
+			moveTypeArgs.push(arg);
+		}
+
+		// Second pass: resolve moves/types
+		for (let arg of moveTypeArgs) {
+			const idArg = toID(arg);
 			const argType = arg.charAt(0).toUpperCase() + arg.slice(1);
 			let eff;
 			if (dex.types.isName(argType)) {
@@ -1102,15 +1100,12 @@ export const commands: Chat.ChatCommands = {
 				}
 				continue;
 			}
-
-			// arg is a move?
-			const move = dex.moves.get(arg);
+			const move = dex.moves.get(idArg);
 			if (!move.exists) {
 				return this.errorReply(`Type or move '${arg}' not found.`);
 			} else if (move.gen > dex.gen) {
 				return this.errorReply(`Move '${arg}' is not available in Gen ${dex.gen}.`);
 			}
-
 			if (!move.basePower && !move.basePowerCallback) continue;
 			if (move.id === 'thousandarrows') hasThousandArrows = true;
 			sources.push(move);
@@ -1126,62 +1121,52 @@ export const commands: Chat.ChatCommands = {
 				if (eff > bestCoverage[type]) bestCoverage[type] = eff;
 			}
 		}
+
 		if (sources.length === 0) return this.errorReply("No moves using a type table for determining damage were specified.");
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
 		if (resistList) {
-    const format = dex.formats.get(`${mod}|${tier}`) || dex.formats.get(mod) || dex.formats.get('gen9ou');
-    if (!format) return this.errorReply(`Format/tier not found: ${mod} ${tier}`);
+			// Get all Pokémon in the format/tier
+			const pokedex = dex.species.all();
+			const formatMons = pokedex.filter(mon => {
+				const monTier = (mon.tier || '').toUpperCase();
+				return (!tier || monTier === tier);
+			});
 
-    // Get all Pokémon in the format/tier
-    const pokedex = dex.species.all();
-    const formatMons = pokedex.filter(mon => {
-        // Check if mon is in the format/tier
-        let data; 
-		if (dex.formatsData && typeof dex.formatsData.get === 'function') {
-   		 data = dex.formatsData.get(mon.id, mod);
-		} else if (mon.formatsData) {
-   		 data = mon.formatsData;
-		} else if (mon.tier) {
-    		data = {tier: mon.tier};
+			// Map: type combo -> list of Pokémon
+			const resistMap: {[combo: string]: string[]} = {};
+
+			for (const mon of formatMons) {
+				const types = mon.types;
+				let resisted = true;
+				for (const source of sources) {
+					let eff = 1;
+					for (const type of types) {
+						const moveType = typeof source === 'string' ? source : source.type;
+						const typeEff = dex.getEffectiveness(moveType, type);
+						eff *= Math.pow(2, typeEff);
+					}
+					if (eff > 0.5) {
+						resisted = false;
+						break;
+					}
+				}
+				if (resisted) {
+					const combo = types.join('/');
+					if (!resistMap[combo]) resistMap[combo] = [];
+					resistMap[combo].push(mon.name);
+				}
+			}
+
+			// Format output
+			const buffer: string[] = [];
+			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sources.join(' + ')}:</b>`);
+			for (const combo in resistMap) {
+				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+			}
+			if (buffer.length === 1) buffer.push('None found.');
+			return this.sendReplyBox(buffer.join('<br />'));
 		}
-		return data && data.tier && data.tier.toUpperCase() === tier.toUpperCase();
-    });
-
-    // Map: type combo -> list of Pokémon
-    const resistMap: {[combo: string]: string[]} = {};
-
-    for (const mon of formatMons) {
-        const types = mon.types;
-        let resisted = true;
-        for (const source of sources) {
-            let eff = 1;
-            for (const type of types) {
-                const moveType = typeof source === 'string' ? source : source.type;
-                const typeEff = dex.getEffectiveness(moveType, type);
-                eff *= Math.pow(2, typeEff);
-            }
-            if (eff > 0.5) {
-                resisted = false;
-                break;
-            }
-        }
-        if (resisted) {
-            const combo = types.join('/');
-            if (!resistMap[combo]) resistMap[combo] = [];
-            resistMap[combo].push(mon.name);
-        }
-    }
-
-    // Format output
-    const buffer: string[] = [];
-    buffer.push(`<b>Pokémon in ${mod} ${tier} that resist ${sources.join(' + ')}:</b>`);
-    for (const combo in resistMap) {
-        buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
-    }
-    if (buffer.length === 1) buffer.push('None found.');
-    return this.sendReplyBox(buffer.join('<br />'));
-}
 
 		// converts to fractional effectiveness, 0 for immune
 		for (const type in bestCoverage) {
