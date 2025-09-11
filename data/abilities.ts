@@ -1169,8 +1169,16 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 87,
 	},
 	earlybird: {
+		
+		onModifyMove(move,pokemon,target)
+		{
+			if (!move.flags) 
+				{
+					move.flags = {};
+				}
+			move.flags.energize = 1;
+		},
 		name: "Early Bird",
-		// Implemented in statuses.js
 		rating: 1.5,
 		num: 48,
 	},

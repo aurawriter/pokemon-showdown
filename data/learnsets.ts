@@ -101007,7 +101007,7 @@ swinub: {
 			terablast: ["9L1"],
 			radiantsmite:["9L1"],
 			righteousrend:["9L1"],
-		
+			solarblade: ["9L1"],
 }
 },
 	muertaguar: {
