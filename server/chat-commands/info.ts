@@ -1055,7 +1055,6 @@ export const commands: Chat.ChatCommands = {
 		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
-		let debug = false;
 		let mod = dex.currentMod;
 		let tier = '';
 		const sources: (string | Move)[] = [];
@@ -1086,7 +1085,6 @@ export const commands: Chat.ChatCommands = {
 			if (!arg) continue;
 			const aID = toID(arg);
 			if (arg.toLowerCase() === 'resistlist') { resistList = true; continue; }
-			if (aID === 'debug') { debug = true; continue; }
 			// allow mod=foo, mod="foo", or flattened modfoo
 			if (arg.startsWith('mod=')) { mod = arg.slice(4).replace(/['\"]/g, ''); continue; }
 			if (aID.startsWith('mod') && aID.length > 3) { mod = aID.slice(3); continue; }
@@ -1340,7 +1338,7 @@ function sameTier(a: string, b: string) {
 	}
 	if (lines.length === 1) lines.push('None found.');
 
-	if (debug) {
+	
 		const before = allSpecies.length;
 		const after = pool.length;
 		const rt = fmt ? Dex.formats.getRuleTable(fmt) : null;
@@ -1349,15 +1347,13 @@ function sameTier(a: string, b: string) {
 			const dt = trimParens(s.doublesTier || '');
 			return s.name + ' [' + (st || '-') + ' | ' + (dt || '-') + ']';
 		});
-		const dbg: string[] = [];
+		/*const dbg: string[] = [];
 		dbg.push('env: ' + (fmt ? ('format ' + fmt.id) : (envSource === 'mod' ? ('mod ' + envId) : 'current')));
 		dbg.push('gen/mod: gen' + envDex.gen + ' / ' + envDex.currentMod);
 		if (fmt) dbg.push('rules: ' + Array.from(rt!.keys()).join(', '));
 		dbg.push('species: all=' + before + (fmt ? (', legal=' + after) : ''));
 		if (tier) dbg.push('tier filter: ' + tier + (usedNatDexTier ? ' (NatDex singles)' : (doublesTierNorm ? ' (doubles)' : ' (singles)')));
-		dbg.push('sample: ' + (sample.join('; ') || '-'));
-		lines.push('<details><summary><code>debug</code></summary><pre>' + dbg.join('\n') + '</pre></details>');
-	}
+		dbg.push('sample: ' + (sample.join('; ') || '-'));*/ //I think this is all the debug stuff
 
 	return this.sendReplyBox(lines.join('<br />'));
 }
