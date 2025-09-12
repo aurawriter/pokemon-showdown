@@ -21233,7 +21233,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	torchsong: {
 		num: 871,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 60,
 		category: "Special",
 		name: "Torch Song",
 		pp: 10,
