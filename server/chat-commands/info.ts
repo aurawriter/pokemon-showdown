@@ -1052,51 +1052,59 @@ export const commands: Chat.ChatCommands = {
 		if (!target) return this.parse("/help coverage");
 
 		// Argument parsing similar to /randompokemon
-		const {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
+		let {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
 		let mod = dex.currentMod;
+		// If the user passed a format (e.g., OU), use that as the initial tier
+		// Normalize format IDs like `gen9ou` -> `OU` so they match species tier strings
 		let tier = '';
+		if (format && format.id) {
+			tier = format.id;
+			if (tier.startsWith('gen')) tier = tier.slice(4);
+			tier = tier.toUpperCase();
+		}
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
-		for (const t of dex.types.names()) bestCoverage[t] = -5;
 		let hasThousandArrows = false;
 
 		// First pass: parse for special parameters
 		const moveTypeArgs: string[] = [];
-		const singlesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-			ag: 'AG', anythinggoes: 'AG',
-			uber: 'Uber', ubers: 'Uber', ou: 'OU',
-			uubl: 'UUBL', uu: 'UU', rubl: 'RUBL', ru: 'RU', nubl: 'NUBL', nu: 'NU',
-			publ: 'PUBL', pu: 'PU', zubl: 'ZUBL', zu: 'ZU',
-			nfe: 'NFE', lc: 'LC',
-			cap: 'CAP', caplc: 'CAP LC', capnfe: 'CAP NFE',
-			monotype: 'Monotype', doubles: 'Doubles', vgc: 'VGC',
-		});
-		const doublesTierMap: {[k: string]: string} = Object.assign(Object.create(null), {
-			doublesubers: 'DUber', doublesuber: 'DUber', duber: 'DUber', dubers: 'DUber',
-			doublesou: 'DOU', dou: 'DOU',
-			doublesbl: 'DBL', dbl: 'DBL',
-			doublesuu: 'DUU', duu: 'DUU',
-			doublesnu: '(DUU)', dnu: '(DUU)',
-		});
 		for (let rawArg of targets) {
 			const arg = rawArg.trim();
 			if (!arg) continue;
-			const aID = toID(arg);
-			if (arg.toLowerCase() === 'resistlist') { resistList = true; continue; }
-			// allow mod=foo, mod="foo", or flattened modfoo
-			if (arg.startsWith('mod=')) { mod = arg.slice(4).replace(/['\"]/g, ''); continue; }
-			if (aID.startsWith('mod') && aID.length > 3) { mod = aID.slice(3); continue; }
-			// tiers (singles or doubles)
-			if (singlesTierMap[aID]) { tier = singlesTierMap[aID]; continue; }
-			if (doublesTierMap[aID]) { tier = doublesTierMap[aID]; continue; }
+			if (arg.toLowerCase() === 'resistlist') {
+				resistList = true;
+				continue;
+			}
+			if (arg.startsWith('mod=')) {
+				mod = arg.slice(4).replace(/['"]/g, '');
+				continue;
+			}
+			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
+				tier = arg.toUpperCase();
+				continue;
+			}
 			if (arg === 'table' || arg === 'all') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
-				dispTable = true; continue;
+				dispTable = true;
+				continue;
 			}
 			moveTypeArgs.push(arg);
 		}
+
+		// If a mod= was provided, switch to that mod's dex so species/tier lookups are correct
+		if (mod && mod !== dex.currentMod) {
+			try {
+				dex = Dex.mod(toID(mod)).includeData();
+			} catch {
+				return this.errorReply(`Mod '${mod}' not found.`);
+			}
+		}
+
+		// Initialize coverage table for every defending type
+		for (const t of dex.types.names()) bestCoverage[t] = -5;
+
 		// Second pass: resolve moves/types
 		for (let arg of moveTypeArgs) {
 			const idArg = toID(arg);
@@ -1136,229 +1144,50 @@ export const commands: Chat.ChatCommands = {
 		if (sources.length === 0) return this.errorReply("No moves using a type table for determining damage were specified.");
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
 
-		
-if (resistList) {
-	// ---------- environment Dex ----------
-	function resolveEnvDex(modToken: string) {
-		const id = toID(modToken);
-		let envDex = dex;
-		let fmt: any = null;
-		let source: 'current' | 'format' | 'mod' = 'current';
-		if (id && id !== toID(dex.currentMod)) {
-			const maybeFormat = Dex.formats.get(id);
-			if (maybeFormat?.exists) {
-				fmt = maybeFormat;
-				envDex = Dex.forFormat(maybeFormat);
-				source = 'format';
-			} else {
-				try {
-					const md = Dex.mod(id as ID);
-					if (md?.currentMod === id) { envDex = md; source = 'mod'; }
-				} catch {}
-			}
-		}
-		return {envDex, fmt, source, id};
-	}
-
-	const {envDex, fmt, source: envSource, id: envId} = resolveEnvDex(mod);
-
-	// ---------- sources in this Dex ----------
-	const envSources: (string | Move)[] = sources.map(s => typeof s === 'string' ? s : envDex.moves.get((s as Move).id));
-
-	// ---------- species pool & legality ----------
-	const allSpecies = envDex.species.all();
-	let pool = allSpecies.slice();
-	let usedNatDexTier = false;
-	if (fmt) {
-		const ruleTable = Dex.formats.getRuleTable(fmt);
-		pool = pool.filter(sp => !ruleTable.isBannedSpecies(sp));
-		usedNatDexTier = ruleTable.has('standardnatdex');
-	}
-	// Always drop mons marked as Illegal in this dex (singles or doubles tier), regardless of tier filtering
-	function __trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
-			function getSinglesTier(sp: any) {
-				let v = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
-				if (!v) v = (sp as any).natDexTier || sp.tier || '';
-				return __trimParens(v);
-			}
-	pool = pool.filter(sp => {
-		const st = getSinglesTier(sp);
-		const dt = __trimParens(sp.doublesTier || '');
-		return toID(st) !== 'illegal' && toID(dt) !== 'illegal';
-	});
-	// ---------- CAP policy (unconditional) ----------
-	(function() {
-		let allowCAP = false;
-		// if user explicitly requested CAP tiers, allow
-		const req = toID(tier);
-		if (req === 'cap' || req === 'caplc' || req === 'capnfe') allowCAP = true;
-		// if a format is selected and it explicitly allows CAP, allow
-		if (!allowCAP && fmt) {
-			const rt = Dex.formats.getRuleTable(fmt);
-			if (rt?.has('cap') || rt?.has('allowcap')) allowCAP = true;
-		}
-		if (!allowCAP) {
-			function _trim(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
-			pool = pool.filter(sp => {
-				const st = toID(_trim((usedNatDexTier ? (sp as any).natDexTier : sp.tier) || ''));
-				const dt = toID(_trim(sp.doublesTier || ''));
-				const isCAP = ((sp as any).isNonstandard === 'CAP') || st === 'cap' || dt === 'cap';
-				return !isCAP;
+		if (resistList) {
+			// Get all Pokémon in the format/tier
+			const pokedex = dex.species.all();
+			const formatMons = pokedex.filter(mon => {
+				// Consider species' singles/doubles/national-dex tiers when filtering
+				const tiers = [mon.tier, (mon as any).doublesTier, (mon as any).natDexTier].filter(Boolean).map(t => (t as string).toUpperCase());
+				return (!tier || tiers.includes(tier));
 			});
-		}
-	})();
-			// Exclude CAP mons unless the format explicitly allows CAP
-			if (fmt) {
-				const ruleTable = Dex.formats.getRuleTable(fmt);
-				const allowCAP = !!(ruleTable && (ruleTable.has('cap') || ruleTable.has('allowcap')));
-				if (!allowCAP) {
-					pool = pool.filter(sp => {
-						const tierID = toID((sp.tier || '').toString());
-						const dtID = toID((sp.doublesTier || '').toString());
-						const isCAP = ((sp as any).isNonstandard === 'CAP') || tierID === 'cap' || dtID === 'cap';
-						return !isCAP;
-					});
+
+			// Map: type combo -> list of Pokémon
+			const resistMap: {[combo: string]: string[]} = {};
+
+			for (const mon of formatMons) {
+				const types = mon.types;
+				let resisted = true;
+				for (const source of sources) {
+					let eff = 1;
+					for (const type of types) {
+						const moveType = typeof source === 'string' ? source : source.type;
+						const typeEff = dex.getEffectiveness(moveType, type);
+						eff *= Math.pow(2, typeEff);
+					}
+					if (eff > 0.5) {
+						resisted = false;
+						break;
+					}
+				}
+				if (resisted) {
+					const combo = types.join('/');
+					if (!resistMap[combo]) resistMap[combo] = [];
+					resistMap[combo].push(mon.name);
 				}
 			}
 
-
-	
-			// ---------- tier filtering (singles/doubles) ----------
-			function trimParens(s: string) { return (s && s.startsWith('(') && s.endsWith(')')) ? s.slice(1, -1) : (s || ''); }
-			function normTierId(s: string) { return toID(trimParens(String(s || '')).replace(/^cap\s+/i, '').replace(/\s+/g, ' ')); }
-function sameTier(a: string, b: string) {
-  if (!a || !b) return false;
-  if (a === b) return true;
-  return a.startsWith(b) || b.startsWith(a);
-}
-
-			const tReqId = toID(tier);
-			const singlesSet: any = {ag:1, uber:1, ubers:1, ou:1, uubl:1, uu:1, rubl:1, ru:1, nubl:1, nu:1, publ:1, pu:1, zubl:1, zu:1, nfe:1, lc:1, cap:1, caplc:1, capnfe:1, monotype:1, vgc:1, doubles:1};
-			const doublesSet: any = {duber:1, dubers:1, doublesuber:1, doublesubers:1, dou:1, doublesou:1, dbl:1, doublesbl:1, duu:1, doublesuu:1, dnu:1, doublesnu:1};
-			const doublesTierMap: {[k: string]: string} = {doublesubers:'DUber',doublesuber:'DUber',duber:'DUber',dubers:'DUber',doublesou:'DOU',dou:'DOU',doublesbl:'DBL',dbl:'DBL',doublesuu:'DUU',duu:'DUU',doublesnu:'(DUU)',dnu:'(DUU)'};
-			const singlesTierNorm = (tReqId in singlesSet) ? normTierId(tier || '') : '';
-			const doublesTierNorm = (tReqId in doublesSet) ? normTierId(doublesTierMap[tReqId] || tier) : '';
-
-			if (singlesTierNorm || doublesTierNorm) {
-				pool = pool.filter(sp => {
-					if (doublesTierNorm) {
-						const t = normTierId(sp.doublesTier || '');
-						return t && sameTier(t, doublesTierNorm);
-					} else {
-						const base = usedNatDexTier ? (sp as any).natDexTier : sp.tier;
-						const t = normTierId(base || '');
-						return t && sameTier(t, singlesTierNorm);
-					}
-				});
+			// Format output
+			const buffer: string[] = [];
+			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
+			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sourceNames.join(' + ')}:</b>`);
+			for (const combo in resistMap) {
+				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
-			// ---------- effectiveness helpers ----------
-
-	function moveTypeAndImmunity(mvOrType: string | Move, defType: string) {
-		if (typeof mvOrType === 'string') {
-			const t = mvOrType;
-			const immune = !envDex.getImmunity(t, defType);
-			const mod = envDex.getEffectiveness(t, defType);
-			return {immune, mod};
-		} else {
-			const move = mvOrType as Move;
-			const type = move.type;
-			const immune = !envDex.getImmunity(type, defType) && !move.ignoreImmunity;
-			let mod = envDex.getEffectiveness(move, defType);
-			const hooked = move.onEffectiveness?.call({dex: envDex} as unknown as Battle, mod, null, defType, move as unknown as ActiveMove);
-			if (typeof hooked === 'number') mod = hooked;
-			return {immune, mod};
+			if (buffer.length === 1) buffer.push('None found.');
+			return this.sendReplyBox(buffer.join('<br />'));
 		}
-	}
-
-	function classifyDefType(defType: string, sourcesArr: (string | Move)[]): 'immune'|'resist'|'none' {
-		let sawResist = false;
-		for (const src of sourcesArr) {
-			const {immune, mod} = moveTypeAndImmunity(src, defType);
-			if (immune) return 'immune';
-			if (mod < 0) sawResist = true;
-		}
-		return sawResist ? 'resist' : 'none';
-	}
-
-	function typeBadge(typeName: string, cls: 'immune'|'resist'|'none') {
-		if (cls === 'immune') return '<span style="background:#666666;color:#000000;padding:1px 3px;border-radius:3px">' + typeName + '</span>';
-		if (cls === 'resist') return '<span style="background:#AA5544;color:#660000;padding:1px 3px;border-radius:3px">' + typeName + '</span>';
-		return '<span>' + typeName + '</span>';
-	}
-
-	type ComboRow = { label: string, immune: string[], resist: string[] };
-	const resultByCombo: {[combo: string]: ComboRow} = Object.create(null);
-	const comboLabelCache: {[combo: string]: string} = Object.create(null);
-	function comboLabel(types: string[]) {
-		const key = types.slice().sort().join('/');
-		if (comboLabelCache[key]) return comboLabelCache[key];
-		const parts: string[] = [];
-		for (const t of types.slice().sort()) {
-			const cls = classifyDefType(t, envSources);
-			parts.push(typeBadge(t, cls));
-		}
-		const lbl = parts.join('/');
-		comboLabelCache[key] = lbl; return lbl;
-	}
-
-	for (const sp of pool) {
-		const types = sp.types;
-		let ok = true; let maxFactor = 0;
-		for (const src of envSources) {
-			let factor = 1;
-			for (const defType of types) {
-				const {immune, mod} = moveTypeAndImmunity(src, defType);
-				if (immune) { factor *= 0; continue; }
-				factor *= Math.pow(2, mod);
-			}
-			if (factor > 0.5) { ok = false; break; }
-			if (factor > maxFactor) maxFactor = factor;
-		}
-		if (!ok) continue;
-		const key = types.slice().sort().join('/');
-		if (!resultByCombo[key]) resultByCombo[key] = {label: comboLabel(types), immune: [], resist: []};
-		if (maxFactor === 0) resultByCombo[key].immune.push(sp.name);
-		else resultByCombo[key].resist.push(sp.name);
-	}
-
-	const labels: string[] = [];
-	if (fmt) labels.push(fmt.name);
-	else if (envSource === 'mod') labels.push(envId);
-	if (tier) labels.push(tier.toUpperCase());
-	const headerSuffix = labels.length ? ' in ' + labels.join(' ') : '';
-
-	const srcLabel = envSources.map(s => typeof s === 'string' ? s : (s as Move).name).join(' + ');
-	const lines: string[] = [];
-	lines.push('<b>Pok\u00e9mon' + headerSuffix + ' that resist ' + srcLabel + ':</b>');
-	const combos = Object.keys(resultByCombo).sort();
-	for (const combo of combos) {
-		const row = resultByCombo[combo];
-		if (row.immune.length) lines.push('<b>' + row.label + ' (immune):</b> ' + row.immune.join(', '));
-		if (row.resist.length) lines.push('<b>' + row.label + ' (resist):</b> ' + row.resist.join(', '));
-	}
-	if (lines.length === 1) lines.push('None found.');
-
-	
-		const before = allSpecies.length;
-		const after = pool.length;
-		const rt = fmt ? Dex.formats.getRuleTable(fmt) : null;
-		const sample = pool.slice(0, 8).map(s => {
-			const st = trimParens((usedNatDexTier ? (s as any).natDexTier : s.tier) || '');
-			const dt = trimParens(s.doublesTier || '');
-			return s.name + ' [' + (st || '-') + ' | ' + (dt || '-') + ']';
-		});
-		/*const dbg: string[] = [];
-		dbg.push('env: ' + (fmt ? ('format ' + fmt.id) : (envSource === 'mod' ? ('mod ' + envId) : 'current')));
-		dbg.push('gen/mod: gen' + envDex.gen + ' / ' + envDex.currentMod);
-		if (fmt) dbg.push('rules: ' + Array.from(rt!.keys()).join(', '));
-		dbg.push('species: all=' + before + (fmt ? (', legal=' + after) : ''));
-		if (tier) dbg.push('tier filter: ' + tier + (usedNatDexTier ? ' (NatDex singles)' : (doublesTierNorm ? ' (doubles)' : ' (singles)')));
-		dbg.push('sample: ' + (sample.join('; ') || '-'));*/ //I think this is all the debug stuff
-
-	return this.sendReplyBox(lines.join('<br />'));
-}
-
-
 
 		// converts to fractional effectiveness, 0 for immune
 		for (const type in bestCoverage) {
@@ -1396,7 +1225,8 @@ function sameTier(a: string, b: string) {
 					throw new Error(`/coverage effectiveness of ${bestCoverage[type]} from parameters: ${target}`);
 				}
 			}
-			buffer.push(`Coverage for ${sources.join(' + ')}:`);
+			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
+			buffer.push(`Coverage for ${sourceNames.join(' + ')}:`);
 			buffer.push(`<b><font color=#559955>Super Effective</font></b>: ${superEff.join(', ') || '<font color=#999999>None</font>'}`);
 			buffer.push(`<span class="message-effect-resist">Neutral</span>: ${neutral.join(', ') || '<font color=#999999>None</font>'}`);
 			buffer.push(`<span class="message-effect-weak">Resists</span>: ${resists.join(', ') || '<font color=#999999>None</font>'}`);
@@ -1484,7 +1314,8 @@ function sameTier(a: string, b: string) {
 				buffer += "<br /><b>Thousand Arrows has neutral type effectiveness on Flying-type Pok\u00e9mon if not already smacked down.";
 			}
 
-			this.sendReplyBox(`Coverage for ${sources.join(' + ')}:<br />${buffer}`);
+			const finalSourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
+			this.sendReplyBox(`Coverage for ${finalSourceNames.join(' + ')}:<br />${buffer}`);
 		}
 	},
 	coveragehelp: [
@@ -1766,7 +1597,9 @@ function sameTier(a: string, b: string) {
 
 	uptime(target, room, user) {
 		if (!this.runBroadcast()) return;
-		const uptime = process.uptime();
+	// use globalThis.process to avoid TS errors when @types/node isn't installed
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+	const uptime = (globalThis as any).process?.uptime ? (globalThis as any).process.uptime() : 0;
 		let uptimeText;
 		if (uptime > 24 * 60 * 60) {
 			const uptimeDays = Math.floor(uptime / (24 * 60 * 60));
@@ -3455,11 +3288,21 @@ export const pages: Chat.PageTable = {
 	},
 };
 
-process.nextTick(() => {
+if ((globalThis as any).process?.nextTick) {
+	(globalThis as any).process.nextTick(() => {
+		Dex.includeData();
+		Chat.multiLinePattern.register(
+			'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
+			'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml', '/addhtmlfaq',
+			'/sendhtmlpage',
+		);
+	});
+} else {
+	// Fallback for environments without Node typings
 	Dex.includeData();
 	Chat.multiLinePattern.register(
 		'/htmlbox', '/quote', '/addquote', '!htmlbox', '/addhtmlbox', '/addrankhtmlbox', '/adduhtml',
 		'/changeuhtml', '/addrankuhtmlbox', '/changerankuhtmlbox', '/addrankuhtml', '/addhtmlfaq',
 		'/sendhtmlpage',
 	);
-});
+}
