@@ -1191,7 +1191,9 @@ export const commands: Chat.ChatCommands = {
 
 			for (const mon of formatMons) {
 				const types = mon.types;
-				let resisted = true;
+				// For each source, compute effectiveness against the mon's typing
+				let anyImmune = false;
+				let maxEff = 0;
 				for (const source of sources) {
 					let eff = 1;
 					for (const type of types) {
@@ -1199,13 +1201,11 @@ export const commands: Chat.ChatCommands = {
 						const typeEff = dex.getEffectiveness(moveType, type);
 						eff *= Math.pow(2, typeEff);
 					}
-					if (eff > 0.5) {
-						resisted = false;
-						break;
-					}
+					if (eff === 0) anyImmune = true;
+					if (eff > maxEff) maxEff = eff;
 				}
-				if (resisted) {
-					// Canonicalize combo ordering so Fire/Dark and Dark/Fire are the same
+				// Include the mon if it's immune to any source or its worst-case (max) effectiveness is <= 0.5
+				if (anyImmune || maxEff <= 0.5) {
 					const sortedTypes = types.slice().sort();
 					const combo = sortedTypes.join('/');
 					if (!resistMap[combo]) resistMap[combo] = [];
@@ -1227,8 +1227,8 @@ export const commands: Chat.ChatCommands = {
 			const resistCombos: string[] = [];
 			for (const combo in resistMap) {
 				const types = combo.split('/');
-				// Determine whether the combo is immune to every source
-				let allImmune = true;
+				let anyImmune = false;
+				let maxEff = 0;
 				for (const source of sources) {
 					let eff = 1;
 					for (const type of types) {
@@ -1236,13 +1236,11 @@ export const commands: Chat.ChatCommands = {
 						const typeEff = dex.getEffectiveness(moveType, type);
 						eff *= Math.pow(2, typeEff);
 					}
-					if (eff !== 0) {
-						allImmune = false;
-						break;
-					}
+					if (eff === 0) anyImmune = true;
+					if (eff > maxEff) maxEff = eff;
 				}
-				if (allImmune) immunityCombos.push(combo);
-				else resistCombos.push(combo);
+				if (anyImmune) immunityCombos.push(combo);
+				else if (maxEff <= 0.5) resistCombos.push(combo);
 			}
 
 			// Output grouped with the same styling as coverage (non-resistlist)
