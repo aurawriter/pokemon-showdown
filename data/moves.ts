@@ -1,5 +1,7 @@
 // List of flags and their descriptions can be found in sim/dex-moves.ts
 
+import { trace } from "console";
+
 export const Moves: {[moveid: string]: MoveData} = {
 	"10000000voltthunderbolt": {
 		num: 719,
@@ -23968,6 +23970,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'redirect'},
 		contestType: "Tough",
 	},
-
+	irisgleam: {
+		num: 702,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Iris Gleam",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null;
+		target: "allAdjacentFoes",
+		type: "Fairy",
+		contestType: "Beautiful",
+		onModifyMove(move, pokemon, target) {
+			if(target && ['raindance', 'primordialsea'].includes(target.effectiveWeather()))
+			{
+				move.self = {sideCondition: "waterpledge"};
+			}
+		}
+	}
 
 };
