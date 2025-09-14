@@ -1065,6 +1065,11 @@ export const commands: Chat.ChatCommands = {
 			if (tier.startsWith('gen')) tier = tier.slice(4);
 			tier = tier.toUpperCase();
 		}
+
+		// Sets for multiple include/exclude tiers (legacy `tier` seeds includeTiers)
+		const includeTiers = new Set<string>();
+		const excludeTiers = new Set<string>();
+		if (tier) includeTiers.add(tier);
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
 		let hasThousandArrows = false;
@@ -1153,17 +1158,31 @@ export const commands: Chat.ChatCommands = {
 			const formatMons = pokedex.filter(mon => {
 				// Consider species' singles/doubles/national-dex tiers when filtering
 				const tiers = [mon.tier, (mon as any).doublesTier, (mon as any).natDexTier].filter(Boolean).map(t => (t as string).toUpperCase());
-				if (tier) return tiers.includes(tier);
-				// If no tier was specified but the user explicitly provided a mod,
-				// exclude species that are marked Illegal or otherwise nonstandard
-				// (for example, CAP or Unobtainable). Presence in a mod's formats-data
-				// doesn't guarantee legality, so we filter conservatively here.
-				if (userProvidedMod) {
+
+				// Exclusions take precedence
+				for (const ex of excludeTiers) {
+					if (tiers.includes(ex)) return false;
+				}
+
+				// If includeTiers provided, require a match
+				if (includeTiers.size) {
+					let matched = false;
+					for (const inc of includeTiers) {
+						if (tiers.includes(inc)) {
+							matched = true;
+							break;
+						}
+					}
+					if (!matched) return false;
+				}
+
+				// If no explicit include tiers but a mod was provided, filter out
+				// Illegal/nonstandard species conservatively.
+				if (!includeTiers.size && userProvidedMod) {
 					if (mon.tier === 'Illegal') return false;
 					if (mon.isNonstandard && mon.isNonstandard !== 'Past') return false;
-					return true;
 				}
-				// Otherwise include all species from the current dex
+
 				return true;
 			});
 
@@ -1186,7 +1205,9 @@ export const commands: Chat.ChatCommands = {
 					}
 				}
 				if (resisted) {
-					const combo = types.join('/');
+					// Canonicalize combo ordering so Fire/Dark and Dark/Fire are the same
+					const sortedTypes = types.slice().sort();
+					const combo = sortedTypes.join('/');
 					if (!resistMap[combo]) resistMap[combo] = [];
 					resistMap[combo].push(mon.name);
 				}
@@ -1195,11 +1216,45 @@ export const commands: Chat.ChatCommands = {
 			// Format output
 			const buffer: string[] = [];
 			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
-			// If the user provided a mod explicitly, show it in the header even when no tier is given
-			const modDisplay = userProvidedMod ? ` in ${mod}` : '';
-			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : modDisplay} that resist ${sourceNames.join(' + ')}:</b>`);
+			// Build header display (mod + included/excluded tiers)
+			const modDisplay = userProvidedMod ? `in ${mod}` : '';
+			const incList = [...includeTiers].join(', ');
+			const exList = [...excludeTiers].map(t => `!${t}`).join(', ');
+			const tierDisplay = incList || exList;
+			const headerDisplay = tierDisplay ? `${modDisplay ? modDisplay + ' ' : ''}${tierDisplay}`.trim() : modDisplay;
+			// Group combos into Immunities (eff === 0) and Resists (0.25/0.5)
+			const immunityCombos: string[] = [];
+			const resistCombos: string[] = [];
 			for (const combo in resistMap) {
-				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+				const types = combo.split('/');
+				let comboEff = 1;
+				for (const source of sources) {
+					let eff = 1;
+					for (const type of types) {
+						const moveType = typeof source === 'string' ? source : source.type;
+						const typeEff = dex.getEffectiveness(moveType, type);
+						eff *= Math.pow(2, typeEff);
+					}
+					// for the combo's overall effectiveness vs the move set, take the best (max) effect across sources
+					if (eff > comboEff) comboEff = eff;
+				}
+				if (comboEff === 0) immunityCombos.push(combo);
+				else resistCombos.push(combo);
+			}
+
+			// Output grouped with the same styling as coverage (non-resistlist)
+			buffer.push(`<b>Pokémon${headerDisplay ? ` ${headerDisplay}` : ''} that resist ${sourceNames.join(' + ')}:</b>`);
+			if (immunityCombos.length) {
+				buffer.push(`<span class="message-effect-immune">Immunities</span>:`);
+				for (const combo of immunityCombos) {
+					buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+				}
+			}
+			if (resistCombos.length) {
+				buffer.push(`<span class="message-effect-weak">Resists</span>:`);
+				for (const combo of resistCombos) {
+					buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+				}
 			}
 			if (buffer.length === 1) buffer.push('None found.');
 			return this.sendReplyBox(buffer.join('<br />'));
