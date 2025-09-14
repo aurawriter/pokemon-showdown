@@ -1057,16 +1057,14 @@ export const commands: Chat.ChatCommands = {
 		let resistList = false;
 	let mod = dex.currentMod;
 	let userProvidedMod = false;
-	// Support multiple include/exclude tiers. If the user passed a single
-	// format (e.g., OU) via the /splitFormat helper, seed the include set.
-	const includeTiers = new Set<string>();
-	const excludeTiers = new Set<string>();
-	if (format && format.id) {
-		// Work with a plain string to avoid `ID` typing issues
-		let seedStr: string = format.id as string;
-		if (seedStr.startsWith('gen')) seedStr = seedStr.slice(4);
-		includeTiers.add(seedStr.toUpperCase());
-	}
+		// If the user passed a format (e.g., OU), use that as the initial tier
+		// Normalize format IDs like `gen9ou` -> `OU` so they match species tier strings
+		let tier = '';
+		if (format && format.id) {
+			tier = format.id;
+			if (tier.startsWith('gen')) tier = tier.slice(4);
+			tier = tier.toUpperCase();
+		}
 		const sources: (string | Move)[] = [];
 		const bestCoverage: {[k: string]: number} = {};
 		let hasThousandArrows = false;
@@ -1086,12 +1084,8 @@ export const commands: Chat.ChatCommands = {
 				userProvidedMod = true;
 				continue;
 			}
-			// Support including or excluding tiers. Use a leading ! to exclude.
-			if (/^!?((ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes))$/i.test(arg)) {
-				const isExclude = arg.charAt(0) === '!';
-				const t = (isExclude ? arg.slice(1) : arg).toUpperCase();
-				if (isExclude) excludeTiers.add(t);
-				else includeTiers.add(t);
+			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
+				tier = arg.toUpperCase();
 				continue;
 			}
 			if (arg === 'table' || arg === 'all') {
@@ -1102,7 +1096,7 @@ export const commands: Chat.ChatCommands = {
 			moveTypeArgs.push(arg);
 		}
 
-	// If a mod= was provided, switch to that mod's dex so species/tier lookups are correct
+		// If a mod= was provided, switch to that mod's dex so species/tier lookups are correct
 		if (mod && mod !== dex.currentMod) {
 			try {
 				dex = Dex.mod(toID(mod)).includeData();
@@ -1159,34 +1153,17 @@ export const commands: Chat.ChatCommands = {
 			const formatMons = pokedex.filter(mon => {
 				// Consider species' singles/doubles/national-dex tiers when filtering
 				const tiers = [mon.tier, (mon as any).doublesTier, (mon as any).natDexTier].filter(Boolean).map(t => (t as string).toUpperCase());
-
-				// Exclusions take precedence: if the mon matches any excluded tier, skip it
-				for (const ex of excludeTiers) {
-					if (tiers.includes(ex)) return false;
-				}
-
-				// If includeTiers is non-empty, require at least one match
-				if (includeTiers.size) {
-					let matched = false;
-					for (const inc of includeTiers) {
-						if (tiers.includes(inc)) {
-							matched = true;
-							break;
-						}
-					}
-					if (!matched) return false;
-				}
-
-				// If no tiers were specified but the user explicitly provided a mod,
+				if (tier) return tiers.includes(tier);
+				// If no tier was specified but the user explicitly provided a mod,
 				// exclude species that are marked Illegal or otherwise nonstandard
 				// (for example, CAP or Unobtainable). Presence in a mod's formats-data
 				// doesn't guarantee legality, so we filter conservatively here.
-				if (!includeTiers.size && userProvidedMod) {
+				if (userProvidedMod) {
 					if (mon.tier === 'Illegal') return false;
 					if (mon.isNonstandard && mon.isNonstandard !== 'Past') return false;
+					return true;
 				}
-
-				// Otherwise include the species
+				// Otherwise include all species from the current dex
 				return true;
 			});
 
@@ -1218,13 +1195,9 @@ export const commands: Chat.ChatCommands = {
 			// Format output
 			const buffer: string[] = [];
 			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
-			// Build a compact tier/mod display for the header
-			const modDisplay = userProvidedMod ? `in ${mod}` : '';
-			const incList = [...includeTiers].join(', ');
-			const exList = [...excludeTiers].map(t => `!${t}`).join(', ');
-			const tierDisplay = incList || exList;
-			const headerDisplay = tierDisplay ? `${modDisplay ? modDisplay + ' ' : ''}${tierDisplay}`.trim() : modDisplay;
-			buffer.push(`<b>Pokémon${headerDisplay ? ` ${headerDisplay}` : ''} that resist ${sourceNames.join(' + ')}:</b>`);
+			// If the user provided a mod explicitly, show it in the header even when no tier is given
+			const modDisplay = userProvidedMod ? ` in ${mod}` : '';
+			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : modDisplay} that resist ${sourceNames.join(' + ')}:</b>`);
 			for (const combo in resistMap) {
 				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
