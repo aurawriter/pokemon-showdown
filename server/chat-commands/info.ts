@@ -1227,7 +1227,8 @@ export const commands: Chat.ChatCommands = {
 			const resistCombos: string[] = [];
 			for (const combo in resistMap) {
 				const types = combo.split('/');
-				let comboEff = 1;
+				// Determine whether the combo is immune to every source
+				let allImmune = true;
 				for (const source of sources) {
 					let eff = 1;
 					for (const type of types) {
@@ -1235,10 +1236,12 @@ export const commands: Chat.ChatCommands = {
 						const typeEff = dex.getEffectiveness(moveType, type);
 						eff *= Math.pow(2, typeEff);
 					}
-					// for the combo's overall effectiveness vs the move set, take the best (max) effect across sources
-					if (eff > comboEff) comboEff = eff;
+					if (eff !== 0) {
+						allImmune = false;
+						break;
+					}
 				}
-				if (comboEff === 0) immunityCombos.push(combo);
+				if (allImmune) immunityCombos.push(combo);
 				else resistCombos.push(combo);
 			}
 
@@ -1247,13 +1250,13 @@ export const commands: Chat.ChatCommands = {
 			if (immunityCombos.length) {
 				buffer.push(`<span class="message-effect-immune">Immunities</span>:`);
 				for (const combo of immunityCombos) {
-					buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+					buffer.push(`<b><span class="message-effect-immune">${combo}</span>:</b> ${resistMap[combo].join(', ')}`);
 				}
 			}
 			if (resistCombos.length) {
 				buffer.push(`<span class="message-effect-weak">Resists</span>:`);
 				for (const combo of resistCombos) {
-					buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
+					buffer.push(`<b><span class="message-effect-weak">${combo}</span>:</b> ${resistMap[combo].join(', ')}`);
 				}
 			}
 			if (buffer.length === 1) buffer.push('None found.');
