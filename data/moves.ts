@@ -8301,6 +8301,46 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'redirect'},
 		contestType: "Tough",
 	},
+	pinatapop: {
+		num: 99999,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Pinata Pop",
+		pp: 5,
+		priority: 0,
+		flags: {bypasssub: 1},
+		volatileStatus: 'pinatapop',
+		condition: {
+			onStart(pokemon) {
+				this.add('-singlemove', pokemon, 'Pinata Pop');
+			},
+			onFaint(target, source, effect) {
+				// If the holder of Pinata Pop is fainted the turn it used this move,
+				// give the Pokémon that replaces it +1 Atk, +1 SpA and +1 Spe.
+				// Similar to Grudge's onFaint, but we affect the incoming replacement.
+				if (!target) return;
+				// Find the active replacement(s) on the fainted Pokemon's side.
+				for (const ally of target.side.active) {
+					if (!ally || ally === target) continue;
+					if (!ally.fainted && ally.hp > 0) {
+						this.add('-activate', ally, 'move: Pinata Pop', '[from] ' + target);
+						this.boost({atk: 1, spa: 1, spe: 1}, ally, target, this.dex.moves.get('pinatapop'));
+						break;
+					}
+				}
+			},
+			onBeforeMovePriority: 100,
+			onBeforeMove(pokemon) {
+				this.debug('removing Pinata Pop before attack');
+				pokemon.removeVolatile('pinatapop');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		contestType: "Cute",
+	},
 	guardianofalola: {
 		num: 698,
 		accuracy: true,
@@ -23936,39 +23976,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Fighting",
 		contestType: "Clever",
-	},
-	
-	pinatapop: {
-		num: 288,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Pinata Pop",
-		pp: 5,
-		priority: 0,
-		flags: {bypasssub: 1},
-		volatileStatus: 'pinatapop',
-		condition: {
-			onStart(pokemon) {
-				this.add('-singlemove', pokemon, 'Pinata Pop');
-			},
-			onSwap(target) {
-				if (!target.fainted) {
-					this.boost({atk: 1, spa: 1, spe: 1}, target);
-					target.removeVolatile('pinatapop');
-				}
-			},
-			onBeforeMovePriority: 100,
-			onBeforeMove(pokemon) {
-				this.debug('removing Pinata Pop before attack');
-				pokemon.removeVolatile('pinatapop');
-			},
-		},
-		secondary: null,
-		target: "self",
-		type: "Ghost",
-		zMove: {effect: 'redirect'},
-		contestType: "Tough",
 	},
 	irisgleam: {
 		num: 702,
