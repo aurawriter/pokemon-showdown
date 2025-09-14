@@ -1154,9 +1154,16 @@ export const commands: Chat.ChatCommands = {
 				// Consider species' singles/doubles/national-dex tiers when filtering
 				const tiers = [mon.tier, (mon as any).doublesTier, (mon as any).natDexTier].filter(Boolean).map(t => (t as string).toUpperCase());
 				if (tier) return tiers.includes(tier);
-				// If no tier was specified, include all species from the current dex
-				// (the dex will be the mod's dex if mod= was provided). This makes
-				// `mod=auroraformat` filter to that mod even without an explicit tier.
+				// If no tier was specified but the user explicitly provided a mod,
+				// exclude species that are marked Illegal or otherwise nonstandard
+				// (for example, CAP or Unobtainable). Presence in a mod's formats-data
+				// doesn't guarantee legality, so we filter conservatively here.
+				if (userProvidedMod) {
+					if (mon.tier === 'Illegal') return false;
+					if (mon.isNonstandard && mon.isNonstandard !== 'Past') return false;
+					return true;
+				}
+				// Otherwise include all species from the current dex
 				return true;
 			});
 
