@@ -23979,7 +23979,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		secondary: null;
+		secondary: null,
 		target: "allAdjacentFoes",
 		type: "Fairy",
 		contestType: "Beautiful",
