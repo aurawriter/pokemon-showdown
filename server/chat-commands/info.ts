@@ -2351,7 +2351,7 @@ export const commands: Chat.ChatCommands = {
 				formatId = 'bh';
 			} else if (formatId === 'battlespotsingles') {
 				formatId = 'battle_spot_singles';
-			} else if (formatId === 'ubers') {
+			} else if (formatId === 'uber') {
 				formatId = 'uber';
 			} else if (formatId.includes('vgc')) {
 				formatId = 'vgc' + formatId.slice(-2);
@@ -2428,7 +2428,7 @@ export const commands: Chat.ChatCommands = {
 				formatId = 'bh';
 			} else if (formatId === 'battlespotsingles') {
 				formatId = 'battle_spot_singles';
-			} else if (formatId === 'ubers') {
+			} else if (formatId === 'uber') {
 				formatId = 'uber';
 			} else if (formatId.includes('vgc')) {
 				formatId = `vgc${formatId.slice(-2)}`;
