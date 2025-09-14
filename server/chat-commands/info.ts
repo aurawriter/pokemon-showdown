@@ -1199,16 +1199,25 @@ export const commands: Chat.ChatCommands = {
 				// For each source, compute effectiveness against the mon's typing
 				let anyImmune = false;
 				let maxEff = 0;
-				for (const source of sources) {
-					let eff = 1;
-					for (const type of types) {
+					for (const source of sources) {
 						const moveType = typeof source === 'string' ? source : source.type;
-						const typeEff = dex.getEffectiveness(moveType, type);
-						eff *= Math.pow(2, typeEff);
+						const ignoreImmunity = typeof source !== 'string' && !!(source as Move).ignoreImmunity;
+						// If the move/type is immune to any of the mon's types, the whole
+						// mon is immune to that source (unless the source ignores
+						// immunity). Use dex.getImmunity on the full typing to detect
+						// that case. Otherwise, multiply per-type effectiveness.
+						if (!dex.getImmunity(moveType, types) && !ignoreImmunity) {
+							anyImmune = true;
+							// eff remains 0 for immunity; do not update maxEff
+							continue;
+						}
+						let eff = 1;
+						for (const type of types) {
+							const typeEff = dex.getEffectiveness(moveType, type);
+							eff *= Math.pow(2, typeEff);
+						}
+						if (eff > maxEff) maxEff = eff;
 					}
-					if (eff === 0) anyImmune = true;
-					if (eff > maxEff) maxEff = eff;
-				}
 				// Include the mon if it's immune to any source or its worst-case (max) effectiveness is <= 0.5
 				if (anyImmune || maxEff <= 0.5) {
 					const sortedTypes = types.slice().sort();
@@ -1235,13 +1244,17 @@ export const commands: Chat.ChatCommands = {
 				let anyImmune = false;
 				let maxEff = 0;
 				for (const source of sources) {
+					const moveType = typeof source === 'string' ? source : source.type;
+					const ignoreImmunity = typeof source !== 'string' && !!(source as Move).ignoreImmunity;
+					if (!dex.getImmunity(moveType, types) && !ignoreImmunity) {
+						anyImmune = true;
+						continue;
+					}
 					let eff = 1;
 					for (const type of types) {
-						const moveType = typeof source === 'string' ? source : source.type;
 						const typeEff = dex.getEffectiveness(moveType, type);
 						eff *= Math.pow(2, typeEff);
 					}
-					if (eff === 0) anyImmune = true;
 					if (eff > maxEff) maxEff = eff;
 				}
 				if (anyImmune) immunityCombos.push(combo);
