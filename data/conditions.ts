@@ -119,9 +119,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		},
 		onBeforeMovePriority: 10,
 		onBeforeMove(pokemon, target, move) {
-			if (pokemon.hasAbility('earlybird')) {
-				pokemon.statusState.time--;
-			}
 			if (move.flags['energize']) return;
 			pokemon.statusState.time--;
 			if (pokemon.statusState.time <= 0) {

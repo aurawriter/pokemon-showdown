@@ -23906,7 +23906,68 @@ export const Moves: {[moveid: string]: MoveData} = {
 					move.category = 'Physical';
 				}
 			}
+		},	
+	},
+	quickdrawkick: {
+		num: 389,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Quickdraw Kick",
+		pp: 5,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1,kick:1},
+		onTry(source, target) {
+			const action = this.queue.willMove(target);
+			const move = action?.choice === 'move' ? action.move : null;
+			if (!move || (move.category === 'Status' && move.id !== 'mefirst') || target.volatiles['mustrecharge']) {
+				return false;
+			}
 		},
-		
-	}
+		onModifyMove(move,pokemon)
+		{
+			if(this.field.isWeather(['sunnyday','desolateland'])) {
+				move.willCrit = true;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Clever",
+	},
+	
+	pinatapop: {
+		num: 288,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Pinata Pop",
+		pp: 5,
+		priority: 0,
+		flags: {bypasssub: 1},
+		volatileStatus: 'pinatapop',
+		condition: {
+			onStart(pokemon) {
+				this.add('-singlemove', pokemon, 'Pinata Pop');
+			},
+			onSwap(target) {
+				if (!target.fainted) {
+					this.boost({atk: 1, spa: 1, spe: 1}, target);
+					target.removeVolatile('pinatapop');
+				}
+			},
+			onBeforeMovePriority: 100,
+			onBeforeMove(pokemon) {
+				this.debug('removing Pinata Pop before attack');
+				pokemon.removeVolatile('pinatapop');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Ghost",
+		zMove: {effect: 'redirect'},
+		contestType: "Tough",
+	},
+
+
 };

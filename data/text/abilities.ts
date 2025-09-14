@@ -430,7 +430,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	earlybird: {
 		name: "Early Bird",
-		shortDesc: "This Pokemon's sleep counter drops by 2 instead of 1.",
+		shortDesc: "Every move used by this Pokemon wakes it up immediately.",
 	},
 	eartheater: {
 		name: "Earth Eater",
