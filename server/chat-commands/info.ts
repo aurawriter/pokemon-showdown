@@ -1089,8 +1089,13 @@ export const commands: Chat.ChatCommands = {
 				userProvidedMod = true;
 				continue;
 			}
-			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
-				tier = arg.toUpperCase();
+			// Support include/exclude tier tokens here (e.g., OU or !OU)
+			if (/^!?((ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes))$/i.test(arg)) {
+				const isExclude = arg.charAt(0) === '!';
+				const t = (isExclude ? arg.slice(1) : arg).toUpperCase();
+				if (isExclude) excludeTiers.add(t);
+				else includeTiers.add(t);
+				tier = t;
 				continue;
 			}
 			if (arg === 'table' || arg === 'all') {
