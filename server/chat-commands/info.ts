@@ -1078,7 +1078,8 @@ export const commands: Chat.ChatCommands = {
 				continue;
 			}
 			if (arg.startsWith('mod=')) {
-				mod = arg.slice(4).replace(/['"]/g, '');
+				// Normalize mod to an ID (e.g. gen8, sv) so comparisons and Dex.mod() calls work
+				mod = toID(arg.slice(4).replace(/['"]/g, ''));
 				continue;
 			}
 			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
