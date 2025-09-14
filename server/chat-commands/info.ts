@@ -1055,7 +1055,8 @@ export const commands: Chat.ChatCommands = {
 		let {dex, format, targets} = this.splitFormat(target.split(/[,+/]/));
 		let dispTable = false;
 		let resistList = false;
-		let mod = dex.currentMod;
+	let mod = dex.currentMod;
+	let userProvidedMod = false;
 		// If the user passed a format (e.g., OU), use that as the initial tier
 		// Normalize format IDs like `gen9ou` -> `OU` so they match species tier strings
 		let tier = '';
@@ -1077,9 +1078,10 @@ export const commands: Chat.ChatCommands = {
 				resistList = true;
 				continue;
 			}
-			if (arg.startsWith('mod=')) {
+			if (arg.toLowerCase().startsWith('mod=')) {
 				// Normalize mod to an ID (e.g. gen8, sv) so comparisons and Dex.mod() calls work
-				mod = toID(arg.slice(4).replace(/['"]/g, ''));
+				mod = toID(arg.slice(4).replace(/['\"]/g, ''));
+				userProvidedMod = true;
 				continue;
 			}
 			if (/^(ou|uu|ru|nu|pu|zu|ubers|lc|monotype|doubles|vgc|anythinggoes)$/i.test(arg)) {
@@ -1151,7 +1153,11 @@ export const commands: Chat.ChatCommands = {
 			const formatMons = pokedex.filter(mon => {
 				// Consider species' singles/doubles/national-dex tiers when filtering
 				const tiers = [mon.tier, (mon as any).doublesTier, (mon as any).natDexTier].filter(Boolean).map(t => (t as string).toUpperCase());
-				return (!tier || tiers.includes(tier));
+				if (tier) return tiers.includes(tier);
+				// If no tier was specified, include all species from the current dex
+				// (the dex will be the mod's dex if mod= was provided). This makes
+				// `mod=auroraformat` filter to that mod even without an explicit tier.
+				return true;
 			});
 
 			// Map: type combo -> list of Pokémon
@@ -1182,7 +1188,9 @@ export const commands: Chat.ChatCommands = {
 			// Format output
 			const buffer: string[] = [];
 			const sourceNames = sources.map(s => typeof s === 'string' ? s : (s.name || s.id));
-			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : ''} that resist ${sourceNames.join(' + ')}:</b>`);
+			// If the user provided a mod explicitly, show it in the header even when no tier is given
+			const modDisplay = userProvidedMod ? ` in ${mod}` : '';
+			buffer.push(`<b>Pokémon${tier ? ` in ${mod} ${tier}` : modDisplay} that resist ${sourceNames.join(' + ')}:</b>`);
 			for (const combo in resistMap) {
 				buffer.push(`<b>${combo}:</b> ${resistMap[combo].join(', ')}`);
 			}
