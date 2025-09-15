@@ -8316,19 +8316,11 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.add('-singlemove', pokemon, 'Pinata Pop');
 			},
 			onFaint(target, source, effect) {
-				// If the holder of Pinata Pop is fainted the turn it used this move,
-				// give the Pokémon that replaces it +1 Atk, +1 SpA and +1 Spe.
-				// Similar to Grudge's onFaint, but we affect the incoming replacement.
 				if (!target) return;
-				// Find the active replacement(s) on the fainted Pokemon's side.
-				for (const ally of target.side.active) {
-					if (!ally || ally === target) continue;
-					if (!ally.fainted && ally.hp > 0) {
-						this.add('-activate', ally, 'move: Pinata Pop', '[from] ' + target);
-						this.boost({atk: 1, spa: 1, spe: 1}, ally, target, this.dex.moves.get('pinatapop'));
-						break;
-					}
-				}
+				// The replacement hasn't been switched in yet when onFaint runs. Add a
+				// slot condition to the fainted Pokemon's slot so we can boost the
+				// Pokémon that actually switches in to that slot.
+				target.side.addSlotCondition(target, 'pinatapop', target);
 			},
 			onBeforeMovePriority: 100,
 			onBeforeMove(pokemon) {
@@ -8338,7 +8330,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: null,
 		target: "self",
-		type: "Normal",
+		type: "Fairy",
 		contestType: "Cute",
 	},
 	guardianofalola: {
