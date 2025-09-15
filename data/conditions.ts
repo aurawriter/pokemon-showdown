@@ -506,6 +506,23 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 	},
+	pinatapop: {
+		// this is a slot condition applied to the fainted slot; it boosts the Pokémon
+		// that switches in to that slot
+		name: 'pinatapop',
+		onStart(target, source, sourceEffect) {
+			this.effectState.source = source;
+			this.add('-start', source, 'Pinata Pop');
+			this.effectState.sourceEffect = sourceEffect;
+		},
+		onSwitchIn(target) {
+			const source = this.effectState.source;
+			if (!target || target.fainted) return;
+			this.add('-activate', target, 'move: Pinata Pop', '[from] ' + source);
+			this.boost({atk: 1, spa: 1, spe: 1}, target, source);
+			target.side.removeSlotCondition(target, 'pinatapop');
+		},
+	},
 	stall: {
 		// Protect, Detect, Endure counter
 		name: 'stall',

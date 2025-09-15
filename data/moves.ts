@@ -1,5 +1,7 @@
 // List of flags and their descriptions can be found in sim/dex-moves.ts
 
+import { trace } from "console";
+
 export const Moves: {[moveid: string]: MoveData} = {
 	"10000000voltthunderbolt": {
 		num: 719,
@@ -8298,6 +8300,38 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Ghost",
 		zMove: {effect: 'redirect'},
 		contestType: "Tough",
+	},
+	pinatapop: {
+		num: 99999,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Pinata Pop",
+		pp: 5,
+		priority: 0,
+		flags: {bypasssub: 1},
+		volatileStatus: 'pinatapop',
+		condition: {
+			onStart(pokemon) {
+				this.add('-singlemove', pokemon, 'Pinata Pop');
+			},
+			onFaint(target, source, effect) {
+				if (!target) return;
+				// The replacement hasn't been switched in yet when onFaint runs. Add a
+				// slot condition to the fainted Pokemon's slot so we can boost the
+				// Pokémon that actually switches in to that slot.
+				target.side.addSlotCondition(target, 'pinatapop', target);
+			},
+			onBeforeMovePriority: 100,
+			onBeforeMove(pokemon) {
+				this.debug('removing Pinata Pop before attack');
+				pokemon.removeVolatile('pinatapop');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Fairy",
+		contestType: "Cute",
 	},
 	guardianofalola: {
 		num: 698,
@@ -21233,7 +21267,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	torchsong: {
 		num: 871,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 60,
 		category: "Special",
 		name: "Torch Song",
 		pp: 10,
@@ -23935,6 +23969,13 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fighting",
 		contestType: "Clever",
 	},
+	irisgleam: {
+		num: 702,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Iris Gleam",
+		pp: 15,
 	rockfall: {
 		num: 288,
 		accuracy: 100,
@@ -23958,30 +23999,17 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Pinata Pop",
 		pp: 5,
 		priority: 0,
-		flags: {bypasssub: 1},
-		volatileStatus: 'pinatapop',
-		condition: {
-			onStart(pokemon) {
-				this.add('-singlemove', pokemon, 'Pinata Pop');
-			},
-			onSwap(target) {
-				if (!target.fainted) {
-					this.boost({atk: 1, spa: 1, spe: 1}, target);
-					target.removeVolatile('pinatapop');
-				}
-			},
-			onBeforeMovePriority: 100,
-			onBeforeMove(pokemon) {
-				this.debug('removing Pinata Pop before attack');
-				pokemon.removeVolatile('pinatapop');
-			},
-		},
+		flags: {protect: 1, mirror: 1},
 		secondary: null,
-		target: "self",
-		type: "Ghost",
-		zMove: {effect: 'redirect'},
-		contestType: "Tough",
-	},
-
+		target: "allAdjacentFoes",
+		type: "Fairy",
+		contestType: "Beautiful",
+		onModifyMove(move, pokemon, target) {
+			if(target && ['raindance', 'primordialsea'].includes(target.effectiveWeather()))
+			{
+				move.self = {sideCondition: "waterpledge"};
+			}
+		}
+	}
 
 };
