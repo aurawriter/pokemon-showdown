@@ -23976,6 +23976,19 @@ export const Moves: {[moveid: string]: MoveData} = {
 		category: "Special",
 		name: "Iris Gleam",
 		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Fairy",
+		contestType: "Beautiful",
+		onModifyMove(move, pokemon, target) {
+			if(target && ['raindance', 'primordialsea'].includes(target.effectiveWeather()))
+			{
+				move.self = {sideCondition: "waterpledge"};
+			}
+		}
+	},
 	rockfall: {
 		num: 288,
 		accuracy: 100,
