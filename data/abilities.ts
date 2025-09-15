@@ -7036,6 +7036,18 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 9,
 	},
+	oxidization: {
+		onImmunity(type, pokemon) {
+			if (type === 'acidrain') return false;
+		},
+		onModifySpD(spd, pokemon) {
+			return this.chainModify(1.2);
+		},
+		isBreakable: true,
+		name: "Oxidization",
+		rating: 1.5,
+		num: 8,
+	},
 };
 
 

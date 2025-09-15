@@ -23935,7 +23935,21 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Fighting",
 		contestType: "Clever",
 	},
-	
+	rockfall: {
+		num: 288,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Rockfall",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		contestType: "Tough",
+
+	}
 	pinatapop: {
 		num: 288,
 		accuracy: true,
