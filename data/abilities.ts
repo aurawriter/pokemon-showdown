@@ -6604,7 +6604,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	candycrush: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk,pokemon) {
-			if(this.field.terrain === 'mistyterrain' && !pokemon.hasItem('safarihelmet'))
+			if(this.field.isTerrain('mistyterrain') && !pokemon.hasItem('safarihelmet'))
 			{
 			return this.chainModify(2);
 			}	
@@ -6616,7 +6616,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	mindovermatter: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
-			if(this.field.terrain==='psychicterrain' && !pokemon.hasItem('safarihelmet'))
+			if(this.field.isTerrain('psychicterrain') && !pokemon.hasItem('safarihelmet'))
 			{
 			const noModifyType = [
 				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
@@ -7049,6 +7049,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
