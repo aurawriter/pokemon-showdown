@@ -6613,7 +6613,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 37,
 	},
-	mindovermatter: {
+	/*mindovermatter: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			if(this.field.isTerrain('psychicterrain') && !pokemon.hasItem('safarihelmet'))
@@ -6642,6 +6642,20 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				ability: this.dex.abilities.get('mindovermatter'),
 			});
 			//}
+		},
+		name: "Mind Over Matter",
+		rating: 5,
+		num: 37,
+	},*/
+	mindovermatter: {
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if ((this.field.isTerrain('psychicterrain') && !pokemon.hasItem('safarihelmet')) && move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status') && !(move.name == 'Tera Blast' && pokemon.terastallized)) {
+				move.type = 'Psychic;
+			}
 		},
 		name: "Mind Over Matter",
 		rating: 5,
@@ -7049,6 +7063,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
