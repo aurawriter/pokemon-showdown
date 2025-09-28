@@ -6613,7 +6613,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 5,
 		num: 37,
 	},
-	/*mindovermatter: {
+	mindovermatter: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			if(this.field.isTerrain('psychicterrain') && !pokemon.hasItem('safarihelmet'))
@@ -6646,8 +6646,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Mind Over Matter",
 		rating: 5,
 		num: 37,
-	},*/
-	mindovermatter: {
+	},
+	/*mindovermatter: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
@@ -6660,7 +6660,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Mind Over Matter",
 		rating: 5,
 		num: 37,
-	},
+	},*/
 	overcharge: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, pokemon) {
@@ -7063,6 +7063,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
