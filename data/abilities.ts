@@ -6624,7 +6624,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) &&
 				!(move.isZ && move.category !== 'Status') && !(move.name === 'Tera Blast' && pokemon.terastallized)) {
 				move.type = 'Psychic';
-				move.typeChangerBoosted = this.effect;
+				//move.typeChangerBoosted = this.effect;
 			}
 			}
 		},
@@ -7049,6 +7049,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
