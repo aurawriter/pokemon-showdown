@@ -6654,7 +6654,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				'essenceburst','judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
 			];
 			if ((this.field.isTerrain('psychicterrain') && !pokemon.hasItem('safarihelmet')) && move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status') && !(move.name == 'Tera Blast' && pokemon.terastallized)) {
-				move.type = 'Psychic;
+				move.type = 'Psychic';
 			}
 		},
 		name: "Mind Over Matter",
@@ -7063,6 +7063,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
