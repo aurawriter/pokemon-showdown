@@ -6630,8 +6630,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onModifyMove(move,pokemon)
 		{
-			if(this.field.terrain==='psychicterrain' && !pokemon.hasItem('safarihelmet'))
-			{
+			//if(this.field.terrain==='psychicterrain' && !pokemon.hasItem('safarihelmet'))
+			//{
 			if(!(move.type === 'Psychic')||move.category === 'Status') return;
 				if(!move.secondaries){
 					move.secondaries = [];
@@ -6641,7 +6641,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				volatileStatus: 'confusion',
 				ability: this.dex.abilities.get('mindovermatter'),
 			});
-			}
+			//}
 		},
 		name: "Mind Over Matter",
 		rating: 5,
@@ -7049,6 +7049,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
