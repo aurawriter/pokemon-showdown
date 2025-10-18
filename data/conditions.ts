@@ -39,32 +39,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.damage(pokemon.baseMaxhp / 16);
 		},
 	},
-	/*par: { // Old paralysis condition
-		name: 'par',
-		effectType: 'Status',
-		onStart(target, source, sourceEffect) {
-			if (sourceEffect && sourceEffect.effectType === 'Ability') {
-				this.add('-status', target, 'par', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
-			} else {
-				this.add('-status', target, 'par');
-			}
-		},
-		onModifySpe(spe, pokemon) {
-			// Paralysis occurs after all other Speed modifiers, so evaluate all modifiers up to this point first
-			spe = this.finalModify(spe);
-			if (!pokemon.hasAbility('quickfeet')) {
-				spe = Math.floor(spe * 50 / 100);
-			}
-			return spe;
-		},
-		onBeforeMovePriority: 1,
-		onBeforeMove(pokemon) {
-			if (this.randomChance(1, 4)) {
-				this.add('cant', pokemon, 'par');
-				return false;
-			}
-		},
-	},*/
 	par: { // New paralysis condition
 	    name: 'par',
 		effectType: 'Status',
@@ -83,13 +57,13 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return spe;
 		},
-		onSourceDeductPP(target, source) {
+		onDeductPP(target, source) {
 			this.debug("Trying to deduct PP");
    		    if(!source.hasAbility('quickfeet')) {    
 				this.debug("Deducting PP");
       			return 1;
             }
-	},
+		},
 	},
 	slp: {
 		name: 'slp',
