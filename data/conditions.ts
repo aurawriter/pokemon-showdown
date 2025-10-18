@@ -57,12 +57,10 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return spe;
 		},
-		onDeductPP(target, source) {
-			this.debug("Trying to deduct PP");
-   		    if(!source.hasAbility('quickfeet')) {    
-				this.debug("Deducting PP");
-      			return 1;
-            }
+		onDeductPP(pokemon) {
+   			if (!pokemon.hasAbility('quickfeet')) {
+     			 return 1;
+   			}
 		},
 	},
 	slp: {
