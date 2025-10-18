@@ -83,7 +83,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 			return spe;
 		},
-		onSourceDeductPP(target, source) {
+		onDeductPP(target, source) {
 			this.debug("Trying to deduct PP");
    		    if(!source.hasAbility('quickfeet')) {    
 				this.debug("Deducting PP");
