@@ -506,9 +506,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			}
 		},
 	},
-	pinatapop: {
-		// this is a slot condition applied to the fainted slot; it boosts the Pokémon
-		// that switches in to that slot
+	/*pinatapop: {
 		name: 'pinatapop',
 		onStart(target, source, sourceEffect) {
 			this.effectState.source = source;
@@ -522,7 +520,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.boost({atk: 1, spa: 1, spe: 1}, target, source);
 			target.side.removeSlotCondition(target, 'pinatapop');
 		},
-	},
+	},*/
 	stall: {
 		// Protect, Detect, Endure counter
 		name: 'stall',
