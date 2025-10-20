@@ -8301,7 +8301,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'redirect'},
 		contestType: "Tough",
 	},
-	pinatapop: {
+	/*pinatapop: {
 		num: 99999,
 		accuracy: true,
 		basePower: 0,
@@ -8332,7 +8332,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "self",
 		type: "Fairy",
 		contestType: "Cute",
-	},
+	},*/
 	guardianofalola: {
 		num: 698,
 		accuracy: true,

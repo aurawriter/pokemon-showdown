@@ -6637,7 +6637,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					move.secondaries = [];
 				}
 				move.secondaries.push({
-				chance: 30,
+				chance: 100,
 				volatileStatus: 'confusion',
 				ability: this.dex.abilities.get('mindovermatter'),
 			});
@@ -7063,6 +7063,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 8,
 	},
 };
+
 
 
 
