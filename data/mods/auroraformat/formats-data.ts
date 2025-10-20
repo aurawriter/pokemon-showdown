@@ -2419,6 +2419,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	darkrai: {
 		tier: "OU",
+		doublesTier: "DOU",
 	},
 	shaymin: {
 		isNonstandard: "Past",
