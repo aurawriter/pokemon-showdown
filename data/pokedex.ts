@@ -17175,7 +17175,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Bellibolt",
 		types: ["Electric","Light"],
 		baseStats: {hp: 109, atk: 64, def: 91, spa: 103, spd: 83, spe: 45},
-		abilities: {0: "Electromorphosis", 1: "Static", H: "Rain CoatF"},
+		abilities: {0: "Electromorphosis", 1: "Static", H: "Rain Coat"},
 		heightm: 1.2,
 		weightkg: 113,
 		color: "Green",
@@ -20278,6 +20278,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 0.8,
 		weightkg: 8.5,
 		color: "Black",
+		prevo: "Sunkern",
 		evoItem: "Sun Stone",
 		eggGroups: ["Grass"],
 	},
@@ -20724,6 +20725,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Rock Head",1:"Sturdy",H:"Focusing Crystals"},
 		heightm: 10.5,
 		weightkg: 300,
+		prevo: "Onix",
 		color: "Purple",
 		eggGroups: ["Mineral"],
 
@@ -20738,6 +20740,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 1.5,
 		weightkg: 38,
 		color: "Red",
+		prevo: "Scyther",
 		eggGroups: ["Bug","Mineral"],
 	},
 

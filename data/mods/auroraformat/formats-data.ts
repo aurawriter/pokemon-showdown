@@ -2418,7 +2418,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		
 	},
 	darkrai: {
-		tier: "Uber",
+		tier: "OU",
 	},
 	shaymin: {
 		isNonstandard: "Past",

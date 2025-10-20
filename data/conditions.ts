@@ -29,9 +29,11 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-status', target, 'fbt');
 			}
 		},
-		onBeforeMovePriority: 10,
-		onBeforeMove(pokemon, target, move) {
-			if (move.flags['defrost']) return;
+		onModifyMove(move, pokemon) {
+			if (move.flags['defrost']) {
+				this.add('-curestatus', pokemon, 'frz', '[from] move: ' + move);
+				pokemon.clearStatus();
+			}
 		},
 		// Damage reduction is handled directly in the sim/battle.js damage function
 		onResidualOrder: 10,

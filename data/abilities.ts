@@ -1810,7 +1810,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	heathaze: {
 		onModifySpD(spd,pokemon) {
 			if (this.field.isWeather(['sunnyday'])) {
-				return this.chainModify(1.2);
+				return this.chainModify(1.5);
 			}
 		},
 		isBreakable: true,
@@ -3993,7 +3993,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (type === 'sandstorm') return false;
 		},
 		onModifyDef(def, pokemon) {
-			return this.chainModify(1.2);
+			return this.chainModify(1.5);
 		},
 		isBreakable: true,
 		name: "Sand Veil",
@@ -4002,7 +4002,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	raincoat: {
 		onModifyDef(def, pokemon) {
-			return this.chainModify(1.2);
+			return this.chainModify(1.5);
 		},
 		isBreakable: true,
 		name: "Rain Coat",
@@ -4382,7 +4382,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onModifySpD(spd,pokemon) {
 			if (this.field.isWeather(['hail', 'snow'])) {
-				return this.chainModify(1.2);
+				return this.chainModify(1.5);
 			}
 		},
 		isBreakable: true,
@@ -7027,7 +7027,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamagingHit(damage, target, source, move) {
 			if (this.checkMoveMakesContact(move, source, target)) {
 				if (this.randomChance(3, 10)) {
-					source.trySetStatus('par', target);
+					source.trySetStatus('fbt', target);
 				}
 			}
 		},
@@ -7039,7 +7039,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onAfterMove(target, source, move) {
 			this.debug ("After move!")
 			if (move.flags['sound']) {
-				this.debug ("Souohthing Song triggered!")
+				this.add('-activate', source, 'ability: Soothing Song');
+				this.debug ("Soothing Song triggered!")
 				this.heal(source.baseMaxhp / 4);
 				for (const ally of source.adjacentAllies()) {
 					this.heal(ally.baseMaxhp / 4, ally);

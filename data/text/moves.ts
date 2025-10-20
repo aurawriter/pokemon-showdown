@@ -8078,4 +8078,9 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "This move combines Rock in its type effectiveness against the target.",
 		shortDesc: "Combines Rock in its type effectiveness.",
 	},
+	softserve: {
+		name: "Soft Serve",
+		desc: "Sets Tasty Treats on allied side.",
+		shortDesc: "Sets Tasty Treats on allied side.",
+	},
 };

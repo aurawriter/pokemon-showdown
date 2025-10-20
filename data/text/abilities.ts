@@ -695,8 +695,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	heathaze:{
 	name: "Heat Haze",
-	desc: "1.2x Sp. Defense in Sunny Day.",
-	shortDesc: "1.2x Sp. Defense in Sunny Day.",
+	desc: "1.5x Sp. Defense in Sunny Day.",
+	shortDesc: "1.5x Sp. Defense in Sunny Day.",
 	},
 	heatproof: {
 		name: "Heatproof",
@@ -1641,8 +1641,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	sandveil: {
 		name: "Sand Veil",
-		desc: "1.2x Defense in Sandstorm. Immune to Sandstorm.",
-		shortDesc: "1.2x Defense in Sandstorm. Immune to Sandstorm.",
+		desc: "1.5x Defense in Sandstorm. Immune to Sandstorm.",
+		shortDesc: "1.5x Defense in Sandstorm. Immune to Sandstorm.",
 	},	
 	sapsipper: {
 		name: "Sap Sipper",
@@ -1796,8 +1796,8 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	snowcloak: {
 		name: "Snow Cloak",
-		desc: "1.2x Sp. Defense in Snow.",
-		shortDesc: "1.2x Sp. Defense in Snow.",
+		desc: "1.5x Sp. Defense in Snow.",
+		shortDesc: "1.5x Sp. Defense in Snow.",
 		gen8: {
 			desc: "If Hail is active, the accuracy of moves used against this Pokemon is multiplied by 0.8. This Pokemon takes no damage from Hail.",
 			shortDesc: "If Hail is active, this Pokemon's evasiveness is 1.25x; immunity to Hail.",
@@ -2571,7 +2571,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	raincoat: {
 		name: "Rain Coat",
-		desc: "1.2x Defense in Rain.",
+		desc: "1.5x Defense in Rain.",
 	},
 	soothingsong: {
 		name: "Soothing Song",
