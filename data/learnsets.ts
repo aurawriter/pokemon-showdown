@@ -105953,7 +105953,6 @@ swinub: {
 			thunderfang: ["9L1"],
 			weatherball: ["9L1"],
 			tastytreats: ["9L1"],
-			softserve: ["9L1"],
 			},
 		}
 };
