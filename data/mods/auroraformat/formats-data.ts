@@ -5166,4 +5166,20 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "OU",
 		doublesTier: "DOU",
 	},
+	dalmaltian: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	amethix: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	dryllor: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	steerling: {
+		tier: "OU",
+		doublesTier: "DOU",
+	}
 };

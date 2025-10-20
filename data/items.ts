@@ -851,12 +851,12 @@ export const Items: {[itemid: string]: ItemData} = {
 			type: "Water",
 		},
 		onUpdate(pokemon) {
-			if (pokemon.status === 'slp') {
+			if (pokemon.status === 'slp' || pokemon.status === 'dsy') {
 				pokemon.eatItem();
 			}
 		},
 		onEat(pokemon) {
-			if (pokemon.status === 'slp') {
+			if (pokemon.status === 'slp' || pokemon.status === 'dsy') {
 				pokemon.cureStatus();
 			}
 		},

@@ -9748,7 +9748,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	},
 	hypnosis: {
 		num: 95,
-		accuracy: 700,
+		accuracy: 70,
 		basePower: 0,
 		category: "Status",
 		name: "Hypnosis",
@@ -24002,7 +24002,32 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Rock",
 		contestType: "Tough",
-
 	},
-
+	softserve: {
+		num: 845,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Soft Serve",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, slicing: 1},
+		onAfterHit(target, source, move) {
+			const side = source.side;
+			const tastyTreats = side.sideConditions['tastytreats'];
+			if(!move.hasSheerForce && (!tastyTreats || tastyTreats.layers<4) && source.hp) {
+				side.addSideCondition('tastytreats',source);
+			}
+		},
+		onAfterSubDamage(damage, target, source, move) {
+			const side = source.side;
+			const tastyTreats = side.sideConditions['tastytreats'];
+			if (!move.hasSheerForce && source.hp  && (!tastyTreats || tastyTreats.layers < 4)) {
+				side.addSideCondition('tastytreats',source);
+			}
+		},
+		secondary: {}, // Sheer Force-boosted
+		target: "normal",
+		type: "Ice",
+	},
 };

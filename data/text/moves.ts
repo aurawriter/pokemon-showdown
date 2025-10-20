@@ -7545,8 +7545,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	uproar: {
 		name: "Uproar",
-		desc: "The user spends three turns locked into this move. This move targets an opponent at random on each turn. On the first of the three turns, all sleeping active Pokemon wake up. During the three turns, no active Pokemon can fall asleep by any means, and Pokemon switched in during the effect do not wake up. If the user is prevented from moving or the attack is not successful against the target during one of the turns, the effect ends.",
-		shortDesc: "Lasts 3 turns. Active Pokemon cannot fall asleep.",
+		desc: "The user spends three turns locked into this move. This move targets an opponent at random on each turn. On the first of the three turns, all sleeping or drowsy active Pokemon wake up. During the three turns, no active Pokemon can fall asleep or become drowsy by any means, and Pokemon switched in during the effect do not wake up. If the user is prevented from moving or the attack is not successful against the target during one of the turns, the effect ends.",
+		shortDesc: "Lasts 3 turns. Active Pokemon cannot fall asleep or become drowsy.",
 		gen6: {
 			desc: "The user spends three turns locked into this move. This move targets an adjacent opponent at random on each turn. On the first of the three turns, all sleeping active Pokemon wake up. During the three turns, no active Pokemon can fall asleep by any means, and Pokemon switched in during the effect do not wake up. If the user is prevented from moving or the attack is not successful against the target during one of the turns, the effect ends.",
 		},

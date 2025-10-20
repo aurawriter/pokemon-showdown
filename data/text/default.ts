@@ -193,11 +193,10 @@ export const DefaultText: {[k: string]: DefaultText} = {
 		damage: "  [POKEMON] was hurt by its frostbite!",
 	},
 	par: {
-		start: "  [POKEMON] is paralyzed! It may be unable to move!",
+		start: "  [POKEMON] is paralyzed!",
 		alreadyStarted: "  [POKEMON] is already paralyzed!",
 		end: "  [POKEMON] was cured of paralysis!",
 		endFromItem: "  [POKEMON]'s [ITEM] cured its paralysis!",
-		cant: "[POKEMON] is paralyzed! It can't move!",
 	},
 	psn: {
 		start: "  [POKEMON] was poisoned!",
@@ -222,7 +221,12 @@ export const DefaultText: {[k: string]: DefaultText} = {
 		endFromItem: "  [POKEMON]'s [ITEM] woke it up!",
 		cant: "[POKEMON] is fast asleep.",
 	},
-
+	dsy: {
+		start: "  [POKEMON] became drowsy!",
+		alreadyStarted: "  [POKEMON] is already drowsy!",
+		end: "  [POKEMON] woke up!",
+		endFromItem: "  [POKEMON]'s [ITEM] woke it up!",
+	},
 	// misc effects
 	confusion: {
 		start: "  [POKEMON] became confused!",

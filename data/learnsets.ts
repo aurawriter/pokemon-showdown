@@ -104798,7 +104798,7 @@ swinub: {
 					liquidation: ["9L1"],
 					meanlook: ["9L1"],
 					mist: ["9L1"],
-					ododsleuth: ["9L1"],
+					odorsleuth: ["9L1"],
 					overheat: ["9L1"],
 					partingshot: ["9L1"],
 					playrough: ["9L1"],
@@ -105916,7 +105916,7 @@ swinub: {
 		},
 	dalmaltian: {
 		learnset: {
-			avalance: ["9L1"],
+			avalanche: ["9L1"],
 			bite: ["9L1"],
 			blizzard: ["9L1"],
 			bodyslam: ["9L1"],
@@ -105955,7 +105955,7 @@ swinub: {
 			thunderfang: ["9L1"],
 			weatherball: ["9L1"],
 			tastytreats: ["9L1"],
-
+			softserve: ["9L1"],
 			},
 
 		}

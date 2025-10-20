@@ -5267,13 +5267,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	vitalspirit: {
 		onUpdate(pokemon) {
-			if (pokemon.status === 'slp') {
+			if (pokemon.status === 'slp' || pokemon.status === 'dsy') {
 				this.add('-activate', pokemon, 'ability: Vital Spirit');
 				pokemon.cureStatus();
 			}
 		},
 		onSetStatus(status, target, source, effect) {
-			if (status.id !== 'slp') return;
+			if (status.id !== 'slp' || status.id !== 'dsy') return;
 			if ((effect as Move)?.status) {
 				this.add('-immune', target, '[from] ability: Vital Spirit');
 			}
