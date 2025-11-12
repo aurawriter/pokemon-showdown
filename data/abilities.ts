@@ -7063,7 +7063,144 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 1.5,
 		num: 8,
 	},
+	cleanliness: {
+		onResidual(pokemon) {
+			const hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb','gmaxsteelsurge'];
+			const sourceSideConditions = pokemon.side.sideConditions;
+			const canBeCleaned = [];
+			for (const id in sourceSideConditions){
+				if(hazards.includes(id)){
+					canBeCleaned.push(id);
+				}
+			}
+			if (canBeCleaned.length === 0) return;
+			const cleanUp = canBeCleaned[Math.floor(Math.random()*canBeCleaned.length)];
+			if (pokemon.hp && pokemon.side.removeSideCondition(cleanUp)) {
+   				this.add('-sideend', pokemon.side, this.dex.conditions.get(cleanUp).name, '[from] ability: Cleanliness', `[of] ${pokemon}`);
+			}
+			
+		},
+		name: "Cleanliness",
+		rating: 2,
+		num: 7,
+	},
+	fermentation: {
+		onModifyMove(move) {
+			if (move.type !== 'Grass' || move.category === 'Status') return;
+			if (!move.secondaries) move.secondaries = [];
+			move.secondaries.push({
+				chance: 30,
+				volatileStatus: 'confusion',
+				ability: this.dex.abilities.get('fermentation'),
+			});
+		},
+		onAnyModifyAtk(atk, target, source, move) {
+			const abilityHolder = this.effectState.target;
+			if (!abilityHolder) return;
+			if (target === abilityHolder) return;
+			if (target.isAlly(abilityHolder)) return;
+			if (!target.volatiles['confusion']) return;
+			this.debug('Fermentation lowers confused foe Atk');
+			return this.chainModify(0.75);
+		},
+		onAnyModifySpA(spa, target, source, move) {
+			const abilityHolder = this.effectState.target;
+			if (!abilityHolder) return;
+			if (target === abilityHolder) return;
+			if (target.isAlly(abilityHolder)) return;
+			if (!target.volatiles['confusion']) return;
+			this.debug('Fermentation lowers confused foe SpA');
+			return this.chainModify(0.75);
+		},
+		name: "Fermentation",
+		rating: 2,
+		num: 1001,
+	},
+	incursion: {
+        onModifyMove(move, pokemon) {
+            let boosted = false;
+            for (const target of this.getAllActive()) {
+                if (target === pokemon) continue;
+                if (target.newlySwitched || this.queue.willMove(target)) {
+                    boosted = true;
+                }
+				else
+				{
+					boosted = false;
+					break;
+				}
+            }
+            if (boosted) {
+                this.boost({atk: 1});
+				this.add('-activate', pokemon, 'ability: Incursion');
+            }
+        },
+        name: "Incursion",
+        rating: 2.5,
+        num: 317,
+	},
+	riposte: {
+        onModifyMove(move, pokemon) {
+            let boosted = true;
+            for (const target of this.getAllActive()) {
+                if (target === pokemon) continue;
+                if (target.newlySwitched || this.queue.willMove(target)) {
+                    boosted = false;
+                }
+				else
+				{
+					boosted = true;
+					break;
+				}
+            }
+            if (boosted) {
+                this.boost({def: 1});
+				this.add('-activate', pokemon, 'ability: Riposte');
+            }
+        },
+        name: "Riposte",
+        rating: 2.5,
+        num: 317,
+	},
+	topspin: {
+    onDamagingHit(damage, target, source, move) {
+        if (!source || !target) return;
+        if (move.category !== 'Physical') return;
+        // Prevent recursion in case the random move triggers this ability again
+        if ((move as any).fromSpinReaction) return;
+
+        const moves = this.dex.moves.all().filter(m => (
+            !!m.flags?.spin &&
+            !m.isZ && !m.isMax &&
+            !m.realMove &&
+            (!m.isNonstandard || m.isNonstandard === 'Unobtainable') &&
+            m.category !== 'Status'
+        ));
+        if (!moves.length) return;
+
+        const randomMove = this.dex.getActiveMove(this.sample(moves).id);
+        (randomMove as any).fromSpinReaction = true;
+
+        // Record selected move (useful for UIs / last selected move logic)
+        target.side.lastSelectedMove = randomMove.id;
+
+        // Have the ability-holder use the move, targeting the attacker
+        this.actions.useMove(randomMove, target, source);
+    },
+	onBasePowerPriority: 23,
+	onBasePower(basePower, attacker, defender, move) {
+		if (move.flags['spin']) {
+			this.debug('Top Spin boost');
+			return this.chainModify([5324, 4096]);
+		}
+	},
+    name: "Top Spin",
+    rating: 3,
+    num: 3001,
+},
+
 };
+
 
 
 

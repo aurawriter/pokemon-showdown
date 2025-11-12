@@ -774,7 +774,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Aura Wheel",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, spin: 1},
 		secondary: {
 			chance: 100,
 			self: {
@@ -3441,7 +3441,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Darkest Lariat",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, spin: 1},
 		ignoreEvasion: true,
 		ignoreDefensive: true,
 		secondary: null,
@@ -4440,7 +4440,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Drill Peck",
 		pp: 20,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, distance: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, distance: 1, spin: 1},
 		secondary: null,
 		target: "any",
 		type: "Flying",
@@ -4454,7 +4454,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Drill Run",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1,spin: 1},
 		critRatio: 2,
 		secondary: null,
 		target: "normal",
@@ -5692,7 +5692,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Fire Spin",
 		pp: 15,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, spin: 1},
 		volatileStatus: 'partiallytrapped',
 		secondary: null,
 		target: "normal",
@@ -5862,7 +5862,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Flame Wheel",
 		pp: 25,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, defrost: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, defrost: 1, spin: 1},
 		secondary: {
 			chance: 10,
 			status: 'brn',
@@ -9658,7 +9658,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Hyper Drill",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, mirror: 1},
+		flags: {contact: 1, mirror: 1, spin: 1},
 		secondary: null,
 		target: "normal",
 		type: "Normal",
@@ -9958,7 +9958,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Ice Spinner",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, spin: 1},
 		onAfterHit(target, source) {
 			if (source.hp) {
 				this.field.clearTerrain();
@@ -13051,7 +13051,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Mortal Spin",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, spin: 1},
 		onAfterHit(target, pokemon, move) {
 			if (!move.hasSheerForce) {
 				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
@@ -15647,7 +15647,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Rapid Spin",
 		pp: 40,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, spin: 1},
 		onAfterHit(target, pokemon, move) {
 			if (!move.hasSheerForce) {
 				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
@@ -19071,7 +19071,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Spin Out",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, spin: 1},
 		self: {
 			boosts: {
 				spe: -2,
@@ -19392,7 +19392,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Steel Roller",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, protect: 1, mirror: 1, spin: 1},
 		onTry() {
 			return !this.field.isTerrain('');
 		},
@@ -22528,7 +22528,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Whirlpool",
 		pp: 15,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1, spin: 1},
 		volatileStatus: 'partiallytrapped',
 		secondary: null,
 		target: "normal",
