@@ -20790,7 +20790,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	ladizwang: {
 		num: -1188,
 		name: "Ladizwang",
-		types: {"Light"},
+		types: ["Light"],
 		baseStats: {},
 		abilities: {0: "Inner Focus", 1: "Stalwart", H: "Riposte"},
 		heightm: 1.8,
@@ -20801,7 +20801,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	sweidel: {
 		num: -1189,
 		name: "Sweidel",
-		types: {"Steel"},
+		types: ["Steel"],
 		baseStats: {},
 		abilities: {0: "Top Spin"},
 		heightm: 2.5,
