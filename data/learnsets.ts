@@ -71341,7 +71341,7 @@ swinub: {
 			hyperbeam: ["9L1", "8M", "7M", "6M"],
 			irondefense: ["9L1", "8M", "8L1", "7T", "7L1", "6T", "6L1"],
 			ironhead: ["9L1", "8M", "8L1", "7T", "7L1", "6T", "6L1"],
-			kingsshield: ["9L1", "8L0", "7L1", "6L1", "6S0"],
+			royalshield: ["9L1", "8L0", "7L1", "6L1", "6S0"],
 			laserfocus: ["7T"],
 			magnetrise: ["7T", "6T"],
 			metalsound: ["9L1", "8L1"],

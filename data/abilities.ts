@@ -3671,7 +3671,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 282,
 	},
-	queenlymajesty: {
+	regalmajesty: {
 		onFoeTryMove(target, source, move) {
 			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
 			if (move.target === 'foeSide' || (move.target === 'all' && !targetAllExceptions.includes(move.id))) {
@@ -3681,12 +3681,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const dazzlingHolder = this.effectState.target;
 			if ((source.isAlly(dazzlingHolder) || move.target === 'all') && move.priority > 0.1) {
 				this.attrLastMove('[still]');
-				this.add('cant', dazzlingHolder, 'ability: Queenly Majesty', move, '[of] ' + target);
+				this.add('cant', dazzlingHolder, 'ability: Regal Majesty', move, '[of] ' + target);
 				return false;
 			}
 		},
 		isBreakable: true,
-		name: "Queenly Majesty",
+		name: "Regal Majesty",
 		rating: 2.5,
 		num: 214,
 	},
@@ -4564,8 +4564,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyMovePriority: 1,
 		onModifyMove(move, attacker, defender) {
 			if (attacker.species.baseSpecies !== 'Aegislash' || attacker.transformed) return;
-			if (move.category === 'Status' && move.id !== 'kingsshield') return;
-			const targetForme = (move.id === 'kingsshield' ? 'Aegislash' : 'Aegislash-Blade');
+			if (move.category === 'Status' && move.id !== 'royalshield') return;
+			const targetForme = (move.id === 'royalshield' ? 'Aegislash' : 'Aegislash-Blade');
 			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
 		},
 		isPermanent: true,
@@ -7116,7 +7116,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 1001,
 	},
-	incursion: {
+	fortify: {
         onModifyMove(move, pokemon) {
             let boosted = false;
             for (const target of this.getAllActive()) {
@@ -7131,11 +7131,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
             }
             if (boosted) {
-                this.boost({atk: 1});
+                this.boost({def: 1});
 				this.add('-activate', pokemon, 'ability: Incursion');
             }
         },
-        name: "Incursion",
+        name: "Fortify",
         rating: 2.5,
         num: 317,
 	},
@@ -7154,7 +7154,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				}
             }
             if (boosted) {
-                this.boost({def: 1});
+                this.boost({atk: 1});
 				this.add('-activate', pokemon, 'ability: Riposte');
             }
         },
@@ -7197,10 +7197,29 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
     name: "Top Spin",
     rating: 3,
     num: 3001,
-},
-
-};
-
+	},
+	nopivot: {
+		onDamagingHit(damage, target, source, move) {
+			if (!move.selfSwitch) return;
+			delete move.selfSwitch;
+			this.add('activate', target, 'ability: Adhesive');
+		},
+		name: "No Pivot",
+		rating: 3,
+		num: -1001,
+	},
+	adhesive: {
+		onDamagingHit(damage, target, source, move) {
+			if (!this.checkMoveMakesContact(move, source, target)) return;
+			if (source.addVolatile('trapped', target, null, 'trapper')) {
+				this.add('-activate', target, 'ability: Adhesive');
+			}
+		},
+		name: "Adhesive",
+		rating: 3,
+		num: -1002,
+	},
+	};
 
 
 
