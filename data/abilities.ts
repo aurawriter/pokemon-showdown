@@ -7219,6 +7219,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: -1002,
 	},
+	heroic: {
+		onDamagingHit(damage, target, source, effect) {
+			this.boost({atk: 1});
+		},
+		name: "Heroic",
+		rating: 3.5,
+		num: 192,
+	},
 	};
 
 

@@ -20837,7 +20837,44 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		types: ["Poison"],
 		baseStats: {hp:120, atk: 100, def: 125,spa:40,spd:75,spe:30},
 		abilities: {0: "Sticky Hold", 1: "Liquid Ooze",H: "Adhesive"},
-		
-	}
+		heightm: 1.0,
+		weightkg: 20.1,
+		color: "Purple",
+		eggGroups: "Amorphous",
+	},
+	cuream: {
+		num: -1193,
+		name: "Cuream",
+		types: ["Fairy"],
+		baseStats: {hp: 130, atk: 70, def: 65, spa: 90, spd: 65, spe: 50},
+		abilities: {0: "Regenerator", 1: "Gooey", H: "Friend Guard"},
+		heightm: .8,
+		weightkg: 5.0,
+		color: "Pink",
+		eggGroups: ["Fairy"],
+	},
+	gilgagnash: {
+		num: -1194,
+		name: "Gilgagnash",
+		types: ["Fighting"],
+		baseStats: {hp: 82, atk: 123, def: 78, spa: 50, spd: 80, spe: 117},
+		abilities: {0: "Intimidate", 1: "Adaptability", H: "Heroic"},
+		heightm: 1.9,
+		weightkg: 85,
+		color: "Red",
+		eggGroups: ["Field"],
+	},
+	embarin: {
+		num: -1195,
+		name: "Embarin",
+		types: ["Fire"],
+		baseStats: {hp: 60, atk: 102, def: 50, spa: 102, spd: 50, spe: 121},
+		abilities: {0: "Flame Body", 1: "Pickpocket", H: "Sheer Force"},
+		heightm: 1.2,
+		weightkg: 35,
+		color: "Red",
+		eggGroups: ["Field"],
+	},
+
 	
 };
