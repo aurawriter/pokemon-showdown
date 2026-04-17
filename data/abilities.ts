@@ -7227,6 +7227,29 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 192,
 	},
+	infectious: {
+		name: "Infectious",
+		onResidualOrder: 28,
+		onResidual(pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Psycrobe') return;
+			this.damage(pokemon.baseMaxhp / 16, pokemon, pokemon);
+		},
+		onDamagingHit(damage, target, source, move) {
+			const sourceAbility = source.getAbility();
+			if (sourceAbility.isPermanent || sourceAbility.id === 'infectious') {
+				return;
+			}
+			if (this.checkMoveMakesContact(move, source, target, !source.isAlly(target))) {
+				const oldAbility = source.setAbility('infectious', target);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Infectious', this.dex.abilities.get(oldAbility).name, '[of] ' + source);
+				}
+			}
+		},
+		
+		rating: 2,
+		num: 152,
+	},
 	};
 
 

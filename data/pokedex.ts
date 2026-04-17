@@ -20840,7 +20840,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 1.0,
 		weightkg: 20.1,
 		color: "Purple",
-		eggGroups: "Amorphous",
+		eggGroups: ["Amorphous"],
 	},
 	cuream: {
 		num: -1193,
@@ -20875,6 +20875,40 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		eggGroups: ["Field"],
 	},
+	backterran: {
+		num: -1196,
+		name: "Backterran",
+		types: ["Rock"],
+		baseStats: {hp: 74, atk: 115, def: 151, spa: 50, spd: 65, spe: 70},
+		abilities: {0: "Sturdy",H: "Water Absorb"},
+		heightm: 1.9,
+		weightkg: 220,
+		color: "Brown",
+		eggGroups: ["Mineral", "Field"],
+	},
+	psycrobe: {
+		num: -1197,
+		name: "Psycrobe",
+		types: ["Psychic"],
+		baseStats: {hp: 51, atk: 30, def: 40, spa: 155, spd: 50, spe: 89},
+		abilities: {0: "Infectious", H: "Psychic Surge"},
+		heightm: .1,
+		weightkg: .1,
+		color: "Pink",
+		eggGroups: ["Amorphous"],
+	},
+	snogre: {
+		num: -1198,
+		name: "Snogre",
+		types: ["Ice"],
+		baseStats: {hp: 65, atk: 150, def: 78, spa: 142, spd: 59, spe: 47},
+		abilities: {0: "Ice Body", 1: "Slush Rush", H: "Refigerate"},
+		heightm: 2.1,
+		weightkg: 210,
+		color: "White",
+		eggGroups: ["Monster", "Mineral"],
+	},
+
 
 	
 };

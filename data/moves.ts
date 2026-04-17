@@ -5734,6 +5734,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Bug",
 		contestType: "Cute",
 	},
+	icebreaker: {
+		num: 660,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Icebreaker",
+		pp: 10,
+		priority: 2,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTry(source) {
+			if (source.activeMoveActions > 1) {
+				this.hint("Icebreaker only works on your first turn out.");
+				return false;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Cute",
+	},
 	fishiousrend: {
 		num: 755,
 		accuracy: 100,
@@ -19976,6 +19996,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: null,
 		target: "normal",
 		type: "Electric",
+	},
+	snowblindrush: {
+		num: 916,
+		accuracy: 95,
+		basePower: 100,
+		category: "Physical",
+		name: "Snowblind Rush",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		hasCrashDamage: true,
+		onMoveFail(target, source, move) {
+			this.damage(source.baseMaxhp / 2, source, source, this.dex.conditions.get('Snowblind Rush'));
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
 	},
 	superfang: {
 		num: 162,
