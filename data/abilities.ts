@@ -7266,9 +7266,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onPrepareHit(source, target, move) {
 			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch') return;
 			if (move.type === 'Flying') {
-				if (!source.hasType('Flying')) source.addType('Flying');
+				if (!source.hasType('Flying') && source.addType('Flying')) {
+					this.add('-start', source, 'typeadd', 'Flying', '[from] ability: Liftoff');
+				}
 			} else if (source.addedType === 'Flying') {
 				source.addedType = '';
+				this.add('-start', source, 'typechange', source.getTypes().join('/'), '[silent]');
 			}
 		},
 		name: "Liftoff",
