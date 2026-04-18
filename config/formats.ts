@@ -1484,7 +1484,7 @@ export const Formats: FormatList = [
 		restricted: [
 			'Armor Tail', 'Comatose', 'Contrary', 'Dazzling', 'Fur Coat', 'Gale Wings', 'Good as Gold', 'Huge Power', 'Illusion', 'Imposter',
 			'Magic Bounce', 'Magic Guard', 'Mold Breaker', 'Multiscale', 'Poison Heal', 'Prankster', 'Protosynthesis', 'Pure Power', 'Purifying Salt',
-			'Queenly Majesty', 'Quick Draw', 'Quick Feet', 'Sand Rush', 'Shadow Shield', 'Simple', 'Slush Rush', 'Stakeout', 'Stamina', 'Sturdy',
+			'Regal Majesty', 'Quick Draw', 'Quick Feet', 'Sand Rush', 'Shadow Shield', 'Simple', 'Slush Rush', 'Stakeout', 'Stamina', 'Sturdy',
 			'Surge Surfer', 'Teravolt', 'Tinted Lens', 'Triage', 'Turboblaze', 'Unaware', 'Water Bubble',
 		],
 		onValidateRule() {

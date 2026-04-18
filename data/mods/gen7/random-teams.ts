@@ -867,7 +867,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 		if (
 			['dusknoir', 'raikou', 'suicune', 'vespiquen'].includes(species.id)
 		) return 'Pressure';
-		if (species.id === 'tsareena') return 'Queenly Majesty';
+		if (species.id === 'tsareena') return 'Regal Majesty';
 		if (species.id === 'druddigon' && role === 'Bulky Support') return 'Rough Skin';
 		if (species.id === 'pangoro' && !counter.get('ironfist')) return 'Scrappy';
 		if (species.id === 'kommoo' && role === 'Z-Move user') return 'Soundproof';

@@ -4178,14 +4178,14 @@
 			"sets": [{
 				"species": "Tsareena",
 				"item": ["Choice Band"],
-				"ability": ["Queenly Majesty"],
+				"ability": ["Regal Majesty"],
 				"evs": {"atk": 252, "spd": 4, "spe": 252},
 				"nature": "Jolly",
 				"moves": [["Power Whip"], ["U-turn"], ["Knock Off", "Rapid Spin"], ["High Jump Kick"]]
 			}, {
 				"species": "Tsareena",
 				"item": ["Meadow Plate"],
-				"ability": ["Queenly Majesty"],
+				"ability": ["Regal Majesty"],
 				"evs": {"hp": 56, "atk": 252, "spe": 200},
 				"nature": "Adamant",
 				"moves": [["Power Whip"], ["U-turn", "Synthesis"], ["Knock Off"], ["Rapid Spin"]]
@@ -5244,7 +5244,7 @@
 			"sets": [{
 				"species": "Tsareena",
 				"item": ["Meadow Plate"],
-				"ability": ["Queenly Majesty"],
+				"ability": ["Regal Majesty"],
 				"evs": {"atk": 252, "def": 4, "spe": 252},
 				"nature": "Adamant",
 				"moves": [["Rapid Spin"], ["Power Whip"], ["Knock Off"], ["Synthesis"]]

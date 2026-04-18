@@ -3164,7 +3164,7 @@
 			"sets": [{
 				"species": "Tsareena",
 				"item": ["Heavy-Duty Boots"],
-				"ability": ["Queenly Majesty"],
+				"ability": ["Regal Majesty"],
 				"evs": {"hp": 4, "atk": 252, "spe": 252},
 				"nature": "Jolly",
 				"moves": [["Power Whip"], ["Rapid Spin"], ["Knock Off"], ["Triple Axel"]]
@@ -3498,14 +3498,14 @@
 			"sets": [{
 				"species": "Tsareena",
 				"item": ["Heavy-Duty Boots"],
-				"ability": ["Queenly Majesty"],
+				"ability": ["Regal Majesty"],
 				"evs": {"hp": 4, "atk": 252, "spe": 252},
 				"nature": "Jolly",
 				"moves": [["Power Whip"], ["Rapid Spin"], ["Knock Off"], ["U-turn", "Synthesis"]]
 			}, {
 				"species": "Tsareena",
 				"item": ["Protective Pads"],
-				"ability": ["Queenly Majesty"],
+				"ability": ["Regal Majesty"],
 				"evs": {"hp": 4, "atk": 252, "spe": 252},
 				"nature": "Jolly",
 				"moves": [["Power Whip"], ["Rapid Spin"], ["Knock Off"], ["Triple Axel"]]
