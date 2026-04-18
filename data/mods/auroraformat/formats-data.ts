@@ -4593,7 +4593,8 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	orthworm: {
-		tier: "Illegal",
+		tier: "OU",
+		doublesTier: "DOU",
 	},
 	tandemaus: {
 		tier: "LC",
@@ -5180,6 +5181,74 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	steerling: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	repetapir: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	elecacha: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	fermentoss: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	lorzwang: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	ladizwang: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	sweidel: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	dapparition: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	trampede: {
+		tier: "OU",
+		doublesTier: "DOU"
+	},
+	googeous: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	cuream: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	gilgagnash: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	embarin: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	backterran: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	mewgeosie: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	artsenal: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	cirquite: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	orthwormaurora: {
 		tier: "OU",
 		doublesTier: "DOU",
 	}
