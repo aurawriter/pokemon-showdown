@@ -17566,6 +17566,17 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Pink",
 		eggGroups: ["Field"],
 	},
+	orthwormaurora: {
+		num: 968,
+		name: "Orthworm-Aurora",
+		types: ["Cosmic"],
+		baseStats: {hp: 70, atk: 60, def: 55, spa: 85, spd: 145, spe: 65},
+		abilities: {0: "Light Lunch", H: "Anti-Grav"},
+		heightm: 2.5,
+		weightkg: 310,
+		color: "Purple",
+		eggGroups: ["Field"],
+	},
 	glimmet: {
 		num: 969,
 		name: "Glimmet",
@@ -20902,12 +20913,35 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Snogre",
 		types: ["Ice"],
 		baseStats: {hp: 65, atk: 150, def: 78, spa: 142, spd: 59, spe: 47},
-		abilities: {0: "Ice Body", 1: "Slush Rush", H: "Refigerate"},
+		abilities: {0: "Ice Body", 1: "Reckless", H: "Refigerate"},
 		heightm: 2.1,
 		weightkg: 210,
 		color: "White",
 		eggGroups: ["Monster", "Mineral"],
 	},
+	cirquite: {
+		num: -1199,
+		name: "Cirquite",
+		types: ["Flying"],
+		baseStats: {hp: 68, atk: 92, def: 57, spa: 97, spd: 56, spe: 120},
+		abilities: {0: "Wind Rider", H: "Squall"},
+		heightm: 1.3,
+		weightkg: 5
+		color: "White",
+		eggGroups: ["Amorphous"],
+	},
+	volaraptor: {
+		num: -1200,
+		name: "Volaraptor",
+		types: ["Dragon"],
+		baseStats: {hp: 64, atk: 100, def: 60, spa: 85, spd: 50, spe: 131},
+		abilities: {0: "Liftoff"},
+		heightm: 1.3,
+		weight: 5,
+		color: "Green",
+		eggGroups: ["Dragon", "Flying"],
+	},
+
 
 
 	

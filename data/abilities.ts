@@ -7250,6 +7250,45 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 152,
 	},
+	squall: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['wind']) {
+				this.debug('Squall boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Squall",
+		rating: 3.5,
+		num: 292,
+	},
+	liftoff: {
+		onModifyMove(move, attacker) {
+			if (move.type === 'Flying' && !attacker.hasType('Flying')) {
+				attacker.addType('Flying'))
+			}
+			if (move.type != 'Flying' && attacker.hasType('Flying')) {
+				attacker.setType(attacker.getTypes(true).filter(type => type !== 'Flying') as any);
+			}
+		},
+		name: "Liftoff",
+		rating: 3.5,
+		num: 300,
+	},
+	lightlunch: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Light') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Light Lunch');
+				}
+				return null;
+			}
+		},
+		isBreakable: true,
+		name: "Light Lunch",
+		rating: 3.5,
+		num: 297,
+	},
 	};
 
 
