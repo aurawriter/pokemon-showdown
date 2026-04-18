@@ -7263,12 +7263,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 292,
 	},
 	liftoff: {
-		onModifyMove(move, attacker) {
-			if (move.type === 'Flying' && !attacker.hasType('Flying')) {
-				attacker.addType('Flying')
-			}
-			if (move.type != 'Flying' && attacker.hasType('Flying')) {
-				attacker.setType(attacker.getTypes(true).filter(type => type !== 'Flying') as any);
+		onPrepareHit(source, target, move) {
+			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch') return;
+			if (move.type === 'Flying') {
+				if (!source.hasType('Flying')) source.addType('Flying');
+			} else if (source.addedType === 'Flying') {
+				source.addedType = '';
 			}
 		},
 		name: "Liftoff",
