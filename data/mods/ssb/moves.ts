@@ -151,7 +151,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		onPrepareHit(target, source) {
 			this .add('-anim', source, 'Petal Dance', target);
-			this .add('-anim', source, 'King\'s Shield', source);
+			this .add('-anim', source, 'Royal Shield', source);
 		},
 		onTryHit(pokemon) {
 			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
