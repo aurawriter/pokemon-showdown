@@ -63,7 +63,7 @@ export const Tags: {[id: string]: TagData} = {
 	},
 	contact: {
 		name: "Contact",
-		desc: "Affected by a variety of moves, abilities, and items. Moves affected by contact moves include: Spiky Shield, King's Shield. Abilities affected by contact moves include: Iron Barbs, Rough Skin, Gooey, Flame Body, Static, Tough Claws. Items affected by contact moves include: Rocky Helmet, Sticky Barb.",
+		desc: "Affected by a variety of moves, abilities, and items. Moves affected by contact moves include: Spiky Shield, Royal Shield. Abilities affected by contact moves include: Iron Barbs, Rough Skin, Gooey, Flame Body, Static, Tough Claws. Items affected by contact moves include: Rocky Helmet, Sticky Barb.",
 		moveFilter: move => 'contact' in move.flags,
 	},
 	sound: {
@@ -103,7 +103,7 @@ export const Tags: {[id: string]: TagData} = {
 	},
 	bypassprotect: {
 		name: "Bypass Protect",
-		desc: "Bypasses Protect, Detect, King's Shield, and Spiky Shield.",
+		desc: "Bypasses Protect, Detect, Royal Shield, and Spiky Shield.",
 		moveFilter: move => move.target !== 'self' && !('protect' in move.flags),
 	},
 	nonreflectable: {

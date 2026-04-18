@@ -1581,7 +1581,7 @@
         "ability": ["Stance Change"],
         "evs": {"hp": 252, "atk": 252, "spd": 4},
         "nature": "Adamant",
-        "moves": [["Shadow Sneak"], ["Iron Head", "Sacred Sword"], ["Swords Dance"], ["King's Shield", "Shadow Claw"]]
+        "moves": [["Shadow Sneak"], ["Iron Head", "Sacred Sword"], ["Swords Dance"], ["Royal Shield", "Shadow Claw"]]
       },
       {
         "species": "Aegislash",

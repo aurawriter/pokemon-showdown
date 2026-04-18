@@ -51,7 +51,7 @@ interface MoveFlags {
 	nosleeptalk?: 1; // Cannot be selected by Sleep Talk.
 	pledgecombo?: 1; // Gems will not activate. Cannot be redirected by Storm Drain / Lightning Rod.
 	powder?: 1; // Has no effect on Pokemon which are Grass-type, have the Ability Overcoat, or hold Safety Goggles.
-	protect?: 1; // Blocked by Detect, Protect, Spiky Shield, and if not a Status move, King's Shield.
+	protect?: 1; // Blocked by Detect, Protect, Spiky Shield, and if not a Status move, Royal Shield.
 	pulse?: 1; // Power is multiplied by 1.5 when used by a Pokemon with the Ability Mega Launcher.
 	punch?: 1; // Power is multiplied by 1.2 when used by a Pokemon with the Ability Iron Fist.
 	kick?: 1; //Power is multiplied by 1.2 when used by a Pokemon with the Ability Deadly Kicks

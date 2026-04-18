@@ -88,8 +88,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBeforeMovePriority: 11,
 		onBeforeMove(attacker, defender, move) {
 			if (attacker.species.baseSpecies !== 'Aegislash' || attacker.transformed) return;
-			if (move.category === 'Status' && move.id !== 'kingsshield') return;
-			const targetForme = (move.id === 'kingsshield' ? 'Aegislash' : 'Aegislash-Blade');
+			if (move.category === 'Status' && move.id !== 'royalshield') return;
+			const targetForme = (move.id === 'royalshield' ? 'Aegislash' : 'Aegislash-Blade');
 			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
 		},
 		onModifyMove() {},

@@ -547,7 +547,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	kingsshield: {
+	royalshield: {
 		inherit: true,
 		condition: {
 			duration: 1,
@@ -569,13 +569,13 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 					}
 				}
 				if (this.checkMoveMakesContact(move, source, target)) {
-					this.boost({atk: -2}, source, target, this.dex.getActiveMove("King's Shield"));
+					this.boost({atk: -2}, source, target, this.dex.getActiveMove("Royal Shield"));
 				}
 				return this.NOT_FAIL;
 			},
 			onHit(target, source, move) {
 				if (move.isZOrMaxPowered && this.checkMoveMakesContact(move, source, target)) {
-					this.boost({atk: -2}, source, target, this.dex.getActiveMove("King's Shield"));
+					this.boost({atk: -2}, source, target, this.dex.getActiveMove("Royal Shield"));
 				}
 			},
 		},
@@ -645,7 +645,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	metronome: {
 		inherit: true,
 		noMetronome: [
-			"After You", "Assist", "Baneful Bunker", "Beak Blast", "Belch", "Bestow", "Celebrate", "Chatter", "Copycat", "Counter", "Covet", "Crafty Shield", "Destiny Bond", "Detect", "Diamond Storm", "Dragon Ascent", "Endure", "Feint", "Fleur Cannon", "Focus Punch", "Follow Me", "Freeze Shock", "Helping Hand", "Hold Hands", "Hyperspace Fury", "Hyperspace Hole", "Ice Burn", "Instruct", "King's Shield", "Light of Ruin", "Mat Block", "Me First", "Metronome", "Mimic", "Mind Blown", "Mirror Coat", "Mirror Move", "Nature Power", "Origin Pulse", "Photon Geyser", "Plasma Fists", "Precipice Blades", "Protect", "Quash", "Quick Guard", "Rage Powder", "Relic Song", "Secret Sword", "Shell Trap", "Sketch", "Sleep Talk", "Snarl", "Snatch", "Snore", "Spectral Thief", "Spiky Shield", "Spotlight", "Steam Eruption", "Struggle", "Switcheroo", "Techno Blast", "Thief", "Thousand Arrows", "Thousand Waves", "Transform", "Trick", "V-create", "Wide Guard",
+			"After You", "Assist", "Baneful Bunker", "Beak Blast", "Belch", "Bestow", "Celebrate", "Chatter", "Copycat", "Counter", "Covet", "Crafty Shield", "Destiny Bond", "Detect", "Diamond Storm", "Dragon Ascent", "Endure", "Feint", "Fleur Cannon", "Focus Punch", "Follow Me", "Freeze Shock", "Helping Hand", "Hold Hands", "Hyperspace Fury", "Hyperspace Hole", "Ice Burn", "Instruct", "Royal Shield", "Light of Ruin", "Mat Block", "Me First", "Metronome", "Mimic", "Mind Blown", "Mirror Coat", "Mirror Move", "Nature Power", "Origin Pulse", "Photon Geyser", "Plasma Fists", "Precipice Blades", "Protect", "Quash", "Quick Guard", "Rage Powder", "Relic Song", "Secret Sword", "Shell Trap", "Sketch", "Sleep Talk", "Snarl", "Snatch", "Snore", "Spectral Thief", "Spiky Shield", "Spotlight", "Steam Eruption", "Struggle", "Switcheroo", "Techno Blast", "Thief", "Thousand Arrows", "Thousand Waves", "Transform", "Trick", "V-create", "Wide Guard",
 		],
 	},
 	miracleeye: {

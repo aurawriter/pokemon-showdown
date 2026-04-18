@@ -72,7 +72,7 @@ const HAZARDS = [
 ];
 // Protect and its variants
 const PROTECT_MOVES = [
-	'banefulbunker', 'kingsshield', 'protect', 'spikyshield',
+	'banefulbunker', 'royalshield', 'protect', 'spikyshield',
 ];
 // Moves that switch the user out
 const PIVOT_MOVES = [
@@ -1070,7 +1070,7 @@ export class RandomGen7Teams extends RandomGen8Teams {
 			(ability === 'Rough Skin') || (species.id !== 'hooh' &&
 			ability === 'Regenerator' && species.baseStats.hp + species.baseStats.def >= 180 && this.randomChance(1, 2))
 		) return 'Rocky Helmet';
-		if (['kingsshield', 'protect', 'spikyshield', 'substitute'].some(m => moves.has(m))) return 'Leftovers';
+		if (['royalshield', 'protect', 'spikyshield', 'substitute'].some(m => moves.has(m))) return 'Leftovers';
 		if (
 			this.dex.getEffectiveness('Ground', species) >= 2 &&
 			ability !== 'Levitate' && species.id !== 'golemalola'

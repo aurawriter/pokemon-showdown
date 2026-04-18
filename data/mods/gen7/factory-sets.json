@@ -979,7 +979,7 @@
 				"ability": ["Stance Change"],
 				"evs": {"hp": 252, "atk": 4, "spd": 252},
 				"nature": "Sassy",
-				"moves": [["King's Shield"], ["Gyro Ball"], ["Shadow Ball"], ["Toxic"]]
+				"moves": [["Royal Shield"], ["Gyro Ball"], ["Shadow Ball"], ["Toxic"]]
 			}]
 		},
 		"landorus": {

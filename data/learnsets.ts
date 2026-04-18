@@ -71385,7 +71385,7 @@ swinub: {
 			frostbite: ["9L1"],
 		},
 		eventData: [
-			{generation: 6, level: 50, gender: "F", nature: "Quiet", moves: ["wideguard", "kingsshield", "shadowball", "flashcannon"], pokeball: "cherishball"},
+			{generation: 6, level: 50, gender: "F", nature: "Quiet", moves: ["wideguard", "royalshield", "shadowball", "flashcannon"], pokeball: "cherishball"},
 		],
 	},
 	spritzee: {

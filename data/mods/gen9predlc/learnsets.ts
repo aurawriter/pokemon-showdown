@@ -67241,7 +67241,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			hyperbeam: ["8M", "7M", "6M"],
 			irondefense: ["8M", "8L1", "7T", "7L1", "6T", "6L1"],
 			ironhead: ["8M", "8L1", "7T", "7L1", "6T", "6L1"],
-			kingsshield: ["8L0", "7L1", "6L1", "6S0"],
+			royalshield: ["8L0", "7L1", "6L1", "6S0"],
 			laserfocus: ["7T"],
 			magnetrise: ["7T", "6T"],
 			metalsound: ["8L1"],
@@ -67281,7 +67281,7 @@ export const Learnsets: {[speciesid: string]: LearnsetData} = {
 			wideguard: ["6S0"],
 		},
 		eventData: [
-			{generation: 6, level: 50, gender: "F", nature: "Quiet", moves: ["wideguard", "kingsshield", "shadowball", "flashcannon"], pokeball: "cherishball"},
+			{generation: 6, level: 50, gender: "F", nature: "Quiet", moves: ["wideguard", "royalshield", "shadowball", "flashcannon"], pokeball: "cherishball"},
 		],
 	},
 	spritzee: {

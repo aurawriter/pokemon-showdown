@@ -1877,10 +1877,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	stancechange: {
 		name: "Stance Change",
-		desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before using an attacking move, and changes to Shield Forme before using King's Shield.",
-		shortDesc: "If Aegislash, changes Forme to Blade before attacks and Shield before King's Shield.",
+		desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before using an attacking move, and changes to Shield Forme before using Royal Shield.",
+		shortDesc: "If Aegislash, changes Forme to Blade before attacks and Shield before Royal Shield.",
 		gen6: {
-			desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before attempting to use an attacking move, and changes to Shield Forme before attempting to use King's Shield.",
+			desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before attempting to use an attacking move, and changes to Shield Forme before attempting to use Royal Shield.",
 		},
 
 		transform: "Changed to Blade Forme!",

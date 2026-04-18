@@ -70320,7 +70320,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			hyperbeam: ["1L1"],
 			irondefense: ["1L1"],
 			ironhead: ["1L1"],
-			kingsshield: ["1L1"],
+			royalshield: ["1L1"],
 			laserfocus: ["1L1"],
 			magnetrise: ["1L1"],
 			metalsound: ["1L1"],

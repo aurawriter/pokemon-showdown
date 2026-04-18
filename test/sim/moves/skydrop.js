@@ -83,7 +83,7 @@ describe('Sky Drop', function () {
 		battle = common.createBattle([[
 			{species: 'Aerodactyl', moves: ['skydrop']},
 		], [
-			{species: 'Aegislash', ability: 'stancechange', moves: ['tackle', 'kingsshield']},
+			{species: 'Aegislash', ability: 'stancechange', moves: ['tackle', 'royalshield']},
 		]]);
 
 		const aegi = battle.p2.active[0];
@@ -92,7 +92,7 @@ describe('Sky Drop', function () {
 		battle.makeChoices();
 		assert.species(aegi, 'Aegislash-Blade');
 		battle.makeChoices();
-		battle.makeChoices('auto', 'move kingsshield');
+		battle.makeChoices('auto', 'move royalshield');
 		assert.species(aegi, 'Aegislash-Blade');
 	});
 
@@ -143,7 +143,7 @@ describe('Sky Drop', function () {
 		battle = common.createBattle([[
 			{species: 'Aerodactyl', moves: ['skydrop']},
 		], [
-			{species: 'Aegislash', moves: ['kingsshield']},
+			{species: 'Aegislash', moves: ['royalshield']},
 			{species: 'Ferrothorn', ability: 'ironbarbs', moves: ['sleeptalk']},
 		]]);
 		const aerodactyl = battle.p1.active[0];

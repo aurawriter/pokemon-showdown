@@ -1760,15 +1760,15 @@
     },
     "aegislash": {
         "level": 80,
-        "moves": ["closecombat", "flashcannon", "kingsshield", "shadowball", "shadowsneak", "substitute", "toxic"],
+        "moves": ["closecombat", "flashcannon", "royalshield", "shadowball", "shadowsneak", "substitute", "toxic"],
         "doublesLevel": 84,
-        "doublesMoves": ["flashcannon", "kingsshield", "shadowball", "shadowsneak"]
+        "doublesMoves": ["flashcannon", "royalshield", "shadowball", "shadowsneak"]
     },
     "aegislashblade": {
         "level": 80,
         "moves": ["closecombat", "ironhead", "shadowclaw", "shadowsneak", "swordsdance"],
         "doublesLevel": 84,
-        "doublesMoves": ["closecombat", "ironhead", "kingsshield", "shadowclaw", "shadowsneak", "swordsdance"]
+        "doublesMoves": ["closecombat", "ironhead", "royalshield", "shadowclaw", "shadowsneak", "swordsdance"]
     },
     "aromatisse": {
         "level": 88,

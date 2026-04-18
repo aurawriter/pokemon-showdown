@@ -748,7 +748,7 @@ export class BattleActions {
 			for (const target of targets) {
 				let broke = false;
 				for (const effectid of [
-					'banefulbunker', 'burningbulwark', 'kingsshield', 'obstruct', 'protect', 'silktrap', 'spikyshield',
+					'banefulbunker', 'burningbulwark', 'royalshield', 'obstruct', 'protect', 'silktrap', 'spikyshield',
 				]) {
 					if (target.removeVolatile(effectid)) broke = true;
 				}

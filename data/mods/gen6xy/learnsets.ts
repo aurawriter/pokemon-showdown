@@ -49656,7 +49656,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			hyperbeam: ["6M"],
 			irondefense: ["6L1"],
 			ironhead: ["6L1"],
-			kingsshield: ["6L1", "6S0"],
+			royalshield: ["6L1", "6S0"],
 			nightslash: ["6L1"],
 			powertrick: ["6L1"],
 			protect: ["6M"],

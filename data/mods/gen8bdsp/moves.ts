@@ -507,7 +507,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		isNonstandard: "Past",
 	},
-	kingsshield: {
+	royalshield: {
 		inherit: true,
 		isNonstandard: "Past",
 	},

@@ -293,7 +293,7 @@ describe('Future Sight', function () {
 
 	it(`should use the user's most recent Special Attack stat if the user is on the field`, function () {
 		battle = common.createBattle([[
-			{species: 'Aegislash', ability: 'stancechange', moves: ['futuresight', 'kingsshield']},
+			{species: 'Aegislash', ability: 'stancechange', moves: ['futuresight', 'royalshield']},
 		], [
 			{species: 'Ho-Oh', ability: 'shellarmor', moves: ['recover']},
 		]]);
@@ -304,15 +304,15 @@ describe('Future Sight', function () {
 		assert.bounded(damage, [79, 94]); // Blade Forme damage
 
 		battle.makeChoices();
-		battle.makeChoices('move kingsshield', 'auto');
-		battle.makeChoices('move kingsshield', 'auto');
+		battle.makeChoices('move royalshield', 'auto');
+		battle.makeChoices('move royalshield', 'auto');
 		damage = hooh.maxhp - hooh.hp;
 		assert.bounded(damage, [34, 41]); // Shield Forme damage
 	});
 
 	it.skip(`should use the user's most recent Special Attack stat, even if the user is not on the field`, function () {
 		battle = common.createBattle([[
-			{species: 'Aegislash', ability: 'stancechange', moves: ['futuresight', 'kingsshield']},
+			{species: 'Aegislash', ability: 'stancechange', moves: ['futuresight', 'royalshield']},
 			{species: 'Wynaut', moves: ['sleeptalk']},
 		], [
 			{species: 'Ho-Oh', ability: 'shellarmor', moves: ['recover', 'flareblitz']},

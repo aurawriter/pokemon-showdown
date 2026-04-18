@@ -444,7 +444,7 @@
         "moves": ["earthquake", "jumpkick", "megahorn", "protect", "return", "suckerpunch"]
     },
     "smeargle": {
-        "moves": ["fakeout", "followme", "helpinghand", "kingsshield", "spore", "stickyweb", "tailwind", "transform", "wideguard"]
+        "moves": ["fakeout", "followme", "helpinghand", "royalshield", "spore", "stickyweb", "tailwind", "transform", "wideguard"]
     },
     "hitmontop": {
         "moves": ["closecombat", "fakeout", "feint", "helpinghand", "machpunch", "rapidspin", "suckerpunch", "wideguard"]
@@ -1398,10 +1398,10 @@
         "moves": ["ironhead", "protect", "sacredsword", "shadowclaw", "shadowsneak", "swordsdance"]
     },
     "aegislash": {
-        "moves": ["flashcannon", "hiddenpowerice", "kingsshield", "shadowball", "shadowsneak"]
+        "moves": ["flashcannon", "hiddenpowerice", "royalshield", "shadowball", "shadowsneak"]
     },
     "aegislashblade": {
-        "moves": ["ironhead", "kingsshield", "sacredsword", "shadowclaw", "shadowsneak", "swordsdance"]
+        "moves": ["ironhead", "royalshield", "sacredsword", "shadowclaw", "shadowsneak", "swordsdance"]
     },
     "aromatisse": {
         "moves": ["healpulse", "moonblast", "protect", "thunderbolt", "trickroom"]

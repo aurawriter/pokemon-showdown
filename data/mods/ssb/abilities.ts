@@ -191,7 +191,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 
 	// aegii
 	setthestage: {
-		desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before attempting to use an attacking move, and changes to Shield Forme before attempting to use King's Shield. This Pokemon's moves that match one of its types have a same-type attack bonus (STAB) of 2 instead of 1.5. On switch-in, this Pokemon selects a physical or special set.",
+		desc: "If this Pokemon is an Aegislash, it changes to Blade Forme before attempting to use an attacking move, and changes to Shield Forme before attempting to use Royal Shield. This Pokemon's moves that match one of its types have a same-type attack bonus (STAB) of 2 instead of 1.5. On switch-in, this Pokemon selects a physical or special set.",
 		shortDesc: "Stance Change + Adaptability; on switch-in, selects physical or special set.",
 		isPermanent: true,
 		onSwitchIn(pokemon) {
@@ -204,8 +204,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onModifyMove(move, attacker, defender) {
 			move.stab = 2;
 			if (attacker.species.baseSpecies !== 'Aegislash' || attacker.transformed) return;
-			if (move.category === 'Status' && move.id !== 'kingsshield' && move.id !== 'reset') return;
-			const targetForme = (move.id === 'kingsshield' || move.id === 'reset' ? 'Aegislash' : 'Aegislash-Blade');
+			if (move.category === 'Status' && move.id !== 'royalshield' && move.id !== 'reset') return;
+			const targetForme = (move.id === 'royalshield' || move.id === 'reset' ? 'Aegislash' : 'Aegislash-Blade');
 			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
 		},
 		name: "Set the Stage",

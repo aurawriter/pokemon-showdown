@@ -207,7 +207,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 		},
 	},
-	kingsshield: {
+	royalshield: {
 		inherit: true,
 		condition: {
 			duration: 1,
@@ -487,7 +487,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				def: -1,
 			},
 		},
-		desc: "If this move is successful, it breaks through the target's Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn. Damage doubles and no accuracy check is done if the target has used Minimize while active. 100% chance to lower the target's Defense by one stage. This move removes the target's Substitute (if one is active). This move is also a guaranteed critical hit.",
+		desc: "If this move is successful, it breaks through the target's Detect, Royal Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn. Damage doubles and no accuracy check is done if the target has used Minimize while active. 100% chance to lower the target's Defense by one stage. This move removes the target's Substitute (if one is active). This move is also a guaranteed critical hit.",
 		shortDesc: "Disappears turn 1. Hits turn 2. Breaks protection. Lowers target's Def by 1 stage.",
 	},
 	shadowforce: {
@@ -502,7 +502,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			chance: 100,
 			volatileStatus: 'curse',
 		},
-		desc: "If this move is successful, it breaks through the target's Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn. Damage doubles and no accuracy check is done if the target has used Minimize while active. 100% chance to inflict a curse (ghost type) onto the target. This move removes the target's Substitute (if one is active). This move is also a guaranteed critical hit.",
+		desc: "If this move is successful, it breaks through the target's Detect, Royal Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally. This attack charges on the first turn and executes on the second. On the first turn, the user avoids all attacks. If the user is holding a Power Herb, the move completes in one turn. Damage doubles and no accuracy check is done if the target has used Minimize while active. 100% chance to inflict a curse (ghost type) onto the target. This move removes the target's Substitute (if one is active). This move is also a guaranteed critical hit.",
 		shortDesc: "Disappears turn 1. Hits turn 2. Breaks protection. Curses the target.",
 	},
 	skydrop: {

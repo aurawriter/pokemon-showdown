@@ -435,7 +435,7 @@ export default class TeamGenerator {
 					case 'endure':
 						weight *= 3;
 						break;
-					case 'protect': case 'kingsshield': case 'silktrap':
+					case 'protect': case 'royalshield': case 'silktrap':
 						weight *= 4;
 						break;
 					case 'banefulbunker': case 'burningbulwark': case 'spikyshield':

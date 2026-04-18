@@ -4942,7 +4942,7 @@
         "sets": [
             {
                 "role": "Staller",
-                "movepool": ["ironhead", "kingsshield", "shadowball", "substitute", "toxic"]
+                "movepool": ["ironhead", "royalshield", "shadowball", "substitute", "toxic"]
             }
         ]
     },
@@ -4951,7 +4951,7 @@
         "sets": [
             {
                 "role": "Setup Sweeper",
-                "movepool": ["ironhead", "kingsshield", "sacredsword", "shadowclaw", "shadowsneak", "swordsdance"]
+                "movepool": ["ironhead", "royalshield", "sacredsword", "shadowclaw", "shadowsneak", "swordsdance"]
             }
         ]
     },

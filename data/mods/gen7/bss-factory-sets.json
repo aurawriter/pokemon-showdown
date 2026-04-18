@@ -8,21 +8,21 @@
 			"evs": {"hp": 252, "atk": 4, "spa": 252},
 			"ivs": {"spe": 0},
 			"nature": "Quiet",
-			"moves": [["King's Shield"], ["Shadow Ball"], ["Flash Cannon", "Sacred Sword"], ["Shadow Sneak"]]
+			"moves": [["Royal Shield"], ["Shadow Ball"], ["Flash Cannon", "Sacred Sword"], ["Shadow Sneak"]]
 		}, {
 			"species": "Aegislash",
 			"item": "Life Orb",
 			"ability": "Stance Change",
 			"evs": {"hp": 4, "atk": 252, "spe": 252},
 			"nature": "Jolly",
-			"moves": [["Swords Dance", "King's Shield"], ["Shadow Claw"], ["Sacred Sword", "Iron Head"], ["Shadow Sneak"]]
+			"moves": [["Swords Dance", "Royal Shield"], ["Shadow Claw"], ["Sacred Sword", "Iron Head"], ["Shadow Sneak"]]
 		}, {
 			"species": "Aegislash",
 			"item": "Ghostium Z",
 			"ability": "Stance Change",
 			"evs": {"hp": 252, "atk": 252, "spd": 4},
 			"nature": "Brave",
-			"moves": [["Swords Dance", "King's Shield"], ["Shadow Claw"], ["Sacred Sword"], ["Shadow Sneak"]]
+			"moves": [["Swords Dance", "Royal Shield"], ["Shadow Claw"], ["Sacred Sword"], ["Shadow Sneak"]]
 		}, {
 			"species": "Aegislash",
 			"item": "Focus Sash",
@@ -37,7 +37,7 @@
 			"evs": {"hp": 220, "spa": 196, "spe": 92},
 			"ivs": {"atk": 0},
 			"nature": "Modest",
-			"moves": [["King's Shield", "Hidden Power Ice", "Hidden Power Fire"], ["Toxic"], ["Substitute"], ["Shadow Ball"]]
+			"moves": [["Royal Shield", "Hidden Power Ice", "Hidden Power Fire"], ["Toxic"], ["Substitute"], ["Shadow Ball"]]
 		}]
 	},
 	"alakazam": {
