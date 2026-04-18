@@ -758,7 +758,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		inherit: true,
 		rating: 5,
 	},
-	queenlymajesty: {
+	regalmajesty: {
 		inherit: true,
 		rating: 2.5,
 	},

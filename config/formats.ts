@@ -1162,10 +1162,10 @@ export const Formats: FormatList = [
 				const abilityTable = new Map<string, number>();
 				const base: {[k: string]: string} = {
 					airlock: 'cloudnine',
-					armortail: 'queenlymajesty',
+					armortail: 'regalmajesty',
 					battlearmor: 'shellarmor',
 					clearbody: 'whitesmoke',
-					dazzling: 'queenlymajesty',
+					dazzling: 'regalmajesty',
 					emergencyexit: 'wimpout',
 					filter: 'solidrock',
 					gooey: 'tanglinghair',
