@@ -7265,7 +7265,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	liftoff: {
 		onModifyMove(move, attacker) {
 			if (move.type === 'Flying' && !attacker.hasType('Flying')) {
-				attacker.addType('Flying'))
+				attacker.addType('Flying')
 			}
 			if (move.type != 'Flying' && attacker.hasType('Flying')) {
 				attacker.setType(attacker.getTypes(true).filter(type => type !== 'Flying') as any);

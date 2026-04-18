@@ -20926,7 +20926,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseStats: {hp: 68, atk: 92, def: 57, spa: 97, spd: 56, spe: 120},
 		abilities: {0: "Wind Rider", H: "Squall"},
 		heightm: 1.3,
-		weightkg: 5
+		weightkg: 5,
 		color: "White",
 		eggGroups: ["Amorphous"],
 	},
