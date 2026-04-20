@@ -24471,6 +24471,49 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {basePower: 160},
 		contestType: "Tough",
 	},
+	escapeplan: {
+		num: 816,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Escape Plan",
+		pp: 10,
+		priority: -3,
+		flags: {snatch: 1, noassist: 1, failcopycat: 1, failinstruct: 1},
+		onTry(source) {
+			return !!this.canSwitch(source.side);
+		},
+		priorityChargeCallback(pokemon) {
+			pokemon.addVolatile('escapeplan');
+		},
+		beforeMoveCallback(pokemon) {
+			if (!pokemon.volatiles['escapeplan']?.gotHit) {
+				this.add('cant', pokemon, 'Escape Plan', 'Escape Plan');
+				return true;
+			}
+		},
+		volatileStatus: 'escapeplan',
+		condition: {
+			duration: 1,
+			onStart(pokemon) {
+				this.add('-message', `${pokemon.name} is planning to escape!`);
+				pokemon.addVolatile('endure');
+			},
+			onHit(pokemon, source, move) {
+				if (move.category !== 'Status') {
+					this.effectState.gotHit = true;
+				}
+			},
+			onTryAddVolatile(status, pokemon) {
+				if (status.id === 'flinch') return null;
+			},
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "self",
+		type: "Normal",
+		contestType: "Clever",
+	},
 	overwhelm: {
 		num: 815,
 		accuracy: 100,
@@ -24513,5 +24556,4 @@ export const Moves: {[moveid: string]: MoveData} = {
 		contestType: "Tough",
 	},
 	
-
 };
