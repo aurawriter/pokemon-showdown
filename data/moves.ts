@@ -34,6 +34,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Grass",
 		contestType: "Clever",
+
 	},
 	accelerock: {
 		num: 709,
@@ -17510,7 +17511,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	shortcircuit: {
 		num: 900,
 		accuracy: 100,
-		basePower: 60,
+		basePower: 100,
 		category: "Physical",
 		name: "Short Circuit",
 		pp: 15,
@@ -20896,12 +20897,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Normal",
 	},
-	terraform: {
+	terraformbeam: {
 		num: 901,
 		accuracy: 100,
 		basePower: 60,
-		category: "Physical",
-		name: "Terraform",
+		category: "Special",
+		name: "Terraform Beam",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -20912,7 +20913,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: null,
 		target: "normal",
-		type: "Ground",
+		type: "Cosmic",
 		contestType: "Tough",
 	},
 	terrainpulse: {
@@ -24182,4 +24183,335 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Grass",
 	},
+	checkmate: {
+		num: 565,
+		accuracy: 100,
+		basePower: 50,
+		category: "Physical",
+		name: "Checkmate",
+		pp: 25,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (!target || target.fainted || target.hp <= 0) this.boost({atk: 3}, pokemon, pokemon, move);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Cool",
+	},
+	eulogy: {
+		num: 811,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Eulogy",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, allyanim: 1,sound:1},
+		onHit(target, source) {
+			const perish = target.volatiles['perishsong'];
+			if (perish) {
+				perish.duration = Math.max(1, perish.duration - 1);
+				this.add('-start', target, 'perish' + perish.duration);
+			} else {
+				if (!target.addVolatile('perishsong', source)) return false;
+				const newPerish = target.volatiles['perishsong'];
+				newPerish.duration = 6;
+				this.add('-start', target, 'perish6');
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ghost",
+	},
+	exposure: {
+		num: 280,
+		accuracy: 100,
+		basePower: 75,
+		category: "Special",
+		name: "Exposure",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit(pokemon) {
+			// will shatter screens through sub, before you hit
+			pokemon.side.removeSideCondition('reflect');
+			pokemon.side.removeSideCondition('lightscreen');
+			pokemon.side.removeSideCondition('auroraveil');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Light",
+		contestType: "Cool",
+	},
+	refine: {
+		num: 810,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Refine",
+		pp: 40,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, allyanim: 1},
+		onHit(target, source) {
+			const item = target.takeItem(source); 
+			if (item) {
+				this.add('-enditem', target, item.name, '[from] move: Refine', '[of] ' + source);
+				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1}, target, target);
+			} else {
+				this.add('-fail', target, 'move: Refine');
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+	},
+	silkenshroud: {
+		num: 694,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Silken Shroud",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		sideCondition: 'silkenshroud',
+		condition: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source?.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
+			},
+			onTryHit(target, source, move) {
+			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			const newMove = this.dex.getActiveMove(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.actions.useMove(newMove, target, source);
+			return null;
+			},
+			onAllyTryHitSide(target, source, move) {
+			if (target.isAlly(source) || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			const newMove = this.dex.getActiveMove(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.actions.useMove(newMove, this.effectState.target, source);
+			return null;
+			},
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Aurora Veil');
+			},
+			onSideResidualOrder: 26,
+			onSideResidualSubOrder: 10,
+			onSideEnd(side) {
+				this.add('-sideend', side, 'move: Aurora Veil');
+			},
+		},
+		secondary: null,
+		target: "allySide",
+		type: "Bug",
+		zMove: {boost: {spe: 1}},
+		contestType: "Beautiful",
+	},
+	sludgetrap: {
+		num: 83,
+		accuracy: 85,
+		basePower: 35,
+		category: "Special",
+		name: "Sludge Trap",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, spin: 1},
+		volatileStatus: 'partiallytrapped',
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+		contestType: "Beautiful",
+	},
+	evaporate: {
+		num: 812,
+		accuracy: 95,
+		basePower: 80,
+		category: "Special",
+		name: "Evaporate",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit(target) {
+			if (!target.hasType('Water')) return;
+			const newTypes = target.getTypes(true).map(type => type === 'Water' ? '???' : type);
+			if (!target.setType(newTypes)) return false;
+			this.add('-start', target, 'typechange', target.getTypes().join('/'), '[from] move: Evaporate');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+		contestType: "Cool",
+	},
+	faultline: {
+		num: 813,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Fault Line",
+		pp: 15,
+		priority: 0,
+		flags: {nonsky: 1},
+		pseudoWeather: 'faultline',
+		condition: {
+			duration: 5,
+			onFieldStart(field, source, effect) {
+				this.add('-fieldstart', 'move: Fault Line');
+			},
+			onFieldEnd() {
+				this.add('-fieldend', 'move: Fault Line');
+			},
+			onRedirectTargetPriority: 1,
+			onAnyRedirectTarget(target, source, source2, move) {
+				if (move.target === 'any') return;
+				if (source.hasType('Flying') || source.hasAbility('levitate')) return;
+				const frontTarget = source.side.foe.active[source.position];
+				if (frontTarget && this.validTarget(frontTarget, source, move.target)) {
+					if (move.smartTarget) move.smartTarget = false;
+					return frontTarget;
+				}
+			},
+		},
+		secondary: null,
+		target: "all",
+		type: "Ground",
+		zMove: {boost: {spd: 1}},
+		contestType: "Clever",
+	},
+	telekinetictoss: {
+		num: 814,
+		accuracy: 100,
+		basePower: 20,
+		basePowerCallback(pokemon, target) {
+			const hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb','gmaxsteelsurge'];
+			const sourceSideConditions = pokemon.side.sideConditions;
+			const canBeTossed = [];
+			for (const id in sourceSideConditions){
+				if(hazards.includes(id)){
+					canBeTossed.push(id);
+				}
+			}
+			if(canBeTossed.length === 0) return 20;
+			const bp = 20 + (canBeTossed.length * 20);
+			this.debug('BP: ' + bp);
+			return bp;
+		},
+		onAfterHit(target, pokemon, move) {
+			if (!pokemon.hp) return;
+			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+			for (const condition of sideConditions) {
+				if (pokemon.side.removeSideCondition(condition)) {
+					this.add('-sideend', pokemon.side, this.dex.conditions.get(condition).name, '[from] move: Telekinetic Toss', '[of] ' + pokemon);
+				}
+			}
+			if (pokemon.volatiles['partiallytrapped']) {
+				pokemon.removeVolatile('partiallytrapped');
+			}
+		},
+		category: "Physical",
+		name: "Telekinetic Toss",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, distance: 1},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	predation: {
+		num: 67,
+		accuracy: 100,
+		basePower: 0,
+		basePowerCallback(pokemon, target) {
+			const targetHeight = target.getHeight();
+			let bp;
+			if (targetHeight <= 10) {
+				bp = 120;
+			} else if (targetHeight <= 20) {
+				bp = 100;
+			} else if (targetHeight <= 30) {
+				bp = 80;
+			} else if (targetHeight <= 40) {
+				bp = 60;
+			} else if (targetHeight <= 50) {
+				bp = 40;
+			} else {
+				bp = 20;
+			}
+			this.debug('BP: ' + bp);
+			return bp;
+		},
+		category: "Physical",
+		name: "Predation",
+		pp: 20,
+		priority: 0,
+		flags: { contact: 1, protect: 1, mirror: 1, bite: 1},
+		onTryHit(target, pokemon, move) {
+			if (target.volatiles['dynamax']) {
+				this.add('-fail', pokemon, 'Dynamax');
+				this.attrLastMove('[still]');
+				return null;
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		zMove: {basePower: 160},
+		contestType: "Tough",
+	},
+	overwhelm: {
+		num: 815,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Overwhelm",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onAfterMoveSecondary(target, source, move) {
+			if (target.hp) return;
+			target.side.addSlotCondition(target, 'overwhelm', source, move);
+		},
+		condition: {
+			// This is a slot condition: if Overwhelm KOes, hit the replacement once.
+			onSwitchIn(target) {
+				const source = this.effectState.source;
+				if (!target || target.fainted || !source || source.fainted) {
+					target.side.removeSlotCondition(target, 'overwhelm');
+					return;
+				}
+				const hitMove = new this.dex.Move({
+					id: 'overwhelm',
+					name: 'Overwhelm',
+					accuracy: 100,
+					basePower: 140,
+					category: 'Physical',
+					priority: 0,
+					flags: {contact: 1, protect: 1, mirror: 1},
+					effectType: 'Move',
+					type: 'Fighting',
+				}) as ActiveMove;
+				this.actions.trySpreadMoveHit([target], source, hitMove, true);
+				target.side.removeSlotCondition(target, 'overwhelm');
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Tough",
+	},
+	
+
 };

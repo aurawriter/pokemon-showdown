@@ -162,6 +162,8 @@ export class Species extends BasicEffect implements Readonly<BasicEffect & Speci
 	readonly weighthg: number;
 	/** Height (in m). */
 	readonly heightm: number;
+	/** Height (in integer multiples of 0.1m). */
+	readonly heightdm: number;
 	/** Color. */
 	readonly color: string;
 	/**
@@ -274,6 +276,7 @@ export class Species extends BasicEffect implements Readonly<BasicEffect & Speci
 		this.weightkg = data.weightkg || 0;
 		this.weighthg = this.weightkg * 10;
 		this.heightm = data.heightm || 0;
+		this.heightdm = this.heightm * 10;
 		this.color = data.color || '';
 		this.tags = data.tags || [];
 		this.unreleasedHidden = data.unreleasedHidden || false;

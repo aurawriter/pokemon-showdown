@@ -66,6 +66,7 @@ export interface EventMethods {
 	onModifySpD?: CommonHandlers['ModifierMove'];
 	onModifySpe?: (this: Battle, spe: number, pokemon: Pokemon) => number | void;
 	onModifyWeight?: (this: Battle, weighthg: number, pokemon: Pokemon) => number | void;
+	onModifyHeight?: (this: Battle, heightdm: number, pokemon: Pokemon) => number | void;
 	onMoveAborted?: CommonHandlers['VoidMove'];
 	onNegateImmunity?: ((this: Battle, pokemon: Pokemon, type: string) => boolean | void) | boolean;
 	onOverrideAction?: (this: Battle, pokemon: Pokemon, target: Pokemon, move: ActiveMove) => string | void;
@@ -167,6 +168,7 @@ export interface EventMethods {
 	onFoeModifyType?: MoveEventMethods['onModifyType'];
 	onFoeModifyTarget?: MoveEventMethods['onModifyTarget'];
 	onFoeModifyWeight?: (this: Battle, weighthg: number, pokemon: Pokemon) => number | void;
+	onFoeModifyHeight?: (this: Battle, heightdm: number, pokemon: Pokemon) => number | void;
 	onFoeMoveAborted?: CommonHandlers['VoidMove'];
 	onFoeNegateImmunity?: ((this: Battle, pokemon: Pokemon, type: string) => boolean | void) | boolean;
 	onFoeOverrideAction?: (this: Battle, pokemon: Pokemon, target: Pokemon, move: ActiveMove) => string | void;
@@ -265,6 +267,7 @@ export interface EventMethods {
 	onSourceModifyType?: MoveEventMethods['onModifyType'];
 	onSourceModifyTarget?: MoveEventMethods['onModifyTarget'];
 	onSourceModifyWeight?: (this: Battle, weighthg: number, pokemon: Pokemon) => number | void;
+	onSourceModifyHeight?: (this: Battle, heightdm: number, pokemon: Pokemon) => number | void;
 	onSourceMoveAborted?: CommonHandlers['VoidMove'];
 	onSourceNegateImmunity?: ((this: Battle, pokemon: Pokemon, type: string) => boolean | void) | boolean;
 	onSourceOverrideAction?: (this: Battle, pokemon: Pokemon, target: Pokemon, move: ActiveMove) => string | void;
@@ -365,6 +368,7 @@ export interface EventMethods {
 	onAnyModifyType?: MoveEventMethods['onModifyType'];
 	onAnyModifyTarget?: MoveEventMethods['onModifyTarget'];
 	onAnyModifyWeight?: (this: Battle, weighthg: number, pokemon: Pokemon) => number | void;
+	onAnyModifyHeight?: (this: Battle, heightdm: number, pokemon: Pokemon) => number | void;
 	onAnyMoveAborted?: CommonHandlers['VoidMove'];
 	onAnyNegateImmunity?: ((this: Battle, pokemon: Pokemon, type: string) => boolean | void) | boolean;
 	onAnyOverrideAction?: (this: Battle, pokemon: Pokemon, target: Pokemon, move: ActiveMove) => string | void;
@@ -453,6 +457,7 @@ export interface EventMethods {
 	onModifySpePriority?: number;
 	onModifyTypePriority?: number;
 	onModifyWeightPriority?: number;
+	onModifyHeightPriority?: number;
 	onRedirectTargetPriority?: number;
 	onResidualOrder?: number;
 	onResidualPriority?: number;
@@ -530,6 +535,7 @@ export interface PokemonEventMethods extends EventMethods {
 	onAllyModifyType?: MoveEventMethods['onModifyType'];
 	onAllyModifyTarget?: MoveEventMethods['onModifyTarget'];
 	onAllyModifyWeight?: (this: Battle, weighthg: number, pokemon: Pokemon) => number | void;
+	onAllyModifyHeight?: (this: Battle, heightdm: number, pokemon: Pokemon) => number | void;
 	onAllyMoveAborted?: CommonHandlers['VoidMove'];
 	onAllyNegateImmunity?: ((this: Battle, pokemon: Pokemon, type: string) => boolean | void) | boolean;
 	onAllyOverrideAction?: (this: Battle, pokemon: Pokemon, target: Pokemon, move: ActiveMove) => string | void;
