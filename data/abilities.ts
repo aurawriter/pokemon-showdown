@@ -7077,6 +7077,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const cleanUp = canBeCleaned[Math.floor(Math.random()*canBeCleaned.length)];
 			if (pokemon.hp && pokemon.side.removeSideCondition(cleanUp)) {
    				this.add('-sideend', pokemon.side, this.dex.conditions.get(cleanUp).name, '[from] ability: Cleanliness', `[of] ${pokemon}`);
+				this.add('-activate', pokemon, 'ability: Riposte');
 			}
 			
 		},
@@ -7132,7 +7133,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
             }
             if (boosted) {
                 this.boost({def: 1});
-				this.add('-activate', pokemon, 'ability: Incursion');
+				this.add('-activate', pokemon, 'ability: Fortify');
             }
         },
         name: "Fortify",
@@ -7264,7 +7265,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	liftoff: {
 		onPrepareHit(source, target, move) {
-			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch') return;
+			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch' || move.category !== 'Status') return;
 			if (move.type === 'Flying') {
 				if (!source.hasType('Flying') && source.addType('Flying')) {
 					this.add('-start', source, 'typeadd', 'Flying', '[from] ability: Liftoff');

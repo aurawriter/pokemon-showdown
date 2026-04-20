@@ -2586,4 +2586,44 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		name: "Snow Swirl",
 		shortDesc: "When this Pokemon is hit by an attack, the effect of Snow begins.",
 	},
-};
+	cleanliness: {
+		name: "Cleanliness",
+		shortDesc: "End of turn: Clear a random hazard from your side",
+	},
+	fermentation: {
+		name: "Fermentation",
+		shortDesc: "Grass moves gain 30% confuse. Confused Pokemon have their SpA and Atk reduced by 25%",
+	},
+	riposte: {
+		name: "Riposte",
+		shortDesc: "If this Pokemon is the last to move, it raises its Attack",
+	},
+	fortify: {
+		name: "Fortify",
+		shortDesc: "If this Pokemon is the first to move, it raises its Defense",
+	},
+	topspin: {
+		name: "Top Spin",
+		shortDesc: "If this Pokemon is hit by a Physical attack, it uses a random Spin move. Spin moves are boosted by 1.3x",
+	},
+	adhesive: {
+		name: "Adhesive",
+		shortDesc: "If this Pokemon is hit by a contact move, the attacker is trapped",
+	},
+	heroic: {
+		name: "Heroic",
+		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a move.",
+	},
+	infectious: {
+		name: "Infectious",
+		shortDesc: "When hit by a contact move, attacker's ability is changed to Infectious. If not Psycrobe, take 1/16th every turn."
+	},
+	squall: {
+		name: "Squall",
+		shortDesc: "Wind moves are boosted by 1.5x",
+	},
+	liftoff: {
+		name: "Liftoff",
+		shortDesc: "On using a Flying-type attack, gain Flying-type. Lose on non-Flying type attack."
+	}
+};	

@@ -17507,6 +17507,38 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Beautiful",
 	},
+	shortcircuit: {
+		num: 900,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		name: "Short Circuit",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onEffectiveness(typeMod, target, type, move) {
+			if (type === 'Electric') {
+				return 1;
+			}
+		},
+		onHit(target, source) {
+			target.addVolatile('shortcircuit');
+			source.addVolatile('shortcircuit');
+		},
+		condition: {
+			duration: 2,
+			onBeforeMove(pokemon, target, move) {
+				if (move.type === 'Electric') {
+					this.add('cant', pokemon, 'move: Short Circuit', move);
+					return false;
+				}
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Electric",
+		contestType: "Cool",
+	},
 	signalbeam: {
 		num: 324,
 		accuracy: 100,
@@ -20864,6 +20896,25 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Normal",
 	},
+	terraform: {
+		num: 901,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		name: "Terraform",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit() {
+			const terrains = ['electricterrain', 'grassyterrain', 'mistyterrain', 'psychicterrain', 'hauntedterrain','draconicterrain'];
+			const randomTerrain = this.sample(terrains);
+			this.field.setTerrain(randomTerrain);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+		contestType: "Tough",
+	},
 	terrainpulse: {
 		num: 805,
 		accuracy: 100,
@@ -24066,5 +24117,69 @@ export const Moves: {[moveid: string]: MoveData} = {
 		secondary: {}, // Sheer Force-boosted
 		target: "normal",
 		type: "Ice",
+	},
+	lather: {
+		num: 268,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Lather",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		volatileStatus: 'lather',
+		condition: {
+			onStart(pokemon, source, effect) {
+					this.add('-start', pokemon, 'Lather');
+			},
+			onRestart(pokemon, source, effect) {
+					this.add('-start', pokemon, 'Lather');
+			},
+			onBasePowerPriority: 9,
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Water') {
+					this.debug('charge boost');
+					return this.chainModify(2);
+				}
+			},
+			onMoveAborted(pokemon, target, move) {
+				if (move.type === 'Water' && move.id !== 'lather') {
+					pokemon.removeVolatile('lather');
+				}
+			},
+			onAfterMove(pokemon, target, move) {
+				if (move.type === 'Water' && move.id !== 'lather') {
+					pokemon.removeVolatile('lather');
+				}
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Lather', '[silent]');
+			},
+		},
+		boosts: {
+			def: 1,
+		},
+		secondary: null,
+		target: "self",
+		type: "Lather",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	foulfoliage: {
+		num: 815,
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		name: "Foul Foliage",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, defrost: 1},
+		thawsTarget: true,
+		secondary: {
+			chance: 30,
+			status: 'tox',
+		},
+		target: "normal",
+		type: "Grass",
 	},
 };
