@@ -8166,7 +8166,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	telekinetictoss: {
 		name: "Telekinetic Toss",
-		shortDesc: "+20 damage for each hazard on your side. Clears hazards."
+		shortDesc: "+25 BP for each different hazard on your side. Clears hazards."
 	},
 	overwhelm: {
 		name: "Overwhelm",

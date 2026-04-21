@@ -24402,7 +24402,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	telekinetictoss: {
 		num: 814,
 		accuracy: 100,
-		basePower: 20,
+		basePower: 25,
 		basePowerCallback(pokemon, target) {
 			const hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb','gmaxsteelsurge','tastytreats'];
 			const sourceSideConditions = pokemon.side.sideConditions;
@@ -24412,8 +24412,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 					canBeTossed.push(id);
 				}
 			}
-			if(canBeTossed.length === 0) return 20;
-			const bp = 20 + (canBeTossed.length * 20);
+			if(canBeTossed.length === 0) return 25;
+			const bp = 25 + (canBeTossed.length * 25);
 			this.debug('BP: ' + bp);
 			return bp;
 		},
@@ -24555,7 +24555,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					effectType: 'Move',
 					type: 'Fighting',
 				}) as ActiveMove;
-				this.actions.useMove(hitMove, target, source);
+				this.actions.useMove(hitMove, source, target);
 				target.side.removeSlotCondition(target, 'overwhelm');
 			},
 		},
