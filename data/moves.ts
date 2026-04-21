@@ -24285,25 +24285,26 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 				return 5;
 			},
+			onTryHitPriority: 1,
 			onTryHit(target, source, move) {
-			if (target === source || move.hasBounced || !move.flags['reflectable']) {
-				return;
-			}
-			const newMove = this.dex.getActiveMove(move.id);
-			newMove.hasBounced = true;
-			newMove.pranksterBoosted = false;
-			this.actions.useMove(newMove, target, source);
-			return null;
+				if (target === source || move.hasBounced || !move.flags['reflectable']) {
+					return;
+				}
+				const newMove = this.dex.getActiveMove(move.id);
+				newMove.hasBounced = true;
+				newMove.pranksterBoosted = false;
+				this.actions.useMove(newMove, target, source);
+				return null;
 			},
 			onAllyTryHitSide(target, source, move) {
-			if (target.isAlly(source) || move.hasBounced || !move.flags['reflectable']) {
-				return;
-			}
-			const newMove = this.dex.getActiveMove(move.id);
-			newMove.hasBounced = true;
-			newMove.pranksterBoosted = false;
-			this.actions.useMove(newMove, this.effectState.target, source);
-			return null;
+				if (target.isAlly(source) || move.hasBounced || !move.flags['reflectable']) {
+					return;
+				}
+				const newMove = this.dex.getActiveMove(move.id);
+				newMove.hasBounced = true;
+				newMove.pranksterBoosted = false;
+				this.actions.useMove(newMove, this.effectState.target, source);
+				return null;
 			},
 			onSideStart(side) {
 				this.add('-sidestart', side, 'move: Silken Shroud');
@@ -24380,6 +24381,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				const frontTarget = source.side.foe.active[source.side.foe.active.length - 1 - source.position];
 				if (frontTarget && this.validTarget(frontTarget, source, move.target)) {
 					if (move.smartTarget) move.smartTarget = false;
+					this.add('-message', `${source.name}'s can't reach across the Fault Line!`);
 					return frontTarget;
 				}
 			},
