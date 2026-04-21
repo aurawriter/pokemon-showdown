@@ -8182,5 +8182,10 @@ export const MovesText: {[k: string]: MoveText} = {
 		name: "Terraform Beam",
 		desc: "Sets a random terrain",
 		shortDesc: "Sets a random terrain",
-	}
+	},
+	deafeningthrum: {
+		name: "Deafening Thrum",
+		desc: "Lowers the user's Defense and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+	},
 };
