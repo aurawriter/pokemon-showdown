@@ -9,29 +9,30 @@ export const Scripts: ModdedBattleScriptsData = {
       const isArceus = species.name.startsWith('Arceus');
       const isSilvally = species.name.startsWith('Silvally');
       const isRotom = species.name.startsWith('Rotom');
+      const isGiftrap = species.name.startsWith('Giftrap');
       learnsetEntry.learnset.essenceburst = ['9L1'];
       if (species.types.includes('Flying') && !isSilvally && !isArceus && !isRotom) {
         learnsetEntry.learnset.clearingwinds = ['9L1'];
       }
-      if (species.types.includes('Normal') && !isRotom) {
+      if (species.types.includes('Normal')) {
         learnsetEntry.learnset.escapeplan = ['9L1'];
       }
-      if (species.types.includes('Steel') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Steel') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.refine = ['9L1'];
       }
-      if (species.types.includes('Dark') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Dark') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.checkmate = ['9L1'];
       }
-      if (species.types.includes('Fairy') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Fairy') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.irisgleam = ['9L1'];
       }
       if (species.types.includes('Ghost') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.eulogy = ['9L1'];
       }
-      if (species.types.includes('Dragon') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Dragon') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.predation = ['9L1'];
       }
-      if (species.types.includes('Ground') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Ground') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.faultline = ['9L1'];
       }
       if (species.types.includes('Fire') && !isSilvally && !isArceus && !isRotom) {
@@ -40,34 +41,34 @@ export const Scripts: ModdedBattleScriptsData = {
       if (species.types.includes('Water') && !isSilvally && !isArceus && !isRotom) {
         learnsetEntry.learnset.lather = ['9L1'];
       }
-      if (species.types.includes('Electric') && !isSilvally && !isArceus) {
+      if (species.types.includes('Electric') && !isSilvally && !isArceus && !isGiftrap) {
         learnsetEntry.learnset.shortcircuit = ['9L1'];
       }
       if (species.types.includes('Grass') && !isSilvally && !isArceus && !isRotom) {
         learnsetEntry.learnset.foulfoliage = ['9L1'];
       }
-      if (species.types.includes('Ice') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Ice') && !isSilvally && !isArceus && !isRotom && !isGiftrap) {
         learnsetEntry.learnset.icebreaker = ['9L1'];
       }
-      if (species.types.includes('Poison') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Poison') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.sludgetrap = ['9L1'];
       }
-      if (species.types.includes('Bug') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Bug') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.silkenshroud = ['9L1'];
       }
-      if (species.types.includes('Rock') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Rock') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.rockfall = ['9L1'];
       }
-      if (species.types.includes('Psychic') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Psychic') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.telekinetictoss = ['9L1'];
       }
-      if (species.types.includes('Fighting') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Fighting') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.overwhelm = ['9L1'];
       }
-      if (species.types.includes('Light') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Light') && !isSilvally && !isArceus && !isGiftrap) {
         learnsetEntry.learnset.exposure = ['9L1'];
       }
-      if (species.types.includes('Cosmic') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Cosmic') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.terraformbeam = ['9L1'];
       }
     }

@@ -8083,4 +8083,104 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Sets Tasty Treats on allied side.",
 		shortDesc: "Sets Tasty Treats on allied side.",
 	},
+	clearingwinds: {
+		name: "Clearing Winds",
+		desc: "Removes the effects of weather.",
+		shortDesc: "Removes the effects of weather.",
+	},
+	escapeplan: {
+		name: "Escape Plan",
+		desc: "The user endures this turn and switches out if it gets hit.",
+		shortDesc: "Endures and switches out if hit.",
+		start: "  [POKEMON] is planning an escape!",
+		cant: "[POKEMON]'s plan failed!",
+	},
+	refine: {
+		name: "Refine",
+		desc: "Destroys target's item to raise the user's Attack, Defense, Special Attack, Special Defense, and Speed by 1 stage.",
+		shortDesc: "Destroys target's item and raises all of its stats (not acc/eva).",
+	},
+	checkmate: {
+		name: "Checkmate",
+		desc: "Raises the user's Attack by 3 stages if this move knocks out the target.",
+		shortDesc: "Raises user's Attack by 3 if this KOes the target.",
+	},
+	irisgleam: {
+		name: "Iris Gleam",
+		desc: "If it is Raining, start a rainbow appears on the user's side for 4 turns, which doubles secondary effect chances and stacks with the Serene Grace Ability, except effects that cause flinching can only have their chance doubled once.",
+		shortDesc: "Rain: Start a rainbow that doubles secondary effect chances.",
+	},
+	eulogy: {
+		name: "Eulogy",
+		desc: "If the target is Perishing, reduce the countdown. If they are not Perishing, they will Perish in 6 turns.",
+		shortDesc: "If the target is Perishing, reduce the countdown. Otherwise, they perish in 6 turns.",
+	},
+	predation: {
+		name: "Predation",
+		desc: "This move's power is 20 if the target is greater than 5 m, 40 if less than or equal to 5 m, 60 if less than or equal to 4 m, 80 if less than or equal to 3 m, 100 if less than or equal to 2 m, and 120 if less than or equal to 1 m.",
+		shortDesc: "More power the shorter the target.",
+	},
+	faultline: {
+		name: "Fault Line",
+		desc: "For 5 turns, a grounded Pokemon's move is redirected to the opposing Pokemon directly across from it, if possible. This effect does not apply to Flying-type Pokemon or Pokemon with Levitate, and does not affect moves that target \"any\".",
+		shortDesc: "5 turns: grounded Pokemon target the foe directly across.",
+	},
+	evaporate: {
+		name: "Evaporate",
+		desc: "The target's Water-type becomes typeless",
+		shortDesc: "Target loses Water-type",
+	},
+	lather: {
+		name: "Lather",
+		desc: "Raises the user's Defense by 1 stage. The user's next Water-type attack will have its power doubled; the effect ends when the user is no longer active, or after the user attempts to use any Water-type move besides Lather, even if it is not successful.",
+		shortDesc: "+1 Def, user's next Water move 2x power.",
+	},
+	shortcircuit: {
+		name: "Short Circuit",
+		desc: "Deals super-effective damage to Electric-types. User and target cannot use Electric-type moves next turn.",
+		shortDesc: "Super effective on Electric. User and target can't use Electric moves next turn.",
+	},
+	foulfoliage: {
+		name: "Foul Foliage",
+		desc: "30% chance to toxic",
+		shortDesc: "30% chance to toxic",
+	},
+	icebreaker: {
+		name: "Icebreaker",
+		desc: "Fails unless it is the user's first turn on the field.",
+		shortDesc: "Hits first. First turn out only.",
+	},
+	sludgetrap: {
+		name: "Sludge Trap",
+		desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Flip Turn, Parting Shot, Shed Tail, Teleport, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Mortal Spin, Rapid Spin, or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+	},
+	silkenshroud: {
+		name: "Silken Shroud",
+		desc: "For 5 turns, status moves are reflected back",
+		shortDesc: "For 5 turns, status moves are reflected back",
+	},
+	rockfall: {
+		name: "Rockfall",
+		shortDesc: "No additional effect.",
+	},
+	telekinetictoss: {
+		name: "Telekinetic Toss",
+		shortDesc: "+20 damage for each hazard on your side. Clears hazards."
+	},
+	overwhelm: {
+		name: "Overwhelm",
+		desc: "If this move knocks out the target, the Pokemon that switches into that position is immediately hit by an Overwhelm with 140 base power.",
+		shortDesc: "If this move KOes, the replacement is hit by a 140 BP Overwhelm.",
+	},
+	exposure: {
+		name: "Exposure",
+		desc: "If this attack does not miss, the effects of Reflect, Light Screen, and Aurora Veil end for the target's side of the field before damage is calculated.",
+		shortDesc: "Destroys screens, unless the target is immune.",
+	},
+	terraformbeam: {
+		name: "Terraform Beam",
+		desc: "Sets a random terrain",
+		shortDesc: "Sets a random terrain",
+	}
 };

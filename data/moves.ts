@@ -23981,7 +23981,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Special",
-		name: "Clearings Winds",
+		name: "Clearing Winds",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, wind: 1},
@@ -23997,7 +23997,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: null,
 		target: "normal",
-		type: "Ice",
+		type: "Flying",
 	},
 	essenceburst: {
 		num: 38,
