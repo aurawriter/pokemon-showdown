@@ -24162,7 +24162,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: null,
 		target: "self",
-		type: "Lather",
+		type: "Water",
 		zMove: {boost: {def: 1}},
 		contestType: "Clever",
 	},
@@ -24374,7 +24374,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.add('-fieldend', 'move: Fault Line');
 			},
 			onRedirectTargetPriority: 1,
-			onAnyRedirectTarget(target, source, source2, move) {
+			onRedirectTarget(target, source, source2, move) {
 				if (move.target === 'any') return;
 				if (source.hasType('Flying') || source.hasAbility('levitate')) return;
 				const frontTarget = source.side.foe.active[source.position];

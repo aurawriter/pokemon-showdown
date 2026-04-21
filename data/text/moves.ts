@@ -8108,7 +8108,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	irisgleam: {
 		name: "Iris Gleam",
 		desc: "If it is Raining, start a rainbow appears on the user's side for 4 turns, which doubles secondary effect chances and stacks with the Serene Grace Ability, except effects that cause flinching can only have their chance doubled once.",
-		shortDesc: "Rain: Start a rainbow that doubles secondary effect chances.",
+		shortDesc: "Rain: Start a rainbow that doubles secondary chance.",
 	},
 	eulogy: {
 		name: "Eulogy",

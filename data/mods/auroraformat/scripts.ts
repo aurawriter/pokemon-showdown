@@ -10,11 +10,16 @@ export const Scripts: ModdedBattleScriptsData = {
       const isSilvally = species.name.startsWith('Silvally');
       const isRotom = species.name.startsWith('Rotom');
       const isGiftrap = species.name.startsWith('Giftrap');
+      const isMagikarp = species.name.startsWith('Magikarp');
+      const isDitto = species.name.startsWith('Ditto');
+      if (!isMagikarp && !isDitto) 
+      {
       learnsetEntry.learnset.essenceburst = ['9L1'];
+      }
       if (species.types.includes('Flying') && !isSilvally && !isArceus && !isRotom) {
         learnsetEntry.learnset.clearingwinds = ['9L1'];
       }
-      if (species.types.includes('Normal')) {
+      if (species.types.includes('Normal') && !isDitto) {
         learnsetEntry.learnset.escapeplan = ['9L1'];
       }
       if (species.types.includes('Steel') && !isSilvally && !isArceus) {
@@ -38,7 +43,7 @@ export const Scripts: ModdedBattleScriptsData = {
       if (species.types.includes('Fire') && !isSilvally && !isArceus && !isRotom) {
         learnsetEntry.learnset.evaporate = ['9L1'];
       }
-      if (species.types.includes('Water') && !isSilvally && !isArceus && !isRotom) {
+      if (species.types.includes('Water') && !isSilvally && !isArceus && !isRotom&& !isMagikarp) {
         learnsetEntry.learnset.lather = ['9L1'];
       }
       if (species.types.includes('Electric') && !isSilvally && !isArceus && !isGiftrap) {
