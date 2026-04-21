@@ -24306,12 +24306,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return null;
 			},
 			onSideStart(side) {
-				this.add('-sidestart', side, 'move: Aurora Veil');
+				this.add('-sidestart', side, 'move: Silken Shroud');
 			},
 			onSideResidualOrder: 26,
 			onSideResidualSubOrder: 10,
 			onSideEnd(side) {
-				this.add('-sideend', side, 'move: Aurora Veil');
+				this.add('-sideend', side, 'move: Silken Shroud');
 			},
 		},
 		secondary: null,
@@ -24377,7 +24377,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onRedirectTarget(target, source, source2, move) {
 				if (move.target === 'any') return;
 				if (source.hasType('Flying') || source.hasAbility('levitate')) return;
-				const frontTarget = source.side.foe.active[source.position];
+				const frontTarget = source.side.foe.active[source.side.foe.active.length - 1 - source.position];
 				if (frontTarget && this.validTarget(frontTarget, source, move.target)) {
 					if (move.smartTarget) move.smartTarget = false;
 					return frontTarget;
