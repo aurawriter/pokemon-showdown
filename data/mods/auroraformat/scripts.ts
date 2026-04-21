@@ -59,7 +59,7 @@ export const Scripts: ModdedBattleScriptsData = {
         learnsetEntry.learnset.sludgetrap = ['9L1'];
       }
       if (species.types.includes('Bug') && !isSilvally && !isArceus) {
-        learnsetEntry.learnset.silkenshroud = ['9L1'];
+        learnsetEntry.learnset.deafeningthrum = ['9L1'];
       }
       if (species.types.includes('Rock') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.rockfall = ['9L1'];

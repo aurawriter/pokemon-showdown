@@ -2352,6 +2352,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return false;
 			}
 		},
+		onTryHeal(status, target, source, effect) {
+			if (effect && (effect.id === 'tastytreats')) {
+				this.boost({ atk: 1 })
+				return false;
+			}
+		},
 		name: "Libero",
 		rating: 4,
 		num: 236,
@@ -7065,7 +7071,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	cleanliness: {
 		onResidual(pokemon) {
-			const hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb','gmaxsteelsurge'];
+			const hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb','gmaxsteelsurge','tastytreats'];
 			const sourceSideConditions = pokemon.side.sideConditions;
 			const canBeCleaned = [];
 			for (const id in sourceSideConditions){
