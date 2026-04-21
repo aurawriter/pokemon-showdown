@@ -17534,6 +17534,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					return false;
 				}
 			},
+
 		},
 		secondary: null,
 		target: "normal",
@@ -24279,20 +24280,20 @@ export const Moves: {[moveid: string]: MoveData} = {
 		sideCondition: 'silkenshroud',
 		condition: {
 			duration: 5,
-			durationCallback(target, source, effect) {
-				if (source?.hasItem('lightclay')) {
-					return 8;
+			onStart(target, source, effect) {
+				this.add('-sidestart', target, 'move: Silken Shroud');
+				if (effect?.effectType === 'Move') {
+					this.effectState.pranksterBoosted = effect.pranksterBoosted;
 				}
-				return 5;
 			},
-			onTryHitPriority: 1,
+			onTryHitPriority: 2,
 			onTryHit(target, source, move) {
 				if (target === source || move.hasBounced || !move.flags['reflectable']) {
 					return;
 				}
 				const newMove = this.dex.getActiveMove(move.id);
 				newMove.hasBounced = true;
-				newMove.pranksterBoosted = false;
+				newMove.pranksterBoosted = this.effectState.pranksterBoosted;
 				this.actions.useMove(newMove, target, source);
 				return null;
 			},
@@ -24381,7 +24382,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				const frontTarget = source.side.foe.active[source.side.foe.active.length - 1 - source.position];
 				if (frontTarget && this.validTarget(frontTarget, source, move.target)) {
 					if (move.smartTarget) move.smartTarget = false;
-					this.add('-message', `${source.name}'s can't reach across the Fault Line!`);
+					this.add('-message', `${source.name} can't reach across the Fault Line!`);
 					return frontTarget;
 				}
 			},
