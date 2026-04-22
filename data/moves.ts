@@ -24563,7 +24563,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					type: 'Fighting',
 				}) as ActiveMove;
 				target.side.removeSlotCondition(target, 'overwhelm');
-				this.actions.useMove(hitMove, source, target);
+				this.actions.runMove(hitMove, source, source.getLocOf(target), undefined, undefined, true, undefined, target);
 			},
 		},
 		secondary: null,
