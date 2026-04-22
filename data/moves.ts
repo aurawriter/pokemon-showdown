@@ -24555,8 +24555,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 					effectType: 'Move',
 					type: 'Fighting',
 				}) as ActiveMove;
-				this.actions.useMove(hitMove, source, target);
 				target.side.removeSlotCondition(target, 'overwhelm');
+				this.actions.useMove(hitMove, source, target);
+				
 			},
 		},
 		secondary: null,
