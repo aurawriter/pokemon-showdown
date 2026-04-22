@@ -17528,6 +17528,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		condition: {
 			duration: 2,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Short Circuit');
+			},
 			onBeforeMove(pokemon, target, move) {
 				if (move.type === 'Electric') {
 					this.add('cant', pokemon, 'move: Short Circuit', move);
@@ -24556,6 +24559,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					type: 'Fighting',
 				}) as ActiveMove;
 				target.side.removeSlotCondition(target, 'overwhelm');
+				this.add('-message', `${target.name} was overwhelmed!`);
 				this.actions.tryMoveHit(target, source, hitMove);
 			},
 		},
