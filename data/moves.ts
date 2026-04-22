@@ -24539,13 +24539,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		condition: {
 			// This is a slot condition: if Overwhelm KOes, hit the replacement once.
 			onSwitchIn(target) {
-				this.queue.insertChoice({
-					choice: 'event',
-					event: 'Overwhelm',
-					pokemon: target,
-				});
-			},
-			onOverwhelm(target) {
 				const source = this.effectState.source;
 				if (!target || target.fainted || !source || source.fainted) {
 					target.side.removeSlotCondition(target, 'overwhelm');
@@ -24563,7 +24556,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					type: 'Fighting',
 				}) as ActiveMove;
 				target.side.removeSlotCondition(target, 'overwhelm');
-				this.actions.runMove(hitMove, source, source.getLocOf(target), undefined, undefined, true, undefined, target);
+				this.actions.tryMoveHit(target, source, hitMove);
 			},
 		},
 		secondary: null,
