@@ -24178,7 +24178,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Foul Foliage",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, defrost: 1},
+		flags: {protect: 1, mirror: 1},
 		thawsTarget: true,
 		secondary: {
 			chance: 30,
