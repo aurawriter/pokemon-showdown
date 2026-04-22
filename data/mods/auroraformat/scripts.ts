@@ -12,6 +12,7 @@ export const Scripts: ModdedBattleScriptsData = {
       const isGiftrap = species.name.startsWith('Giftrap');
       const isMagikarp = species.name.startsWith('Magikarp');
       const isDitto = species.name.startsWith('Ditto');
+      const isNincada = species.name.startsWith('Nincada');
       if (!isMagikarp && !isDitto) 
       {
       learnsetEntry.learnset.essenceburst = ['9L1'];
@@ -37,7 +38,7 @@ export const Scripts: ModdedBattleScriptsData = {
       if (species.types.includes('Dragon') && !isSilvally && !isArceus) {
         learnsetEntry.learnset.predation = ['9L1'];
       }
-      if (species.types.includes('Ground') && !isSilvally && !isArceus) {
+      if (species.types.includes('Ground') && !isSilvally && !isArceus && !isNincada) {
         learnsetEntry.learnset.faultline = ['9L1'];
       }
       if (species.types.includes('Fire') && !isSilvally && !isArceus && !isRotom) {

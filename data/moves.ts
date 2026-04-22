@@ -17527,7 +17527,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			source.addVolatile('shortcircuit');
 		},
 		condition: {
-			duration: 2,
+			duration: 1,
 			onStart(pokemon) {
 				this.add('-start', pokemon, 'Short Circuit');
 			},
@@ -24529,7 +24529,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	overwhelm: {
 		num: 815,
 		accuracy: 100,
-		basePower: 70,
+		basePower: 65,
 		category: "Physical",
 		name: "Overwhelm",
 		pp: 10,
@@ -24551,7 +24551,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					id: 'overwhelm',
 					name: 'Overwhelm',
 					accuracy: 100,
-					basePower: 140,
+					basePower: 130,
 					category: 'Physical',
 					priority: 0,
 					flags: {contact: 1, protect: 1, mirror: 1},
