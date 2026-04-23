@@ -24178,7 +24178,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Foul Foliage",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, defrost: 1},
+		flags: {protect: 1, mirror: 1},
 		thawsTarget: true,
 		secondary: {
 			chance: 30,
@@ -24559,6 +24559,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					type: 'Fighting',
 				}) as ActiveMove;
 				target.side.removeSlotCondition(target, 'overwhelm');
+				this.add('-message', `${source.name} couldn't be stopped!`)
 				this.add('-message', `${target.name} was overwhelmed!`);
 				this.actions.tryMoveHit(target, source, hitMove);
 			},
