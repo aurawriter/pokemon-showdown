@@ -24589,4 +24589,18 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Bug",
 		contestType: "Tough",
 	},
+	forcedmove: {
+		num: 509,
+		accuracy: 90,
+		basePower: 70,
+		category: "Physical",
+		name: "Forced Move",
+		pp: 10,
+		priority: -6,
+		flags: {contact: 1, protect: 1, mirror: 1, noassist: 1, failcopycat: 1},
+		forceSwitch: true,
+		target: "normal",
+		type: "Dark",
+		contestType: "Cool",
+	},
 };
