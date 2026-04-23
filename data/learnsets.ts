@@ -106068,6 +106068,7 @@ swinub: {
 			gigaimpact: ["9L1"],
 			helpinghand: ["9L1"],
 			hyperbeam: ["9L1"],
+			kingsgambit: ["9L1"],
 			knockoff: ["9L1"],
 			lashout: ["9L1"],
 			leer: ["9L1"],
@@ -106105,7 +106106,6 @@ swinub: {
 			trailblaze: ["9L1"],
 			upperhand: ["9L1"],
 			xscissor: ["9L1"],
-			forcedmove: ["9L1"],
 		}
 	},
 	repetapir: {
@@ -106407,6 +106407,7 @@ swinub: {
 			lightscreen: ["9L1"],
 			lowkick: ["9L1"],
 			protect: ["9L1"],
+			queensgambit: ["9L1"],
 			quickguard: ["9L1"],
 			radiantshield: ["9L1"],
 			radiantsmite: ["9L1"],
