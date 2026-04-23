@@ -24589,12 +24589,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Bug",
 		contestType: "Tough",
 	},
-	forcedmove: {
+	kingsgambit: {
 		num: 509,
 		accuracy: 90,
 		basePower: 70,
 		category: "Physical",
-		name: "Forced Move",
+		name: "King's Gambit",
 		pp: 10,
 		priority: -6,
 		flags: {contact: 1, protect: 1, mirror: 1, noassist: 1, failcopycat: 1},
@@ -24602,5 +24602,34 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Dark",
 		contestType: "Cool",
+	},
+	queensgambit: {
+		num: 252,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		name: "Queen's Gambit",
+		pp: 10,
+		priority: 3,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTry(source) {
+			if (source.activeMoveActions > 1) {
+				this.hint("Fake Out only works on your first turn out.");
+				return false;
+			}
+		},
+		onHit(target, source) {
+			target.addVolatile('queensgambit');
+		},
+		condition: {
+			//Damage reduction handled in sim/battle-actions.ts
+			duration: 1,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Queen\'s Gambit') 
+			},
+		},
+		target: "normal",
+		type: "Normal",
+		contestType: "Cute",
 	},
 };
