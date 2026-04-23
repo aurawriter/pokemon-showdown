@@ -20763,7 +20763,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 1.1,
 		weightkg: 300,
 		color: "Blue",
-		eggGroups: ["Water 1", "Fairy"],
+		eggGroups: ["Water 1", "Field"],
 	},
 	elecacha: {
 		num: -1185,
@@ -20792,7 +20792,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Lorzwang",
 		types: ["Dark"],
 		baseStats: {hp:90,atk:110,def:40,spa:110,spd:40,spe:100},
-		abilities: {0: "Inner Focus", 1: "Stalwart", H: "Riposte"},
+		abilities: {0: "Inner Focus", 1: " ", H: "Riposte"},
 		heightm: 1.8,
 		weightkg: 95,
 		color: "Black",
@@ -20937,11 +20937,21 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		baseStats: {hp: 64, atk: 100, def: 60, spa: 85, spd: 50, spe: 131},
 		abilities: {0: "Liftoff"},
 		heightm: 1.3,
-		weight: 5,
+		weightkg: 5,
 		color: "Green",
 		eggGroups: ["Dragon", "Flying"],
 	},
-
+	mewgeosie: {
+		num: -1201,
+		name: "Mewgeosie",
+		types: ["Normal"],
+		baseStats: {hp: 84, atk: 91, def: 83, spa: 55, spd: 81, spe: 96},
+		abilities: {0: "Fur Coat", 1: "Supremacy", H: "Prideful"},
+		heightm: 1.0,
+		weightkg: 43.8,
+		color: "Grey",
+		eggGroups: ["Field"],
+	}
 
 
 	

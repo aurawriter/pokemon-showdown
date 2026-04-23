@@ -6,6 +6,7 @@ export const Scripts: ModdedBattleScriptsData = {
       const learnsetEntry = this.data.Learnsets[id];
       const species = this.data.Pokedex[id];
       if (!learnsetEntry?.learnset || !species?.types) continue;
+      delete learnsetEntry.learnset.terablast;
       const isArceus = species.name.startsWith('Arceus');
       const isSilvally = species.name.startsWith('Silvally');
       const isRotom = species.name.startsWith('Rotom');
