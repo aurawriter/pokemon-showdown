@@ -24614,7 +24614,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onTry(source) {
 			if (source.activeMoveActions > 1) {
-				this.hint("Fake Out only works on your first turn out.");
+				this.hint("Queen's Gambit only works on your first turn out.");
 				return false;
 			}
 		},
@@ -24629,7 +24629,27 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 		},
 		target: "normal",
-		type: "Normal",
+		type: "Light",
 		contestType: "Cute",
+	},
+	hattrick: {
+		num: 813,
+		accuracy: 90,
+		basePower: 20,
+		basePowerCallback(pokemon, target, move) {
+			return 20 * move.hit;
+		},
+		category: "Physical",
+		name: "Hat Trick",
+		pp: 10,
+		priority: 0,
+		flags: { contact: 1, protect: 1, mirror: 1},
+		multihit: 3,
+		multiaccuracy: true,
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		zMove: {basePower: 120},
+		maxMove: {basePower: 140},
 	},
 };
