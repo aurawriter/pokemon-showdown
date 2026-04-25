@@ -11,6 +11,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Green",
 		evos: ["Ivysaur"],
 		eggGroups: ["Monster", "Grass"],
+		bodyShape: "Quadraped"
 	},
 	ivysaur: {
 		num: 2,
@@ -20863,6 +20864,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 5.0,
 		color: "Pink",
 		eggGroups: ["Fairy"],
+		
 	},
 	gilgagnash: {
 		num: -1194,
