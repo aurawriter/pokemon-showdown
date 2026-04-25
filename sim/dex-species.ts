@@ -166,6 +166,8 @@ export class Species extends BasicEffect implements Readonly<BasicEffect & Speci
 	readonly heightdm: number;
 	/** Color. */
 	readonly color: string;
+	/** Body shape metadata used by external tooling. */
+	readonly bodyShape?: string | string[];
 	/**
 	 * Tags, boolean data. Currently just legendary/mythical status.
 	 */
@@ -278,6 +280,7 @@ export class Species extends BasicEffect implements Readonly<BasicEffect & Speci
 		this.heightm = data.heightm || 0;
 		this.heightdm = this.heightm * 10;
 		this.color = data.color || '';
+		this.bodyShape = data.bodyShape || undefined;
 		this.tags = data.tags || [];
 		this.unreleasedHidden = data.unreleasedHidden || false;
 		this.maleOnlyHidden = !!data.maleOnlyHidden;
