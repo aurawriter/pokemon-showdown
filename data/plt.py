@@ -91,6 +91,9 @@ def parse_pokedex(filename):
         if evos_match:
             evos = [x.strip().strip('"').lower() for x in evos_match.group(1).split(',') if x.strip()]
 
+        bodyshape_match = re.search(r'body[Ss]hape:\s*"([^"]+)"', block)
+        bodyshape = bodyshape_match.group(1) if bodyshape_match else None
+
         pokedex[name.lower()] = {
             "types": types,
             "eggGroups": egg_groups,
@@ -99,6 +102,7 @@ def parse_pokedex(filename):
             "num": dex_num,
             "prevo": prevo,
             "evos": evos,
+            "bodyShape": bodyshape,
         }
 
         count += 1
@@ -289,6 +293,154 @@ def parse_grouped_sets(group_string):
 def normalize_title_list(values):
     return {v.strip().title() for v in values if v.strip()}
 
+
+def compute_body_plan_tier(shared_eggs, same_bodyshape):
+    if same_bodyshape and shared_eggs >= 1:
+        return "strong"
+    if same_bodyshape:
+        return "shape_only"
+    if shared_eggs >= 2:
+        return "egg_strong"
+    if shared_eggs == 1:
+        return "egg_only"
+    return "none"
+
+
+
+def parse_typechart(filename):
+    print("📦 Parsing typechart.ts...")
+    with open(filename, "r", encoding="utf-8") as f:
+        data = f.read()
+
+    start = data.find("export const TypeChart")
+    if start == -1:
+        print("⚠️ Could not find export const TypeChart in typechart.ts")
+        return {}
+
+    equals_pos = data.find("=", start)
+    if equals_pos == -1:
+        print("⚠️ Could not find '=' for TypeChart")
+        return {}
+
+    brace_start = data.find("{", equals_pos)
+    if brace_start == -1:
+        print("⚠️ Could not find opening brace for TypeChart object")
+        return {}
+
+    i = brace_start + 1
+    n = len(data)
+    typechart = {}
+    count = 0
+
+    key_pattern = re.compile(r'\s*(?:"([^"]+)"|([A-Za-z][\w-]*))\s*:\s*{', re.DOTALL)
+
+    while i < n:
+        m = key_pattern.match(data, i)
+        if not m:
+            if data[i] == "}":
+                break
+            i += 1
+            continue
+
+        type_name = m.group(1) or m.group(2)
+        block_start = m.end() - 1
+        depth = 0
+        j = block_start
+
+        while j < n:
+            ch = data[j]
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+
+        block = data[block_start:j+1]
+
+        damage_taken_match = re.search(r'damageTaken\s*:\s*{(.*?)}', block, re.DOTALL)
+        if damage_taken_match:
+            damage_block = damage_taken_match.group(1)
+            damage_map = {}
+            for quoted_name, bare_name, value in re.findall(
+                r'(?:"([^"]+)"|([A-Za-z][\w-]*))\s*:\s*(-?\d+)',
+                damage_block
+            ):
+                atk_name = quoted_name or bare_name
+                damage_map[atk_name] = int(value)
+            typechart[type_name.title()] = damage_map
+            count += 1
+
+        i = j + 1
+
+    print(f"✅ Finished parsing typechart.ts — found {count} defending types.")
+    return typechart
+
+def attacking_type_effectiveness(attack_type, defender_types, parsed_typechart):
+    multiplier = 1.0
+    for d_type in defender_types:
+        damage_map = parsed_typechart.get(d_type, {})
+        state = damage_map.get(attack_type, 0)
+        if state == 1:
+            multiplier *= 2.0
+        elif state == 2:
+            multiplier *= 0.5
+        elif state == 3:
+            multiplier *= 0.0
+        else:
+            multiplier *= 1.0
+    return multiplier
+
+def get_move_type_compatibility(move_name, moves_data, custom_types, coverage_types, method_bucket, parsed_typechart):
+    move_info = moves_data.get(move_name.lower())
+    if not move_info:
+        return 1.0, 'unknown type'
+
+    move_type = move_info.get('type')
+    if not move_type:
+        return 1.0, 'unknown type'
+
+    if move_type in custom_types:
+        return 1.45, 'stab type'
+
+    if move_type in coverage_types:
+        if method_bucket == 'level':
+            return 0.95, 'requested coverage (level-up kept modest)'
+        return 1.18, 'requested coverage'
+
+    if move_type == 'Normal':
+        return 1.0, 'neutral utility type'
+
+    effectiveness = attacking_type_effectiveness(move_type, custom_types, parsed_typechart)
+
+    if method_bucket == 'level':
+        if effectiveness >= 4.0:
+            return 0.08, f'4x weakness penalty ({move_type})'
+        if effectiveness >= 2.0:
+            return 0.18, f'weakness penalty ({move_type})'
+    elif method_bucket == 'egg':
+        if effectiveness >= 4.0:
+            return 0.18, f'4x weakness egg penalty ({move_type})'
+        if effectiveness >= 2.0:
+            return 0.38, f'weakness egg penalty ({move_type})'
+    else:
+        if effectiveness >= 4.0:
+            return 0.28, f'4x weakness tm penalty ({move_type})'
+        if effectiveness >= 2.0:
+            return 0.52, f'weakness tm penalty ({move_type})'
+
+    # New rule: unless explicitly requested as coverage, strongly discourage move types
+    # that this Pokemon is naturally strong against.
+    if effectiveness <= 0.5:
+        if method_bucket == 'level':
+            return 0.12, f'strong-against-type level penalty ({move_type})'
+        if method_bucket == 'egg':
+            return 0.28, f'strong-against-type egg penalty ({move_type})'
+        return 0.45, f'strong-against-type tm penalty ({move_type})'
+
+    return 0.78 if method_bucket == 'level' else 0.9, f'off-type neutral ({move_type})'
+
 def move_is_allowed(move_name, moves_data, banned_move_types):
     if not banned_move_types:
         return True
@@ -475,6 +627,7 @@ def build_move_map(pokedex, learnsets, family_data, moves_data, banned_move_type
     by_type = defaultdict(list)
     by_egg = defaultdict(list)
     by_ability = defaultdict(list)
+    by_bodyshape = defaultdict(list)
 
     for root, rep_mon in family_data['primary_final_of_root'].items():
         info = pokedex.get(rep_mon)
@@ -486,6 +639,9 @@ def build_move_map(pokedex, learnsets, family_data, moves_data, banned_move_type
             by_type[t].append(root)
         for ab in info['abilities']:
             by_ability[ab].append(root)
+        bodyshape = info.get('bodyShape')
+        if bodyshape:
+            by_bodyshape[bodyshape].append(root)
 
     for root, base_mon in family_data['base_of_root'].items():
         info = pokedex.get(base_mon)
@@ -509,7 +665,8 @@ def build_move_map(pokedex, learnsets, family_data, moves_data, banned_move_type
         'type': count_moves_by_trait(by_type),
         'egg': count_moves_by_trait(by_egg),
         'ability': count_moves_by_trait(by_ability),
-        'pools': {'type': by_type, 'egg': by_egg, 'ability': by_ability},
+        'bodyshape': count_moves_by_trait(by_bodyshape),
+        'pools': {'type': by_type, 'egg': by_egg, 'ability': by_ability, 'bodyshape': by_bodyshape},
     }
 
 def build_weighted_move_scores(
@@ -518,9 +675,11 @@ def build_weighted_move_scores(
     family_data,
     moves_data,
     banned_move_types,
+    parsed_typechart,
     custom_types,
     custom_egg_groups,
     custom_abilities,
+    custom_bodyshape,
     custom_stats,
     similar_pokemon,
     custom_groups,
@@ -533,6 +692,7 @@ def build_weighted_move_scores(
     move_support_counts = Counter()
     move_best_method = {}
     candidate_scores = []
+    closest_stat_families = []
     excluded_pokemon = set(excluded_pokemon or [])
     excluded_roots = {family_data['root_of'].get(mon, mon) for mon in excluded_pokemon}
     custom_role_tags = get_role_tags(custom_stats)
@@ -557,17 +717,19 @@ def build_weighted_move_scores(
         mon_abilities = set(mon_info.get('abilities', []))
         mon_stats = mon_info.get('baseStats', {})
         mon_role_tags = get_role_tags(mon_stats)
+        mon_bodyshape = mon_info.get('bodyShape')
 
         shared_types = len(mon_types.intersection(custom_types))
         shared_eggs = len(mon_egg_groups.intersection(custom_egg_groups))
         shared_abilities = len(mon_abilities.intersection(custom_abilities))
         shared_roles = len(mon_role_tags.intersection(custom_role_tags))
+        same_bodyshape = bool(custom_bodyshape and mon_bodyshape == custom_bodyshape)
+        body_plan_tier = compute_body_plan_tier(shared_eggs, same_bodyshape)
 
         explicit_similar = root in similar_roots
 
-        # Guardrail: if a family shares neither a type nor an egg group, it is too far off-body-plan
-        # to contribute to weighted learnset suggestions.
-        if shared_types == 0 and shared_eggs == 0 and not explicit_similar:
+        # Guardrail: a family needs at least some shared anatomy/biology signal unless manually forced in.
+        if body_plan_tier == "none" and shared_types == 0 and not explicit_similar:
             continue
 
         distance = stat_distance(custom_stats, mon_stats)
@@ -577,11 +739,25 @@ def build_weighted_move_scores(
         reason_bits = []
 
         if shared_types == 2:
-            score += 5.5
+            score += 4.0
             reason_bits.append('shares both types')
         elif shared_types == 1:
-            score += 3.5
+            score += 2.2
             reason_bits.append('shares one type')
+
+        # Composite body-plan similarity: body shape matters most, egg groups reinforce it.
+        if body_plan_tier == "strong":
+            score += 6.5
+            reason_bits.append('strong body plan match')
+        elif body_plan_tier == "shape_only":
+            score += 4.8
+            reason_bits.append('shares body shape')
+        elif body_plan_tier == "egg_strong":
+            score += 3.8
+            reason_bits.append('shares multiple egg groups')
+        elif body_plan_tier == "egg_only":
+            score += 2.2
+            reason_bits.append('shares egg group')
 
         score += stat_similarity * 4.0
         if stat_similarity >= 0.75:
@@ -594,9 +770,6 @@ def build_weighted_move_scores(
         if shared_roles:
             score += shared_roles * 0.75
             reason_bits.append(f'shares {shared_roles} role tag(s)')
-        if shared_eggs:
-            score += shared_eggs * 1.6
-            reason_bits.append('shares egg group')
         if shared_abilities:
             score += shared_abilities * 1.2
             reason_bits.append('shares ability')
@@ -608,13 +781,16 @@ def build_weighted_move_scores(
             continue
 
         candidate_scores.append((rep_mon, score, distance, reason_bits))
+        closest_stat_families.append((rep_mon, distance, stat_similarity, mon_types, mon_egg_groups, mon_bodyshape, body_plan_tier))
 
         for move in get_family_non_egg_moves(rep_mon, learnsets, moves_data, banned_move_types):
             method_types = learnsets[rep_mon]['method_types'].get(move, {'other'})
             primary_method = choose_primary_method(method_types)
             weighted_score = score * METHOD_WEIGHTS[primary_method]
+            type_mult, type_note = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, primary_method, parsed_typechart)
+            weighted_score *= type_mult
             move_scores[move] += weighted_score
-            move_reasons[move].append((rep_mon, weighted_score, reason_bits + ['final evo rep', f'{primary_method} move']))
+            move_reasons[move].append((rep_mon, weighted_score, reason_bits + ['final evo rep', f'{primary_method} move', type_note]))
             move_support_counts[move] += 1
             current_best = move_best_method.get(move)
             if current_best is None or METHOD_WEIGHTS[primary_method] > METHOD_WEIGHTS[current_best]:
@@ -623,8 +799,10 @@ def build_weighted_move_scores(
         for move in get_family_egg_moves(base_mon, learnsets, moves_data, banned_move_types):
             primary_method = 'egg'
             weighted_score = score * 0.9 * METHOD_WEIGHTS[primary_method]
+            type_mult, type_note = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, primary_method, parsed_typechart)
+            weighted_score *= type_mult
             move_scores[move] += weighted_score
-            move_reasons[move].append((base_mon, weighted_score, reason_bits + ['base evo egg move', 'egg move']))
+            move_reasons[move].append((base_mon, weighted_score, reason_bits + ['base evo egg move', 'egg move', type_note]))
             move_support_counts[move] += 1
             current_best = move_best_method.get(move)
             if current_best is None or METHOD_WEIGHTS[primary_method] > METHOD_WEIGHTS[current_best]:
@@ -670,15 +848,77 @@ def build_weighted_move_scores(
             if total > 2 and ratio >= 0.5:
                 primary_method = choose_primary_method(move_to_methods[move])
                 bonus = (1.5 + (ratio * 2.5)) * METHOD_WEIGHTS[primary_method]
+                type_mult, type_note = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, primary_method, parsed_typechart)
+                bonus *= type_mult
                 move_scores[move] += bonus
                 move_reasons[move].append((
                     f'group {group_index}',
                     bonus,
-                    [f'shared by {round(ratio * 100)}% of custom families in group {group_index}', f'{primary_method} move']
+                    [f'shared by {round(ratio * 100)}% of custom families in group {group_index}', f'{primary_method} move', type_note]
                 ))
                 current_best = move_best_method.get(move)
                 if current_best is None or METHOD_WEIGHTS[primary_method] > METHOD_WEIGHTS[current_best]:
                     move_best_method[move] = primary_method
+
+    if custom_bodyshape:
+        bodyshape_roots = []
+        for root, rep_mon in family_data['primary_final_of_root'].items():
+            if root in excluded_roots:
+                continue
+            if rep_mon not in learnsets:
+                continue
+            rep_info = pokedex.get(rep_mon, {})
+            if is_cap_mon(rep_info):
+                continue
+            if not family_has_any_moves(root, family_data, learnsets, moves_data, banned_move_types):
+                continue
+            if rep_info.get('bodyShape') == custom_bodyshape:
+                bodyshape_roots.append(root)
+
+        total_bodyshape = len(bodyshape_roots)
+        if total_bodyshape >= 3:
+            bodyshape_counter = Counter()
+            for root in bodyshape_roots:
+                bodyshape_counter.update(set(get_family_all_moves(root, family_data, learnsets, moves_data, banned_move_types)))
+
+            for move in list(move_scores.keys()):
+                prevalence = bodyshape_counter[move] / total_bodyshape
+                if prevalence >= 0.7:
+                    multiplier = 1.45
+                    bonus = move_scores[move] * (multiplier - 1.0)
+                    move_scores[move] *= multiplier
+                    move_reasons[move].append((
+                        f'{custom_bodyshape} bodyshape',
+                        bonus,
+                        [f'very common on {custom_bodyshape} families ({round(prevalence * 100)}%)']
+                    ))
+                elif prevalence >= 0.5:
+                    multiplier = 1.25
+                    bonus = move_scores[move] * (multiplier - 1.0)
+                    move_scores[move] *= multiplier
+                    move_reasons[move].append((
+                        f'{custom_bodyshape} bodyshape',
+                        bonus,
+                        [f'common on {custom_bodyshape} families ({round(prevalence * 100)}%)']
+                    ))
+                elif prevalence <= 0.1:
+                    multiplier = 0.55
+                    penalty = move_scores[move] * (1.0 - multiplier)
+                    move_scores[move] *= multiplier
+                    move_reasons[move].append((
+                        f'{custom_bodyshape} bodyshape',
+                        -penalty,
+                        [f'very rare on {custom_bodyshape} families ({round(prevalence * 100)}%)']
+                    ))
+                elif prevalence <= 0.2:
+                    multiplier = 0.75
+                    penalty = move_scores[move] * (1.0 - multiplier)
+                    move_scores[move] *= multiplier
+                    move_reasons[move].append((
+                        f'{custom_bodyshape} bodyshape',
+                        -penalty,
+                        [f'rare on {custom_bodyshape} families ({round(prevalence * 100)}%)']
+                    ))
 
     coverage_results = get_coverage_moves(
         custom_types=custom_types,
@@ -698,11 +938,13 @@ def build_weighted_move_scores(
         for move, _, percent, primary in data['moves']:
             method_bucket = 'egg' if primary == 'egg' else 'tm'
             bonus = (3.0 + (percent / 100.0) * 4.0) * METHOD_WEIGHTS[method_bucket]
+            type_mult, type_note = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, method_bucket, parsed_typechart)
+            bonus *= type_mult
             move_scores[move] += bonus
             move_reasons[move].append((
                 f'{coverage_type} coverage',
                 bonus,
-                [f'{percent}% of matching non-{coverage_type} families learn it', f'{method_bucket} move']
+                [f'{percent}% of matching non-{coverage_type} families learn it', f'{method_bucket} move', type_note]
             ))
             current_best = move_best_method.get(move)
             if current_best is None or METHOD_WEIGHTS[method_bucket] > METHOD_WEIGHTS[current_best]:
@@ -727,6 +969,7 @@ def build_weighted_move_scores(
         'other': sorted(method_buckets['other'].items(), key=bucket_sort_key)[:top_n],
         'generic': sorted(generic_scores.items(), key=bucket_sort_key)[:top_n],
         'candidates': sorted(candidate_scores, key=lambda x: (-x[1], x[0]))[:20],
+        'closest_stats': sorted(closest_stat_families, key=lambda x: (999 if x[1] is None else x[1], x[0]))[:12],
         'reasons': move_reasons,
         'coverage': coverage_results,
     }
@@ -748,12 +991,31 @@ def print_bucket(bucket_name, moves, move_reasons, top_n):
         for line in pretty_reasons:
             print(f"      - {line}")
 
-def print_weighted_results(results, top_n=20, generic_top_n=12):
+def print_weighted_results(results, custom_role_tags=None, custom_bodyshape=None, top_n=20, generic_top_n=12):
     ranked_candidates = results['candidates']
+    closest_stats = results.get('closest_stats', [])
     move_reasons = results['reasons']
     coverage_results = results['coverage']
 
-    print("🧠 Top stat-aware similar Pokémon:")
+    print("\n🧬 Assigned custom-mon tags:")
+    print(f"  • Role tags: {', '.join(sorted(custom_role_tags)) if custom_role_tags else '(none)'}")
+    print(f"  • Body shape: {custom_bodyshape if custom_bodyshape else '(none)'}")
+    print("  • Weighted body-plan logic: shape+egg combined, shape weighted more heavily than type")
+    print("  • Move-type compatibility: STAB boosted, requested coverage allowed, weakness-type and strong-against-type moves penalized by parsed typechart.ts")
+
+    print("\n📏 Closest stat-aware families:")
+    if not closest_stats:
+        print("  (none found)")
+    else:
+        for mon_name, distance, stat_similarity, mon_types, mon_egg_groups, mon_bodyshape, body_plan_tier in closest_stats[:12]:
+            distance_text = 'n/a' if distance is None else f'{distance:.1f}'
+            print(
+                f"  • {mon_name} — stat distance {distance_text}, similarity {stat_similarity:.2f}, "
+                f"types: {'/'.join(sorted(mon_types)) or '(none)'}, egg groups: {', '.join(sorted(mon_egg_groups)) or '(none)'}, "
+                f"body shape: {mon_bodyshape or '(none)'}, body-plan tier: {body_plan_tier}"
+            )
+
+    print("\n🧠 Top stat-aware similar Pokémon:")
     if not ranked_candidates:
         print("  (none found)")
     else:
@@ -793,7 +1055,7 @@ def print_weighted_results(results, top_n=20, generic_top_n=12):
             pretty_sources = ', '.join(source for source, _, _ in reasons)
             print(f"  • {move} — utility score {score:.2f} ({pretty_sources})")
 
-    print("  🧾 Final structured move lists:")
+    print("🧾 Final structured move lists:")
     print("  Level-up:", ', '.join(move for move, _ in results['level'][:top_n]) or '(none)')
     print("  TM/Tutor:", ', '.join(move for move, _ in results['tm'][:top_n]) or '(none)')
     print("  Egg:", ', '.join(move for move, _ in results['egg'][:top_n]) or '(none)')
@@ -949,6 +1211,7 @@ def main():
     try:
         pokedex = parse_pokedex('pokedex.ts')
         moves_data = parse_moves('moves.ts')
+        parsed_typechart = parse_typechart('typechart.ts')
     except FileNotFoundError as e:
         print('❌ File not found:', e)
         raise SystemExit
@@ -979,6 +1242,8 @@ def main():
         types = parse_csv_input(input('Enter types (comma separated, e.g. Fairy, Fire): ').strip())
         egg_groups = parse_csv_input(input('Enter egg groups (comma separated): ').strip())
         abilities = parse_csv_input(input('Enter abilities (comma separated): ').strip())
+        bodyshape_input = input('Enter body shape (e.g. Humanoid, Serpentine, Torso), or leave blank: ').strip()
+        custom_bodyshape = bodyshape_input if bodyshape_input else None
 
         print("\n📈 Enter base stats for the custom Pokémon.")
         custom_stats = {
@@ -990,7 +1255,7 @@ def main():
             'spe': safe_int('Speed: ', minimum=1, maximum=255),
         }
 
-        custom_traits = {'type': types, 'egg': egg_groups, 'ability': abilities}
+        custom_traits = {'type': types, 'egg': egg_groups, 'ability': abilities, 'bodyshape': [custom_bodyshape] if custom_bodyshape else []}
 
         similar_input = input('Enter specific Pokémon to base this off (comma separated), or leave blank: ').strip()
         similar_pokemon = [x.strip().lower() for x in similar_input.split(',') if x.strip()] if similar_input else []
@@ -1061,9 +1326,11 @@ def main():
                 family_data=family_data,
                 moves_data=moves_data,
                 banned_move_types=banned_move_types,
+                parsed_typechart=parsed_typechart,
                 custom_types=set(types),
                 custom_egg_groups=set(egg_groups),
                 custom_abilities=set(abilities),
+                custom_bodyshape=custom_bodyshape,
                 custom_stats=custom_stats,
                 similar_pokemon=set(similar_pokemon),
                 custom_groups=grouped_sets,
@@ -1089,7 +1356,13 @@ def main():
                     for bucket in ('level', 'tm', 'egg', 'other', 'generic'):
                         weighted_results[bucket] = [(move, score) for move, score in weighted_results[bucket] if move in shared]
 
-            print_weighted_results(weighted_results, top_n=20, generic_top_n=12)
+            print_weighted_results(
+                weighted_results,
+                custom_role_tags=get_role_tags(custom_stats),
+                custom_bodyshape=custom_bodyshape,
+                top_n=20,
+                generic_top_n=12,
+            )
 
         again = input("\n🔁 Do you want to analyze another Pokémon or list? (y/n): ").strip().lower()
         if again != 'y':

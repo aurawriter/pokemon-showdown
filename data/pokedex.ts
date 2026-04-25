@@ -2115,7 +2115,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "White",
 		evos: ["Dewgong"],
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	dewgong: {
 		num: 87,
@@ -2129,7 +2129,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Seel",
 		evoLevel: 34,
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	grimer: {
 		num: 88,
@@ -2773,7 +2773,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		evos: ["Seaking"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	seaking: {
 		num: 119,
@@ -2787,7 +2787,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Goldeen",
 		evoLevel: 33,
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	staryu: {
 		num: 120,
@@ -3017,7 +3017,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		evos: ["Gyarados"],
 		eggGroups: ["Water 2", "Dragon"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	gyarados: {
 		num: 130,
@@ -3061,7 +3061,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		eggGroups: ["Monster", "Water 1"],
 		canGigantamax: "G-Max Resonance",
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	laprasgmax: {
 		num: 131,
@@ -3803,7 +3803,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Lanturn"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	lanturn: {
 		num: 171,
@@ -3817,7 +3817,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Chinchou",
 		evoLevel: 27,
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	pichu: {
 		num: 172,
@@ -4464,9 +4464,9 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Field", "Fairy"],
 		bodyShape: "BipedalTail",
 	},
-	qwilfish: {
+	qwilFinned: {
 		num: 211,
-		name: "Qwilfish",
+		name: "QwilFinned",
 		types: ["Water", "Poison"],
 		baseStats: {hp: 65, atk: 95, def: 85, spa: 55, spd: 55, spe: 85},
 		abilities: {0: "Poison Point", 1: "Swift Swim", H: "Intimidate"},
@@ -4474,14 +4474,14 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 3.9,
 		color: "Gray",
 		eggGroups: ["Water 2"],
-		otherFormes: ["Qwilfish-Hisui"],
-		formeOrder: ["Qwilfish", "Qwilfish-Hisui"],
-		bodyShape: "Fish",
+		otherFormes: ["QwilFinned-Hisui"],
+		formeOrder: ["QwilFinned", "QwilFinned-Hisui"],
+		bodyShape: "Finned",
 	},
-	qwilfishhisui: {
+	qwilFinnedhisui: {
 		num: 211,
-		name: "Qwilfish-Hisui",
-		baseSpecies: "Qwilfish",
+		name: "QwilFinned-Hisui",
+		baseSpecies: "QwilFinned",
 		forme: "Hisui",
 		types: ["Dark", "Poison"],
 		baseStats: {hp: 65, atk: 95, def: 85, spa: 55, spd: 55, spe: 85},
@@ -4491,7 +4491,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Black",
 		evos: ["Overqwil"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	scizor: {
 		num: 212,
@@ -4721,7 +4721,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Gray",
 		evos: ["Octillery"],
 		eggGroups: ["Water 1", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	octillery: {
 		num: 224,
@@ -6294,7 +6294,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		evos: ["Sharpedo"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	sharpedo: {
 		num: 319,
@@ -6310,7 +6310,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Water 2"],
 		otherFormes: ["Sharpedo-Mega"],
 		formeOrder: ["Sharpedo", "Sharpedo-Mega"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	sharpedomega: {
 		num: 319,
@@ -6325,7 +6325,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		eggGroups: ["Water 2"],
 		requiredItem: "Sharpedonite",
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	wailmer: {
 		num: 320,
@@ -6338,7 +6338,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Wailord"],
 		eggGroups: ["Field", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	wailord: {
 		num: 321,
@@ -6352,7 +6352,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Wailmer",
 		evoLevel: 40,
 		eggGroups: ["Field", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	numel: {
 		num: 322,
@@ -6623,7 +6623,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Gray",
 		evos: ["Whiscash"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	whiscash: {
 		num: 340,
@@ -6637,7 +6637,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Barboach",
 		evoLevel: 30,
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	corphish: {
 		num: 341,
@@ -6764,7 +6764,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		evos: ["Milotic"],
 		eggGroups: ["Water 1", "Dragon"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	milotic: {
 		num: 350,
@@ -7053,7 +7053,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Sealeo"],
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	sealeo: {
 		num: 364,
@@ -7068,7 +7068,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 32,
 		evos: ["Walrein"],
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	walrein: {
 		num: 365,
@@ -7138,7 +7138,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 23.4,
 		color: "Gray",
 		eggGroups: ["Water 1", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	luvdisc: {
 		num: 370,
@@ -7151,7 +7151,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 8.7,
 		color: "Pink",
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	bagon: {
 		num: 371,
@@ -7395,7 +7395,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Undiscovered"],
 		otherFormes: ["Kyogre-Primal"],
 		formeOrder: ["Kyogre", "Kyogre-Primal"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	kyogreprimal: {
 		num: 382,
@@ -7411,7 +7411,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		eggGroups: ["Undiscovered"],
 		requiredItem: "Blue Orb",
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	groudon: {
 		num: 383,
@@ -8655,7 +8655,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Lumineon"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	lumineon: {
 		num: 457,
@@ -8669,7 +8669,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Finneon",
 		evoLevel: 31,
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	mantyke: {
 		num: 458,
@@ -10355,7 +10355,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Palpitoad"],
 		eggGroups: ["Water 1"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	palpitoad: {
 		num: 536,
@@ -10587,7 +10587,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Water 2"],
 		otherFormes: ["Basculin-Blue-Striped", "Basculin-White-Striped"],
 		formeOrder: ["Basculin", "Basculin-Blue-Striped", "Basculin-White-Striped"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	basculinbluestriped: {
 		num: 550,
@@ -11366,7 +11366,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 31.6,
 		color: "Pink",
 		eggGroups: ["Water 1", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	joltik: {
 		num: 595,
@@ -11478,7 +11478,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "White",
 		evos: ["Eelektrik"],
 		eggGroups: ["Amorphous"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	eelektrik: {
 		num: 603,
@@ -11493,7 +11493,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 39,
 		evos: ["Eelektross"],
 		eggGroups: ["Amorphous"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	eelektross: {
 		num: 604,
@@ -11508,7 +11508,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoType: "useItem",
 		evoItem: "Thunder Stone",
 		eggGroups: ["Amorphous"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	elgyem: {
 		num: 605,
@@ -11702,7 +11702,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Water 1", "Amorphous"],
 		otherFormes: ["Stunfisk-Galar"],
 		formeOrder: ["Stunfisk", "Stunfisk-Galar"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	stunfiskgalar: {
 		num: 618,
@@ -11716,7 +11716,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 20.5,
 		color: "Green",
 		eggGroups: ["Water 1", "Amorphous"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	mienfoo: {
 		num: 619,
@@ -13898,7 +13898,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Brionne"],
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	brionne: {
 		num: 729,
@@ -13914,7 +13914,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoLevel: 17,
 		evos: ["Primarina"],
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	primarina: {
 		num: 730,
@@ -13929,7 +13929,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Brionne",
 		evoLevel: 34,
 		eggGroups: ["Water 1", "Field"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	pikipek: {
 		num: 731,
@@ -15189,7 +15189,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 19,
 		color: "Pink",
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	drampa: {
 		num: 780,
@@ -16421,7 +16421,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		evos: ["Barraskewda"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	barraskewda: {
 		num: 847,
@@ -16435,7 +16435,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Arrokuda",
 		evoLevel: 26,
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	toxel: {
 		num: 848,
@@ -17157,7 +17157,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 175,
 		color: "Blue",
 		eggGroups: ["Undiscovered"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	duraludon: {
 		num: 884,
@@ -17629,7 +17629,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Water 2"],
 		otherFormes: ["Basculegion-F"],
 		formeOrder: ["Basculegion", "Basculegion-F"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	basculegionf: {
 		num: 902,
@@ -17673,11 +17673,11 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 2.5,
 		weightkg: 60.5,
 		color: "Gray",
-		prevo: "Qwilfish-Hisui",
+		prevo: "QwilFinned-Hisui",
 		evoType: "other",
 		evoCondition: "Use Strong style Barb Barrage 20 times",
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	enamorus: {
 		num: 905,
@@ -18601,7 +18601,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		evos: ["Palafin"],
 		eggGroups: ["Field", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	palafin: {
 		num: 964,
@@ -18618,7 +18618,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		otherFormes: ["Palafin-Hero"],
 		formeOrder: ["Palafin", "Palafin-Hero"],
 		eggGroups: ["Field", "Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	palafinhero: {
 		num: 964,
@@ -18803,7 +18803,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 90,
 		color: "Gray",
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	dondozo: {
 		num: 977,
@@ -18815,7 +18815,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 220,
 		color: "Blue",
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	tatsugiri: {
 		num: 978,
@@ -18830,7 +18830,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		cosmeticFormes: ["Tatsugiri-Droopy", "Tatsugiri-Stretchy"],
 		formeOrder: ["Tatsugiri", "Tatsugiri-Droopy", "Tatsugiri-Stretchy"],
 		eggGroups: ["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	annihilape: {
 		num: 979,
@@ -19238,7 +19238,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		tags: ["Sub-Legendary"],
 		eggGroups: ["Undiscovered"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	roaringmoon: {
 		num: 1005,
@@ -21134,7 +21134,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 88.8,
 		color: "Blue",
 		eggGroups:["Water 2"],
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 	},
 	squittack: {
 		num: -1126,
@@ -22019,7 +22019,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 24,
 		weightkg: 150,
 		color: "Yellow",
-		bodyShape: "Fish",
+		bodyShape: "Finned",
 		eggGroups: ["Field","Water 2"],
 	},
 	fermentoss: {
