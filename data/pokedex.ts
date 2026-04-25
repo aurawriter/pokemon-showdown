@@ -21157,6 +21157,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
         heightm: 3.4,
         weightkg: 130.3,
         color: "Pink",
+		bodyShape: "HeadArms",
         eggGroups: ["Monster", "Grass"],
     },
 	dwelmet:{
@@ -21168,7 +21169,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 1.6,
 		weightkg: 112.8,
 		color: "Red",
-		bodyShape: "HeadArms",
+		bodyShape: "Humanoid",
 		eggGroups: ["Human-Like"],
 	},
 	harmonkey:{
