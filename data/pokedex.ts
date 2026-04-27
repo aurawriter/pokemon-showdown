@@ -22172,7 +22172,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		name: "Snogre",
 		types: ["Ice"],
 		baseStats: {hp: 65, atk: 150, def: 78, spa: 142, spd: 59, spe: 47},
-		abilities: {0: "Ice Body", 1: "Reckless", H: "Refigerate"},
+		abilities: {0: "Ice Body", 1: "Reckless", H: "Refrigerate"},
 		heightm: 2.1,
 		weightkg: 210,
 		color: "White",
