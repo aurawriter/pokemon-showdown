@@ -12,6 +12,42 @@ GENERIC_UTILITY_MOVES = {
     'workup', 'toxic', 'return', 'frustration', 'secretpower'
 }
 
+BANNED_MOVES = {
+    'terablast',
+}
+
+
+EARLY_MOVE_EXCEPTIONS = {
+    'absorb', 'acid', 'astonish', 'bite', 'bubble', 'charm', 'confusion', 'covet',
+    'ember', 'fakeout', 'feint', 'growl', 'gust', 'harden', 'headbutt', 'howl',
+    'leer', 'lick', 'mudslap', 'peck', 'pound', 'quickattack', 'rage', 'scratch',
+    'sing', 'smokescreen', 'splash', 'stringshot', 'supersonic', 'tackle', 'tailwhip',
+    'thundershock', 'vinewhip', 'watergun', 'wingattack', 'wrap'
+}
+
+def filter_suspicious_level_ones(move, levels):
+    if not levels:
+        return levels
+
+    move_key = move.lower().replace(" ", "")
+    if move_key in EARLY_MOVE_EXCEPTIONS:
+        return levels
+
+    non_one = [lvl for lvl in levels if lvl != 1]
+    if not non_one:
+        return levels
+
+    # If there is real later data, treat placeholder L1s as suspicious.
+    # This is especially useful for cleaning old lazy learnsets full of 9L1.
+    avg_non_one = sum(non_one) / len(non_one)
+
+    # Any move that has meaningful later learn levels should not be dragged down by fake L1s.
+    if avg_non_one >= 12:
+        cleaned = non_one
+        return cleaned if cleaned else levels
+
+    return levels
+
 IGNORED_METHOD_PREFIXES = {'R'}
 
 METHOD_WEIGHTS = {
@@ -442,12 +478,18 @@ def get_move_type_compatibility(move_name, moves_data, custom_types, coverage_ty
     return 0.78 if method_bucket == 'level' else 0.9, f'off-type neutral ({move_type})'
 
 def move_is_allowed(move_name, moves_data, banned_move_types):
-    if not banned_move_types:
-        return True
+    move_key = move_name.lower().replace(" ", "")
+    if move_key in BANNED_MOVES:
+        return False
+
     move_info = moves_data.get(move_name.lower())
     if not move_info:
         return True
-    return move_info.get("type") not in banned_move_types
+
+    if banned_move_types and move_info.get("type") in banned_move_types:
+        return False
+
+    return True
 
 def filter_move_list(move_names, moves_data, banned_move_types):
     return [move for move in move_names if move_is_allowed(move, moves_data, banned_move_types)]
@@ -1207,6 +1249,300 @@ def find_common_moves(move_maps, traits, learnsets, family_data, moves_data, ban
     else:
         print("⚠️ No suggested moves found after applying all filters.")
 
+
+
+def trim_mean(values, trim_frac=0.15):
+    if not values:
+        return 0.0
+    vals = sorted(values)
+    if len(vals) < 5:
+        return sum(vals) / len(vals)
+    trim = int(len(vals) * trim_frac)
+    if trim * 2 >= len(vals):
+        return sum(vals) / len(vals)
+    vals = vals[trim:len(vals)-trim]
+    return sum(vals) / len(vals)
+
+def make_seed(types, egg_groups, abilities, bodyshape, stats):
+    parts = list(types) + list(egg_groups) + list(abilities) + [bodyshape or ""]
+    parts += [str(stats.get(k, 0)) for k in ('hp', 'atk', 'def', 'spa', 'spd', 'spe')]
+    seed = 0
+    for ch in "|".join(parts):
+        seed = (seed * 131 + ord(ch)) % (2**32)
+    return seed
+
+def extract_level_from_methods(methods, gen):
+    levels = []
+    for m in methods:
+        if not m.startswith(str(gen)):
+            continue
+        m2 = m[1:]
+        if m2.startswith('L'):
+            num = m2[1:]
+            if num.isdigit():
+                levels.append(int(num))
+    return levels
+
+def get_rep_level_tm_moves(rep_mon, learnsets, moves_data, banned_move_types, gen):
+    level_moves = {}
+    tm_moves = {}
+    if rep_mon not in learnsets:
+        return level_moves, tm_moves
+
+    for move in learnsets[rep_mon]['moves']:
+        if not move_is_allowed(move, moves_data, banned_move_types):
+            continue
+        methods = learnsets[rep_mon]['methods'].get(move, [])
+        method_types = learnsets[rep_mon]['method_types'].get(move, set())
+        if 'level' in method_types:
+            lvls = extract_level_from_methods(methods, gen)
+            level_moves[move] = lvls if lvls else [1]
+        if 'tm' in method_types:
+            tm_moves[move] = True
+    return level_moves, tm_moves
+
+def get_base_egg_moves(base_mon, learnsets, moves_data, banned_move_types):
+    egg_moves = {}
+    if base_mon not in learnsets:
+        return egg_moves
+    for move in learnsets[base_mon]['moves']:
+        if not move_is_allowed(move, moves_data, banned_move_types):
+            continue
+        if 'egg' in learnsets[base_mon]['method_types'].get(move, set()):
+            egg_moves[move] = True
+    return egg_moves
+
+def estimate_target_counts(ranked_candidates, family_data, learnsets, moves_data, banned_move_types, gen, seed):
+    level_counts = []
+    tm_counts = []
+
+    for mon_name, score, _, _ in ranked_candidates[:20]:
+        root = family_data['root_of'].get(mon_name, mon_name)
+        rep_mon = family_data['primary_final_of_root'].get(root, mon_name)
+        level_moves, tm_moves = get_rep_level_tm_moves(rep_mon, learnsets, moves_data, banned_move_types, gen)
+        if level_moves:
+            level_counts.append(len(level_moves))
+        if tm_moves:
+            tm_counts.append(len(tm_moves))
+
+    import random
+    rng = random.Random(seed)
+
+    avg_level = trim_mean(level_counts) if level_counts else 17
+    avg_tm = trim_mean(tm_counts) if tm_counts else 32
+
+    target_level = round(avg_level + rng.choice([-2, -1, 0, 1, 2]))
+    target_tm = round(avg_tm + rng.choice([-3, -2, -1, 0, 1, 2, 3]))
+
+    target_level = max(10, min(26, target_level))
+    target_tm = max(18, min(45, target_tm))
+
+    return target_level, target_tm
+
+def normalize_final_levels(level_moves):
+    # Keep move-specific observed average levels as much as possible.
+    # Only do light cleanup:
+    # - clamp to a sane range
+    # - sort by level
+    # - nudge exact overlaps upward so the list reads cleanly
+    items = sorted(
+        level_moves.items(),
+        key=lambda x: ((x[1] if x[1] is not None else 999), x[0])
+    )
+
+    fixed = {}
+    used_levels = set()
+
+    for move, lvl in items:
+        if lvl is None:
+            lvl = 1
+        lvl = max(1, min(88, int(round(lvl))))
+
+        # light cleanup only: avoid duplicate levels by nudging upward a little
+        while lvl in used_levels and lvl < 88:
+            lvl += 1
+
+        fixed[move] = lvl
+        used_levels.add(lvl)
+
+    return fixed
+
+def build_average_learnset(
+    weighted_results,
+    pokedex,
+    learnsets,
+    family_data,
+    moves_data,
+    parsed_typechart,
+    banned_move_types,
+    custom_types,
+    custom_egg_groups,
+    custom_abilities,
+    custom_bodyshape,
+    custom_stats,
+    coverage_types,
+    gen,
+):
+    ranked_candidates = weighted_results['candidates']
+    seed = make_seed(custom_types, custom_egg_groups, custom_abilities, custom_bodyshape, custom_stats)
+    target_level, target_tm = estimate_target_counts(
+        ranked_candidates, family_data, learnsets, moves_data, banned_move_types, gen, seed
+    )
+
+    level_scores = defaultdict(float)
+    level_levels = defaultdict(list)
+    tm_scores = defaultdict(float)
+    egg_scores = defaultdict(float)
+
+    for mon_name, score, _, _ in ranked_candidates[:20]:
+        root = family_data['root_of'].get(mon_name, mon_name)
+        rep_mon = family_data['primary_final_of_root'].get(root, mon_name)
+        base_mon = family_data['base_of_root'].get(root, mon_name)
+
+        level_moves, tm_moves = get_rep_level_tm_moves(rep_mon, learnsets, moves_data, banned_move_types, gen)
+        egg_moves = get_base_egg_moves(base_mon, learnsets, moves_data, banned_move_types)
+
+        for move, lvls in level_moves.items():
+            mult, _ = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, 'level', parsed_typechart)
+            contrib = score * mult
+            level_scores[move] += contrib
+            level_levels[move].extend(lvls)
+
+        for move in tm_moves:
+            mult, _ = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, 'tm', parsed_typechart)
+            tm_scores[move] += score * mult
+
+        for move in egg_moves:
+            mult, _ = get_move_type_compatibility(move, moves_data, custom_types, coverage_types, 'egg', parsed_typechart)
+            egg_scores[move] += score * mult * 0.9
+
+    if custom_bodyshape:
+        roots = []
+        for root, rep_mon in family_data['primary_final_of_root'].items():
+            rep_info = pokedex.get(rep_mon, {})
+            if is_cap_mon(rep_info):
+                continue
+            if rep_info.get('bodyShape') == custom_bodyshape and family_has_any_moves(root, family_data, learnsets, moves_data, banned_move_types):
+                roots.append(root)
+        total = len(roots)
+        if total >= 3:
+            pool_counter = Counter()
+            for root in roots:
+                pool_counter.update(set(get_family_all_moves(root, family_data, learnsets, moves_data, banned_move_types)))
+            for move_dict in (level_scores, tm_scores, egg_scores):
+                for move in list(move_dict.keys()):
+                    prevalence = pool_counter[move] / total
+                    if prevalence >= 0.7:
+                        move_dict[move] *= 1.25
+                    elif prevalence <= 0.1:
+                        move_dict[move] *= 0.65
+
+    generic_norm = {m.replace(" ", "") for m in GENERIC_UTILITY_MOVES}
+
+    generic_tm_candidates = []
+    for move, score in tm_scores.items():
+        if move.lower().replace(" ", "") in generic_norm:
+            generic_tm_candidates.append((move, score))
+    generic_tm_candidates.sort(key=lambda x: (-x[1], x[0]))
+
+    generic_tm_count = min(target_tm, len(generic_tm_candidates), 12)
+    chosen_generic_tms = [move for move, _ in generic_tm_candidates[:generic_tm_count]]
+
+    level_candidates = []
+    for move, score in level_scores.items():
+        adj = score
+        if move.lower().replace(" ", "") in generic_norm:
+            adj *= 0.55
+        level_candidates.append((move, adj))
+    level_candidates.sort(key=lambda x: (-x[1], x[0]))
+    chosen_level = [move for move, _ in level_candidates[:target_level]]
+
+    final_level_map = {}
+    for move in chosen_level:
+        lvls = sorted(x for x in level_levels.get(move, []) if isinstance(x, int))
+        lvls = filter_suspicious_level_ones(move, lvls)
+        if lvls:
+            # Use a trimmed mean when possible so one weird source does not drag
+            # a move like Outrage way too early or too late.
+            if len(lvls) >= 5:
+                trim = max(1, int(len(lvls) * 0.2))
+                trimmed = lvls[trim:len(lvls)-trim] if (len(lvls) - 2 * trim) >= 1 else lvls
+                avg_lvl = sum(trimmed) / len(trimmed)
+            elif len(lvls) >= 3:
+                avg_lvl = lvls[len(lvls)//2]  # median for small samples
+            else:
+                avg_lvl = sum(lvls) / len(lvls)
+            final_level_map[move] = round(avg_lvl)
+        else:
+            final_level_map[move] = None
+
+    final_level_map = normalize_final_levels(final_level_map)
+
+    chosen_tm = list(chosen_generic_tms)
+    tm_candidates = sorted(tm_scores.items(), key=lambda x: (-x[1], x[0]))
+    for move, _ in tm_candidates:
+        if move in chosen_tm:
+            continue
+        chosen_tm.append(move)
+        if len(chosen_tm) >= target_tm:
+            break
+
+    chosen_egg = [move for move, _ in sorted(egg_scores.items(), key=lambda x: (-x[1], x[0]))[:20]]
+
+    combined = {}
+    for move, lvl in final_level_map.items():
+        combined.setdefault(move, [])
+        combined[move].append(f"{gen}L{lvl}")
+    for move in chosen_tm:
+        combined.setdefault(move, [])
+        combined[move].append(f"{gen}M")
+    for move in chosen_egg:
+        combined.setdefault(move, [])
+        combined[move].append(f"{gen}E")
+
+    return {
+        'target_level': target_level,
+        'target_tm': target_tm,
+        'target_generic_tm': len(chosen_generic_tms),
+        'level_map': final_level_map,
+        'tm_moves': chosen_tm,
+        'egg_moves': chosen_egg,
+        'combined': combined,
+    }
+
+def print_average_learnset(result):
+    print("\n🧪 Suggested average learnset build:")
+    print(f"  • Target level-up moves: {result['target_level']}")
+    print(f"  • Target TM moves: {result['target_tm']} ({result['target_generic_tm']} generic utility included)")
+    print(f"  • Egg moves kept as separate suggestions: {len(result['egg_moves'])}")
+
+    print("\n📈 Suggested level-up learnset:")
+    print("  (levels are based on move-specific observed learn levels from similar Pokémon, with suspicious placeholder L1s ignored when later data exists)")
+    if result['level_map']:
+        for move, lvl in sorted(result['level_map'].items(), key=lambda x: (x[1], x[0])):
+            print(f"  • Lv.{lvl}: {move}")
+    else:
+        print("  (none)")
+
+    print("\n🧰 Suggested TM learnset:")
+    if result['tm_moves']:
+        print("  " + ", ".join(result['tm_moves']))
+    else:
+        print("  (none)")
+
+    print("\n🥚 Suggested egg moves:")
+    if result['egg_moves']:
+        print("  " + ", ".join(result['egg_moves']))
+    else:
+        print("  (none)")
+
+    print("\n🧾 Combined learnset block:")
+    print("\tlearnset: {")
+    for move in sorted(result['combined']):
+        methods = ', '.join(f'"{m}"' for m in result['combined'][move])
+        print(f'\t\t{move}: [{methods}],')
+    print("\t},")
+
 def main():
     try:
         pokedex = parse_pokedex('pokedex.ts')
@@ -1363,6 +1699,24 @@ def main():
                 top_n=20,
                 generic_top_n=12,
             )
+
+            average_learnset = build_average_learnset(
+                weighted_results=weighted_results,
+                pokedex=pokedex,
+                learnsets=learnsets,
+                family_data=family_data,
+                moves_data=moves_data,
+                parsed_typechart=parsed_typechart,
+                banned_move_types=banned_move_types,
+                custom_types=set(types),
+                custom_egg_groups=set(egg_groups),
+                custom_abilities=set(abilities),
+                custom_bodyshape=custom_bodyshape,
+                custom_stats=custom_stats,
+                coverage_types=coverage_types,
+                gen=gen,
+            )
+            print_average_learnset(average_learnset)
 
         again = input("\n🔁 Do you want to analyze another Pokémon or list? (y/n): ").strip().lower()
         if again != 'y':
