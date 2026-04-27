@@ -9010,7 +9010,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		evoType: "levelExtra",
 		evoCondition: "near a special magnetic field",
 		eggGroups: ["Mineral"],
-		bodyShape: "Humanoid",
+		bodyShape: "Multiple",
 	},
 	dusknoir: {
 		num: 477,
