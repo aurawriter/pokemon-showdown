@@ -22139,6 +22139,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		abilities: {0: "Flame Body", 1: "Pickpocket", H: "Sheer Force"},
 		heightm: 1.2,
 		weightkg: 35,
+		bodyShape: "BipedalTail",
 		color: "Red",
 		eggGroups: ["Field"],
 	},
@@ -22213,6 +22214,18 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Grey",
 		eggGroups: ["Field"],
 		bodyShape: "Quadruped"
+	},
+	artsenal: {
+		num: -1202,
+		name: "Artsenal",
+		types: "Ground",
+		baseStats: {hp: 71, atk: 75, def: 100, spa: 114,spd: 73, spe: 67},
+		abilities: {0: "Regenerator", 1: "Mega Launcher", H: "Well-Baked Body"},
+		heightm: 1.5,
+		weightkg: 108,
+		color: "Brown",
+		eggGroups: ["Mineral"],
+		bodyShape: "Humanoid",10
 	}
 
 
