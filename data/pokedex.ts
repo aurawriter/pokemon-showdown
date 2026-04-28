@@ -4464,9 +4464,9 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		eggGroups: ["Field", "Fairy"],
 		bodyShape: "BipedalTail",
 	},
-	qwilFinned: {
+	qwilfish:{
 		num: 211,
-		name: "QwilFinned",
+		name: "Qwilfish",
 		types: ["Water", "Poison"],
 		baseStats: {hp: 65, atk: 95, def: 85, spa: 55, spd: 55, spe: 85},
 		abilities: {0: "Poison Point", 1: "Swift Swim", H: "Intimidate"},
@@ -4474,14 +4474,14 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 3.9,
 		color: "Gray",
 		eggGroups: ["Water 2"],
-		otherFormes: ["QwilFinned-Hisui"],
-		formeOrder: ["QwilFinned", "QwilFinned-Hisui"],
+		otherFormes: ["Qwilfish-Hisui"],
+		formeOrder: ["Qwilfish", "Qwilfish-Hisui"],
 		bodyShape: "Finned",
 	},
-	qwilFinnedhisui: {
+	qwilfishhisui: {
 		num: 211,
-		name: "QwilFinned-Hisui",
-		baseSpecies: "QwilFinned",
+		name: "Qwilfish-Hisui",
+		baseSpecies: "Qwilfish",
 		forme: "Hisui",
 		types: ["Dark", "Poison"],
 		baseStats: {hp: 65, atk: 95, def: 85, spa: 55, spd: 55, spe: 85},
