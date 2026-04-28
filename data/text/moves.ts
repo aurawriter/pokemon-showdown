@@ -8188,4 +8188,9 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Lowers the user's Defense and Special Defense by 1 stage.",
 		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
 	},
+	jetstream: {
+		name: "Jet Stream",
+		desc: "Power 1.5x if a weather condition other than Delta Stream is active, and this move's type changes to match. Ice type during Snow, Water type during Primordial Sea or Rain Dance, Rock type during Sandstorm, and Fire type during Desolate Land or Sunny Day. If the user is holding Utility Umbrella and uses Jet Stream during Primordial Sea, Rain Dance, Desolate Land, or Sunny Day, this move remains Normal type and does not double in power.",
+		shortDesc: "Power 1.5x and type varies in each weather.",
+	},
 };

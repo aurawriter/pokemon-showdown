@@ -1389,6 +1389,10 @@ def build_average_learnset(
         ranked_candidates, family_data, learnsets, moves_data, banned_move_types, gen, seed
     )
 
+    MIN_PER_METHOD = 4
+    target_level = max(target_level, MIN_PER_METHOD)
+    target_tm = max(target_tm, MIN_PER_METHOD)
+
     level_scores = defaultdict(float)
     level_levels = defaultdict(list)
     tm_scores = defaultdict(float)
@@ -1448,6 +1452,36 @@ def build_average_learnset(
     generic_tm_count = min(target_tm, len(generic_tm_candidates), 12)
     chosen_generic_tms = [move for move, _ in generic_tm_candidates[:generic_tm_count]]
 
+    # Stronger dual-type safeguard:
+    # preserve multiple representative STAB moves per custom type so one type
+    # does not completely crowd out the other in the final learnset block.
+    custom_types_list = [t for t in custom_types if t]
+    STAB_LEVEL_MIN_PER_TYPE = 2 if len(custom_types_list) >= 2 else 3
+    STAB_TM_MIN_PER_TYPE = 3 if len(custom_types_list) >= 2 else 4
+
+    stab_level_reserve = {stab_type: [] for stab_type in custom_types_list}
+    stab_tm_reserve = {stab_type: [] for stab_type in custom_types_list}
+
+    for stab_type in custom_types_list:
+        level_pool = []
+        for move, score in level_scores.items():
+            move_info = moves_data.get(move.lower())
+            if move_info and move_info.get("type") == stab_type:
+                adj = score
+                if move.lower().replace(" ", "") in generic_norm:
+                    adj *= 0.55
+                level_pool.append((move, adj))
+        level_pool.sort(key=lambda x: (-x[1], x[0]))
+        stab_level_reserve[stab_type] = level_pool[:STAB_LEVEL_MIN_PER_TYPE]
+
+        tm_pool = []
+        for move, score in tm_scores.items():
+            move_info = moves_data.get(move.lower())
+            if move_info and move_info.get("type") == stab_type:
+                tm_pool.append((move, score))
+        tm_pool.sort(key=lambda x: (-x[1], x[0]))
+        stab_tm_reserve[stab_type] = tm_pool[:STAB_TM_MIN_PER_TYPE]
+
     level_candidates = []
     for move, score in level_scores.items():
         adj = score
@@ -1455,7 +1489,20 @@ def build_average_learnset(
             adj *= 0.55
         level_candidates.append((move, adj))
     level_candidates.sort(key=lambda x: (-x[1], x[0]))
-    chosen_level = [move for move, _ in level_candidates[:target_level]]
+
+    chosen_level = []
+    for stab_type in custom_types_list:
+        for move, _ in stab_level_reserve.get(stab_type, []):
+            if move not in chosen_level:
+                chosen_level.append(move)
+
+    for move, _ in level_candidates:
+        if move in chosen_level:
+            continue
+        chosen_level.append(move)
+        if len(chosen_level) >= target_level:
+            break
+    chosen_level = chosen_level[:target_level]
 
     final_level_map = {}
     for move in chosen_level:
@@ -1479,6 +1526,11 @@ def build_average_learnset(
     final_level_map = normalize_final_levels(final_level_map)
 
     chosen_tm = list(chosen_generic_tms)
+    for stab_type in custom_types_list:
+        for move, _ in stab_tm_reserve.get(stab_type, []):
+            if move not in chosen_tm:
+                chosen_tm.append(move)
+
     tm_candidates = sorted(tm_scores.items(), key=lambda x: (-x[1], x[0]))
     for move, _ in tm_candidates:
         if move in chosen_tm:
@@ -1486,8 +1538,11 @@ def build_average_learnset(
         chosen_tm.append(move)
         if len(chosen_tm) >= target_tm:
             break
+    chosen_tm = chosen_tm[:target_tm]
 
-    chosen_egg = [move for move, _ in sorted(egg_scores.items(), key=lambda x: (-x[1], x[0]))[:20]]
+    sorted_egg = sorted(egg_scores.items(), key=lambda x: (-x[1], x[0]))
+    egg_target = 4 if len(sorted_egg) >= 4 else len(sorted_egg)
+    chosen_egg = [move for move, _ in sorted_egg[:egg_target]]
 
     combined = {}
     for move, lvl in final_level_map.items():
@@ -1508,6 +1563,9 @@ def build_average_learnset(
         'tm_moves': chosen_tm,
         'egg_moves': chosen_egg,
         'combined': combined,
+        'custom_types': custom_types,
+        'moves_data': moves_data,
+        'gen': gen,
     }
 
 def print_average_learnset(result):
@@ -1518,6 +1576,10 @@ def print_average_learnset(result):
 
     print("\n📈 Suggested level-up learnset:")
     print("  (levels are based on move-specific observed learn levels from similar Pokémon, with suspicious placeholder L1s ignored when later data exists)")
+    print("  (dual-type safeguard: the final learnset block tries to preserve both STAB types when support exists)")
+    print("  (strong STAB quotas: dual types now try to keep multiple moves from each STAB type in both level-up and TM lists)")
+    print("  (STAB breakdown below: counts how many final combined-block moves belong to each of your custom types)")
+    print("  (minimum method floor: tries to give at least 4 level-up, 4 TM, and up to 4 egg moves when enough valid candidates exist)")
     if result['level_map']:
         for move, lvl in sorted(result['level_map'].items(), key=lambda x: (x[1], x[0])):
             print(f"  • Lv.{lvl}: {move}")
@@ -1535,6 +1597,36 @@ def print_average_learnset(result):
         print("  " + ", ".join(result['egg_moves']))
     else:
         print("  (none)")
+
+
+    # STAB breakdown for the final combined block
+    custom_types = result.get("custom_types", [])
+    moves_data = result.get("moves_data", {})
+    gen = result.get("gen", 9)
+    combined_learnset = result.get("combined", {})
+
+    stab_counts = {t: {"level": 0, "tm": 0, "egg": 0, "total": 0} for t in custom_types if t}
+    for move, methods in sorted(combined_learnset.items()):
+        move_info = moves_data.get(move.lower())
+        move_type = move_info.get("type") if move_info else None
+        if move_type in stab_counts:
+            method_set = set(methods)
+            if any(m.startswith(f"{gen}L") for m in method_set):
+                stab_counts[move_type]["level"] += 1
+            if f"{gen}M" in method_set:
+                stab_counts[move_type]["tm"] += 1
+            if f"{gen}E" in method_set:
+                stab_counts[move_type]["egg"] += 1
+            stab_counts[move_type]["total"] += 1
+
+    if stab_counts:
+        print("\n🎯 Final STAB move breakdown:")
+        for stab_type, counts in stab_counts.items():
+            print(
+                f"  • {stab_type}: "
+                f"{counts['total']} total "
+                f"(Level-up: {counts['level']}, TM: {counts['tm']}, Egg: {counts['egg']})"
+            )
 
     print("\n🧾 Combined learnset block:")
     print("\tlearnset: {")

@@ -22603,6 +22603,15 @@ export const Moves: {[moveid: string]: MoveData} = {
 			case 'snow':
 				move.basePower *= 2;
 				break;
+			case 'acidrain':
+				move.basePower *= 2;
+				break;
+			case 'pollen':
+				move.basePower *= 2;
+				break;
+			case 'gravity':
+				move.basePower *= 2;
+				break;	
 			}
 			this.debug('BP: ' + move.basePower);
 		},
@@ -24651,5 +24660,78 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Psychic",
 		zMove: {basePower: 120},
 		maxMove: {basePower: 140},
+	},
+	jetstream: {
+		num: 311,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Jet Stream",
+		pp: 10,
+		priority: 0,
+		flags: {wind: 1, protect: 1, mirror: 1},
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+			case 'snow':
+				move.type = 'Ice';
+				break;
+			case 'acidrain':
+				move.type = 'Poison';
+				break;
+			case 'pollen':
+				move.type = 'Bug';
+				break;
+			case 'gravity':
+				move.type = 'Cosmic';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 1.5;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 1.5;
+				break;
+			case 'sandstorm':
+				move.basePower *= 1.5;
+				break;
+			case 'hail':
+			case 'snow':
+				move.basePower *= 1.5;
+				break;
+			case 'acidrain':
+				move.basePower *= 1.5;
+				break;
+			case 'pollen':
+				move.basePower *= 1.5;
+				break;
+			case 'gravity':
+				move.basePower *= 1.5;
+				break;	
+			}
+			this.debug('BP: ' + move.basePower);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
+		zMove: {basePower: 160},
+		maxMove: {basePower: 130},
+		contestType: "Beautiful",
 	},
 };

@@ -22008,7 +22008,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		weightkg: 300,
 		color: "Blue",
 		bodyShape: "Quadruped",
-		eggGroups: ["Water 1", "Field"],
+		eggGroups: ["Field"],
 	},
 	elecacha: {
 		num: -1185,
@@ -22218,14 +22218,14 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 	artsenal: {
 		num: -1202,
 		name: "Artsenal",
-		types: "Ground",
+		types: ["Ground"],
 		baseStats: {hp: 71, atk: 75, def: 100, spa: 114,spd: 73, spe: 67},
 		abilities: {0: "Regenerator", 1: "Mega Launcher", H: "Well-Baked Body"},
 		heightm: 1.5,
 		weightkg: 108,
 		color: "Brown",
 		eggGroups: ["Mineral"],
-		bodyShape: "Humanoid",10
+		bodyShape: "Humanoid",
 	}
 
 
