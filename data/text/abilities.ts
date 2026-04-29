@@ -2625,5 +2625,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	liftoff: {
 		name: "Liftoff",
 		shortDesc: "On using a Flying-type attack, gain Flying-type. Lose on non-Flying type attack."
-	}
+	},
+	lightlunch: {
+		name: "Light Lunch",
+		desc: "This Pokemon is immune to Light-type moves and restores 1/4 of its maximum HP, rounded down, when hit by a Light-type move.",
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Light  moves; Light immunity.",
+	},
 };	
