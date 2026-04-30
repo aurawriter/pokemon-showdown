@@ -3873,6 +3873,25 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3,
 		num: 69,
 	},
+	absolutezero: {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ice') {
+				this.debug('Absolute Zero boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ice') {
+				this.debug('Absolute Zero boost');
+				return this.chainModify(1.5);
+			}
+		},
+		name: "Absolute Zero",
+		rating: 3.5,
+		num: 276,
+	},
 	rockypayload: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, attacker, defender, move) {
