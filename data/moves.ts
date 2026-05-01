@@ -10909,6 +10909,23 @@ export const Moves: {[moveid: string]: MoveData} = {
 		target: "allies",
 		type: "Water",
 	},
+	selflessheart: {
+		num: 2000,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Selfless Heart",
+		pp: 10,
+		priority: 0,
+		flags: {heal: 1, bypasssub: 1, allyanim: 1},
+		onHit(target, source) {
+			const damage = this.damage(this.modify(source.baseMaxhp, 0.25), source, source, this.dex.conditions.get('Selfless Heart'));
+			if (damage) return !!this.heal(damage, target, source);
+		},
+		secondary: null,
+		target: "adjacentAlly",
+		type: "Fairy",
+	},
 	lightofruin: {
 		num: 617,
 		accuracy: 90,
@@ -24733,4 +24750,5 @@ export const Moves: {[moveid: string]: MoveData} = {
 		maxMove: {basePower: 130},
 		contestType: "Beautiful",
 	},
+	
 };

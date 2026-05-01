@@ -22016,7 +22016,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		types: ["Electric"],
 		baseStats: {hp: 125,atk:110,def:50,spa:60,spd:140,spe:25},
 		abilities: {0: "Klutz", H: "Rain Coat"},
-		heightm: 24,
+		heightm: 13.3,
 		weightkg: 150,
 		color: "Yellow",
 		bodyShape: "Finned",
