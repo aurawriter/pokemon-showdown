@@ -8208,4 +8208,16 @@ export const MovesText: {[k: string]: MoveText} = {
 		desc: "Hits three times. Power increases to 40 for the second hit and 60 for the third. This move checks accuracy for each hit, and the attack ends if the target avoids a hit. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit three times.",
 		shortDesc: "Hits 3 times. Each hit can miss, but power rises.",
 	},
+	snowblindrush: {
+		name: "Snowblind Rush",
+		desc: "If this attack is not successful, the user loses half of its maximum HP, rounded down, as crash damage. Pokemon with the Magic Guard Ability are unaffected by crash damage.",
+		shortDesc: "User is hurt by 50% of its max HP if it misses.",
+
+		damage: "#crash",
+	},
+	selflessheart: {
+		name: "Selfless Heart",
+		desc: "User loses 25% of its maximum HP. Ally restores that much HP.",
+		shortDesc: "User loses 25% of its max HP. Ally restores that much HP.",
+	}
 };
