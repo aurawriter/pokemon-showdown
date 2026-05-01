@@ -5234,5 +5234,17 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	orthwormaurora: {
 		tier: "OU",
 		doublesTier: "DOU",
+	},
+	volaraptor: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	psycrobe: {
+		tier: "OU",
+		doublesTier: "DOU",
+	},
+	snogre: {
+		tier: "OU",
+		doublesTier: "DOU",
 	}
 };
