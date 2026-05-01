@@ -8170,8 +8170,8 @@ export const MovesText: {[k: string]: MoveText} = {
 	},
 	overwhelm: {
 		name: "Overwhelm",
-		desc: "If this move knocks out the target, the Pokemon that switches into that position is immediately hit by an Overwhelm with 140 base power.",
-		shortDesc: "If this move KOes, the replacement is hit by a 140 BP Overwhelm.",
+		desc: "If this move knocks out the target, the Pokemon that switches into that position is immediately hit by a Fighting-type hit with 130 base power.",
+		shortDesc: "If this KOes, the replacement is hit by a 130 BP Fighting hit.",
 	},
 	exposure: {
 		name: "Exposure",
