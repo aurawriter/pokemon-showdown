@@ -4433,8 +4433,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	regieleki: {
-		tier: "OU",
-		doublesTier: "DOU",
+		tier: "Uber",
 	},
 	regidrago: {
 		tier: "OU",
