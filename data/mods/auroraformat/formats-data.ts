@@ -4461,7 +4461,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	enamorustherian: {
 		tier: "OU",
-		doublesTier: "DOU",f
+		doublesTier: "DOU",
 	},
 	sprigatito: {
 		tier: "LC",
