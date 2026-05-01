@@ -22062,7 +22062,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		num: -1189,
 		name: "Sweidel",
 		types: ["Steel"],
-		baseStats: {hp:75,atk:105,def:115,spa:95,spd:70,spe:125},
+		baseStats: {hp:75,atk:105,def:115,spa:60,spd:35,spe:125},
 		abilities: {0: "Top Spin"},
 		heightm: 2.5,
 		weightkg: 300,
