@@ -24071,6 +24071,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					'Light': 'Radiant Burst',
 				};
 				move.name = typeToName[item.onEssence] || 'Essence Burst';
+				move.fullname = `move: ${move.name}`;
 				if(pokemon.getStat('spa', false, true) > pokemon.getStat('atk', false, true))
 				{
 					move.category = 'Special';
@@ -24080,7 +24081,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					move.category = 'Physical';
 				}
 			}
-		},	
+		},
 	},
 	quickdrawkick: {
 		num: 389,
