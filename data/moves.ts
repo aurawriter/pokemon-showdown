@@ -24049,6 +24049,28 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onModifyMove(move,pokemon,target) {
 			const item = pokemon.getItem();
 			if (item && item.onEssence) {
+				// Map essence types to burst names
+				const typeToName: {[key: string]: string} = {
+					'Fighting': 'Fist Burst',
+					'Flying': 'Sky Burst',
+					'Ground': 'Earth Burst',
+					'Rock': 'Stone Burst',
+					'Bug': 'Insect Burst',
+					'Ghost': 'Spooky Burst',
+					'Steel': 'Iron Burst',
+					'Fire': 'Flame Burst',
+					'Water': 'Splash Burst',
+					'Grass': 'Meadow Burst',
+					'Electric': 'Zap Burst',
+					'Psychic': 'Mind Burst',
+					'Ice': 'Icicle Burst',
+					'Dragon': 'Draco Burst',
+					'Dark': 'Dread Burst',
+					'Fairy': 'Pixie Burst',
+					'Cosmic': 'Nebula Burst',
+					'Light': 'Radiant Burst',
+				};
+				move.name = typeToName[item.onEssence] || 'Essence Burst';
 				if(pokemon.getStat('spa', false, true) > pokemon.getStat('atk', false, true))
 				{
 					move.category = 'Special';
