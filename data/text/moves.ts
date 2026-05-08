@@ -8138,7 +8138,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	shortcircuit: {
 		name: "Short Circuit",
 		desc: "Deals super-effective damage to Electric-types. User and target cannot use Electric-type moves next turn.",
-		shortDesc: "Super effective on Electric. User and target can't use Electric moves next turn.",
+		shortDesc: "Super effective vs Electric; Electric off till next turn ends.",
 	},
 	foulfoliage: {
 		name: "Foul Foliage",
@@ -8171,7 +8171,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	overwhelm: {
 		name: "Overwhelm",
 		desc: "If this move knocks out the target, the Pokemon that switches into that position is immediately hit by a Fighting-type hit with 130 base power.",
-		shortDesc: "If this KOes, the replacement is hit by a 130 BP Fighting hit.",
+		shortDesc: "If this KOes, replacement takes a 130 BP Fighting hit.",
 	},
 	exposure: {
 		name: "Exposure",
@@ -8201,7 +8201,7 @@ export const MovesText: {[k: string]: MoveText} = {
 	queensgambit: {
 		name: "Queen's Gambit",
 		desc: "Has a 100% chance to make the target flinch. Fails unless it is the user's first turn on the field.",
-		shortDesc: "Hits first. First turn out only. Reduces target's next attack by 25%",
+		shortDesc: "Hits first; first turn only. Target's next move -25%.",
 	},
 	hattrick: {
 		name: "Hat Trick",
