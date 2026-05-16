@@ -2575,7 +2575,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	soothingsong: {
 		name: "Soothing Song",
-		desc: "When this Pokemon uses a sound-based move, it heals itself and allies for 25% of their max HP.",
+		desc: "Using sound moves heals user and allies by 25% max HP.",
 	},
 	focusingcrystals: {
 		name: "Focusing Crystals",
@@ -2592,7 +2592,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	fermentation: {
 		name: "Fermentation",
-		shortDesc: "Grass moves gain 30% confuse. Confused Pokemon have their SpA and Atk reduced by 25%",
+		shortDesc: "Grass moves gain 30% confuse. Confused foes have their SpA and Atk reduced by 25%",
 	},
 	riposte: {
 		name: "Riposte",
@@ -2604,7 +2604,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	topspin: {
 		name: "Top Spin",
-		shortDesc: "If this Pokemon is hit by a Physical attack, it uses a random Spin move. Spin moves are boosted by 1.3x",
+		shortDesc: "When hit by a Physical move, uses a random Spin move; Spin moves deal 1.3x damage.",
 	},
 	adhesive: {
 		name: "Adhesive",
@@ -2616,7 +2616,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	},
 	infectious: {
 		name: "Infectious",
-		shortDesc: "When hit by a contact move, attacker's ability is changed to Infectious. If not Psycrobe, take 1/16th every turn."
+		shortDesc: "Contact makes the attacker Infectious; non-Psycrobe lose 1/16 HP each turn.",
 	},
 	squall: {
 		name: "Squall",
