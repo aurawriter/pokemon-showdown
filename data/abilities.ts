@@ -1809,7 +1809,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	heathaze: {
 		onModifySpD(spd,pokemon) {
-			if (this.field.isWeather(['sunnyday'])) {
+			if (this.field.isWeather(['sunnyday','desolateland'])) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -4018,7 +4018,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (type === 'sandstorm') return false;
 		},
 		onModifyDef(def, pokemon) {
+			if (this.field.isWeather(['sandstorm'])) 
+			{
 			return this.chainModify(1.5);
+			}
 		},
 		isBreakable: true,
 		name: "Sand Veil",
@@ -4027,7 +4030,10 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	raincoat: {
 		onModifyDef(def, pokemon) {
+			if (this.field.isWeather(['rain', 'primordialsea'])) 
+			{
 			return this.chainModify(1.5);
+			}
 		},
 		isBreakable: true,
 		name: "Rain Coat",

@@ -107490,7 +107490,6 @@ thievul: {
 			meteorbeam: ["9L64"],
 			meteorshower: ["9L68"],
 			fallingstar: ["9L72"],
-			auroraveil: ["9M"],
 			blizzard: ["9M"],
 			bodypress: ["9M"],
 			bodyslam: ["9M"],
