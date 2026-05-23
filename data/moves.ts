@@ -24540,11 +24540,18 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: -3,
 		flags: {snatch: 1, noassist: 1, failcopycat: 1, failinstruct: 1},
+		stallingMove: true,
 		onTry(source) {
 			return !!this.canSwitch(source.side);
 		},
 		priorityChargeCallback(pokemon) {
 			pokemon.addVolatile('escapeplan');
+		},
+		onPrepareHit(pokemon) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
 		},
 		beforeMoveCallback(pokemon) {
 			if (!pokemon.volatiles['escapeplan']?.gotHit) {

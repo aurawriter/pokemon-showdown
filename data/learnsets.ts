@@ -102967,7 +102967,9 @@ thievul: {
 			starburst: ["9L1"],
 			frostbite: ["9L1"],
 			protect: ["9L1"],
-		   endure: ["9L1"],
+		    endure: ["9L1"],
+			icebeam: ["9L1"],
+			blizzard: ["9L1"],
 		},
 	},
 	herastroid: {
