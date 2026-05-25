@@ -192,7 +192,7 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Attack is raised and it heals. Once per battle.",
 	},
 	beacon: {
-		name: "Fighting Spirit",
+		name: "Beacon",
 		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its Sp Def. goes up 2 stages, and it heals half of its health. Once per battle.",
 		shortDesc: "At 1/3 or less of its max HP, this Pokemon's Sp Def. is raised and it heals. Once per battle.",
 	},
@@ -1592,6 +1592,10 @@ export const AbilitiesText: {[k: string]: AbilityText} = {
 	rockypayload: {
 		name: "Rocky Payload",
 		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Rock-type attack.",
+	},
+	absolutezero: {
+		name: "Absolute Zero",
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Ice-type attack.",
 	},
 	roughskin: {
 		name: "Rough Skin",

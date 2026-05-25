@@ -12185,7 +12185,7 @@ export const Learnsets: {[k: string]: LearnsetData} = {
 			yawn: ["9L9", "8L9"],
 			zenheadbutt: ["9M", "9L24", "8M", "8L24"],
 			radiantsmite: ["9M"],
-			shingarrows: ["9M"],
+			shiningarrows: ["9M"],
 		},
 	},
 	magnemite: {
@@ -102521,7 +102521,7 @@ thievul: {
 			confusion:["9L1"],
 			extrasensory:["9L1"],
 			trickroom:["9L1"],
-			wonderoom:["9L1"],
+			wonderroom:["9L1"],
 			watergun:["9L1"],
 			assist: ["9L1"],
 			batonpass: ["9L1"],
