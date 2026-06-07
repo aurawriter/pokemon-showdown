@@ -24013,7 +24013,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Clearing Winds",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, wind: 1},
+		flags: {protect: 1, mirror: 1, wind: 1},
 		onAfterHit(target, source) {
 			if (source.hp) {
 				this.field.clearWeather();
@@ -24285,7 +24285,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Exposure",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1},
 		onTryHit(pokemon) {
 			// will shatter screens through sub, before you hit
 			pokemon.side.removeSideCondition('reflect');
@@ -24402,7 +24402,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Evaporate",
 		pp: 15,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1},
 		onHit(target) {
 			if (!target.hasType('Water')) return;
 			const newTypes = target.getTypes(true).map(type => type === 'Water' ? '???' : type);
@@ -24540,11 +24540,18 @@ export const Moves: {[moveid: string]: MoveData} = {
 		pp: 10,
 		priority: -3,
 		flags: {snatch: 1, noassist: 1, failcopycat: 1, failinstruct: 1},
+		stallingMove: true,
 		onTry(source) {
 			return !!this.canSwitch(source.side);
 		},
 		priorityChargeCallback(pokemon) {
 			pokemon.addVolatile('escapeplan');
+		},
+		onPrepareHit(pokemon) {
+			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
 		},
 		beforeMoveCallback(pokemon) {
 			if (!pokemon.volatiles['escapeplan']?.gotHit) {
