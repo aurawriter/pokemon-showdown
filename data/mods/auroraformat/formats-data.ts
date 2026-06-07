@@ -583,12 +583,10 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	onix: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "LC",
 	},
 	steelix: {
-		isNonstandard: "Past",
-		tier: "Illegal",
+		tier: "OU",
 	},
 	steelixmega: {
 		isNonstandard: "Past",
