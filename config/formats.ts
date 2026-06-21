@@ -73,7 +73,7 @@ export const Formats: FormatList = [
 		gameType: 'doubles',
 		searchShow: false,
 		bestOfDefault: true,
-		ruleset: ['Standard NatDex','Terastal Clause', 'Item Clause', 'Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
+		ruleset: ['Standard NatDex','Terastal Clause', 'Item Clause', 'Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets','Best of = 3'],
 	},
 	{
 		name: "[Gen 9 Aurora] Aurora Almost Any Ability",
