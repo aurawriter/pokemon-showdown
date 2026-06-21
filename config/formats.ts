@@ -66,6 +66,15 @@ export const Formats: FormatList = [
 		bestOfDefault: true,
 		ruleset: ['Standard NatDex','Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
 	},
+		{
+		name: "[Gen 9 Aurora] Aurora UHD2",
+
+		mod: 'auroraformat',
+		gameType: 'doubles',
+		searchShow: false,
+		bestOfDefault: true,
+		ruleset: ['Standard NatDex','Terastal Clause', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
+	},
 	{
 		name: "[Gen 9 Aurora] Aurora Almost Any Ability",
 		desc: `Pok&eacute;mon have access to almost any ability.`,
