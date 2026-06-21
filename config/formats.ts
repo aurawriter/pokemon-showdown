@@ -57,7 +57,7 @@ export const Formats: FormatList = [
 		ruleset: ['Min Source Gen = 9','Team Preview' , 'Cancel Mod','Same Type Clause', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod', 'Z-Move Clause'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
-	{
+	/*{
 		name: "[Gen 9 Aurora] Aurora UHD",
 
 		mod: 'auroraformat',
@@ -65,9 +65,9 @@ export const Formats: FormatList = [
 		searchShow: false,
 		bestOfDefault: true,
 		ruleset: ['Standard NatDex','Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets'],
-	},
+	},*/
 		{
-		name: "[Gen 9 Aurora] Aurora UHD2",
+		name: "[Gen 9 Aurora] Aurora UHD",
 
 		mod: 'auroraformat',
 		gameType: 'doubles',
