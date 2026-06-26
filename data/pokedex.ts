@@ -22226,6 +22226,14 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		eggGroups: ["Mineral"],
 		bodyShape: "Humanoid",
+	},
+	palleat: {
+		num: -1203,
+		name: "Palleat",
+		types: ["Normal"],
+		baseStats: {hp:79, atk: 112, def: 78, spa: 119, spd: 71, spe: 91},
+		abilities: {0: "Polychromatic"},
+
 	}
 
 

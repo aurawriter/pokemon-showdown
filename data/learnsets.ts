@@ -107518,4 +107518,36 @@ thievul: {
 			terablast: ["9M"],
 		}
 	},
+	DifferentTypes: {
+		learnset: {
+			pound: ["9L1"],
+			copycat: ["9L1"],
+			swift: ["9L5","9M"],
+			ember: ["9L8"],
+			powdersnow: ["9L11"],
+			shockwave: ["9L14"],
+			workup: ["9L18"],
+			flamecharge: ["9L22"],
+			triattack: ["9L26","9M"],
+			psybeam: ["9L30"],
+			flamethrower: ["9L34","9M"],
+			icebeam: ["9L38","9M"],
+			thunderbolt: ["9L42","9M"],
+			hypervoice: ["9L46"],
+			shadowball: ["9L50","9M"],
+			lastresort: ["9L66"],
+			thunderwave: ["9M"],
+			bodyslam: ["9M"],
+			hyperbeam: ["9M"],
+			gigaimpact: ["9M"],
+			psychic: ["9M"],
+			rest: ["9M"],
+			endure: ["9M"],
+			sleeptalk: ["9M"],
+			substitute: ["9M"],
+			protect: ["9M"],
+			facade: ["9M"],
+			doubleedge: ["9M"],
+		}
+	}
 };

@@ -7324,7 +7324,42 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 297,
 	},
+	polychromatic: {
+		onStart(pokemon) {
+			pokemon.addVolatile('polychromatic');
+		},
+		condition: {
+			onStart() {
+				this.effectState.numConsecutive = 0;
+			},
+			onTryMovePriority: -2,
+			onTryMove(pokemon, target, move) {
+				if (!pokemon.hasAbility('polychromatic')) {
+					pokemon.removeVolatile('polychromatic');
+					return;
+				}
+				if (pokemon.lastMove && pokemon.lastMove.type !== move.type) {
+					this.effectState.numConsecutive++;
+				} else {
+					this.effectState.numConsecutive = 0;
+				}
+			},
+			onModifyDamage(damage, source, target, move) {
+				const dmgMod = [4096, 4915, 5734, 6553, 7372, 8192];
+				const numConsecutive = this.effectState.numConsecutive > 5 ? 5 : this.effectState.numConsecutive;
+				this.debug(`Current Polychromatic boost: ${dmgMod[numConsecutive]}/4096`);
+				return this.chainModify([dmgMod[numConsecutive], 4096]);
+			},
+		},
+		name: "Polychromatic",
+		rating: 3.5,
+		num: 9999,
+	},
 	};
+
+
+
+
 
 
 
